@@ -1,0 +1,47 @@
+{
+  "name": "protographql",
+  "version": "1.0.0",
+  "description": "GraphQL prototyping desktop tool, build GQL schemas, queries, and mutations.",
+  "main": "index.ts",
+  "scripts": {
+    "build": "webpack -p",
+    "dev": "webpack-dev-server --mode=development",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/protographql/protographql.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/protographql/protographql/issues"
+  },
+  "homepage": "https://github.com/protographql/protographql#readme",
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "@material-ui/core": "^4.0.1",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^2.1.1",
+    "enzyme": "^3.9.0",
+    "jest": "^24.8.0",
+    "nodemon": "^1.19.1",
+    "source-map-loader": "^0.2.4",
+    "styled-components": "^4.2.1",
+    "ts-loader": "^6.0.2",
+    "typescript": "^3.5.1",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.5.1",
+    "express": "^4.17.1"
+  },
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "@types/react": "^16.8.19",
+    "@types/react-dom": "^16.8.4"
+  }
+}

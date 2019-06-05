@@ -51,7 +51,7 @@ const Main = () => {
 
       {/* uncomment the components to test */}
       {/* <Header /> */}
-      {/* <NavSideBar /> */}
+      <NavSideBar />
       <Welcome />
     </div>
   )

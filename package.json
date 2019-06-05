@@ -43,6 +43,7 @@
     "webpack-dev-server": "^3.5.1"
   },
   "dependencies": {
+    "@material-ui/icons": "^4.0.1",
     "@types/react": "^16.8.19",
     "@types/react-dom": "^16.8.4",
     "react": "^16.8.6",

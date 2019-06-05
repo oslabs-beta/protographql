@@ -53,6 +53,7 @@ const Main = () => {
       <Header />
       <NavSideBar />
       <Welcome /> */}
+      <NavSideBar />
     </div>
   )
 }

@@ -6,12 +6,9 @@ import Welcome from '../components/popup/welcome';
 const Main = () => {
     return (
         <div>
-            <h1>Our cool ProtoGraphQL App</h1>
-            {/* 
-            uncomment the components to test
             <Header />
-            <NavSideBar />
-            <Welcome /> */}
+            {/* <NavSideBar />
+            <Welcome />  */}
         </div>
     )
 }

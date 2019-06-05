@@ -13,7 +13,7 @@ function createWindow() {
             nodeIntegration: true
         },
         // this is only for Windows and Linux
-        icon: path.join(__dirname, '/assets/icon.png')
+        icon: path.join(__dirname, '/public/assets/pictures/icon.png')
      });
     //  console.log('Our dialog: ', dialog.showOpenDialog({
     //      properties: ['openFile', 'openDirectory', 'multiSelections']

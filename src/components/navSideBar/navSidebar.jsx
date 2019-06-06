@@ -31,7 +31,8 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const NavSideBar = () => {
+const NavSideBar = ({ setView, setPopUp }) => {
+    console.log(setView)
     const classes = useStyles();
 
     return (
@@ -47,7 +48,7 @@ const NavSideBar = () => {
         <Divider />
 
         <List>
-            <ListItem button key="Schema" className={classes.buttons}>
+            <ListItem button key="Schema" className={classes.buttons} onClick={() => {setView('schema')}} >
                 <ListItemIcon>
                     <Avatar>
                         <Share />
@@ -58,7 +59,7 @@ const NavSideBar = () => {
 
             <Divider />
 
-            <ListItem button key="Code" className={classes.buttons}>
+            <ListItem button key="Code" className={classes.buttons} onClick={() => {setView('code')}} >
                 <ListItemIcon>
                     <Avatar>
                         <Code />

@@ -58,7 +58,7 @@ function PaperComponent(props) {
   );
 }
 
-function DraggableDialog() {
+function DraggableDialog( { popUp, setPopUp }) {
   const [open, setOpen] = React.useState(true);
   const handleClose = () => setOpen(false);
 

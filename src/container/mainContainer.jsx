@@ -2,9 +2,14 @@ import React, { useState } from 'react';
 import Header from '../components/header/header';
 import NavSideBar from '../components/navSideBar/navSidebar';
 import Welcome from '../components/popup/welcome';
+import SchemaView from '../components/view/schemaView';
+import TableDetailView from '../components/view/tableDetailView';
+import CodeContainer from '../components/view/codeView';
 import * as state from '../state/initialState';
 import * as mockState from '../state/mockState';
-
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { Tabs, Tab, Typography } from '@material-ui/core/';
+import TableForm from '../components/view/tableForm';
 
 const Main = () => {
 
@@ -44,17 +49,22 @@ const Main = () => {
   //potential popups are welcome, table details, and export (select folder to save & success)
   const [popUp, setPopUp] = useState(mockState.popUpState);
 
-
   //Rendered components and elements
   return (
     <div>
       {/* uncomment the components to test */}
-      <NavSideBar />
+      <NavSideBar setView={setView} setPopUp={setPopUp} />
       <Header />
-      <Welcome />
+      {view === 'code' && <CodeContainer/>}
+      <Welcome popUp={popUp} setPopUp={setPopUp} />
+      {view === 'schema' && <SchemaView 
+        tables={tables} 
+        setTables={setTables} 
+        setPopUp={setPopUp} 
+        view={view} 
+      />}
     </div>
   )
 }
-
 
 export default Main;

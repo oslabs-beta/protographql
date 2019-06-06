@@ -5,6 +5,7 @@ import Welcome from '../components/popup/welcome';
 import * as state from '../state/initialState';
 import * as mockState from '../state/mockState';
 
+
 const Main = () => {
 
   //State constants instantiated using useState
@@ -47,11 +48,9 @@ const Main = () => {
   //Rendered components and elements
   return (
     <div>
-      <h1> Our cool ProtoGraphQL App </h1>
-
       {/* uncomment the components to test */}
-      {/* <Header /> */}
       <NavSideBar />
+      <Header />
       <Welcome />
     </div>
   )

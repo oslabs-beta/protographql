@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Header from '../components/header/header';
 import NavSideBar from '../components/navSideBar/navSidebar';
 import Welcome from '../components/popup/welcome';
+import SchemaView from '../components/view/schemaView';
+import TableDetailView from '../components/view/tableDetailView';
 import CodeContainer from '../components/view/codeView';
 import * as state from '../state/initialState';
 import * as mockState from '../state/mockState';
@@ -54,6 +56,12 @@ const Main = () => {
       <Header />
       <CodeContainer/> 
       <Welcome />
+      <SchemaView 
+        tables={tables} 
+        setTables={setTables} 
+        setPopUp={setPopUp} 
+        view={view} 
+      />
     </div>
   )
 }

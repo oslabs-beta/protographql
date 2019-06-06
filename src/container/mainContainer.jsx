@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from '../components/header/header';
 import NavSideBar from '../components/navSideBar/navSidebar';
 import Welcome from '../components/popup/welcome';
+import CodeContainer from '../components/view/codeView';
 import * as state from '../state/initialState';
 import * as mockState from '../state/mockState';
 
@@ -51,10 +52,10 @@ const Main = () => {
       {/* uncomment the components to test */}
       <NavSideBar />
       <Header />
+      <CodeContainer/> 
       <Welcome />
     </div>
   )
 }
-
 
 export default Main;

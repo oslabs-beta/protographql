@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import {
     Drawer,
     List,
@@ -11,13 +11,14 @@ import {
     Avatar,
  } from '@material-ui/core';
 
-import { Add, Share, Code, GetApp  } from '@material-ui/icons';
+import { Add, Share, Code, GetApp,  } from '@material-ui/icons';
 
 const drawerWidth = 200;
 
 const useStyles = makeStyles(theme => ({
     drawerPaper: {
       width: drawerWidth,
+      top: 73
     },
     toolbar: theme.mixins.toolbar,
     buttons: {
@@ -28,6 +29,13 @@ const useStyles = makeStyles(theme => ({
         bottom: 20,
         left: 10,
         width: 190
+    },
+
+    drawer: {
+        [theme.breakpoints.up('sm')]: {
+        width: drawerWidth,
+        flexShrink: 0,
+      }
     }
 }));
 
@@ -37,17 +45,10 @@ const NavSideBar = ({ setView, setPopUp }) => {
     return (
         <Drawer
         variant="permanent"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-        anchor="left"
-      >
-        <div className={classes.toolbar} />
-
-        <Divider />
-
+        classes={{ paper: classes.drawerPaper }}
+        >
         <List>
-            <ListItem button key="Schema" className={classes.buttons} onClick={() => {setView('schema')}} >
+            <ListItem button key="Schema" className={classes.buttons} onClick={() => {setView('schema')}} anchor="left" >
                 <ListItemIcon>
                     <Avatar>
                         <Share />

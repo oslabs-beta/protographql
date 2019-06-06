@@ -13,7 +13,7 @@ const SchemaView = ({ tables, setTables, setPopUp, view }) => {
  ))
  
  return (
-   <div>
+   <div style={{ marginLeft:'200px'}} >
      { tablesArray }
    </div>
  )

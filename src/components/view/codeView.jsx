@@ -7,7 +7,7 @@ function CodeContainer() {
   return (
     <Fragment>
       <CssBaseline />
-      <Container style={{marginLeft: '14.6%'}}>
+      <Container style={{marginLeft: '200px'}}>
         <Typography component="div" style={{ backgroundColor: '#333333', height: '100vh', color: 'white', alignContent: 'center'}}>
            {
                "all code goes here {hello there!}kjdghsergedfmvejrskgnergwewrmhjftsretwragdfhgzfbzc"

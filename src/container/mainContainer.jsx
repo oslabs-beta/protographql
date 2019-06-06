@@ -22,7 +22,7 @@ const Main = () => {
 
   const [tableIndex, setTableIndex] = useState(state.tableIndexState);
 
-  const [tables, setTables] = useState(state.tablesState);
+  const [tables,setTables] = useState(state.tablesState);
 
 
   const [view, setView] = useState(state.viewState);
@@ -49,15 +49,16 @@ const Main = () => {
   //potential popups are welcome, table details, and export (select folder to save & success)
   const [popUp, setPopUp] = useState(mockState.popUpState);
 
-
+  
+  //constant drawer width
+  const drawerWidth = 200;
   //Rendered components and elements
   return (
-    <div>
-      {/* uncomment the components to test */}
-      <NavSideBar setView={setView} setPopUp={setPopUp} />
+    <div display='flex' >
       <Header />
-      {view === 'code' && <CodeContainer/>}
+      <NavSideBar setView={setView} setPopUp={setPopUp}/>
       <Welcome popUp={popUp} setPopUp={setPopUp} />
+      {view === 'code' && <CodeContainer/>}
       {view === 'schema' && <SchemaView 
         tables={tables} 
         setTables={setTables} 

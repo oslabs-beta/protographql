@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from '../components/header/header';
 import NavSideBar from '../components/navSideBar/navSidebar';
 import Welcome from '../components/popup/welcome';
+import TableDetailView from '../components/view/tableDetailView';
 import * as state from '../state/initialState';
 import * as mockState from '../state/mockState';
 
@@ -52,6 +53,7 @@ const Main = () => {
       <NavSideBar />
       <Header />
       <Welcome />
+      <TableDetailView tables={tables} setTables={setTables} setPopUp={setPopUp} />
     </div>
   )
 }

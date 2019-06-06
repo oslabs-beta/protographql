@@ -32,7 +32,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const NavSideBar = ({ setView, setPopUp }) => {
-    console.log(setView)
     const classes = useStyles();
 
     return (

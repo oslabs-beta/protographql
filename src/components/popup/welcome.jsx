@@ -60,11 +60,11 @@ function PaperComponent(props) {
 
 function DraggableDialog( { popUp, setPopUp }) {
   const [open, setOpen] = React.useState(true);
-  const handleClose = () => setPopUp('');
+  const handleClose = () => setOpen(false);
 
   return (
     <div>
-      <Dialog open={() => {return popUp === 'welcome'}} PaperComponent={PaperComponent}>
+      <Dialog open={open} PaperComponent={PaperComponent}>
         <Title style={{ cursor: "move" }} id="draggable-dialog-title">P R O T O G R A P H Q L</Title>
 
         <ContentDiv>

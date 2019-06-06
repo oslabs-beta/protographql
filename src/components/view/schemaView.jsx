@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import SchemaTable from './schemaTable'
+import { Container, CssBaseline } from '@material-ui/core';
+
 
 const SchemaView = ({ tables, setTables, setPopUp, view }) => {
  const tablesArray = Object.keys(tables).map(tableKey => (
@@ -13,9 +15,12 @@ const SchemaView = ({ tables, setTables, setPopUp, view }) => {
  ))
  
  return (
-   <div style={{ marginLeft:'200px'}} >
-     { tablesArray }
-   </div>
+  <Fragment>
+    <CssBaseline />
+    <Container style={{width: '100%'}}>
+      { tablesArray }
+    </Container>
+  </Fragment>
  )
 }
 

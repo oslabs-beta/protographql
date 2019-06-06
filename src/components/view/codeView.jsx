@@ -5,16 +5,19 @@ import Container from '@material-ui/core/Container';
 
 function CodeContainer() {
   return (
-    <Fragment>
+    <main style={{flexgrow: 1}}>
       <CssBaseline />
-      <Container style={{marginLeft: '200px'}}>
-        <Typography component="div" style={{ backgroundColor: '#333333', height: '100vh', color: 'white', alignContent: 'center'}}>
+      <Container style={{width: '100%', }} maxWidth='xl' >
+        <Typography 
+          paragraph
+          style={{ backgroundColor: '#333333', height: '100vh', color: 'white', alignContent: 'center', width: '100%'}}
+        >
            {
                "all code goes here {hello there!}kjdghsergedfmvejrskgnergwewrmhjftsretwragdfhgzfbzc"
            }
         </Typography>
       </Container>
-    </Fragment>
+    </main>
   );
 }
 

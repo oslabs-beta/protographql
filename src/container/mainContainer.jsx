@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import Header from '../components/header/header';
 import NavSideBar from '../components/navSideBar/navSidebar';
 import Welcome from '../components/popup/welcome';
-import SchemaView from '../components/view/schemaView';
 import TableDetailView from '../components/view/tableDetailView';
-import CodeContainer from '../components/view/codeView';
 import * as state from '../state/initialState';
 import * as mockState from '../state/mockState';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Tabs, Tab, Typography } from '@material-ui/core/';
+import MainView from '../components/view/mainView';
 
 
 const Main = () => {
@@ -58,13 +57,12 @@ const Main = () => {
       <Header />
       <NavSideBar setView={setView} setPopUp={setPopUp}/>
       <Welcome popUp={popUp} setPopUp={setPopUp} />
-      {view === 'code' && <CodeContainer/>}
-      {view === 'schema' && <SchemaView 
+      <MainView 
+        view={view} 
         tables={tables} 
         setTables={setTables} 
         setPopUp={setPopUp} 
-        view={view} 
-      />}
+      />
     </div>
   )
 }

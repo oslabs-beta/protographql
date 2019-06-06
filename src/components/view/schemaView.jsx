@@ -3,7 +3,8 @@ import SchemaTable from './schemaTable'
 
 const SchemaView = ({ tables, setTables, setPopUp, view }) => {
  const tablesArray = Object.keys(tables).map(tableKey => (
-   <SchemaTable 
+   <SchemaTable
+    tableKey={tableKey} 
     table={tables[tableKey]} 
     setTables={setTables} 
     setPopUp={setPopUp} 

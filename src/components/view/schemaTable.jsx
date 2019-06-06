@@ -33,12 +33,18 @@ const StyledTableRow = withStyles(theme => ({
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: 350,
+    width: 250,
+    maxHeight: 300,
     marginTop: theme.spacing(3),
     overflowX: 'auto',
   },
   table: {
-    minWidth: 300,
+    minWidth: 200,
+  },
+  title: {
+    variant: "h6",
+    id: "tableTitle",
+    color:'textSecondary'
   }
 }));
 
@@ -49,18 +55,18 @@ function SchemaTable ( { table, setTables, setPopUp, tableKey }) {
     Object.keys(table.fields).map(fieldKey => (
       {
         name: table.fields[fieldKey].name,
-        type: table.fields[fieldKey].type
+        type: table.fields[fieldKey].type,
       }
     ))  
   )
 
   return (
     <Paper className={classes.root}>
+      <Typography className={classes.title} align='center'  >
+        {table.type}
+      </Typography>
       <Table className={classes.table}>
         <TableHead>
-          <Typography variant="h6" id="tableTitle" color='textSecondary' align='left' >
-            {table.type}
-          </Typography>
           <TableRow>
             <StyledTableCell>Name</StyledTableCell>
             <StyledTableCell align="right">Type</StyledTableCell>

@@ -7,6 +7,8 @@ import TableDetailView from '../components/view/tableDetailView';
 import CodeContainer from '../components/view/codeView';
 import * as state from '../state/initialState';
 import * as mockState from '../state/mockState';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { Tabs, Tab, Typography } from '@material-ui/core/';
 
 
 const Main = () => {
@@ -52,16 +54,16 @@ const Main = () => {
   return (
     <div>
       {/* uncomment the components to test */}
-      <NavSideBar />
+      <NavSideBar setView={setView} setPopUp={setPopUp} />
       <Header />
-      <CodeContainer/> 
-      <Welcome />
-      <SchemaView 
+      {view === 'code' && <CodeContainer/>}
+      <Welcome popUp={popUp} setPopUp={setPopUp} />
+      {view === 'schema' && <SchemaView 
         tables={tables} 
         setTables={setTables} 
         setPopUp={setPopUp} 
         view={view} 
-      />
+      />}
     </div>
   )
 }

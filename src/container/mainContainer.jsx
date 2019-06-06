@@ -3,6 +3,8 @@ import Header from '../components/header/header';
 import NavSideBar from '../components/navSideBar/navSidebar';
 import Welcome from '../components/popup/welcome';
 import SchemaView from '../components/view/schemaView';
+import TableDetailView from '../components/view/tableDetailView';
+import CodeContainer from '../components/view/codeView';
 import * as state from '../state/initialState';
 import * as mockState from '../state/mockState';
 
@@ -50,8 +52,9 @@ const Main = () => {
   return (
     <div>
       {/* uncomment the components to test */}
-      {/* <NavSideBar /> */}
+      <NavSideBar />
       <Header />
+      <CodeContainer/> 
       <Welcome />
       <SchemaView 
         tables={tables} 
@@ -62,6 +65,5 @@ const Main = () => {
     </div>
   )
 }
-
 
 export default Main;

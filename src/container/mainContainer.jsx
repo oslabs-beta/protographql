@@ -4,7 +4,7 @@ import NavSideBar from '../components/navSideBar/navSidebar';
 import Welcome from '../components/popup/welcome';
 import * as state from '../state/initialState';
 import * as mockState from '../state/mockState';
-
+import TableForm from '../components/view/tableForm';
 
 const Main = () => {
 
@@ -44,14 +44,14 @@ const Main = () => {
   //potential popups are welcome, table details, and export (select folder to save & success)
   const [popUp, setPopUp] = useState(mockState.popUpState);
 
-
   //Rendered components and elements
   return (
     <div>
       {/* uncomment the components to test */}
-      <NavSideBar />
+      {/* <NavSideBar /> */}
       <Header />
       <Welcome />
+      <TableForm tables={tables} />
     </div>
   )
 }

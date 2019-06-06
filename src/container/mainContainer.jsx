@@ -48,11 +48,9 @@ const Main = () => {
   //Rendered components and elements
   return (
     <div>
-      <h1> Our cool ProtoGraphQL App </h1>
-
       {/* uncomment the components to test */}
-      {/* <Header /> */}
       <NavSideBar />
+      <Header />
       <Welcome />
     </div>
   )

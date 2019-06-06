@@ -58,8 +58,8 @@ function PaperComponent(props) {
   );
 }
 
-function DraggableDialog() {
-  const [open, setOpen] = React.useState(false); // SETTING TO FALSE FOR NOW. NEED TO SET THIS BACK TO TRUE
+function DraggableDialog( { popUp, setPopUp }) {
+  const [open, setOpen] = React.useState(true);
   const handleClose = () => setOpen(false);
 
   return (

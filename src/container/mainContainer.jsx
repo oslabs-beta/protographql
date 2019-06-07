@@ -6,7 +6,7 @@ import TableDetailView from '../components/view/tableDetailView';
 import * as state from '../state/initialState';
 import * as mockState from '../state/mockState';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
-import { Tabs, Tab, Typography } from '@material-ui/core/';
+import { Grid } from '@material-ui/core';
 import MainView from '../components/view/mainView';
 
 
@@ -53,18 +53,25 @@ const Main = () => {
   const drawerWidth = 200;
   //Rendered components and elements
   return (
-    <div display='flex' >
+    <div>
       <Header />
-      <NavSideBar setView={setView} setPopUp={setPopUp}/>
       <Welcome popUp={popUp} setPopUp={setPopUp} />
-      <MainView 
-        view={view} 
-        tables={tables} 
-        setTables={setTables} 
-        setPopUp={setPopUp} 
-      />
+      <Grid container>
+        <Grid item sm={2}>
+          <NavSideBar setView={setView} setPopUp={setPopUp}/>
+        </Grid>  
+        <Grid item lg={10}>
+          <MainView 
+              view={view} 
+              tables={tables} 
+              setTables={setTables} 
+              setPopUp={setPopUp}
+              style={{width: `calc(100% - 200px)`}} 
+          />
+        </Grid>
+      </Grid>
     </div>
-  )
+    )
 }
 
 export default Main;

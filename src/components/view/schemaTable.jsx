@@ -63,7 +63,7 @@ function SchemaTable ( { table, setTables, setPopUp, tableKey }) {
   )
 
   return (
-    <Paper className={classes.root}>
+    <Paper className={classes.root} style={{width:'300px'}}> 
       <Typography className={classes.title}  >
         {table.type}
         <span style={{ marginLeft: 130}}>

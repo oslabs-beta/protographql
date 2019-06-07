@@ -9,21 +9,20 @@ import {
     ListItemIcon,
     ListItemText,
     Avatar,
+    Grid,
  } from '@material-ui/core';
 
 import { Add, Share, Code, GetApp,  } from '@material-ui/icons';
 
-const drawerWidth = 200;
+// const drawerWidth = 200;
 
 const useStyles = makeStyles(theme => ({
     drawerPaper: {
-      width: drawerWidth,
-      top: 73
-    },
+      // width: drawerWidth,
     toolbar: theme.mixins.toolbar,
     buttons: {
         margin: 10
-    },
+    }},
     plusButton: {
         position: 'fixed',
         bottom: 20,
@@ -33,7 +32,7 @@ const useStyles = makeStyles(theme => ({
 
     drawer: {
         [theme.breakpoints.up('sm')]: {
-        width: drawerWidth,
+        // width: drawerWidth,
         flexShrink: 0,
       }
     }
@@ -43,6 +42,8 @@ const NavSideBar = ({ setView, setPopUp }) => {
     const classes = useStyles();
 
     return (
+      <Grid container>
+        <Grid item lg={12}>
         <Drawer
         variant="permanent"
         classes={{ paper: classes.drawerPaper }}
@@ -96,7 +97,9 @@ const NavSideBar = ({ setView, setPopUp }) => {
             </ListItem>
         </List>
     </Drawer>
-    )
+    </Grid>
+  </Grid>
+  )
 }
 
 export default NavSideBar;

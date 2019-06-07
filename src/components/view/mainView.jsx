@@ -5,7 +5,7 @@ import { Container } from '@material-ui/core';
 
 function MainView ( { view, tables, setTables, setPopUp }) {
   return (
-    <Container>
+    <Container width='100%'>
       {view === 'code' && <CodeContainer/>}
       {view === 'schema' && <SchemaView 
         tables={tables} 

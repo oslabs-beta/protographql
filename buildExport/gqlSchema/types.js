@@ -1,4 +1,4 @@
-// Copy from mockState.tablesState
+// Copy from mockState.tablesState -- Need to replace this so that this is linked to our Main Container state.
 const tables = {
   0: {
     type: 'Author',
@@ -130,4 +130,36 @@ const tables = {
   },
 };
 
-// Autogenerate default GQL types
+// User must npm install 'apollo-server'
+// https://www.apollographql.com/docs/tutorial/schema/
+const schemaText = `
+  const { gql } = require('apollo-server');
+  const typeDefs = gql\`\`;
+
+  module.exports = typeDefs;
+`;
+
+// Autogenerate default GQL types with scalar GQL fields
+const buildGQLTypes = tables => {
+  let gqlTypeCode = '';
+
+  // Iterate through each table in our state. Define a GQL Type for each table.
+  for (let tbIndex in tables) {
+    const table = tables[tbIndex];
+    gqlTypeCode += `type ${table.type} {\n`;
+
+    // Iterate through each field in each table. Define a GQL field for each field
+    for (let fieldIndex in table.fields) {
+      const field = table.fields[fieldIndex];
+      gqlTypeCode += `  ${field.name}: ${field.type}`; // Need map between SQL and GQL types OR fix field.type 
+      // ID, String, Boolean, Int, Float -- NEED TO ENFORCE THIS RULE FOR EACH FIELD TYPE.
+      gqlTypeCode += field.required ?  `!` : ``;
+      gqlTypeCode += `\n`;
+    }
+    gqlTypeCode += `}\n\n`;
+  }
+
+  return gqlTypeCode;
+}
+
+console.log(buildGQLTypes(tables));

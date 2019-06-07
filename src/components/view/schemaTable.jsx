@@ -1,6 +1,8 @@
 import React from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Table, Typography, TableBody, TableCell, TableHead, TableRow, Paper } from '@material-ui/core/';
+import { Edit, Delete  } from '@material-ui/icons';
+// import { Edit, Delete } from ‘material-ui/icons’;
 // import Table from '@material-ui/core/Table';
 // import TableBody from '@material-ui/core/TableBody';
 // import TableCell from '@material-ui/core/TableCell';
@@ -44,7 +46,7 @@ const useStyles = makeStyles(theme => ({
   title: {
     variant: "h6",
     id: "tableTitle",
-    color:'textSecondary'
+    color:'textSecondary',
   }
 }));
 
@@ -62,9 +64,16 @@ function SchemaTable ( { table, setTables, setPopUp, tableKey }) {
 
   return (
     <Paper className={classes.root}>
-      <Typography className={classes.title} align='center'  >
+      <Typography className={classes.title}  >
         {table.type}
+        <span style={{ marginLeft: 130}}>
+          <Delete />
+        </span>
+        <span style={{ marginLeft: 10}}>
+          <Edit />
+        </span>
       </Typography>
+      
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
@@ -76,6 +85,7 @@ function SchemaTable ( { table, setTables, setPopUp, tableKey }) {
         <TableBody>
           {fields.map(field => (
             <StyledTableRow key={field.name}>
+
               <StyledTableCell component="th" scope="field">
                 {field.name}
               </StyledTableCell>

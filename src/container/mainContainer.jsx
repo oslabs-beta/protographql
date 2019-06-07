@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import Header from '../components/header/header';
 import NavSideBar from '../components/navSideBar/navSidebar';
 import Welcome from '../components/popup/welcome';
-import SchemaView from '../components/view/schemaView';
 import TableDetailView from '../components/view/tableDetailView';
-import CodeContainer from '../components/view/codeView';
 import * as state from '../state/initialState';
 import * as mockState from '../state/mockState';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Tabs, Tab, Typography } from '@material-ui/core/';
+import MainView from '../components/view/mainView';
 
 
 const Main = () => {
@@ -22,7 +21,7 @@ const Main = () => {
 
   const [tableIndex, setTableIndex] = useState(state.tableIndexState);
 
-  const [tables, setTables] = useState(state.tablesState);
+  const [tables,setTables] = useState(state.tablesState);
 
 
   const [view, setView] = useState(state.viewState);
@@ -49,21 +48,21 @@ const Main = () => {
   //potential popups are welcome, table details, and export (select folder to save & success)
   const [popUp, setPopUp] = useState(mockState.popUpState);
 
-
+  
+  //constant drawer width
+  const drawerWidth = 200;
   //Rendered components and elements
   return (
-    <div>
-      {/* uncomment the components to test */}
-      <NavSideBar setView={setView} setPopUp={setPopUp} />
+    <div display='flex' >
       <Header />
-      {view === 'code' && <CodeContainer/>}
+      <NavSideBar setView={setView} setPopUp={setPopUp}/>
       <Welcome popUp={popUp} setPopUp={setPopUp} />
-      {view === 'schema' && <SchemaView 
+      <MainView 
+        view={view} 
         tables={tables} 
         setTables={setTables} 
         setPopUp={setPopUp} 
-        view={view} 
-      />}
+      />
     </div>
   )
 }

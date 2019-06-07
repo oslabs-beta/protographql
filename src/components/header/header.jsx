@@ -9,7 +9,6 @@ import IconButton from '@material-ui/core/IconButton';
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 3,
-    marginLeft : "16%"
 },
 menuButton: {
     marginRight: theme.spacing(2),
@@ -30,13 +29,13 @@ export default function ButtonAppBar() {
       <AppBar position="static" className={classes.header}>
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} aria-label="Menu">
-           <img src='../public/assets/pictures/icon.png' width='100'/>
+           <img src='../public/assets/pictures/icon.png' height='40'/>
           </IconButton>
-          <Typography variant="h2" className={classes.title}>
+          <Typography variant="h4" className={classes.title}>
             ProtoGraphQL
           </Typography>
           <Button color="inherit">
-          <img src='../public/assets/pictures/GitHub-Mark-Light-64px.png' width='100'/>
+          <img src='../public/assets/pictures/GitHub-Mark-Light-64px.png' height='40'/>
           </Button>
         </Toolbar>
       </AppBar>

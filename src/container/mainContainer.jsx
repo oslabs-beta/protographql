@@ -60,12 +60,13 @@ const Main = () => {
           "navSideBar main main main main main main"
         `,
       height: "100vh",
-      backgroundColor: "white",
-      fontFamily: "'Roboto', sans-serif"
+      backgroundColor: "#EEEFF0",
+      fontFamily: "'Roboto', sans-serif",
+      margin: "0px"
     }}>
       <Header />
       {/* <Welcome popUp={popUp} setPopUp={setPopUp} /> */}
-      <NavSideBar setView={setView} setPopUp={setPopUp} />
+      <NavSideBar setView={setView} setPopUp={setPopUp}/>
       <MainView
         view={view}
         tables={tables}

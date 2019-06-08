@@ -1,29 +1,43 @@
 import React, { Fragment } from 'react';
 import SchemaTable from './schemaTable'
-import { Container, CssBaseline } from '@material-ui/core';
+import styled from 'styled-components';
 
+const View = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+`
 
-const SchemaView = ({ tables, setTables, setPopUp, view }) => {
-  const tablesArray = Object.keys(tables).map(tableKey => (
-    <SchemaTable
-      key={tableKey}
-      tableKey={tableKey}
-      table={tables[tableKey]}
-      setTables={setTables}
-      setPopUp={setPopUp}
+// const View = styled.div`
+//   display: grid;
+//   grid-template-columns: 200px 200px 200px 200px auto;
+//   grid-template-rows: auto;
+// `
+
+function SchemaView ({ tables, setTables, setPopUp, view }) {
+ const tablesArray = Object.keys(tables).map(tableKey => (
+   <SchemaTable
+    key={tableKey}
+    tableKey={tableKey}
+    table={tables[tableKey]}
+    setTables={setTables}
+    setPopUp={setPopUp}
+    style={{ margin: "10px" }}
     />
-  ))
+ ))
+ 
+ return (
+  <View >
+    {/* <div style={{ margin: "10px" }}>bsrkvmsrfskdcbasdbvmsdtfbdsrfbvsfhmfgu</div>
+    <div style={{ margin: "10px" }}>Test2</div>
+    <div style={{ margin: "10px" }}>Test2</div>
+    <div style={{ margin: "10px" }}>Test2</div>
+    <div style={{ margin: "10px" }}>Test2</div>
+    <div style={{ margin: "10px" }}>Test2</div> */}
 
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <Fragment >
-        <CssBaseline />
-        <Container style={{ width: `calc(100% - 200px)` }}>
-          {tablesArray}
-        </Container>
-      </Fragment>
-    </div>
-  )
+      { tablesArray }
+  </View>
+ )
 }
 
 export default SchemaView;

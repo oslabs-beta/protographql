@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
     overflowX: 'auto',
   },
   table: {
-    minWidth: 200,
+    minWidth: 200
   },
   title: {
     variant: "h6",

@@ -1,104 +1,76 @@
 import React from 'react';
+import styled, { css, keyframes } from 'styled-components'
 
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import {
-    Drawer,
-    List,
-    Divider,
-    ListItem,
-    ListItemIcon,
-    ListItemText,
-    Avatar,
-    Grid,
- } from '@material-ui/core';
+const fontColor = keyframes`
+  to {
+    color: #e535ab;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.10);
+  }
+`;
 
-import { Add, Share, Code, GetApp,  } from '@material-ui/icons';
+const SideBar = styled.div`
+  grid-area: navSideBar;
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.10);
+`
 
-// const drawerWidth = 200;
+const ButtonContainer = styled.div`
+  padding: 0px;
+  margin-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  margin-right: 1px solid rgba(0, 0, 0, 0.08);
+  min-width: 200px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.10);
+  &:hover {
+    animation: ${fontColor} .5s;
+    animation-fill-mode: both;
+  };
+`
 
-const useStyles = makeStyles(theme => ({
-    drawerPaper: {
-      // width: drawerWidth,
-    toolbar: theme.mixins.toolbar,
-    buttons: {
-        margin: 10
-    }},
-    plusButton: {
-        position: 'fixed',
-        bottom: 20,
-        left: 10,
-        width: 190
-    },
+const Button = styled.div`
+  height: 60px;
+  background-color: none;
+  margin: auto;
+  width: 100%;
+  margin-left: calc(15.5px + .25vw);
+  margin-top: 25px;
 
-    drawer: {
-        [theme.breakpoints.up('sm')]: {
-        // width: drawerWidth,
-        flexShrink: 0,
-      }
-    }
-}));
+`
 
-const NavSideBar = ({ setView, setPopUp }) => {
-    const classes = useStyles();
+const Icon = styled.span`
+  margin: 5px;
+  font-size: calc(14px + 1vw);
+`
 
-    return (
-      <Grid container>
-        <Grid item lg={12}>
-        <Drawer
-        variant="permanent"
-        classes={{ paper: classes.drawerPaper }}
-        >
-        <List>
-            <ListItem button key="Schema" className={classes.buttons} onClick={() => {setView('schema')}} anchor="left" >
-                <ListItemIcon>
-                    <Avatar>
-                        <Share />
-                    </Avatar>
-                </ListItemIcon>
-                <ListItemText primary="Schema" />
-            </ListItem>
+// color: #e535ab;
 
-            <Divider />
-
-            <ListItem button key="Code" className={classes.buttons} onClick={() => {setView('code')}} >
-                <ListItemIcon>
-                    <Avatar>
-                        <Code />
-                    </Avatar>
-                </ListItemIcon>
-                <ListItemText primary="Code" />
-            </ListItem>
-
-            <Divider />
-
-            <ListItem button key="Export" className={classes.buttons}>
-                <ListItemIcon>
-                    <Avatar>
-                        <GetApp />
-                    </Avatar>
-                </ListItemIcon>
-                <ListItemText primary="Export" />
-            </ListItem>
-
-
-        </List>
-        <Divider />
-        <List>
-            <ListItem button
-            key="AddNew"
-            className={classes.plusButton}
-            >
-                <ListItemIcon>
-                    <Avatar>
-                        <Add />
-                    </Avatar>
-                </ListItemIcon>
-                <ListItemText primary="Add Table" />
-            </ListItem>
-        </List>
-    </Drawer>
-    </Grid>
-  </Grid>
+function NavSideBar ({ setView, setPopUp, view }) {
+  return (
+    <SideBar>
+      <ButtonContainer key="Schema" onClick={() => {setView('schema')}} >
+        <Button>
+          <Icon ><i class="fas fa-code-branch"></i></Icon>
+          <Icon>Schema</Icon>
+        </Button>
+      </ButtonContainer>
+      <ButtonContainer key="Code" onClick={() => {setView('code')}}>
+        <Button>
+          <Icon ><i class="fas fa-code"></i></Icon>
+          <Icon>Code</Icon>
+        </Button>
+      </ButtonContainer>
+      <ButtonContainer>
+        <Button>
+          <Icon ><i class="fas fa-file-download"></i></Icon>
+          <Icon>Export</Icon>
+        </Button>
+      </ButtonContainer>
+      <ButtonContainer>
+        <Button>
+          <Icon ><i class="fas fa-plus-square"></i></Icon>
+          <Icon>Add table</Icon>
+        </Button>
+      </ButtonContainer>
+    </SideBar>
   )
 }
 

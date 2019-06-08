@@ -8,6 +8,8 @@ import * as mockState from '../state/mockState';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
 import MainView from '../components/view/mainView';
+import TableForm from '../components/view/tableForm'
+import { relative } from 'path';
 
 
 const Main = () => {
@@ -48,28 +50,29 @@ const Main = () => {
   //potential popups are welcome, table details, and export (select folder to save & success)
   const [popUp, setPopUp] = useState(mockState.popUpState);
 
-  
-  //constant drawer width
-  const drawerWidth = 200;
   //Rendered components and elements
   return (
-    <div>
-      <Header />
-      <Welcome popUp={popUp} setPopUp={setPopUp} />
-      <Grid container>
-        <Grid item sm={2}>
-          <NavSideBar setView={setView} setPopUp={setPopUp}/>
-        </Grid>  
-        <Grid item lg={10}>
-          <MainView 
-              view={view} 
-              tables={tables} 
-              setTables={setTables} 
-              setPopUp={setPopUp}
-              style={{width: `calc(100% - 200px)`}} 
-          />
-        </Grid>
-      </Grid>
+    <div style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr 1fr",
+        gridTemplateRows: "70px auto",
+        gridTemplateAreas: `
+          "header header header header header header header"
+          "navSideBar main main main main main main"
+        `,
+        height: "100vh",
+        backgroundColor: "white",
+        fontFamily: "'Roboto', sans-serif"
+      }}>
+      <Header/>
+      {/* <Welcome popUp={popUp} setPopUp={setPopUp} /> */}
+      <NavSideBar setView={setView} setPopUp={setPopUp} view={view} />
+      <MainView 
+        view={view} 
+        tables={tables} 
+        setTables={setTables} 
+        setPopUp={setPopUp}
+      />
     </div>
     )
 }

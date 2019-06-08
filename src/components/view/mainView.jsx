@@ -6,7 +6,6 @@ import { Container } from '@material-ui/core';
 function MainView ( { view, tables, setTables, setPopUp }) {
   return (
     <div style={{ gridArea: "main" }}>
-      <Container width='100%'>
         {view === 'code' && <CodeContainer/>}
         {view === 'schema' && <SchemaView 
           tables={tables} 
@@ -14,7 +13,6 @@ function MainView ( { view, tables, setTables, setPopUp }) {
           setPopUp={setPopUp} 
           view={view} 
         />}
-      </Container>
     </div>
   )
 }

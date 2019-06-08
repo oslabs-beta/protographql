@@ -139,11 +139,11 @@ const schemaText = `
   module.exports = typeDefs;
 `;
 
-// Autogenerate default GQL types with scalar GQL fields
+// Autogenerate default GQL types with object & scalar GQL fields
 const buildGQLTypes = tables => {
   let gqlTypeCode = '';
 
-  // Iterate through each table in our state. Define a GQL Type for each table.
+  // Define a GQL Type for each table
   for (let tbIndex in tables) {
     const table = tables[tbIndex];
     gqlTypeCode += `${tabs(1)}type ${table.type} {\n`; // Open GQL type definition

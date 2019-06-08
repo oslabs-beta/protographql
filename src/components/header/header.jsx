@@ -1,28 +1,34 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  IconButton
+} from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 3,
-    gridArea: 'header'
-},
-menuButton: {
+    gridArea: "header",
+  },
+  menuButton: {
     marginRight: theme.spacing(2),
-},
-title: {
+  },
+  title: {
     flexGrow: 2,
-},
-header:{
-    backgroundColor : "rgb(22, 30, 38)"
+  },
+  header: {
+    backgroundColor : "#324353",
+  },
+  pink: {
+    color: "#DD399C",
   }
+
 }));
 
-export default function ButtonAppBar() {
+function Header() {
   const classes = useStyles();
 
   return (
@@ -30,16 +36,19 @@ export default function ButtonAppBar() {
       <AppBar position="static" className={classes.header}>
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} aria-label="Menu">
-           <img src='../public/assets/pictures/icon.png' height='40'/>
+           <img src="../public/assets/pictures/GraphQL_Logo.png" height="40"/>
           </IconButton>
-          <Typography variant="h4" className={classes.title}>
-            ProtoGraphQL
+          <Typography variant="h3" className={classes.title}>
+            <span>Proto</span>
+            <span className={classes.pink}>GraphQL</span>
           </Typography>
           <Button color="inherit">
-          <img src='../public/assets/pictures/GitHub-Mark-Light-64px.png' height='40'/>
+          <img src="../public/assets/pictures/GitHub-Mark-Light-64px.png" height="40"/>
           </Button>
         </Toolbar>
       </AppBar>
     </div>
   );
 }
+
+export default Header;

@@ -14,8 +14,6 @@ const Th = styled.th`
 
 
 function TableHeader() {
-
-
   return (
     <Tr>
       <Th>Delete</Th>

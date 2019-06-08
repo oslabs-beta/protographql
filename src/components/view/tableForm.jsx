@@ -22,23 +22,20 @@ const Table = styled.table`
 `;
 
 function TableForm() {
-
   return (
-
-    <Div>
-      <TableName />
-      <Table id='table' >
-        <tbody>
-          <Draggable>
+    <Draggable>
+      <Div>
+        <TableName />
+        <Table id='table' >
+          <tbody>
             <TableHeader />
-          </Draggable>
-          <TableRow />
-          <TableRow />
-          <TableRow />
-        </tbody>
-      </Table>
-    </Div>
-
+            <TableRow />
+            <TableRow />
+            <TableRow />
+          </tbody>
+        </Table>
+      </Div>
+    </Draggable>
   )
 }
 

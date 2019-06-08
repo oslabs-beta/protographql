@@ -9,9 +9,11 @@ const fontColor = keyframes`
 `;
 
 const SideBar = styled.div`
+  background-color: white;
   grid-area: navSideBar;
   border-right: 1px solid rgba(0, 0, 0, 0.12);
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.10);
+  display: inline-block;
 `
 
 const ButtonContainer = styled.div`
@@ -46,13 +48,13 @@ const Icon = styled.span`
 function NavSideBar ({ setView, setPopUp, view }) {
   return (
     <SideBar>
-      <ButtonContainer key="Schema" onClick={() => {setView('schema')}} >
+      <ButtonContainer key="schema" onClick={() => {setView('schema')}} view={view} >
         <Button>
           <Icon ><i class="fas fa-code-branch"></i></Icon>
           <Icon>Schema</Icon>
         </Button>
       </ButtonContainer>
-      <ButtonContainer key="Code" onClick={() => {setView('code')}}>
+      <ButtonContainer key="code" onClick={() => {setView('code')}}>
         <Button>
           <Icon ><i class="fas fa-code"></i></Icon>
           <Icon>Code</Icon>
@@ -64,7 +66,7 @@ function NavSideBar ({ setView, setPopUp, view }) {
           <Icon>Export</Icon>
         </Button>
       </ButtonContainer>
-      <ButtonContainer>
+      <ButtonContainer >
         <Button>
           <Icon ><i class="fas fa-plus-square"></i></Icon>
           <Icon>Add table</Icon>

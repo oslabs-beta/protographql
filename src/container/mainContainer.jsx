@@ -55,13 +55,13 @@ const Main = () => {
     <div style={{
         display: "grid",
         gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr 1fr",
-        gridTemplateRows: "70px auto",
+        gridTemplateRows: "65px auto",
         gridTemplateAreas: `
           "header header header header header header header"
           "navSideBar main main main main main main"
         `,
         height: "100vh",
-        backgroundColor: "white",
+        backgroundColor: "#EEEFF0",
         fontFamily: "'Roboto', sans-serif"
       }}>
       <Header/>

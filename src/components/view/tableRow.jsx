@@ -6,7 +6,7 @@ const Tr = styled.tr`
 `;
 
 const Td = styled.td`
-  padding: 10px;
+  padding: 20px;
   font-size: 1em;
   text-align: center;
 `;
@@ -14,15 +14,15 @@ const Td = styled.td`
 function TableRow() {
   return (
     <Tr>
-      <Td>Input</Td>
-      <Td>Input</Td>
-      <Td>Input</Td>
-      <Td>Input</Td>
-      <Td>Input</Td>
-      <Td>Input</Td>
-      <Td>Input</Td>
-      <Td>Input</Td>
-      <Td>Input</Td>
+      <Td>---</Td>
+      <Td>---</Td>
+      <Td>---</Td>
+      <Td>---</Td>
+      <Td>---</Td>
+      <Td>---</Td>
+      <Td>---</Td>
+      <Td>---</Td>
+      <Td>---</Td>
     </Tr>
   )
 }

@@ -8,14 +8,14 @@ const Tr = styled.tr`
 const Td = styled.td`
   font-size: .75em;
   text-align: center;
-  // border: 1px solid black;
   margin: 0;
   padding-top: 15px;
   padding-bottom: 15px;
+  // border: 1px solid black;
 `;
 
 const Input = styled.input`
-  height: 1.50em;
+  height: 2.5em;
   border-radius: 5px;
   margin: 0;
   width: 90%;

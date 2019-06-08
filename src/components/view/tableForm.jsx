@@ -9,7 +9,7 @@ const Div = styled.div`
   border: 1px solid #161e26;
   border-radius: 5px;
   width: 90%;
-  height: 400px;
+  height: auto;
   margin: 20px;
   border-spacing: 0;
   min-width: 450px;

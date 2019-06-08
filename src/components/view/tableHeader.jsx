@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Tr = styled.tr`
   background: #161e26;
   color: white;
-  height: 60px;
+  height: 45px;
 `;
 
 const Th = styled.th`

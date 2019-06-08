@@ -5,15 +5,17 @@ import { Container } from '@material-ui/core';
 
 function MainView ( { view, tables, setTables, setPopUp }) {
   return (
-    <Container>
-      {view === 'code' && <CodeContainer/>}
-      {view === 'schema' && <SchemaView 
-        tables={tables} 
-        setTables={setTables} 
-        setPopUp={setPopUp} 
-        view={view} 
-      />}
-    </Container>
+    <div style={{ gridArea: "main" }}>
+      <Container width='100%'>
+        {view === 'code' && <CodeContainer/>}
+        {view === 'schema' && <SchemaView 
+          tables={tables} 
+          setTables={setTables} 
+          setPopUp={setPopUp} 
+          view={view} 
+        />}
+      </Container>
+    </div>
   )
 }
 

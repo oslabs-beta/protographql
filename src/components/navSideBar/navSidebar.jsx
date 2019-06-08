@@ -25,30 +25,30 @@ const Icon = styled.span`
   font-size: 20px;
 `
 
-function NavSideBar ({ setView, setPopUp }) {
+function NavSideBar({ setView, setPopUp }) {
   return (
     <SideBar>
       <ButtonContainer>
         <Button>
-          <Icon ><i class="fas fa-code-branch"></i></Icon>
+          <Icon ><i className="fas fa-code-branch"></i></Icon>
           <Icon>Schema</Icon>
         </Button>
       </ButtonContainer>
       <ButtonContainer>
         <Button>
-          <Icon ><i class="fas fa-code"></i></Icon>
+          <Icon ><i className="fas fa-code"></i></Icon>
           <Icon>Code</Icon>
         </Button>
       </ButtonContainer>
       <ButtonContainer>
         <Button>
-          <Icon ><i class="fas fa-file-download"></i></Icon>
+          <Icon ><i className="fas fa-file-download"></i></Icon>
           <Icon>Export</Icon>
         </Button>
       </ButtonContainer>
       <ButtonContainer>
         <Button>
-          <Icon ><i class="fas fa-plus-square"></i></Icon>
+          <Icon ><i className="fas fa-plus-square"></i></Icon>
           <Icon>Add table</Icon>
         </Button>
       </ButtonContainer>

@@ -42,9 +42,9 @@ export const tablesState = {
         defaultValue: '',
         relationSelected: false,
         relation: {
-            tableIndex: -1,
-            fieldIndex: -1,
-            refType: ''
+          tableIndex: -1,
+          fieldIndex: -1,
+          refType: ''
         },
         tableNum: 0,
         fieldNum: 0,
@@ -61,9 +61,9 @@ export const tablesState = {
         defaultValue: '',
         relationSelected: false,
         relation: {
-            tableIndex: -1,
-            fieldIndex: -1,
-            refType: ''
+          tableIndex: -1,
+          fieldIndex: -1,
+          refType: ''
         },
         tableNum: 0,
         fieldNum: 1,
@@ -80,9 +80,9 @@ export const tablesState = {
         defaultValue: '',
         relationSelected: false,
         relation: {
-            tableIndex: -1,
-            fieldIndex: -1,
-            refType: ''
+          tableIndex: -1,
+          fieldIndex: -1,
+          refType: ''
         },
         tableNum: 0,
         fieldNum: 2,
@@ -106,9 +106,9 @@ export const tablesState = {
         defaultValue: '',
         relationSelected: false,
         relation: {
-            tableIndex: -1,
-            fieldIndex: -1,
-            refType: ''
+          tableIndex: -1,
+          fieldIndex: -1,
+          refType: ''
         },
         tableNum: 1,
         fieldNum: 0,
@@ -125,9 +125,9 @@ export const tablesState = {
         defaultValue: '',
         relationSelected: false,
         relation: {
-            tableIndex: -1,
-            fieldIndex: -1,
-            refType: ''
+          tableIndex: -1,
+          fieldIndex: -1,
+          refType: ''
         },
         tableNum: 1,
         fieldNum: 1,
@@ -144,9 +144,9 @@ export const tablesState = {
         defaultValue: '',
         relationSelected: true,
         relation: {
-            tableIndex: '0',
-            fieldIndex: '0',
-            refType: 'many to one'
+          tableIndex: '0',
+          fieldIndex: '0',
+          refType: 'many to one'
         },
         tableNum: 1,
         fieldNum: 2,
@@ -158,6 +158,6 @@ export const tablesState = {
   },
 };
 
-export const viewState = 'schema';
+export const viewState = 'tableDetails';
 
 export const popUpState = 'welcome';

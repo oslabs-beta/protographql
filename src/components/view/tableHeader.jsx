@@ -4,10 +4,10 @@ import styled from 'styled-components';
 const Tr = styled.tr`
   background: #161e26;
   color: white;
+  height: 60px;
 `;
 
 const Th = styled.th`
-  padding: 20px;
   font-size: 1em;
 `;
 
@@ -17,7 +17,6 @@ function TableHeader() {
 
   return (
     <Tr>
-      <Th>Actions</Th>
       <Th>Field Name</Th>
       <Th>Type</Th>
       <Th>Default Value</Th>
@@ -26,6 +25,7 @@ function TableHeader() {
       <Th>Unique</Th>
       <Th>Required</Th>
       <Th>Foreign Key</Th>
+      <Th>Delete</Th>
     </Tr>
 
   )

@@ -27,11 +27,6 @@ function TableForm() {
           <tbody>
             <TableHeader />
             <TableRow />
-            <TableRow />
-            <TableRow />
-            <TableRow />
-            <TableRow />
-            <TableRow />
           </tbody>
         </Table>
       </Div>

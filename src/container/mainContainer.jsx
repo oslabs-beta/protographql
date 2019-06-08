@@ -53,15 +53,15 @@ const Main = () => {
   return (
     <div display='flex' >
       <Header />
-      <NavSideBar setView={setView} setPopUp={setPopUp}/>
-      <Welcome popUp={popUp} setPopUp={setPopUp} />
-      <MainView 
-        view={view} 
-        tables={tables} 
-        setTables={setTables} 
-        setPopUp={setPopUp} 
-      />
-      <TableForm tables={tables}/>
+      {/* <NavSideBar setView={setView} setPopUp={setPopUp}/> */}
+      {/* <Welcome popUp={popUp} setPopUp={setPopUp} /> */}
+      {/* <MainView
+        view={view}
+        tables={tables}
+        setTables={setTables}
+        setPopUp={setPopUp}
+      /> */}
+      <TableForm tables={tables} />
     </div>
   )
 }

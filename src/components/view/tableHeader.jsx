@@ -8,7 +8,8 @@ const Tr = styled.tr`
 `;
 
 const Th = styled.th`
-  font-size: 1em;
+  font-size: 1.5em;
+  padding: .5em;
 `;
 
 
@@ -21,7 +22,7 @@ function TableHeader() {
       <Th>Type</Th>
       <Th>Default Value</Th>
       <Th>Primary Key</Th>
-      <Th>Autoincrement</Th>
+      <Th>Auto Increment</Th>
       <Th>Unique</Th>
       <Th>Required</Th>
       <Th>Foreign Key</Th>

@@ -14,55 +14,66 @@ const Td = styled.td`
 `;
 
 const Input = styled.input`
-  height: 100%;
+  height: 2em;
   border-radius: 5px;
   margin: 0;
-  width: 60%;
+  width: 90%;
   height: 40px;
   margin: 5px;
   font-size: 1.25em;
 `;
 
+const Select = styled.select`
+  font-size: 1.25em!important;
+  margin-left: 8px!important;
+  margin-right: 8px!important;
+  padding: 8px!important;
+`
+
 function TableRow() {
   return (
     <Tr>
-      <Td><Input type="text" placeholder="Field Name"></Input></Td>
-      <Td class="custom-select">
-        <select>
+      <Td>
+        <Input type="text" placeholder="Field Name"></Input>
+      </Td>
+      <Td>
+        <Select>
           <option value="volvo">Volvo</option>
           <option value="saab">Saab</option>
           <option value="mercedes">Mercedes</option>
           <option value="audi">Audi</option>
-        </select>
-      </Td>
-      <Td>Default Value</Td>
+        </Select>
+      </Td >
       <Td>
-        <label class="switch">
+        <Input type="text" placeholder="Default Value"></Input>
+      </Td>
+      <Td>
+        <label className="switch">
           <input type="checkbox"></input>
-          <span class="slider round"></span>
+          <span className="slider round"></span>
         </label>
       </Td>
       <Td>
-        <label class="switch">
+        <label className="switch">
           <input type="checkbox"></input>
-          <span class="slider round"></span>
+          <span className="slider round"></span>
         </label>
       </Td>
       <Td>
-        <label class="switch">
+        <label className="switch">
           <input type="checkbox"></input>
-          <span class="slider round"></span>
+          <span className="slider round"></span>
         </label>
       </Td>
       <Td>
-        <label class="switch">
+        <label className="switch">
           <input type="checkbox"></input>
-          <span class="slider round"></span>
+          <span className="slider round"></span>
         </label>
       </Td>
       <Td>Foreign Key</Td>
       <Td>Delete</Td>
-    </Tr>
+    </Tr >
   )
 }
 

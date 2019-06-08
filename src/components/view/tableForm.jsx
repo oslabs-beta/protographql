@@ -11,6 +11,7 @@ const Div = styled.div`
   height: 600px;
   margin: 20px;
   border-spacing: 0;
+  min-width: 850px;
 `;
 
 const Table = styled.table`

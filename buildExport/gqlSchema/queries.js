@@ -1,33 +1,4 @@
-export const selectedTableState = {
-  type: '',
-  fields: {},
-  fieldIndex: 1,
-  tableID: -1
-};
-
-export const selectedFieldState = {
-  name: '',
-  type: 'string',
-  primaryKey: false,
-  autoIncrement: false,
-  unique: false,
-  required: false,
-  multipleValues: false,
-  defaultValue: '',
-  relationSelected: false,
-  relation: {
-    tableIndex: -1,
-    fieldIndex: -1,
-    refType: ''
-  },
-  tableNum: -1,
-  fieldNum: -1,
-  refBy: new Set()
-};
-
-export const tableIndexState = 2;
-
-export const tablesState = {
+const tables = {
   0: {
     type: 'Author',
     fields: {
@@ -158,6 +129,33 @@ export const tablesState = {
   },
 };
 
-export const viewState = 'schema';
+// Autogenerate default GQL queries
+const buildGQLQuery = tables => {
+  let gqlQuery = `${tabs(1)}type Query {\n`;
 
-export const popUpState = 'welcome';
+  // Define a GQL query for each table
+  for (let tbIndex in tables) {
+    const table = tables[tbIndex];
+    gqlQuery += `${tabs(2)}getAll${table.type}: [${table.type}]\n`; 
+    // If the table field has a UNIQUEID (at field index 0) then provide a query by ID
+    gqlQuery += table.fields[0] ? `${tabs(2)}get${table.type}ByID(id: ID!): ${table.type}\n` : ``; 
+  }
+
+  gqlQuery += `${tabs(1)}}\n`;
+
+  return gqlQuery;
+}
+
+/********************************   HELPER FUNCTIONS    **********************************/
+
+// Returns string of user-input tabbed spaces to indent our code
+const tabs = numTabSpaces => {
+  let tabSpaces = ``;
+  while (numTabSpaces > 0) {
+    tabSpaces += `  `;
+    numTabSpaces--;
+  } 
+  return tabSpaces;
+}
+
+console.log(buildGQLQuery(tables));

@@ -141,22 +141,22 @@ const schemaText = `
 
 // Autogenerate default GQL types with object & scalar GQL fields
 const buildGQLTypes = tables => {
-  let gqlTypeCode = '';
+  let gqlTypes = ``;
 
   // Define a GQL Type for each table
   for (let tbIndex in tables) {
     const table = tables[tbIndex];
-    gqlTypeCode += `${tabs(1)}type ${table.type} {\n`; // Open GQL type definition
+    gqlTypes += `${tabs(1)}type ${table.type} {\n`; // Open GQL type definition
     // Iterate through each table field and define its respective GQL property 
     for (let fieldIndex in table.fields) {
       const field = table.fields[fieldIndex];
-      gqlTypeCode += field.relationSelected ? addObjectField(field) : addScalarField(field);
-      gqlTypeCode += `\n`;
+      gqlTypes += field.relationSelected ? addObjectField(field) : addScalarField(field);
+      gqlTypes += `\n`;
     }
-    gqlTypeCode += `${tabs(1)}}\n\n`; // Close GQL type definition
+    gqlTypes += `${tabs(1)}}\n\n`; // Close GQL type definition
   }
 
-  return gqlTypeCode;
+  return gqlTypes;
 }
 
 /********************************   HELPER FUNCTIONS    **********************************/

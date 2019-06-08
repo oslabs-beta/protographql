@@ -40,6 +40,7 @@ const useStyles = makeStyles(theme => ({
     variant: "h6",
     id: "tableTitle",
     color:'textSecondary',
+    minWidth: 200
   }
 }));
 
@@ -56,13 +57,13 @@ function SchemaTable ( { table, setTables, setPopUp, tableKey }) {
   )
 
   return (
-    <Paper className={classes.root} style={{width:'300px'}}> 
+    <Paper className={classes.root} style={{margin: '10px'}}> 
       <Typography className={classes.title}  >
         {table.type}
-        <span style={{ marginLeft: 130}}>
+        <span style={{ marginLeft: 130, marginRight: 10}}>
           <Delete />
         </span>
-        <span style={{ marginLeft: 10}}>
+        <span>
           <Edit />
         </span>
       </Typography>

@@ -43,32 +43,30 @@ const Icon = styled.span`
   font-size: calc(14px + 1vw);
 `
 
-// color: #e535ab;
-
-function NavSideBar ({ setView, setPopUp, view }) {
+function NavSideBar({ setView, setPopUp }) {
   return (
     <SideBar>
-      <ButtonContainer key="schema" onClick={() => {setView('schema')}} view={view} >
+      <ButtonContainer key="schema" onClick={() => {setView('schema')}}>
         <Button>
-          <Icon ><i class="fas fa-code-branch"></i></Icon>
+          <Icon ><i className="fas fa-code-branch"></i></Icon>
           <Icon>Schema</Icon>
         </Button>
       </ButtonContainer>
       <ButtonContainer key="code" onClick={() => {setView('code')}}>
         <Button>
-          <Icon ><i class="fas fa-code"></i></Icon>
+          <Icon ><i className="fas fa-code"></i></Icon>
           <Icon>Code</Icon>
         </Button>
       </ButtonContainer>
       <ButtonContainer>
         <Button>
-          <Icon ><i class="fas fa-file-download"></i></Icon>
+          <Icon ><i className="fas fa-file-download"></i></Icon>
           <Icon>Export</Icon>
         </Button>
       </ButtonContainer>
       <ButtonContainer >
         <Button>
-          <Icon ><i class="fas fa-plus-square"></i></Icon>
+          <Icon ><i className="fas fa-plus-square"></i></Icon>
           <Icon>Add table</Icon>
         </Button>
       </ButtonContainer>

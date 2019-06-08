@@ -8,7 +8,6 @@ import * as mockState from '../state/mockState';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
 import MainView from '../components/view/mainView';
-import TableForm from '../components/view/tableForm'
 import { relative } from 'path';
 
 
@@ -53,28 +52,29 @@ const Main = () => {
   //Rendered components and elements
   return (
     <div style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr 1fr",
-        gridTemplateRows: "65px auto",
-        gridTemplateAreas: `
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr 1fr",
+      gridTemplateRows: "70px auto",
+      gridTemplateAreas: `
           "header header header header header header header"
           "navSideBar main main main main main main"
         `,
-        height: "100vh",
-        backgroundColor: "#EEEFF0",
-        fontFamily: "'Roboto', sans-serif"
-      }}>
-      <Header/>
+      height: "100vh",
+      backgroundColor: "#EEEFF0",
+      fontFamily: "'Roboto', sans-serif",
+      margin: "0px"
+    }}>
+      <Header />
       {/* <Welcome popUp={popUp} setPopUp={setPopUp} /> */}
-      <NavSideBar setView={setView} setPopUp={setPopUp} view={view} />
-      <MainView 
-        view={view} 
-        tables={tables} 
-        setTables={setTables} 
+      <NavSideBar setView={setView} setPopUp={setPopUp}/>
+      <MainView
+        view={view}
+        tables={tables}
+        setTables={setTables}
         setPopUp={setPopUp}
       />
     </div>
-    )
+  )
 }
 
 export default Main;

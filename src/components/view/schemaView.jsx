@@ -1,12 +1,11 @@
 import React, { Fragment } from 'react';
-// import SchemaTable from './schemaTable'
+import SchemaTable from './schemaTable'
 import styled from 'styled-components';
 
 const View = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  padding: 10px;
 `
 
 // const View = styled.div`
@@ -16,26 +15,27 @@ const View = styled.div`
 // `
 
 function SchemaView ({ tables, setTables, setPopUp, view }) {
-//  const tablesArray = Object.keys(tables).map(tableKey => (
-//    <SchemaTable
-//     key={tableKey}
-//     tableKey={tableKey}
-//     table={tables[tableKey]}
-//     setTables={setTables}
-//     setPopUp={setPopUp}
-//     />
-//  ))
+ const tablesArray = Object.keys(tables).map(tableKey => (
+   <SchemaTable
+    key={tableKey}
+    tableKey={tableKey}
+    table={tables[tableKey]}
+    setTables={setTables}
+    setPopUp={setPopUp}
+    style={{ margin: "10px" }}
+    />
+ ))
  
  return (
   <View >
-    <div style={{ margin: "10px" }}>bsrkvmsrfskdcbasdbvmsdtfbdsrfbvsfhmfgu</div>
+    {/* <div style={{ margin: "10px" }}>bsrkvmsrfskdcbasdbvmsdtfbdsrfbvsfhmfgu</div>
     <div style={{ margin: "10px" }}>Test2</div>
     <div style={{ margin: "10px" }}>Test2</div>
     <div style={{ margin: "10px" }}>Test2</div>
     <div style={{ margin: "10px" }}>Test2</div>
-    <div style={{ margin: "10px" }}>Test2</div>
+    <div style={{ margin: "10px" }}>Test2</div> */}
 
-      {/* { tablesArray } */}
+      { tablesArray }
   </View>
  )
 }

@@ -15,12 +15,14 @@ const SchemaView = ({ tables, setTables, setPopUp, view }) => {
   ))
 
   return (
-    <Fragment>
-      <CssBaseline />
-      <Container style={{ width: '100%' }}>
-        {tablesArray}
-      </Container>
-    </Fragment>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <Fragment >
+        <CssBaseline />
+        <Container style={{ width: `calc(100% - 200px)` }}>
+          {tablesArray}
+        </Container>
+      </Fragment>
+    </div>
   )
 }
 

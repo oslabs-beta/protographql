@@ -17,11 +17,9 @@ const SideBar = styled.div`
 `
 
 const ButtonContainer = styled.div`
-  padding: 0px;
-  margin-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  margin-right: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 1px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   min-width: 200px;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.10);
   &:hover {
     animation: ${fontColor} .5s;
     animation-fill-mode: both;
@@ -35,7 +33,6 @@ const Button = styled.div`
   width: 100%;
   margin-left: calc(15.5px + .25vw);
   margin-top: 25px;
-
 `
 
 const Icon = styled.span`

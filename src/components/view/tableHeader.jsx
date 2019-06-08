@@ -8,8 +8,8 @@ const Tr = styled.tr`
 `;
 
 const Th = styled.th`
-  font-size: 1.5em;
-  padding: .5em;
+  font-size: .75em;
+  padding: .25em;
 `;
 
 
@@ -18,6 +18,7 @@ function TableHeader() {
 
   return (
     <Tr>
+      <Th>Delete</Th>
       <Th>Field Name</Th>
       <Th>Type</Th>
       <Th>Default Value</Th>
@@ -26,7 +27,6 @@ function TableHeader() {
       <Th>Unique</Th>
       <Th>Required</Th>
       <Th>Foreign Key</Th>
-      <Th>Delete</Th>
     </Tr>
 
   )

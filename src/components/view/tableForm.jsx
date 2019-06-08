@@ -3,15 +3,17 @@ import styled from 'styled-components';
 import TableHeader from './tableHeader';
 import TableRow from './tableRow';
 import Draggable from 'react-draggable';
+import TableName from './tableName';
 
 const Div = styled.div`
   border: 1px solid #161e26;
   border-radius: 5px;
   width: 90%;
-  height: 600px;
+  height: 400px;
   margin: 20px;
   border-spacing: 0;
-  min-width: 850px;
+  min-width: 450px;
+  max-width: 1000px;
 `;
 
 const Table = styled.table`
@@ -22,16 +24,21 @@ const Table = styled.table`
 function TableForm() {
 
   return (
-    <Draggable>
-      <Div style={{ cursor: "move" }} >
-        <Table id='table' >
-          <tbody>
+
+    <Div>
+      <TableName />
+      <Table id='table' >
+        <tbody>
+          <Draggable>
             <TableHeader />
-            <TableRow />
-          </tbody>
-        </Table>
-      </Div>
-    </Draggable>
+          </Draggable>
+          <TableRow />
+          <TableRow />
+          <TableRow />
+        </tbody>
+      </Table>
+    </Div>
+
   )
 }
 

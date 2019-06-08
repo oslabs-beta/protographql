@@ -6,43 +6,39 @@ const Tr = styled.tr`
 `;
 
 const Td = styled.td`
-  font-size: 1em;
+  font-size: .75em;
   text-align: center;
-  border: 1px solid black;
+  // border: 1px solid black;
   margin: 0;
-  padding: 0;
+  padding-top: 15px;
+  padding-bottom: 15px;
 `;
 
 const Input = styled.input`
-  height: 2em;
+  height: 1.50em;
   border-radius: 5px;
   margin: 0;
   width: 90%;
-  height: 40px;
   margin: 5px;
-  font-size: 1.25em;
+  font-size: .75em;
 `;
 
-const Select = styled.select`
-  font-size: 1.25em!important;
-  margin-left: 8px!important;
-  margin-right: 8px!important;
-  padding: 8px!important;
-`
 
 function TableRow() {
   return (
     <Tr>
+      <Td>Delete</Td>
       <Td>
         <Input type="text" placeholder="Field Name"></Input>
       </Td>
       <Td>
-        <Select>
-          <option value="volvo">Volvo</option>
-          <option value="saab">Saab</option>
-          <option value="mercedes">Mercedes</option>
-          <option value="audi">Audi</option>
-        </Select>
+        <select className="select-css">
+          <option value="ID">ID</option>
+          <option value="String">String</option>
+          <option value="Boolean">Boolean</option>
+          <option value="Int">Int</option>
+          <option value="Float">Float</option>
+        </select>
       </Td >
       <Td>
         <Input type="text" placeholder="Default Value"></Input>
@@ -72,7 +68,6 @@ function TableRow() {
         </label>
       </Td>
       <Td>Foreign Key</Td>
-      <Td>Delete</Td>
     </Tr >
   )
 }

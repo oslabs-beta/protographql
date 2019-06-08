@@ -16,9 +16,9 @@ export const selectedFieldState = {
   defaultValue: '',
   relationSelected: false,
   relation: {
-      tableIndex: -1,
-      fieldIndex: -1,
-      refType: ''
+    tableIndex: -1,
+    fieldIndex: -1,
+    refType: ''
   },
   tableNum: -1,
   fieldNum: -1,

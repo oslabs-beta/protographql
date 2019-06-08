@@ -7,10 +7,10 @@ function CodeContainer() {
   return (
     <main style={{flexgrow: 1}}>
       <CssBaseline />
-      <Container style={{width: '100%', }} maxWidth='xl' >
+      <Container stye={{width: `calc(100% - 200px)`}} >
         <Typography 
           paragraph
-          style={{ backgroundColor: '#333333', height: '100vh', color: 'white', alignContent: 'center', width: '100%'}}
+          style={{ color: 'black', alignContent: 'center', width: '100%'}}
         >
            {
                "all code goes here {hello there!}kjdghsergedfmvejrskgnergwewrmhjftsretwragdfhgzfbzc"

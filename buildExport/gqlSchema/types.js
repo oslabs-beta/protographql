@@ -24,7 +24,7 @@ const tables = {
       },
       1: {
         name: 'first_name',
-        type: 'string',
+        type: 'String',
         primaryKey: false,
         autoIncrement: false,
         unique: false,
@@ -43,7 +43,7 @@ const tables = {
       },
       2: {
         name: 'last_name',
-        type: 'string',
+        type: 'String',
         primaryKey: false,
         autoIncrement: false,
         unique: false,
@@ -88,7 +88,7 @@ const tables = {
       },
       1: {
         name: 'name',
-        type: 'string',
+        type: 'String',
         primaryKey: false,
         autoIncrement: false,
         unique: false,
@@ -130,10 +130,10 @@ const tables = {
   },
 };
 
-// User must npm install 'apollo-server'
+// User must npm install 'apollo-server' or 'apollo-server-express
 // https://www.apollographql.com/docs/tutorial/schema/
 const schemaText = `
-  const { gql } = require('apollo-server');
+  const { gql } = require('apollo-server-express');
   const typeDefs = gql\`\`;
 
   module.exports = typeDefs;
@@ -146,20 +146,50 @@ const buildGQLTypes = tables => {
   // Iterate through each table in our state. Define a GQL Type for each table.
   for (let tbIndex in tables) {
     const table = tables[tbIndex];
-    gqlTypeCode += `type ${table.type} {\n`;
+    gqlTypeCode += `${tabs(1)}type ${table.type} {\n`;
 
     // Iterate through each field in each table. Define a GQL field for each field
     for (let fieldIndex in table.fields) {
       const field = table.fields[fieldIndex];
-      gqlTypeCode += `  ${field.name}: ${field.type}`; // Need map between SQL and GQL types OR fix field.type 
-      // ID, String, Boolean, Int, Float -- NEED TO ENFORCE THIS RULE FOR EACH FIELD TYPE.
-      gqlTypeCode += field.required ?  `!` : ``;
+
+      gqlTypeCode += field.relationSelected ? addObject(field) : addScalar(field);
       gqlTypeCode += `\n`;
     }
-    gqlTypeCode += `}\n\n`;
+    gqlTypeCode += `${tabs(1)}}\n\n`;
   }
 
   return gqlTypeCode;
+}
+
+
+
+// Adds a GQL scalar field to each GQL type definition
+const addScalar = field => {
+  let scalar = `${tabs(2)}${field.name}: ${field.type}`;
+  scalar += field.required ?  `!` : ``;
+  return scalar;
+}
+
+// Add a GQL object field to each GQL type definition
+const addObject = field => {
+  const { tableIndex, refType } = field.relation;
+
+  // Wrap linked field in curly braces if we have an 'xxx to many' relationship
+  let object = refType.slice(-4) === `many` ? 
+    `${tabs(2)}related${tables[tableIndex].type}: [${tables[tableIndex].type}]` : 
+    `${tabs(2)}related${tables[tableIndex].type}: ${tables[tableIndex].type}`;
+
+  return object;
+}
+
+// Returns string of 'x' tabbed spaces to indent our code
+const tabs = numTabSpaces => {
+  let tabSpaces = ``;
+  while (numTabSpaces > 0) {
+    tabSpaces += `  `;
+    numTabSpaces--;
+  } 
+  return tabSpaces;
 }
 
 console.log(buildGQLTypes(tables));

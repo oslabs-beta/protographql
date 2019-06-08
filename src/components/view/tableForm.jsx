@@ -1,21 +1,34 @@
-import React from 'react';
+import React from 'react'
 import styled from 'styled-components';
-import TableRow from './tableRow'
+import TableHeader from './tableHeader';
+import TableRow from './tableRow';
 
 const Div = styled.div`
-  height: 500px;
-  width: 1250px;
-  border: 1px solid black;
+  border: 1px solid #161e26;
   border-radius: 3px;
-  margin-top: 100px;
+  width: 1200px;
+  height: 600px;
+  margin: 20px;
 `;
 
-function Table(props) {
+const Table = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+`;
+
+function TableForm() {
   return (
     <Div>
-      <TableRow />
+      <Table id='table'>
+        <tbody>
+          <TableHeader />
+          <TableRow />
+          <TableRow />
+        </tbody>
+      </Table>
     </Div>
   )
 }
 
-export default Table;
+
+export default TableForm;

@@ -43,13 +43,13 @@ const Icon = styled.span`
 function NavSideBar({ setView, setPopUp }) {
   return (
     <SideBar>
-      <ButtonContainer key="schema" onClick={() => {setView('schema')}}>
+      <ButtonContainer key="schema" onClick={() => { setView('schema') }}>
         <Button>
           <Icon ><i className="fas fa-code-branch"></i></Icon>
           <Icon>Schema</Icon>
         </Button>
       </ButtonContainer>
-      <ButtonContainer key="code" onClick={() => {setView('code')}}>
+      <ButtonContainer key="code" onClick={() => { setView('code') }}>
         <Button>
           <Icon ><i className="fas fa-code"></i></Icon>
           <Icon>Code</Icon>
@@ -61,7 +61,8 @@ function NavSideBar({ setView, setPopUp }) {
           <Icon>Export</Icon>
         </Button>
       </ButtonContainer>
-      <ButtonContainer >
+      {/* RUDY */}
+      <ButtonContainer key="tableDetails" onClick={() => { setView('tableDetails') }}>
         <Button>
           <Icon ><i className="fas fa-plus-square"></i></Icon>
           <Icon>Add table</Icon>

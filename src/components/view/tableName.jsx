@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 const Input = styled.input`
   padding: 10px;
-  width: 77%;
-  font-size: 1.5em;
+  width: 50%;
+  font-size: 15px;
   border: none;
   margin: 1px;
 `;
@@ -20,7 +20,7 @@ function TableName() {
     <div>
       <Input type="text" placeholder=" Enter Table Name * "></Input>
       <Span><button> Add Fields</button></Span>
-      <Span><button>Submit Table</button></Span>
+      <Span><button>Save Changes</button></Span>
     </div>
   )
 }

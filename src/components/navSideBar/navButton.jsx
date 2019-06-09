@@ -16,7 +16,7 @@ const ButtonContainer = styled.div`
     animation: ${fontColor} .5s;
     animation-fill-mode: both;
   };
-`
+`;
 
 const Button = styled.div`
   height: 60px;
@@ -25,25 +25,22 @@ const Button = styled.div`
   width: 100%;
   margin-left: calc(15.5px + .25vw);
   margin-top: 25px;
-`
+`;
 
 const Icon = styled.span`
   margin: 5px;
   font-size: calc(14px + 1vw);
-`
+`;
 
 const NavButton = (props) =>{
-    return (
-        <ButtonContainer onClick={props.onClick}>
-            <Button>
-                <Icon><i className={props.className}></i>
-                    </Icon>
-                    {props.view}
-                    <Icon>
-                </Icon>
-            </Button>
-        </ButtonContainer>
-    )
+  return (
+    <ButtonContainer onClick={props.onClick}>
+      <Button>
+        <Icon><i className={props.className} /></Icon>
+        {props.view}
+      </Button>
+    </ButtonContainer>
+  )
 }
 
 export default NavButton;

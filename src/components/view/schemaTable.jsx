@@ -79,7 +79,6 @@ function SchemaTable ( { table, setTables, setPopUp, tableKey }) {
         <TableBody>
           {fields.map(field => (
             <StyledTableRow key={field.name}>
-
               <StyledTableCell component="th" scope="field">
                 {field.name}
               </StyledTableCell>

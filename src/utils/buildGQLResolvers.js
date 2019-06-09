@@ -18,7 +18,7 @@ const buildGQLResolvers = tables => {
     if (table.fields[0]) {
       const field = table.fields[0].name;
       gqlResolvers += `${tabs(2)}get${table.type}ByID(parent, args, context, info) {\n`;
-      gqlResolvers += `${tabs(3)}const sql = \`SELECT * FROM "${table.type}" WHERE ${field} = '$\{args.${field}}';\`;\n`;
+      gqlResolvers += `${tabs(3)}const sql = \`SELECT * FROM "${table.type}" WHERE "${field}" = '$\{args.${field}}';\`;\n`;
       gqlResolvers += `${tabs(3)}return pool.query(sql)\n`;
       gqlResolvers += `${tabs(4)}.then(res => res.rows[0])\n`;
       gqlResolvers += `${tabs(4)}.catch(err => console.error('Error is: ', err))\n`;
@@ -46,7 +46,7 @@ const buildGQLResolvers = tables => {
         gqlResolvers += `${tabs(3)}return pool.query(sql)\n`;
         gqlResolvers += `${tabs(4)}.then(res => res.rows[0])\n`;
         gqlResolvers += `${tabs(4)}.catch(err => console.error('Error is: ', err))\n`;
-        gqlResolvers += `${tabs(2)}}\n`
+        gqlResolvers += `${tabs(2)}},\n`
       }
     }
     gqlResolvers += `${tabs(1)}},\n`;

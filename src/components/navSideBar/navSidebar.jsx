@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import MyButton from './navButton';
+import NavButton from './navButton';
 import styled from 'styled-components';
 
 
@@ -15,9 +15,9 @@ function NavSideBar({ setView, setPopUp }) {
   const buttons = () =>{
     let input = [];
     const views = ['Schema', 'Code', 'Export', 'Add Table'];
-    for(let i = 0; i < 4; i++){
+    for(let i = 0; i < views.length; i++){
       input.push(
-       <MyButton key={views[i]}/>
+       <NavButton view={views[i]} onClick={()=>{setView(views[i].toLowerCase())}}/>
       )
     }
    return input;
@@ -33,3 +33,33 @@ function NavSideBar({ setView, setPopUp }) {
 export default NavSideBar;
 
 
+// function NavSideBar({ setView, setPopUp }) {
+//   return (
+//     <SideBar>
+//       <ButtonContainer key="schema" onClick={() => {setView('schema')}}>
+//         <Button>
+//           <Icon ><i className="fas fa-code-branch"></i></Icon>
+//           <Icon>Schema</Icon>
+//         </Button>
+//       </ButtonContainer>
+//       <ButtonContainer key="code" onClick={() => {setView('code')}}>
+//         <Button>
+//           <Icon ><i className="fas fa-code"></i></Icon>
+//           <Icon>Code</Icon>
+//         </Button>
+//       </ButtonContainer>
+//       <ButtonContainer>
+//         <Button>
+//           <Icon ><i className="fas fa-file-download"></i></Icon>
+//           <Icon>Export</Icon>
+//         </Button>
+//       </ButtonContainer>
+//       <ButtonContainer >
+//         <Button>
+//           <Icon ><i className="fas fa-plus-square"></i></Icon>
+//           <Icon>Add table</Icon>
+//         </Button>
+//       </ButtonContainer>
+//     </SideBar>
+//   )
+// } 

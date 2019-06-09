@@ -32,13 +32,14 @@ const Icon = styled.span`
   font-size: calc(14px + 1vw);
 `
 
-const MyButton = () =>{
+const NavButton = (props) =>{
+  console.log('props', props)
     return (
-        <ButtonContainer>
+        <ButtonContainer onClick={props.onClick}>
             <Button>
                 <Icon>
                     </Icon>
-                    I can put stuff here
+                    {props.view}
                     <Icon>
                 </Icon>
             </Button>
@@ -46,7 +47,7 @@ const MyButton = () =>{
     )
 }
 
-export default MyButton;
+export default NavButton;
 
 // {/* <MyButton  /> */}
 // <ButtonContainer key="schema" onClick={() => {setView('schema')}}>

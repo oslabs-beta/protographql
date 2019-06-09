@@ -8,12 +8,6 @@ const View = styled.div`
   justify-content: flex-start;
 `
 
-// const View = styled.div`
-//   display: grid;
-//   grid-template-columns: 200px 200px 200px 200px auto;
-//   grid-template-rows: auto;
-// `
-
 function SchemaView ({ tables, setTables, setPopUp, view }) {
  const tablesArray = Object.keys(tables).map(tableKey => (
    <SchemaTable
@@ -28,13 +22,6 @@ function SchemaView ({ tables, setTables, setPopUp, view }) {
  
  return (
   <View >
-    {/* <div style={{ margin: "10px" }}>bsrkvmsrfskdcbasdbvmsdtfbdsrfbvsfhmfgu</div>
-    <div style={{ margin: "10px" }}>Test2</div>
-    <div style={{ margin: "10px" }}>Test2</div>
-    <div style={{ margin: "10px" }}>Test2</div>
-    <div style={{ margin: "10px" }}>Test2</div>
-    <div style={{ margin: "10px" }}>Test2</div> */}
-
       { tablesArray }
   </View>
  )

@@ -50,11 +50,12 @@ const Main = () => {
   const [popUp, setPopUp] = useState(mockState.popUpState);
 
   //Rendered components and elements
+  // can't use styled components here because of the gridTemplateAreas
   return (
     <div style={{
       display: "grid",
       gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr 1fr",
-      gridTemplateRows: "70px auto",
+      gridTemplateRows: "65px auto",
       gridTemplateAreas: `
           "header header header header header header header"
           "navSideBar main main main main main main"
@@ -62,7 +63,6 @@ const Main = () => {
       height: "100vh",
       backgroundColor: "#EEEFF0",
       fontFamily: "'Roboto', sans-serif",
-      margin: "0px"
     }}>
       <Header />
       {/* <Welcome popUp={popUp} setPopUp={setPopUp} /> */}

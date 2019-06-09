@@ -14,12 +14,13 @@ const SideBar = styled.div`
 function NavSideBar({ setView, setPopUp }) {
   const buttons = () =>{
     let input = [];
-    const views = ['Schema', 'Code', 'Export', 'Add Table'];
-    for(let i = 0; i < views.length; i++){
+    const views = ['Schema', 'Code', 'Export', 'Table'];
+    const icons = ["fas fa-code-branch", "fas fa-code", "fas fa-file-download", "fas fa-plus-square"]
+    views.forEach((text, i)=>{
       input.push(
-       <NavButton view={views[i]} onClick={()=>{setView(views[i].toLowerCase())}}/>
+       <NavButton className={icons[i]} view={text} onClick={()=>{setView(text.toLowerCase())}}/>
       )
-    }
+    })
    return input;
   }
 
@@ -31,35 +32,3 @@ function NavSideBar({ setView, setPopUp }) {
 }
 
 export default NavSideBar;
-
-
-// function NavSideBar({ setView, setPopUp }) {
-//   return (
-//     <SideBar>
-//       <ButtonContainer key="schema" onClick={() => {setView('schema')}}>
-//         <Button>
-//           <Icon ><i className="fas fa-code-branch"></i></Icon>
-//           <Icon>Schema</Icon>
-//         </Button>
-//       </ButtonContainer>
-//       <ButtonContainer key="code" onClick={() => {setView('code')}}>
-//         <Button>
-//           <Icon ><i className="fas fa-code"></i></Icon>
-//           <Icon>Code</Icon>
-//         </Button>
-//       </ButtonContainer>
-//       <ButtonContainer>
-//         <Button>
-//           <Icon ><i className="fas fa-file-download"></i></Icon>
-//           <Icon>Export</Icon>
-//         </Button>
-//       </ButtonContainer>
-//       <ButtonContainer >
-//         <Button>
-//           <Icon ><i className="fas fa-plus-square"></i></Icon>
-//           <Icon>Add table</Icon>
-//         </Button>
-//       </ButtonContainer>
-//     </SideBar>
-//   )
-// } 

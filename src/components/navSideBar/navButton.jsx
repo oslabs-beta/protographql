@@ -33,11 +33,10 @@ const Icon = styled.span`
 `
 
 const NavButton = (props) =>{
-  console.log('props', props)
     return (
         <ButtonContainer onClick={props.onClick}>
             <Button>
-                <Icon>
+                <Icon><i className={props.className}></i>
                     </Icon>
                     {props.view}
                     <Icon>
@@ -48,33 +47,3 @@ const NavButton = (props) =>{
 }
 
 export default NavButton;
-
-// {/* <MyButton  /> */}
-// <ButtonContainer key="schema" onClick={() => {setView('schema')}}>
-// <Button>
-//   <Icon >
-//     <i className="fas fa-code-branch"></i>
-//   </Icon>
-//   <Icon>
-//     Schema
-// </Icon>
-// </Button>
-// </ButtonContainer>
-// <ButtonContainer key="code" onClick={() => {setView('code')}}>
-// <Button>
-//   <Icon ><i className="fas fa-code"></i></Icon>
-//   <Icon>Code</Icon>
-// </Button>
-// </ButtonContainer>
-// <ButtonContainer>
-// <Button>
-//   <Icon ><i className="fas fa-file-download"></i></Icon>
-//   <Icon>Export</Icon>
-// </Button>
-// </ButtonContainer>
-// <ButtonContainer >
-// <Button>
-//   <Icon ><i className="fas fa-plus-square"></i></Icon>
-//   <Icon>Add table</Icon>
-// </Button>
-// </ButtonContainer>

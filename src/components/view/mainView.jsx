@@ -7,13 +7,14 @@ import TableForm from '../view/tableForm';
 function MainView({ view, tables, setTables, setPopUp }) {
   return (
     <div style={{ gridArea: "main" }}>
-      {view === 'code' && <CodeContainer/>}
-      {view === 'schema' && <SchemaView 
-        tables={tables} 
-        setTables={setTables} 
-        setPopUp={setPopUp} 
-        view={view} 
+      {view === 'code' && <CodeContainer />}
+      {view === 'schema' && <SchemaView
+        tables={tables}
+        setTables={setTables}
+        setPopUp={setPopUp}
+        view={view}
       />}
+      {view === 'table' && <TableForm />}
     </div>
   )
 }

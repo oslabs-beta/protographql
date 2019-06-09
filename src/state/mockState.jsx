@@ -158,6 +158,6 @@ export const tablesState = {
   },
 };
 
-export const viewState = 'tableDetails';
+export const viewState = 'table';
 
 export const popUpState = 'welcome';

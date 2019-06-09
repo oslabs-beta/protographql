@@ -1,14 +1,29 @@
 import React from 'react';
-import styled, { css } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
+
+const fontColor = keyframes`
+  to {
+    color: #e535ab;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.10);
+  }
+`;
 
 const SideBar = styled.div`
+  background-color: white;
   grid-area: navSideBar;
   border-right: 1px solid rgba(0, 0, 0, 0.12);
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.10);
+  display: inline-block;
 `
 
 const ButtonContainer = styled.div`
+  padding: 1px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  min-width: 200px;
+  &:hover {
+    animation: ${fontColor} .5s;
+    animation-fill-mode: both;
+  };
 `
 
 const Button = styled.div`
@@ -16,25 +31,25 @@ const Button = styled.div`
   background-color: none;
   margin: auto;
   width: 100%;
-  margin-left: 30px;
+  margin-left: calc(15.5px + .25vw);
   margin-top: 25px;
 `
 
 const Icon = styled.span`
   margin: 5px;
-  font-size: 20px;
+  font-size: calc(14px + 1vw);
 `
 
 function NavSideBar({ setView, setPopUp }) {
   return (
     <SideBar>
-      <ButtonContainer>
+      <ButtonContainer key="schema" onClick={() => {setView('schema')}}>
         <Button>
           <Icon ><i className="fas fa-code-branch"></i></Icon>
           <Icon>Schema</Icon>
         </Button>
       </ButtonContainer>
-      <ButtonContainer>
+      <ButtonContainer key="code" onClick={() => {setView('code')}}>
         <Button>
           <Icon ><i className="fas fa-code"></i></Icon>
           <Icon>Code</Icon>
@@ -46,7 +61,7 @@ function NavSideBar({ setView, setPopUp }) {
           <Icon>Export</Icon>
         </Button>
       </ButtonContainer>
-      <ButtonContainer>
+      <ButtonContainer >
         <Button>
           <Icon ><i className="fas fa-plus-square"></i></Icon>
           <Icon>Add table</Icon>
@@ -55,72 +70,5 @@ function NavSideBar({ setView, setPopUp }) {
     </SideBar>
   )
 }
-
-// const NavSideBar = ({ setView, setPopUp }) => {
-//     const classes = useStyles();
-
-//     return (
-//       <Grid container>
-//         <Grid item sm={1}>
-//           <div />
-//         </Grid>
-//         <Grid item lg={11}>
-//         <Drawer
-//         variant="permanent"
-//         classes={{ paper: classes.drawerPaper }}
-//         >
-//         <List anchor="right">
-//             <ListItem button key="Schema" className={classes.buttons} onClick={() => {setView('schema')}} >
-//                 <ListItemIcon>
-//                     <Avatar>
-//                         <Share />
-//                     </Avatar>
-//                 </ListItemIcon>
-//                 <ListItemText primary="Schema" />
-//             </ListItem>
-
-//             <Divider />
-
-//             <ListItem button key="Code" className={classes.buttons} onClick={() => {setView('code')}} >
-//                 <ListItemIcon>
-//                     <Avatar>
-//                         <Code />
-//                     </Avatar>
-//                 </ListItemIcon>
-//                 <ListItemText primary="Code" />
-//             </ListItem>
-
-//             <Divider />
-
-//             <ListItem button key="Export" className={classes.buttons}>
-//                 <ListItemIcon>
-//                     <Avatar>
-//                         <GetApp />
-//                     </Avatar>
-//                 </ListItemIcon>
-//                 <ListItemText primary="Export" />
-//             </ListItem>
-
-
-//         </List>
-//         <Divider />
-//         <List>
-//             <ListItem button
-//             key="AddNew"
-//             className={classes.plusButton}
-//             >
-//                 <ListItemIcon>
-//                     <Avatar>
-//                         <Add />
-//                     </Avatar>
-//                 </ListItemIcon>
-//                 <ListItemText primary="Add Table" />
-//             </ListItem>
-//         </List>
-//     </Drawer>
-//     </Grid>
-//   </Grid>
-//   )
-// }
 
 export default NavSideBar;

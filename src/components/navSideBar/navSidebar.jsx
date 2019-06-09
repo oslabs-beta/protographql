@@ -31,3 +31,5 @@ function NavSideBar({ setView, setPopUp }) {
 }
 
 export default NavSideBar;
+
+

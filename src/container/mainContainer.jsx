@@ -14,6 +14,7 @@ import { relative } from 'path';
   setPopUp toggle popups
   potential popups are welcome, table details, and export (select folder to save & success)
 */
+
 const Main = () => {
   const [selectedTable, setSelectedTable] = useState(state.selectedTableState);
   const [selectedField, setSelectedField] = useState(state.selectedFieldState);
@@ -44,6 +45,7 @@ const Main = () => {
         tables={tables}
         setTables={setTables}
         setPopUp={setPopUp}
+        setView={setView}
       />
     </div>
   )

@@ -4,12 +4,11 @@ import styled from 'styled-components';
 const Tr = styled.tr`
   background: #161e26;
   color: white;
-  height: 45px;
 `;
 
 const Th = styled.th`
   font-size: .75em;
-  padding: .25em;
+  padding: 1.5em;
 `;
 
 

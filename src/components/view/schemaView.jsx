@@ -9,6 +9,7 @@ const View = styled.div`
 `
 
 function SchemaView({ tables, setTables, setPopUp, view, setView }) {
+  console.log(tables);
   const tablesArray = Object.keys(tables).map(tableKey => (
     <SchemaTable
       key={tableKey}

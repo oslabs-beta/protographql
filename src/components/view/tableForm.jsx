@@ -14,6 +14,9 @@ const Div = styled.div`
   border-spacing: 0;
   min-width: 450px;
   max-width: 1000px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 `;
 
 const Table = styled.table`
@@ -23,19 +26,19 @@ const Table = styled.table`
 
 function TableForm() {
   return (
-    <Draggable>
-      <Div>
-        <TableName />
-        <Table id='table' >
-          <tbody>
-            <TableHeader />
-            <TableRow />
-            <TableRow />
-            <TableRow />
-          </tbody>
-        </Table>
-      </Div>
-    </Draggable>
+    // <Draggable>
+    <Div>
+      <TableName />
+      <Table id='table' >
+        <tbody>
+          <TableHeader />
+          <TableRow />
+          <TableRow />
+          <TableRow />
+        </tbody>
+      </Table>
+    </Div>
+    // </Draggable>
   )
 }
 

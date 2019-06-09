@@ -1,12 +1,7 @@
-import React from 'react';
-import styled, { css, keyframes } from 'styled-components'
+import React, { useState } from 'react';
+import NavButton from './navButton';
+import styled from 'styled-components';
 
-const fontColor = keyframes`
-  to {
-    color: #e535ab;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.10);
-  }
-`;
 
 const SideBar = styled.div`
   background-color: white;
@@ -16,57 +11,22 @@ const SideBar = styled.div`
   display: inline-block;
 `
 
-const ButtonContainer = styled.div`
-  padding: 1px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  min-width: 200px;
-  &:hover {
-    animation: ${fontColor} .5s;
-    animation-fill-mode: both;
-  };
-`
-
-const Button = styled.div`
-  height: 60px;
-  background-color: none;
-  margin: auto;
-  width: 100%;
-  margin-left: calc(15.5px + .25vw);
-  margin-top: 25px;
-`
-
-const Icon = styled.span`
-  margin: 5px;
-  font-size: calc(14px + 1vw);
-`
-
 function NavSideBar({ setView, setPopUp }) {
+  const buttons = () =>{
+    let input = [];
+    const views = ['Schema', 'Code', 'Export', 'Table'];
+    const icons = ["fas fa-code-branch", "fas fa-code", "fas fa-file-download", "fas fa-plus-square"]
+    views.forEach((text, i)=>{
+      input.push(
+       <NavButton className={icons[i]} view={text} onClick={()=>{setView(text.toLowerCase())}}/>
+      )
+    })
+   return input;
+  }
+
   return (
     <SideBar>
-      <ButtonContainer key="schema" onClick={() => {setView('schema')}}>
-        <Button>
-          <Icon ><i className="fas fa-code-branch"></i></Icon>
-          <Icon>Schema</Icon>
-        </Button>
-      </ButtonContainer>
-      <ButtonContainer key="code" onClick={() => {setView('code')}}>
-        <Button>
-          <Icon ><i className="fas fa-code"></i></Icon>
-          <Icon>Code</Icon>
-        </Button>
-      </ButtonContainer>
-      <ButtonContainer>
-        <Button>
-          <Icon ><i className="fas fa-file-download"></i></Icon>
-          <Icon>Export</Icon>
-        </Button>
-      </ButtonContainer>
-      <ButtonContainer >
-        <Button>
-          <Icon ><i className="fas fa-plus-square"></i></Icon>
-          <Icon>Add table</Icon>
-        </Button>
-      </ButtonContainer>
+      {buttons()}
     </SideBar>
   )
 }

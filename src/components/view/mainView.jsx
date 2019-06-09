@@ -14,6 +14,7 @@ function MainView({ view, tables, setTables, setPopUp }) {
         setPopUp={setPopUp} 
         view={view} 
       />}
+      {view === 'table' && <TableForm />}
     </div>
   )
 }

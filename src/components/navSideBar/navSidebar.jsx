@@ -18,7 +18,10 @@ function NavSideBar({ setView, setPopUp }) {
     const icons = ["fas fa-code-branch", "fas fa-code", "fas fa-file-download", "fas fa-plus-square"]
     views.forEach((text, i) => {
       input.push(
-        <NavButton className={icons[i]} view={text} onClick={() => { setView(text.toLowerCase()) }} />
+        <NavButton
+          className={icons[i]}
+          view={text}
+          onClick={() => { setView(text.toLowerCase()) }} />
       )
     })
     return input;

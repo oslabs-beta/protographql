@@ -1,29 +1,30 @@
 import React, { Fragment } from 'react';
 import SchemaTable from './schemaTable'
-import { Container, CssBaseline } from '@material-ui/core';
+import styled from 'styled-components';
 
+const View = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+`
 
-const SchemaView = ({ tables, setTables, setPopUp, view }) => {
+function SchemaView ({ tables, setTables, setPopUp, view }) {
  const tablesArray = Object.keys(tables).map(tableKey => (
    <SchemaTable
     key={tableKey}
-    tableKey={tableKey} 
-    table={tables[tableKey]} 
-    setTables={setTables} 
-    setPopUp={setPopUp} 
+    tableKey={tableKey}
+    table={tables[tableKey]}
+    setTables={setTables}
+    setPopUp={setPopUp}
+    style={{ margin: "10px" }}
     />
  ))
  
  return (
-   <div style={{display:'flex', flexDirection: 'column'}}>
-    <Fragment >
-      <CssBaseline />
-      <Container style={{width: `calc(100% - 200px)`}}>
-        { tablesArray }
-      </Container>
-    </Fragment>
-  </div>
+  <View >
+      { tablesArray }
+  </View>
  )
 }
 
-export default SchemaView
+export default SchemaView;

@@ -26,19 +26,19 @@ const Table = styled.table`
 
 function TableForm() {
   return (
-    <Draggable>
-      <Div>
-        <TableName />
-        <Table id='table' >
-          <tbody>
-            <TableHeader />
-            <TableRow />
-            <TableRow />
-            <TableRow />
-          </tbody>
-        </Table>
-      </Div>
-    </Draggable>
+    // <Draggable>
+    <Div>
+      <TableName />
+      <Table id='table' >
+        <tbody>
+          <TableHeader />
+          <TableRow />
+          <TableRow />
+          <TableRow />
+        </tbody>
+      </Table>
+    </Div>
+    // </Draggable>
   )
 }
 

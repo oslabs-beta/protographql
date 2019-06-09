@@ -12,16 +12,16 @@ const SideBar = styled.div`
 `
 
 function NavSideBar({ setView, setPopUp }) {
-  const buttons = () =>{
+  const buttons = () => {
     let input = [];
     const views = ['Schema', 'Code', 'Export', 'Table'];
     const icons = ["fas fa-code-branch", "fas fa-code", "fas fa-file-download", "fas fa-plus-square"]
-    views.forEach((text, i)=>{
+    views.forEach((text, i) => {
       input.push(
-       <NavButton className={icons[i]} view={text} onClick={()=>{setView(text.toLowerCase())}}/>
+        <NavButton className={icons[i]} view={text} onClick={() => { setView(text.toLowerCase()) }} />
       )
     })
-   return input;
+    return input;
   }
 
   return (

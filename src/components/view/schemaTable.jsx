@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function SchemaTable({ table, setTables, setPopUp, tableKey, setView }) {
-  console.log('setView: ', setView);
+  // console.log('setView: ', setView);
   const classes = useStyles();
   const fields = (
     Object.keys(table.fields).map(fieldKey => (
@@ -64,7 +64,7 @@ function SchemaTable({ table, setTables, setPopUp, tableKey, setView }) {
           <Delete />
         </span>
         <span>
-          <Edit onClick={() => { setView('table') }} />
+          <Edit onClick={() => { setPopUp('table') }} />
         </span>
       </Typography>
 

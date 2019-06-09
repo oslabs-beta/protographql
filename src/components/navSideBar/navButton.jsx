@@ -32,18 +32,18 @@ const Icon = styled.span`
   font-size: calc(14px + 1vw);
 `
 
-const NavButton = (props) =>{
-    return (
-        <ButtonContainer onClick={props.onClick}>
-            <Button>
-                <Icon><i className={props.className}></i>
-                    </Icon>
-                    {props.view}
-                    <Icon>
-                </Icon>
-            </Button>
-        </ButtonContainer>
-    )
+const NavButton = (props) => {
+  return (
+    <ButtonContainer onClick={props.onClick}>
+      <Button>
+        <Icon><i className={props.className}></i>
+        </Icon>
+        {props.view}
+        <Icon>
+        </Icon>
+      </Button>
+    </ButtonContainer>
+  )
 }
 
 export default NavButton;

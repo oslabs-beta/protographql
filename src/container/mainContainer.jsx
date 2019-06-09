@@ -46,6 +46,7 @@ const Main = () => {
         setTables={setTables}
         setPopUp={setPopUp}
         setView={setView}
+        popUp={popUp}
       />
     </div>
   )

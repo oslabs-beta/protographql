@@ -3,27 +3,26 @@ import Header from '../components/header/header';
 import NavSideBar from '../components/navSideBar/navSidebar';
 import Welcome from '../components/popup/welcome';
 import TableDetailView from '../components/view/tableDetailView';
-import * as state from '../state/initialState';
-import * as mockState from '../state/mockState';
+// import * as state from '../state/initialState';
+import * as state from '../state/mockState';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
 import MainView from '../components/view/mainView';
 import { relative } from 'path';
 
 //change to state for production
-const stateMode = "MockState";
 
 const Main = () => {
   //setView will change the tab shown in the sandbox
   //potential tabs for MVP are code & schema, stretch would include GQL setup area)
   //setPopup will toggle popups 
   //potential popups are welcome, table details, and export (select folder to save & success)
-  const [selectedTable, setSelectedTable] = useState({ stateMode }.selectedTableState);
-  const [selectedField, setSelectedField] = useState({ stateMode }.selectedFieldState);
-  const [tableIndex, setTableIndex] = useState({ stateMode }.tableIndexState);
-  const [tables, setTables] = useState({ stateMode }.tablesState);
-  const [view, setView] = useState({ stateMode }.viewState);
-  const [popUp, setPopUp] = useState({ stateMode }.popUpState);
+  const [selectedTable, setSelectedTable] = useState(state.selectedTableState);
+  const [selectedField, setSelectedField] = useState(state.selectedFieldState);
+  const [tableIndex, setTableIndex] = useState(state.tableIndexState);
+  const [tables, setTables] = useState(state.tablesState);
+  const [view, setView] = useState(state.viewState);
+  const [popUp, setPopUp] = useState(state.popUpState);
 
   //Rendered components and elements
   return (

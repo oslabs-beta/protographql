@@ -1,24 +1,22 @@
 import React, { Fragment } from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
+import styled from 'styled-components';
+import buildGQLSchema from '../../utils/buildGQLSchema';
 
-function CodeContainer() {
+const Code = styled.div`
+  margin: 20px;
+  font-family: Courier New, Consolas, Monaco, Lucida Console;
+  font-size: 15px;
+  background-color: #EFF0F1;
+`;
+
+function CodeView({ tables }) {
   return (
-    <main style={{flexgrow: 1}}>
-      <CssBaseline />
-      <Container stye={{width: `calc(100% - 200px)`}} >
-        <Typography 
-          paragraph
-          style={{ color: 'black', alignContent: 'center', width: '100%'}}
-        >
-           {
-               "all code goes here {hello there!}kjdghsergedfmvejrskgnergwewrmhjftsretwragdfhgzfbzc"
-           }
-        </Typography>
-      </Container>
-    </main>
+    <Code>
+      <pre>
+        {buildGQLSchema(tables)}
+      </pre>
+    </Code>
   );
 }
 
-export default CodeContainer;
+export default CodeView;

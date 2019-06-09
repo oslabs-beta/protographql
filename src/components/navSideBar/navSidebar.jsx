@@ -17,7 +17,7 @@ function NavSideBar({ setView, setPopUp }) {
     const views = ['Schema', 'Code', 'Export', 'Add Table'];
     for(let i = 0; i < 4; i++){
       input.push(
-       <MyButton/>
+       <MyButton key={views[i]}/>
       )
     }
    return input;

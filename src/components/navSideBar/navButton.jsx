@@ -36,9 +36,9 @@ const MyButton = () =>{
     return (
         <ButtonContainer>
             <Button>
-                <Icon >
+                <Icon>
                     </Icon>
-                       hello
+                    I can put stuff here
                     <Icon>
                 </Icon>
             </Button>

@@ -42,9 +42,9 @@ export const tablesState = {
         defaultValue: '',
         relationSelected: false,
         relation: {
-          tableIndex: -1,
-          fieldIndex: -1,
-          refType: ''
+            tableIndex: -1,
+            fieldIndex: -1,
+            refType: ''
         },
         tableNum: 0,
         fieldNum: 0,
@@ -52,7 +52,7 @@ export const tablesState = {
       },
       1: {
         name: 'first_name',
-        type: 'string',
+        type: 'String',
         primaryKey: false,
         autoIncrement: false,
         unique: false,
@@ -61,9 +61,9 @@ export const tablesState = {
         defaultValue: '',
         relationSelected: false,
         relation: {
-          tableIndex: -1,
-          fieldIndex: -1,
-          refType: ''
+            tableIndex: -1,
+            fieldIndex: -1,
+            refType: ''
         },
         tableNum: 0,
         fieldNum: 1,
@@ -71,7 +71,7 @@ export const tablesState = {
       },
       2: {
         name: 'last_name',
-        type: 'string',
+        type: 'String',
         primaryKey: false,
         autoIncrement: false,
         unique: false,
@@ -80,9 +80,9 @@ export const tablesState = {
         defaultValue: '',
         relationSelected: false,
         relation: {
-          tableIndex: -1,
-          fieldIndex: -1,
-          refType: ''
+            tableIndex: -1,
+            fieldIndex: -1,
+            refType: ''
         },
         tableNum: 0,
         fieldNum: 2,
@@ -106,9 +106,9 @@ export const tablesState = {
         defaultValue: '',
         relationSelected: false,
         relation: {
-          tableIndex: -1,
-          fieldIndex: -1,
-          refType: ''
+            tableIndex: -1,
+            fieldIndex: -1,
+            refType: ''
         },
         tableNum: 1,
         fieldNum: 0,
@@ -116,7 +116,7 @@ export const tablesState = {
       },
       1: {
         name: 'name',
-        type: 'string',
+        type: 'String',
         primaryKey: false,
         autoIncrement: false,
         unique: false,
@@ -125,9 +125,9 @@ export const tablesState = {
         defaultValue: '',
         relationSelected: false,
         relation: {
-          tableIndex: -1,
-          fieldIndex: -1,
-          refType: ''
+            tableIndex: -1,
+            fieldIndex: -1,
+            refType: ''
         },
         tableNum: 1,
         fieldNum: 1,
@@ -144,9 +144,9 @@ export const tablesState = {
         defaultValue: '',
         relationSelected: true,
         relation: {
-          tableIndex: '0',
-          fieldIndex: '0',
-          refType: 'many to one'
+            tableIndex: '0',
+            fieldIndex: '0',
+            refType: 'many to one'
         },
         tableNum: 1,
         fieldNum: 2,

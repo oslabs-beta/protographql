@@ -14,6 +14,9 @@ const Div = styled.div`
   border-spacing: 0;
   min-width: 450px;
   max-width: 1000px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 `;
 
 const Table = styled.table`

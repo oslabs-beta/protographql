@@ -9,16 +9,24 @@ const View = styled.div`
 `
 
 function SchemaView({ tables, setTables, setPopUp, view, setView }) {
-  console.log(tables);
+  const deleteTable = id => {
+    const newTables = { ...tables };
+    delete newTables[id];
+    setTables(newTables);
+  }
+
   const tablesArray = Object.keys(tables).map(tableKey => (
     <SchemaTable
+      tables={tables}
       key={tableKey}
       tableKey={tableKey}
       table={tables[tableKey]}
       setTables={setTables}
       setPopUp={setPopUp}
       setView={setView}
-      style={{ margin: "10px" }}
+      style={{ margin: "10px" }
+      }
+      deleteTable={deleteTable}
     />
   ))
 

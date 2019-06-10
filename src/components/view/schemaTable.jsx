@@ -44,8 +44,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function SchemaTable({ table, setTables, setPopUp, tableKey, setView }) {
-  // console.log('setView: ', setView);
+function SchemaTable({ key, table, setTables, setPopUp, tableKey, setView, deleteTable }) {
   const classes = useStyles();
   const fields = (
     Object.keys(table.fields).map(fieldKey => (
@@ -55,13 +54,12 @@ function SchemaTable({ table, setTables, setPopUp, tableKey, setView }) {
       }
     ))
   )
-
   return (
     <Paper className={classes.root} style={{ margin: '10px' }}>
       <Typography className={classes.title}  >
         {table.type}
         <span style={{ marginLeft: 130, marginRight: 10 }}>
-          <Delete />
+          <Delete onClick={() => deleteTable(tableKey)} />
         </span>
         <span>
           <Edit onClick={() => { setPopUp('table') }} />
@@ -79,7 +77,6 @@ function SchemaTable({ table, setTables, setPopUp, tableKey, setView }) {
         <TableBody>
           {fields.map(field => (
             <StyledTableRow key={field.name}>
-
               <StyledTableCell component="th" scope="field">
                 {field.name}
               </StyledTableCell>

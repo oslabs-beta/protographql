@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Input = styled.input`
   padding: 10px;
-  width: 77%;
+  width: 74%;
   font-size: 1.5em;
   border: none;
   margin: 1px;
@@ -15,12 +15,13 @@ const Span = styled.span`
   margin: 1px;
 `;
 
-function TableName() {
+function TableName({ setPopUp }) {
   return (
     <div>
       <Input type="text" placeholder=" Enter Table Name * "></Input>
-      <Span><button> Add Fields</button></Span>
-      <Span><button>Submit Table</button></Span>
+      <Span><button>Add Fields</button></Span>
+      <Span><button>Submit</button></Span>
+      <Span><button onClick={() => { setPopUp('') }}>Close</button></Span>
     </div>
   )
 }

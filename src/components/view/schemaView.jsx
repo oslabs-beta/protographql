@@ -24,8 +24,7 @@ function SchemaView({ tables, setTables, setPopUp, view, setView }) {
       setTables={setTables}
       setPopUp={setPopUp}
       setView={setView}
-      style={{ margin: "10px" }
-      }
+      style={{ margin: "10px" }}
       deleteTable={deleteTable}
     />
   ))

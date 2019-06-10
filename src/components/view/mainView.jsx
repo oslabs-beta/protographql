@@ -4,17 +4,19 @@ import CodeView from '../../components/view/codeView';
 import { Container } from '@material-ui/core';
 import TableForm from '../view/tableForm';
 
-function MainView({ view, tables, setTables, setPopUp }) {
+function MainView({ view, tables, setTables, setPopUp, setView, popUp }) {
   return (
     <div style={{ gridArea: "main" }}>
       {view === 'code' && <CodeView tables={tables} />}
-      {view === 'schema' && <SchemaView 
-        tables={tables} 
-        setTables={setTables} 
-        setPopUp={setPopUp} 
-        view={view} 
+      {view === 'schema' && <SchemaView
+        tables={tables}
+        setTables={setTables}
+        setPopUp={setPopUp}
+        setView={setView}
+        view={view}
       />}
-      {view === 'table' && <TableForm />}
+      {/* {view === 'table' && <TableForm />}  */}
+      {popUp === 'table' && <TableForm setPopUp={setPopUp} />}
     </div>
   )
 }

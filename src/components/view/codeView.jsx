@@ -13,13 +13,23 @@ const Code = styled.div`
 
 // Height is currently hard-coded. May need to look into dynamic solution
 const Column = styled.div`
-  height: 500px;
+  height: calc(100vh - 40px - 64px - 42px);
+  background-color: white;
   width: 50%;
   margin: 10px;
   padding: 10px;
   overflow: scroll;
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.12);
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 10px;
+    height: 10px;
+  };
+  ::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.12);
+  }
 `;
 
 const Title = styled.p`

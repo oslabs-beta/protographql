@@ -8,7 +8,7 @@ const Wrapper = styled.div`
 const Input = styled.input`
   padding: 10px;
   width: 70%;
-  font-size: 1.5em;
+  font-size: 1em;
   border: none;
   margin: 1px;
 `;
@@ -28,7 +28,7 @@ const Buttons = styled.span`
   margin-right: 5px;
 `
 
-function TableFields({ setPopUp }) {
+function TableNameInput({ setPopUp }) {
   return (
     <Wrapper>
       <Input type="text" placeholder=" Enter Table Name * "></Input>
@@ -41,4 +41,4 @@ function TableFields({ setPopUp }) {
   )
 }
 
-export default TableFields;
+export default TableNameInput;

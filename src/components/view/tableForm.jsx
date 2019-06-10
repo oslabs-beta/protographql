@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components';
-import TableHeader from './tableHeader';
+import TableNameInput from './tableNameInput';
+import TableField from './tableField';
 import TableInput from './tableInput';
-import TableFields from './tableFields';
 import Draggable from 'react-draggable';
 
 const CustomTable = styled.div`
@@ -23,15 +23,22 @@ const Table = styled.table`
 `;
 
 
+const TableHeader = styled.div`
+    height: 30px;
+    width: 100%;
+    background: rgba(50,67,83,1);
+}
+`;
 
 function TableForm({ setPopUp }) {
   return (
     <Draggable>
       <CustomTable>
-        <TableFields setPopUp={setPopUp} />
+        <TableHeader />
+        <TableNameInput setPopUp={setPopUp} />
         <Table id='table' >
           <tbody>
-            <TableHeader />
+            <TableField />
             <TableInput />
             <TableInput />
             <TableInput />

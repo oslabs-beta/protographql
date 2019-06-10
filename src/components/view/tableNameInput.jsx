@@ -29,10 +29,10 @@ const Buttons = styled.span`
   margin-right: 5px;
 `
 
-function TableNameInput({ setPopUp }) {
+function TableNameInput({ setPopUp, name }) {
   return (
     <Wrapper>
-      <Input type="text" placeholder=" Enter Table Name * "></Input>
+      <Input type="text" placeholder=" Enter Table Name * " defaultValue={name} ></Input>
       <Buttons>
         <Button>Add Fields</Button>
         <Button>Submit Table</Button>

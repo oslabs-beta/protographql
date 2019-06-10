@@ -29,18 +29,33 @@ const TableHeader = styled.div`
     background: rgba(50,67,83,1);
 `;
 
-function TableForm({ setPopUp }) {
+function TableForm({ 
+  setPopUp,
+  setTables,
+  setSelectedTable,
+  selectedTable,
+  tableIndexState,
+  setTableIndexState
+}) {
+  //Creating Table Inputs (these are fields)
+  const fieldInputs = [];
+  const createTableInputs = () => {
+    const fields = Object.keys(selectedTable.fields)
+    for (let i = 0; i < fields.length; i++) {
+      fieldInputs.push(<TableInput field={selectedTable.fields[i]} key={i} />)
+    }
+  }
+  createTableInputs();
+
   return (
     <Draggable handle="#header">
       <CustomTable>
         <TableHeader id="header" style={{ cursor: "move" }} />
-        <TableNameInput setPopUp={setPopUp} />
+        <TableNameInput setPopUp={setPopUp} name={selectedTable.type}/>
         <Table id='table' >
           <tbody>
             <TableField />
-            <TableInput />
-            <TableInput />
-            <TableInput />
+            {fieldInputs}
           </tbody>
         </Table>
       </CustomTable>

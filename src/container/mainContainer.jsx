@@ -38,7 +38,7 @@ const Main = () => {
       fontFamily: "'Roboto', sans-serif",
     }}>
       <Header />
-      {/* <Welcome popUp={popUp} setPopUp={setPopUp} /> */}
+      <Welcome popUp={popUp} setPopUp={setPopUp}/>
       <NavSideBar setView={setView} setPopUp={setPopUp} />
       <MainView
         view={view}
@@ -46,6 +46,7 @@ const Main = () => {
         setTables={setTables}
         setPopUp={setPopUp}
         setView={setView}
+        popUp={popUp}
       />
     </div>
   )

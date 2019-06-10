@@ -20,11 +20,11 @@ const Table = styled.table`
   border-collapse: collapse;
 `;
 
-function TableForm() {
+function TableForm({ setPopUp }) {
   return (
     // <Draggable>
     <Div>
-      <TableName />
+      <TableName setPopUp={setPopUp} />
       <Table id='table' >
         <tbody>
           <TableHeader />

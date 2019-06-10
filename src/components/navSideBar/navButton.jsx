@@ -34,7 +34,7 @@ const Icon = styled.span`
 
 const NavButton = (props) => {
   return (
-    <ButtonContainer onClick={props.onClick}>
+    <ButtonContainer onClick={props.click}>
       <Button>
         <Icon><i className={props.className}></i>
         </Icon>

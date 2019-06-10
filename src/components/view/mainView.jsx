@@ -15,7 +15,7 @@ function MainView({ view, tables, setTables, setPopUp, setView, popUp }) {
         setView={setView}
         view={view}
       />}
-      {/* {view === 'table' && <TableForm />} */}
+      {/* {view === 'table' && <TableForm />}  */}
       {popUp === 'table' && <TableForm setPopUp={setPopUp} />}
     </div>
   )

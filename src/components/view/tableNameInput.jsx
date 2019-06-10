@@ -6,17 +6,18 @@ const Wrapper = styled.div`
 `
 
 const Input = styled.input`
-  padding: 10px;
+  padding: 5px;
   width: 70%;
   font-size: 1em;
   border: none;
   margin: 1px;
+  margin-top: 4px;
 `;
 
 const Button = styled.button`
   padding: 6px;
   font-size: 0.6em;
-  margin: 10px;
+  margin: 5px;
   border-radius: 6px;
   border: 1px solid rgba(0, 0, 0, 0.12);
   background-color: white;

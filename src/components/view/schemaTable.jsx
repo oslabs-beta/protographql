@@ -49,7 +49,6 @@ function SchemaTable({ key, table, setTables, setPopUp, tableKey, setView, delet
   const fields = (
     Object.keys(table.fields).map(fieldKey => (
       {
-        key: { fieldKey },
         name: table.fields[fieldKey].name,
         type: table.fields[fieldKey].type,
       }

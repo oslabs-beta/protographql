@@ -21,6 +21,7 @@ export const selectedFieldState = {
     refType: ''
   },
   refBy: new Set(),
+  queryable: true,
   tableNum: -1,
   fieldNum: -1,
 };

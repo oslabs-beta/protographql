@@ -23,7 +23,7 @@ const buildGQLQueryType = tables => {
     }
     if (queryable) {
       gqlQuery += custom;
-      gqlQuery += `${tabs(2)})\n`;
+      gqlQuery += `${tabs(2)}): [${table.type}]\n`;
     }
   }
   gqlQuery += `${tabs(1)}}\n`;

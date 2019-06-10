@@ -37,7 +37,6 @@ function NavSideBar({ setView, setPopUp }) {
   return (
     <SideBar>
       {buttons()}
-      
     </SideBar>
   )
 }

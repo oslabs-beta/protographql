@@ -26,19 +26,19 @@ const Table = styled.table`
 
 function TableForm({ setPopUp }) {
   return (
-    // <Draggable>
-    <Div>
-      <TableName setPopUp={setPopUp} />
-      <Table id='table' >
-        <tbody>
-          <TableHeader />
-          <TableRow />
-          <TableRow />
-          <TableRow />
-        </tbody>
-      </Table>
-    </Div>
-    // </Draggable>
+    <Draggable handle=".handle">
+      <Div>
+        <TableName setPopUp={setPopUp} />
+        <Table id='table' >
+          <tbody>
+            <TableHeader className="handle" />
+            <TableRow />
+            <TableRow />
+            <TableRow />
+          </tbody>
+        </Table>
+      </Div>
+    </Draggable>
   )
 }
 

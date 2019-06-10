@@ -2,16 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Tr = styled.tr`
-  border-top: 1px solid gray;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  
 `;
 
 const Td = styled.td`
   font-size: .75em;
   text-align: center;
   margin: 0;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  // border: 1px solid black;
+  padding-top: 5px;
+  padding-bottom: 5px;
 `;
 
 const Input = styled.input`
@@ -27,7 +27,7 @@ const Input = styled.input`
 function TableRow() {
   return (
     <Tr>
-      <Td>Delete</Td>
+      <Td><i className="fas fa-trash-alt" style = {{ fontSize: "18px" }}></i></Td>
       <Td>
         <Input type="text" placeholder="Field Name"></Input>
       </Td>
@@ -44,9 +44,17 @@ function TableRow() {
         <Input type="text" placeholder="Default Value"></Input>
       </Td>
       <Td>
-        <label className="switch">
+        <label className="switch"
+        // will be fixed later
+        // style={{ height: "25px", width: "45px" }}
+        >
           <input type="checkbox"></input>
-          <span className="slider round"></span>
+          <span className="slider round" style={{ 
+            // height: "23px",
+            // width: "23px",
+            // left: "1px",
+            // bottom: "1px",
+           }}></span>
         </label>
       </Td>
       <Td>

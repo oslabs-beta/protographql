@@ -2,17 +2,18 @@ import React from 'react'
 import styled from 'styled-components';
 import TableHeader from './tableHeader';
 import TableRow from './tableRow';
-import Draggable from 'react-draggable';
 import TableName from './tableName';
 
-const Div = styled.div`
-  border: 1px solid #161e26;
-  border-radius: 5px;
+const CustomTable = styled.div`
+  border: 1px solid rgba(0, 0, 0, 0.14);
   height: auto;
-  min-width: 450px;
-  margin-top: 200px;
-  margin-right: 20px;
-  box-shadow: 5px 10px;
+  margin: 0 auto;
+  min-width: 550px;
+  max-width: 1000px;
+  position: relative;
+  top: calc(100% - 64px - 268px);
+  background-color: white;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.12);
 `;
 
 const Table = styled.table`
@@ -23,7 +24,7 @@ const Table = styled.table`
 function TableForm({ setPopUp }) {
   return (
     // <Draggable>
-    <Div>
+    <CustomTable>
       <TableName setPopUp={setPopUp} />
       <Table id='table' >
         <tbody>
@@ -33,8 +34,7 @@ function TableForm({ setPopUp }) {
           <TableRow />
         </tbody>
       </Table>
-    </Div>
-    // </Draggable>
+    </CustomTable>
   )
 }
 

@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import Draggable from 'react-draggable';
 
 const Tr = styled.tr`
-  background: #161e26;
+  background: rgba(50, 67, 83, 1);
   color: white;
-  height: 45px;
 `;
 
 const Th = styled.th`
   font-size: .75em;
-  padding: .25em;
+  padding: .9em;
 `;
 
 
@@ -26,7 +26,6 @@ function TableHeader() {
       <Th>Required</Th>
       <Th>Foreign Key</Th>
     </Tr>
-
   )
 }
 

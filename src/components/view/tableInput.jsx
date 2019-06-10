@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const Tr = styled.tr`
   border-top: 1px solid rgba(0, 0, 0, 0.2);
-  
 `;
 
 const Td = styled.td`
@@ -24,10 +23,10 @@ const Input = styled.input`
 `;
 
 
-function TableRow() {
+function TableInput() {
   return (
     <Tr>
-      <Td><i className="fas fa-trash-alt" style = {{ fontSize: "18px" }}></i></Td>
+      <Td><i className="fas fa-trash-alt" style={{ fontSize: "18px" }}></i></Td>
       <Td>
         <Input type="text" placeholder="Field Name"></Input>
       </Td>
@@ -49,12 +48,12 @@ function TableRow() {
         // style={{ height: "25px", width: "45px" }}
         >
           <input type="checkbox"></input>
-          <span className="slider round" style={{ 
+          <span className="slider round" style={{
             // height: "23px",
             // width: "23px",
             // left: "1px",
             // bottom: "1px",
-           }}></span>
+          }}></span>
         </label>
       </Td>
       <Td>
@@ -80,4 +79,4 @@ function TableRow() {
   )
 }
 
-export default TableRow;
+export default TableInput;

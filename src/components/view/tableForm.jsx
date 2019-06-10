@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components';
 import TableHeader from './tableHeader';
-import TableRow from './tableRow';
-import TableName from './tableName';
+import TableInput from './tableInput';
+import TableFields from './tableFields';
+import Draggable from 'react-draggable';
 
 const CustomTable = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.14);
@@ -21,20 +22,23 @@ const Table = styled.table`
   border-collapse: collapse;
 `;
 
+
+
 function TableForm({ setPopUp }) {
   return (
-    // <Draggable>
-    <CustomTable>
-      <TableName setPopUp={setPopUp} />
-      <Table id='table' >
-        <tbody>
-          <TableHeader />
-          <TableRow />
-          <TableRow />
-          <TableRow />
-        </tbody>
-      </Table>
-    </CustomTable>
+    <Draggable>
+      <CustomTable>
+        <TableFields setPopUp={setPopUp} />
+        <Table id='table' >
+          <tbody>
+            <TableHeader />
+            <TableInput />
+            <TableInput />
+            <TableInput />
+          </tbody>
+        </Table>
+      </CustomTable>
+    </Draggable>
   )
 }
 

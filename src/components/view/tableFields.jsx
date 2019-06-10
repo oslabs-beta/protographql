@@ -28,7 +28,7 @@ const Buttons = styled.span`
   margin-right: 5px;
 `
 
-function TableName({ setPopUp }) {
+function TableFields({ setPopUp }) {
   return (
     <Wrapper>
       <Input type="text" placeholder=" Enter Table Name * "></Input>
@@ -41,4 +41,4 @@ function TableName({ setPopUp }) {
   )
 }
 
-export default TableName;
+export default TableFields;

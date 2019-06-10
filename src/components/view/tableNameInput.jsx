@@ -24,6 +24,15 @@ const Button = styled.button`
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.12);
 `;
 
+const CloseButton = styled.span`
+  font-size: 1.3em;
+  margin: 5px;
+  padding: 5px;
+  &:hover {
+    color: #DD399C;
+  }
+`
+
 const Buttons = styled.span`
   float: right;
   margin-right: 5px;
@@ -36,7 +45,9 @@ function TableNameInput({ setPopUp }) {
       <Buttons>
         <Button>Add Fields</Button>
         <Button>Submit Table</Button>
-        <Button onClick={() => { setPopUp('') }}>Close</Button>
+        <CloseButton onClick={() => { setPopUp('') }}>
+          <i class="far fa-times-circle"></i>
+        </CloseButton>
       </Buttons>
     </Wrapper>
   )

@@ -12,7 +12,6 @@ const CustomTable = styled.div`
   min-width: 550px;
   max-width: 1000px;
   position: relative;
-  top: calc(100% - 64px - 268px);
   background-color: white;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.12);
 `;

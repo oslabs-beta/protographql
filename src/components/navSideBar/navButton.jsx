@@ -12,6 +12,7 @@ const ButtonContainer = styled.div`
   padding: 1px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   min-width: 200px;
+  cursor: pointer;
   &:hover {
     animation: ${fontColor} .5s;
     animation-fill-mode: both;

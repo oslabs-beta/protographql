@@ -1,7 +1,6 @@
 import React from 'react';
 import SchemaView from '../../components/view/schemaView';
 import CodeView from '../../components/view/codeView';
-import { Container } from '@material-ui/core';
 import TableForm from '../view/tableForm';
 
 function MainView({ view, tables, setTables, setPopUp, setView, popUp }) {

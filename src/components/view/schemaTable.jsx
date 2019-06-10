@@ -5,14 +5,14 @@ import { Edit, Delete } from '@material-ui/icons';
 
 const StyledTableCell = withStyles(theme => ({
   head: {
-    backgroundColor: '#161e26',
+    backgroundColor: '#324353',
     color: theme.palette.common.white,
     fontSize: 16,
     size: 'small',
     color: 'white'
   },
   body: {
-    color: '#161e26',
+    color: '#324353',
     fontSize: 15,
   },
 }))(TableCell);
@@ -62,9 +62,9 @@ function SchemaTable({ table, setTables, setPopUp, tableKey, setView, deleteTabl
           <Delete onClick={() => deleteTable(tableKey)} />
         </span>
         <span>
-          <Edit onClick={() => { 
-            setSelectedTable(table); 
-            setPopUp('table') 
+          <Edit onClick={() => {
+            setSelectedTable(table);
+            setPopUp('table')
           }} />
         </span>
       </Typography>

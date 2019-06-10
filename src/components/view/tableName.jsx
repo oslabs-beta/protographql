@@ -7,11 +7,7 @@ const Wrapper = styled.div`
 
 const Input = styled.input`
   padding: 10px;
-<<<<<<< Updated upstream
-  width: 74%;
-=======
   width: 70%;
->>>>>>> Stashed changes
   font-size: 1.5em;
   border: none;
   margin: 1px;
@@ -27,31 +23,21 @@ const Button = styled.button`
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.12);
 `;
 
-<<<<<<< Updated upstream
-function TableName({ setPopUp }) {
-=======
 const Buttons = styled.span`
   float: right;
   margin-right: 5px;
 `
 
-function TableName() {
->>>>>>> Stashed changes
+function TableName({ setPopUp }) {
   return (
     <Wrapper>
       <Input type="text" placeholder=" Enter Table Name * "></Input>
-<<<<<<< Updated upstream
-      <Span><button>Add Fields</button></Span>
-      <Span><button>Submit</button></Span>
-      <Span><button onClick={() => { setPopUp('') }}>Close</button></Span>
-    </div>
-=======
       <Buttons>
         <Button>Add Fields</Button>
         <Button>Submit Table</Button>
+        <Button onClick={() => { setPopUp('') }}>Close</Button>
       </Buttons>
     </Wrapper>
->>>>>>> Stashed changes
   )
 }
 

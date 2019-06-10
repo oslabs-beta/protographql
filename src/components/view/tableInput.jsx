@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const Tr = styled.tr`
   border-top: 1px solid rgba(0, 0, 0, 0.2);
-  
 `;
 
 const Td = styled.td`

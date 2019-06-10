@@ -14,14 +14,14 @@ const SideBar = styled.div`
 function NavSideBar({ setView, setPopUp }) {
   const buttons = () => {
     let input = [];
-    let a = ['','','','table'];
+    const popUp = ['', '', '', 'table'];
     const views = ['Schema', 'Code', 'Export', 'Create Table'];
     const icons = ["fas fa-code-branch", "fas fa-code", "fas fa-file-download", "fas fa-plus-square"]
     const route = ['schema', 'code', 'export', 'schema'];
     views.forEach((text, i) => {
-      let click = () =>{
+      let click = () => {
         setView(route[i]);
-        setPopUp(a[i]);
+        setPopUp(popUp[i]);
       }
       input.push(
         <NavButton

@@ -3,7 +3,18 @@ import SchemaView from '../../components/view/schemaView';
 import CodeView from '../../components/view/codeView';
 import TableForm from '../view/tableForm';
 
-function MainView({ view, tables, setTables, setPopUp, setView, popUp }) {
+function MainView({ 
+  view,
+  tables, 
+  setTables, 
+  setPopUp, 
+  setView, 
+  popUp, 
+  setSelectedTable, 
+  selectedTable, 
+  tableIndexState, 
+  setTableIndexState,
+}) {
   return (
     <div style={{ gridArea: "main" }}>
       {view === 'code' && <CodeView tables={tables} />}
@@ -13,9 +24,17 @@ function MainView({ view, tables, setTables, setPopUp, setView, popUp }) {
         setPopUp={setPopUp}
         setView={setView}
         view={view}
+        setSelectedTable={setSelectedTable}
       />}
       {/* {view === 'table' && <TableForm />}  */}
-      {popUp === 'table' && <TableForm setPopUp={setPopUp} />}
+      {popUp === 'table' && <TableForm 
+        setPopUp={setPopUp} 
+        setTables={setTables} 
+        setSelectedTable={setSelectedTable}
+        selectedTable={selectedTable}
+        tableIndexState={tableIndexState}
+        setTableIndexState={setTableIndexState}
+      />}
     </div>
   )
 }

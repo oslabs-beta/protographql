@@ -23,12 +23,28 @@ const Input = styled.input`
 `;
 
 
-function TableInput() {
+function TableInput(props) {
+  const { 
+    autoIncrement,
+    defaultValue,
+    fieldNum,
+    multipleValues,
+    name,
+    primaryKey,
+    queryable,
+    refBy,
+    relation,
+    relationSelected,
+    required,
+    tableNum,
+    type,
+    unique
+  } = props.field
   return (
     <Tr>
       <Td><i className="fas fa-trash-alt" style={{ fontSize: "18px" }}></i></Td>
       <Td>
-        <Input type="text" placeholder="Field Name"></Input>
+        <Input type="text" placeholder="Field Name" defaultValue={name}></Input>
       </Td>
       <Td>
         <select className="select-css">
@@ -40,7 +56,7 @@ function TableInput() {
         </select>
       </Td >
       <Td>
-        <Input type="text" placeholder="Default Value"></Input>
+        <Input type="text" placeholder="Default Value" defaultValue={defaultValue}></Input>
       </Td>
       <Td>
         <label className="switch"

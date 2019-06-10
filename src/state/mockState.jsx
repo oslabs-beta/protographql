@@ -5,6 +5,34 @@ export const selectedTableState = {
   tableID: -1
 };
 
+export const initialTableState = {
+  type: '',
+  fields: {
+      1: {
+      name: '',
+      type: 'string',
+      primaryKey: false,
+      autoIncrement: false,
+      unique: false,
+      defaultValue: '',
+      required: false,
+      multipleValues: false,
+      relationSelected: false,
+      relation: {
+        tableIndex: -1,
+        fieldIndex: -1,
+        refType: ''
+      },
+      refBy: new Set(),
+      queryable: true,
+      tableNum: tableIndexState,
+      fieldNum: 1,
+    }
+  },
+  fieldIndex: 2,
+  tableID: -1
+};
+
 export const selectedFieldState = {
   name: '',
   type: 'string',
@@ -42,13 +70,14 @@ export const tablesState = {
         defaultValue: '',
         relationSelected: false,
         relation: {
-            tableIndex: -1,
-            fieldIndex: -1,
-            refType: ''
+          tableIndex: -1,
+          fieldIndex: -1,
+          refType: ''
         },
         tableNum: 0,
         fieldNum: 0,
-        refBy: {}
+        refBy: {},
+        queryable: true
       },
       1: {
         name: 'first_name',
@@ -67,7 +96,8 @@ export const tablesState = {
         },
         tableNum: 0,
         fieldNum: 1,
-        refBy: {}
+        refBy: {},
+        queryable: true
       },
       2: {
         name: 'last_name',
@@ -86,7 +116,8 @@ export const tablesState = {
         },
         tableNum: 0,
         fieldNum: 2,
-        refBy: {}
+        refBy: {},
+        queryable: true
       }
     },
     fieldIndex: 3,
@@ -112,7 +143,8 @@ export const tablesState = {
         },
         tableNum: 1,
         fieldNum: 0,
-        refBy: {}
+        refBy: {},
+        queryable: true
       },
       1: {
         name: 'name',
@@ -131,7 +163,8 @@ export const tablesState = {
         },
         tableNum: 1,
         fieldNum: 1,
-        refBy: {}
+        refBy: {},
+        queryable: true
       },
       2: {
         name: 'author_id',
@@ -150,7 +183,8 @@ export const tablesState = {
         },
         tableNum: 1,
         fieldNum: 2,
-        refBy: {}
+        refBy: {},
+        queryable: true
       }
     },
     fieldIndex: 3,

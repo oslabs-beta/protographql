@@ -42,9 +42,9 @@ export const tablesState = {
         defaultValue: '',
         relationSelected: false,
         relation: {
-            tableIndex: -1,
-            fieldIndex: -1,
-            refType: ''
+          tableIndex: -1,
+          fieldIndex: -1,
+          refType: ''
         },
         tableNum: 0,
         fieldNum: 0,

@@ -12,7 +12,7 @@ const StyledTableCell = withStyles(theme => ({
     color: 'white'
   },
   body: {
-    color: '#324353',
+    color: 'black',
     fontSize: 15,
   },
 }))(TableCell);

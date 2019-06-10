@@ -8,23 +8,24 @@ const View = styled.div`
   justify-content: flex-start;
 `
 
-function SchemaView ({ tables, setTables, setPopUp, view }) {
- const tablesArray = Object.keys(tables).map(tableKey => (
-   <SchemaTable
-    key={tableKey}
-    tableKey={tableKey}
-    table={tables[tableKey]}
-    setTables={setTables}
-    setPopUp={setPopUp}
-    style={{ margin: "10px" }}
+function SchemaView({ tables, setTables, setPopUp, view, setView }) {
+  const tablesArray = Object.keys(tables).map(tableKey => (
+    <SchemaTable
+      key={tableKey}
+      tableKey={tableKey}
+      table={tables[tableKey]}
+      setTables={setTables}
+      setPopUp={setPopUp}
+      setView={setView}
+      style={{ margin: "10px" }}
     />
- ))
- 
- return (
-  <View >
-      { tablesArray }
-  </View>
- )
+  ))
+
+  return (
+    <View >
+      {tablesArray}
+    </View>
+  )
 }
 
 export default SchemaView;

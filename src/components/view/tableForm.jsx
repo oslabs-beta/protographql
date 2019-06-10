@@ -8,15 +8,11 @@ import TableName from './tableName';
 const Div = styled.div`
   border: 1px solid #161e26;
   border-radius: 5px;
-  width: 90%;
   height: auto;
-  margin: 20px;
-  border-spacing: 0;
   min-width: 450px;
-  max-width: 1000px;
-  position: absolute;
-  bottom: 0;
-  right: 0;
+  margin-top: 200px;
+  margin-right: 20px;
+  box-shadow: 5px 10px;
 `;
 
 const Table = styled.table`
@@ -24,11 +20,11 @@ const Table = styled.table`
   border-collapse: collapse;
 `;
 
-function TableForm() {
+function TableForm({ setPopUp }) {
   return (
     // <Draggable>
     <Div>
-      <TableName />
+      <TableName setPopUp={setPopUp} />
       <Table id='table' >
         <tbody>
           <TableHeader />

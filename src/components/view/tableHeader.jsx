@@ -5,7 +5,6 @@ import Draggable from 'react-draggable';
 const Tr = styled.tr`
   background: rgba(50, 67, 83, 1);
   color: white;
-  height: 45px;
 `;
 
 const Th = styled.th`

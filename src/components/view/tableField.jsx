@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import Draggable from 'react-draggable';
 
 const Tr = styled.tr`
-  background: rgba(50, 67, 83, 1);
-  color: white;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
 `;
 
 const Th = styled.th`
@@ -13,7 +12,7 @@ const Th = styled.th`
 `;
 
 
-function TableHeader() {
+function TableField() {
   return (
     <Tr>
       <Th>Delete</Th>
@@ -29,4 +28,4 @@ function TableHeader() {
   )
 }
 
-export default TableHeader;
+export default TableField;

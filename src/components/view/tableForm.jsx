@@ -27,7 +27,6 @@ const TableHeader = styled.div`
     height: 30px;
     width: 100%;
     background: rgba(50,67,83,1);
-}
 `;
 
 function TableForm({ setPopUp }) {

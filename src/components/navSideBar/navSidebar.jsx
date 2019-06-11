@@ -9,7 +9,7 @@ const SideBar = styled.div`
   border-right: 1px solid rgba(0, 0, 0, 0.12);
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.10);
   display: inline-block;
-  height: 100vh;
+  height: calc(100vh - 64px);
 `
 //when someone clicks table, the schema should stay.
 function NavSideBar({ setView, setPopUp, setSelectedTable, tableIndexState }) {
@@ -24,6 +24,7 @@ function NavSideBar({ setView, setPopUp, setSelectedTable, tableIndexState }) {
         setView(route[i]);
         setPopUp(popUp[i]);
         if (i === 3) {
+          console.log('Creating new table');
           setSelectedTable(  {
           type: '',
           fields: {

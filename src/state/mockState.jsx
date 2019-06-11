@@ -77,7 +77,7 @@ export const tablesState = {
         tableNum: 0,
         fieldNum: 0,
         refBy: {},
-        queryable: true
+        queryable: false
       },
       1: {
         name: 'first_name',
@@ -97,7 +97,7 @@ export const tablesState = {
         tableNum: 0,
         fieldNum: 1,
         refBy: {},
-        queryable: true
+        queryable: false
       },
       2: {
         name: 'last_name',
@@ -117,7 +117,7 @@ export const tablesState = {
         tableNum: 0,
         fieldNum: 2,
         refBy: {},
-        queryable: true
+        queryable: false
       }
     },
     fieldIndex: 3,

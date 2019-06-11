@@ -23,6 +23,7 @@ function TableField() {
       <Th>Auto Increment</Th>
       <Th>Unique</Th>
       <Th>Required</Th>
+      <Th>Queryable</Th>
       <Th>Foreign Key</Th>
     </Tr>
   )

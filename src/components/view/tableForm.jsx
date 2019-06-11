@@ -28,6 +28,16 @@ const TableHeader = styled.div`
     background: rgba(50,67,83,1);
 `;
 
+const FadeThePage = styled.div`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: rgba(90, 90, 90, 0.5);
+`
+
 function TableForm({ 
   setPopUp,
   setTables,
@@ -47,18 +57,20 @@ function TableForm({
   createTableInputs();
 
   return (
-    <Draggable handle="#header">
-      <CustomTable>
-        <TableHeader id="header" style={{ cursor: "move" }} />
-        <TableNameInput setPopUp={setPopUp} name={selectedTable.type}/>
-        <Table id='table' >
-          <tbody>
-            <TableField />
-            {fieldInputs}
-          </tbody>
-        </Table>
-      </CustomTable>
-    </Draggable>
+    <FadeThePage>
+      <Draggable handle="#header">
+        <CustomTable>
+          <TableHeader id="header" style={{ cursor: "move" }} />
+          <TableNameInput setPopUp={setPopUp} name={selectedTable.type}/>
+          <Table id='table' >
+            <tbody>
+              <TableField />
+              {fieldInputs}
+            </tbody>
+          </Table>
+        </CustomTable>
+      </Draggable>
+    </FadeThePage>
   )
 }
 

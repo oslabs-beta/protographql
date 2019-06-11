@@ -61,7 +61,7 @@ function TableInput(props) {
         <Input type="text" placeholder="Field Name" defaultValue={name}></Input>
       </Td>
       <Td>
-        <select className="select-css">
+        <select className="select-css" defaultValue={type}>
           <option value="ID">ID</option>
           <option value="String">String</option>
           <option value="Boolean">Boolean</option>

@@ -24,6 +24,7 @@ function NavSideBar({ setView, setPopUp, setSelectedTable, tableIndexState }) {
         setView(route[i]);
         setPopUp(popUp[i]);
         if (i === 3) {
+          console.log('Creating new table');
           setSelectedTable(  {
           type: '',
           fields: {

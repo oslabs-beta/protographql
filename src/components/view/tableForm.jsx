@@ -24,6 +24,8 @@ const Table = styled.table`
 
 const TableHeader = styled.div`
     height: 30px;
+    padding-top: 4px;
+    padding-bottom: 4px;
     width: 100%;
     background: rgba(50,67,83,1);
 `;

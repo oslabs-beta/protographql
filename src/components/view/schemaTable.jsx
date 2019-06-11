@@ -40,7 +40,10 @@ const useStyles = makeStyles(theme => ({
     variant: "h6",
     id: "tableTitle",
     color: 'textSecondary',
-    minWidth: 200
+    minWidth: 200,
+    paddingTop: '8px',
+    paddingLeft: '16px',
+    paddingRight: '16px',
   }
 }));
 
@@ -58,10 +61,10 @@ function SchemaTable({ table, setTables, setPopUp, tableKey, setView, deleteTabl
     <Paper className={classes.root} style={{ margin: '10px' }}>
       <Typography className={classes.title}  >
         {table.type}
-        <span style={{ marginLeft: 130, marginRight: 10 }}>
+        <span style={{ float: "right" }} >
           <Delete onClick={() => deleteTable(tableKey)} />
         </span>
-        <span>
+        <span style={{ float: "right", marginRight: 5 }}>
           <Edit onClick={() => {
             setSelectedTable(table);
             setPopUp('table')
@@ -89,7 +92,7 @@ function SchemaTable({ table, setTables, setPopUp, tableKey, setView, deleteTabl
         </TableBody>
 
       </Table>
-    </Paper>
+    </Paper >
   );
 }
 

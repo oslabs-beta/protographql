@@ -43,10 +43,14 @@ function NavSideBar({ setView, setPopUp, setSelectedTable, tableIndexState }) {
                   fieldIndex: -1,
                   refType: ''
                 },
-                fieldIndex: 2,
-                tableID: tableIndexState
+                refBy: new Set(),
+                queryable: true,
+                tableNum: -1,
+                fieldNum: -1,
               }
-            }
+            },
+            fieldIndex: 2,
+            tableID: tableIndexState
           })
         }
       }

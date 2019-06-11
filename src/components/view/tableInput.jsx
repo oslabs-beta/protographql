@@ -58,7 +58,7 @@ function TableInput(props) {
 
   return (
     <Tr>
-      <Td><i className="fas fa-trash-alt" style={{ fontSize: "18px" }}></i></Td>
+      <Td><i className="fas fa-trash" style={{ fontSize: "18px" }}></i></Td>
       <Td>
         <Input type="text" placeholder="Field Name" defaultValue={name}></Input>
       </Td>

@@ -25,33 +25,33 @@ function NavSideBar({ setView, setPopUp, setSelectedTable, tableIndexState }) {
         setPopUp(popUp[i]);
         if (i === 3) {
           console.log('Creating new table');
-          setSelectedTable(  {
-          type: '',
-          fields: {
-            0: {
-            name: '',
-            type: 'string',
-            primaryKey: false,
-            autoIncrement: false,
-            unique: false,
-            defaultValue: '',
-            required: false,
-            multipleValues: false,
-            relationSelected: false,
-            relation: {
-              tableIndex: -1,
-              fieldIndex: -1,
-              refType: ''
+          setSelectedTable({
+            type: '',
+            fields: {
+              0: {
+                name: '',
+                type: 'string',
+                primaryKey: false,
+                autoIncrement: false,
+                unique: false,
+                defaultValue: '',
+                required: false,
+                multipleValues: false,
+                relationSelected: false,
+                relation: {
+                  tableIndex: -1,
+                  fieldIndex: -1,
+                  refType: ''
+                },
+                refBy: new Set(),
+                queryable: true,
+                tableNum: -1,
+                fieldNum: -1,
+              }
             },
-            refBy: new Set(),
-            queryable: true,
-            tableNum: -1,
-            fieldNum: -1,
-          }
-        },
-        fieldIndex: 2,
-        tableID: tableIndexState
-        })
+            fieldIndex: 2,
+            tableID: tableIndexState
+          })
         }
       }
       input.push(

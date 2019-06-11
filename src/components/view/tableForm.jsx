@@ -24,6 +24,8 @@ const Table = styled.table`
 
 const TableHeader = styled.div`
     height: 30px;
+    padding-top: 4px;
+    padding-bottom: 4px;
     width: 100%;
     background: rgba(50,67,83,1);
 `;
@@ -38,7 +40,7 @@ const FadeThePage = styled.div`
   background: rgba(90, 90, 90, 0.5);
 `
 
-function TableForm({ 
+function TableForm({
   setPopUp,
   setTables,
   setSelectedTable,
@@ -56,12 +58,45 @@ function TableForm({
   }
   createTableInputs();
 
+  const Button = styled.button`
+  padding: 6px;
+  font-size: 0.6em;
+  margin: 5px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background-color: white;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.12);
+`;
+
+  const CloseButton = styled.span`
+  font-size: 1.3em;
+  margin: 5px;
+  padding: 5px;
+  color: white;
+  &:hover {
+    color: #DD399C;
+  }
+`
+
+  const Buttons = styled.span`
+  float: right;
+  margin-right: 5px;
+`
+
   return (
     <FadeThePage>
       <Draggable handle="#header">
         <CustomTable>
-          <TableHeader id="header" style={{ cursor: "move" }} />
-          <TableNameInput setPopUp={setPopUp} name={selectedTable.type}/>
+          <TableHeader id="header" style={{ cursor: "move" }} setPopUp={setPopUp}>
+            <Buttons>
+              <Button>Add Fields</Button>
+              <Button>Submit Table</Button>
+              <CloseButton onClick={() => { setPopUp('') }}>
+                <i className="far fa-times-circle"></i>
+              </CloseButton>
+            </Buttons>
+          </TableHeader>
+          <TableNameInput name={selectedTable.type} />
           <Table id='table' >
             <tbody>
               <TableField />
@@ -69,7 +104,7 @@ function TableForm({
             </tbody>
           </Table>
         </CustomTable>
-      </Draggable>
+      </Draggable >
     </FadeThePage>
   )
 }

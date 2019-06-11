@@ -43,6 +43,12 @@ function CodeView({ tables }) {
   return (
     <Code>
       <Column>
+        <Title>SQL Scripts</Title>
+        <pre>
+          {/* {buildSQLScripts(tables)} */}
+        </pre>
+      </Column>
+      <Column>
         <Title>GraphQL Schema</Title>
         <pre>
           {buildGQLSchema(tables)}

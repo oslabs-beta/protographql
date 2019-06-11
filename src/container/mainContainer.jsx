@@ -39,9 +39,9 @@ const Main = () => {
       fontFamily: "'Roboto', sans-serif",
     }}>
       <Header />
-      <Welcome popUp={popUp} setPopUp={setPopUp}/>
-      <NavSideBar 
-        setView={setView} 
+      <Welcome popUp={popUp} setPopUp={setPopUp} />
+      <NavSideBar
+        setView={setView}
         setPopUp={setPopUp}
         setSelectedTable={setSelectedTable}
         tableIndexState={tableIndexState}

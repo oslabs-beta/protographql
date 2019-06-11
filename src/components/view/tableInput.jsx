@@ -11,6 +11,9 @@ const Td = styled.td`
   margin: 0;
   padding-top: 5px;
   padding-bottom: 5px;
+  &:hover{
+    color: #DD399C;
+  }
 `;
 
 const Input = styled.input`
@@ -24,7 +27,7 @@ const Input = styled.input`
 
 
 function TableInput(props) {
-  const { 
+  const {
     autoIncrement,
     defaultValue,
     fieldNum,

@@ -106,20 +106,6 @@ function TableForm({
         </CustomTable>
       </Draggable >
     </FadeThePage>
-    // <FadeThePage>
-    //   <Draggable handle="#header">
-    //     <CustomTable>
-    //       <TableHeader id="header" style={{ cursor: "move" }} />
-    //       <TableNameInput setPopUp={setPopUp} name={selectedTable.type}/>
-    //       <Table id='table' >
-    //         <tbody>
-    //           <TableField />
-    //           {fieldInputs}
-    //         </tbody>
-    //       </Table>
-    //     </CustomTable>
-    //   </Draggable>
-    // </FadeThePage>
   )
 }
 

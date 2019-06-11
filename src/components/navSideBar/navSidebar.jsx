@@ -9,9 +9,10 @@ const SideBar = styled.div`
   border-right: 1px solid rgba(0, 0, 0, 0.12);
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.10);
   display: inline-block;
+  height: calc(100vh - 64px);
 `
 //when someone clicks table, the schema should stay.
-function NavSideBar({ setView, setPopUp }) {
+function NavSideBar({ setView, setPopUp, setSelectedTable, tableIndexState }) {
   const buttons = () => {
     let input = [];
     const popUp = ['', '', '', 'table'];
@@ -22,6 +23,36 @@ function NavSideBar({ setView, setPopUp }) {
       let click = () => {
         setView(route[i]);
         setPopUp(popUp[i]);
+        if (i === 3) {
+          console.log('Creating new table');
+          setSelectedTable({
+            type: '',
+            fields: {
+              0: {
+                name: '',
+                type: 'string',
+                primaryKey: false,
+                autoIncrement: false,
+                unique: false,
+                defaultValue: '',
+                required: false,
+                multipleValues: false,
+                relationSelected: false,
+                relation: {
+                  tableIndex: -1,
+                  fieldIndex: -1,
+                  refType: ''
+                },
+                refBy: new Set(),
+                queryable: true,
+                tableNum: -1,
+                fieldNum: -1,
+              }
+            },
+            fieldIndex: 2,
+            tableID: tableIndexState
+          })
+        }
       }
       input.push(
         <NavButton

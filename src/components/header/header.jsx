@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 2,
   },
   header: {
-    backgroundColor : "#324353",
+    backgroundColor: "#324353",
   },
   pink: {
     color: "#DD399C",
@@ -36,14 +36,16 @@ function Header() {
       <AppBar position="static" className={classes.header}>
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} aria-label="Menu">
-           <img src="../public/assets/pictures/GraphQL_Logo.png" height="40"/>
+            <img src="../public/assets/pictures/GraphQL_Logo.png" height="40" />
           </IconButton>
           <Typography variant="h3" className={classes.title}>
             <span>Proto</span>
             <span className={classes.pink}>GraphQL</span>
           </Typography>
           <Button color="inherit">
-          <img src="../public/assets/pictures/GitHub-Mark-Light-64px.png" height="40"/>
+            <a href="https://github.com/oslabs-beta/protographql">
+              <img src="../public/assets/pictures/GitHub-Mark-Light-64px.png" height="40" />
+            </a>
           </Button>
         </Toolbar>
       </AppBar>

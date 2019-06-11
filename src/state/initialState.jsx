@@ -5,6 +5,34 @@ export const selectedTableState = {
   tableID: -1
 };
 
+export const initialTableState = {
+  type: '',
+  fields: {
+      1: {
+      name: '',
+      type: 'string',
+      primaryKey: false,
+      autoIncrement: false,
+      unique: false,
+      defaultValue: '',
+      required: false,
+      multipleValues: false,
+      relationSelected: false,
+      relation: {
+        tableIndex: -1,
+        fieldIndex: -1,
+        refType: ''
+      },
+      refBy: new Set(),
+      queryable: true,
+      tableNum: tableIndexState,
+      fieldNum: 1,
+    }
+  },
+  fieldIndex: 2,
+  tableID: -1
+};
+
 export const selectedFieldState = {
   name: '',
   type: 'string',

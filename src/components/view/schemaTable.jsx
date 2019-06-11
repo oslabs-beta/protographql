@@ -5,14 +5,14 @@ import { Edit, Delete } from '@material-ui/icons';
 
 const StyledTableCell = withStyles(theme => ({
   head: {
-    backgroundColor: '#161e26',
+    backgroundColor: '#324353',
     color: theme.palette.common.white,
     fontSize: 16,
     size: 'small',
     color: 'white'
   },
   body: {
-    color: '#161e26',
+    color: '#222',
     fontSize: 15,
   },
 }))(TableCell);
@@ -40,11 +40,14 @@ const useStyles = makeStyles(theme => ({
     variant: "h6",
     id: "tableTitle",
     color: 'textSecondary',
-    minWidth: 200
-  }
+    minWidth: 200,
+    paddingTop: '8px',
+    paddingLeft: '16px',
+    paddingRight: '16px',
+  },
 }));
 
-function SchemaTable({ key, table, setTables, setPopUp, tableKey, setView, deleteTable }) {
+function SchemaTable({ table, setTables, setPopUp, tableKey, setView, deleteTable, setSelectedTable }) {
   const classes = useStyles();
   const fields = (
     Object.keys(table.fields).map(fieldKey => (
@@ -58,11 +61,14 @@ function SchemaTable({ key, table, setTables, setPopUp, tableKey, setView, delet
     <Paper className={classes.root} style={{ margin: '10px' }}>
       <Typography className={classes.title}  >
         {table.type}
-        <span style={{ marginLeft: 130, marginRight: 10 }}>
+        <span style={{ float: "right" }} >
           <Delete onClick={() => deleteTable(tableKey)} />
         </span>
-        <span>
-          <Edit onClick={() => { setPopUp('table') }} />
+        <span style={{ float: "right", marginRight: 5 }}>
+          <Edit onClick={() => {
+            setSelectedTable(table);
+            setPopUp('table')
+          }} />
         </span>
       </Typography>
 
@@ -86,7 +92,7 @@ function SchemaTable({ key, table, setTables, setPopUp, tableKey, setView, delet
         </TableBody>
 
       </Table>
-    </Paper>
+    </Paper >
   );
 }
 

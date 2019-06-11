@@ -18,10 +18,11 @@ import { relative } from 'path';
 const Main = () => {
   const [selectedTable, setSelectedTable] = useState(state.selectedTableState);
   const [selectedField, setSelectedField] = useState(state.selectedFieldState);
-  const [tableIndex, setTableIndex] = useState(state.tableIndexState);
+  const [tableIndexState, setTableIndexState] = useState(state.tableIndexState);
   const [tables, setTables] = useState(state.tablesState);
   const [view, setView] = useState(state.viewState);
   const [popUp, setPopUp] = useState(state.popUpState);
+  const initialTableState = state.initialTableState;
 
   //Rendered components and elements
   // can't use styled components here because of the gridTemplateAreas
@@ -38,8 +39,13 @@ const Main = () => {
       fontFamily: "'Roboto', sans-serif",
     }}>
       <Header />
-      <Welcome popUp={popUp} setPopUp={setPopUp}/>
-      <NavSideBar setView={setView} setPopUp={setPopUp} />
+      <Welcome popUp={popUp} setPopUp={setPopUp} />
+      <NavSideBar
+        setView={setView}
+        setPopUp={setPopUp}
+        setSelectedTable={setSelectedTable}
+        tableIndexState={tableIndexState}
+      />
       <MainView
         view={view}
         tables={tables}
@@ -47,6 +53,11 @@ const Main = () => {
         setPopUp={setPopUp}
         setView={setView}
         popUp={popUp}
+        setSelectedTable={setSelectedTable}
+        selectedTable={selectedTable}
+        tableIndexState={tableIndexState}
+        setTableIndexState={setTableIndexState}
+        initialTableState={initialTableState}
       />
     </div>
   )

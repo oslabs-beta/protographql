@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 const Tr = styled.tr`
@@ -11,6 +11,9 @@ const Td = styled.td`
   margin: 0;
   padding-top: 5px;
   padding-bottom: 5px;
+  &:hover{
+    color: #DD399C;
+  }
 `;
 
 const Input = styled.input`
@@ -23,15 +26,44 @@ const Input = styled.input`
 `;
 
 
-function TableInput() {
+function TableInput(props) {
+  const {
+    autoIncrement,
+    defaultValue,
+    fieldNum,
+    multipleValues,
+    name,
+    primaryKey,
+    queryable,
+    refBy,
+    relation,
+    relationSelected,
+    required,
+    tableNum,
+    type,
+    unique
+  } = props.field
+
+  function isChecked(id, field) {
+    const selectedSwitch = document.querySelector(id);
+    if (field) selectedSwitch.click();
+  }
+
+  useEffect(() => {
+    isChecked("#primaryKey" + fieldNum, primaryKey);
+    isChecked("#autoIncrement" + fieldNum, autoIncrement);
+    isChecked("#unique" + fieldNum, unique);
+    isChecked("#required" + fieldNum, required);
+  }, []);
+
   return (
     <Tr>
       <Td><i className="fas fa-trash-alt" style={{ fontSize: "18px" }}></i></Td>
       <Td>
-        <Input type="text" placeholder="Field Name"></Input>
+        <Input type="text" placeholder="Field Name" defaultValue={name}></Input>
       </Td>
       <Td>
-        <select className="select-css">
+        <select className="select-css" defaultValue={type}>
           <option value="ID">ID</option>
           <option value="String">String</option>
           <option value="Boolean">Boolean</option>
@@ -40,38 +72,58 @@ function TableInput() {
         </select>
       </Td >
       <Td>
-        <Input type="text" placeholder="Default Value"></Input>
+        <Input type="text" placeholder="Default Value" defaultValue={defaultValue}></Input>
       </Td>
       <Td>
-        <label className="switch"
-        // will be fixed later
-        // style={{ height: "25px", width: "45px" }}
-        >
-          <input type="checkbox"></input>
-          <span className="slider round" style={{
-            // height: "23px",
-            // width: "23px",
-            // left: "1px",
-            // bottom: "1px",
-          }}></span>
+        <label className="switch">
+          <input type="checkbox" />
+          <span
+            id={"primaryKey" + fieldNum}
+            className="slider round"
+            onClick={(e) => {
+              e.target.value = !e.target.value;
+            }}
+            value={false}
+          />
         </label>
       </Td>
       <Td>
         <label className="switch">
-          <input type="checkbox"></input>
-          <span className="slider round"></span>
+          <input type="checkbox" />
+          <span
+            id={"autoIncrement" + fieldNum}
+            className="slider round"
+            onClick={(e) => {
+              e.target.value = !e.target.value;
+            }}
+            value={false}
+          />
         </label>
       </Td>
       <Td>
         <label className="switch">
-          <input type="checkbox"></input>
-          <span className="slider round"></span>
+          <input type="checkbox" />
+          <span
+            id={"unique" + fieldNum}
+            className="slider round"
+            onClick={(e) => {
+              e.target.value = !e.target.value;
+            }}
+            value={false}
+          />
         </label>
       </Td>
       <Td>
         <label className="switch">
-          <input type="checkbox"></input>
-          <span className="slider round"></span>
+          <input type="checkbox" />
+          <span
+            id={"required" + fieldNum}
+            className="slider round"
+            onClick={(e) => {
+              e.target.value = !e.target.value;
+            }}
+            value={false}
+          />
         </label>
       </Td>
       <Td>Foreign Key</Td>

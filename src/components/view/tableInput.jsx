@@ -26,7 +26,7 @@ const Input = styled.input`
 `;
 
 
-function TableInput(props) {
+function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
   const {
     autoIncrement,
     defaultValue,
@@ -41,8 +41,8 @@ function TableInput(props) {
     required,
     tableNum,
     type,
-    unique
-  } = props.field;
+    unique,
+  } = field;
   
   function isChecked(id, field) {
     const selectedSwitch = document.querySelector(id);
@@ -56,11 +56,25 @@ function TableInput(props) {
     isChecked("#required" + fieldNum, required);
   }, []);
 
+  const onFieldNameChange = (e) => {
+    const newTable = {...selectedTable};
+    const newField = {...newTable.fields[fieldIndex - 1]};
+    newField.name = e.target.value;
+    newTable.fields[fieldIndex - 1] = newField;
+    setSelectedTable(newTable);
+    console.log('This should be our changed field name', selectedTable.fields)
+  }
+
   return (
     <Tr>
       <Td><i className="fas fa-trash-alt" style={{ fontSize: "18px" }}></i></Td>
       <Td>
-        <Input type="text" placeholder="Field Name" defaultValue={name}></Input>
+        <Input
+          type="text"
+          placeholder="Field Name"
+          defaultValue={name}
+          onChange={onFieldNameChange}
+        />
       </Td>
       <Td>
         <select className="select-css" defaultValue={type}>

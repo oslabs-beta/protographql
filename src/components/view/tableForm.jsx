@@ -81,7 +81,14 @@ function TableForm({
     const fields = Object.keys(selectedTable.fields);
     for (let i = 0; i < fields.length; i++) {
       const currentFieldKey = fields[i];
-      fieldInputs.push(<TableInput field={selectedTable.fields[currentFieldKey]} key={i} />);
+      fieldInputs.push(
+        <TableInput
+          field={selectedTable.fields[currentFieldKey]}
+          selectedTable={selectedTable}
+          setSelectedTable={setSelectedTable}
+          fieldIndex={selectedTable.fieldIndex}
+          key={i}
+        />);
     }
   }
   createTableInputs();

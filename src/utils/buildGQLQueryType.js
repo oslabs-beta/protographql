@@ -29,7 +29,6 @@ const buildGQLQueryType = tables => {
         // check if the field is queryable
         if (field.queryable) {
           gqlQuery += `${tabs(3)}${field.name}: ${field.type}`;
-
           if (lastQryFieldIndex !== Number(fieldIndex)) gqlQuery += ',';
           gqlQuery += `\n`;
         }

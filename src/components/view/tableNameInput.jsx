@@ -46,7 +46,7 @@ function TableNameInput({ setPopUp, name }) {
         <Button>Add Fields</Button>
         <Button>Submit Table</Button>
         <CloseButton onClick={() => { setPopUp('') }}>
-          <i class="far fa-times-circle"></i>
+          <i className="far fa-times-circle"></i>
         </CloseButton>
       </Buttons>
     </Wrapper>

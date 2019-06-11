@@ -42,8 +42,8 @@ function TableInput(props) {
     tableNum,
     type,
     unique
-  } = props.field
-
+  } = props.field;
+  
   function isChecked(id, field) {
     const selectedSwitch = document.querySelector(id);
     if (field) selectedSwitch.click();

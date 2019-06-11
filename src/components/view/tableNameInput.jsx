@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -14,10 +14,20 @@ const Input = styled.input`
   margin-top: 4px;
 `;
 
-function TableNameInput({ name }) {
+function TableNameInput({ name, selectedTable, setSelectedTable }) {
+
+  const onTableNameChange = (e) => {
+    setSelectedTable({...selectedTable, type: e.target.value});
+  }
+  
   return (
     <Wrapper>
-      <Input type="text" placeholder=" Enter Table Name * " defaultValue={name} ></Input>
+      <Input
+        type="text"
+        placeholder="Enter Table Name * "
+        defaultValue={name}
+        onChange={ (e) => {onTableNameChange(e); console.log('This is my captured name', selectedTable.type) }}
+      />
     </Wrapper>
   )
 }

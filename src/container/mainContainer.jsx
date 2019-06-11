@@ -3,8 +3,8 @@ import Header from '../components/header/header';
 import NavSideBar from '../components/navSideBar/navSidebar';
 import Welcome from '../components/popup/welcome';
 import TableDetailView from '../components/view/tableDetailView';
-// import * as state from '../state/initialState';
-import * as state from '../state/mockState';
+import * as state from '../state/initialState';
+// import * as state from '../state/mockState';
 import MainView from '../components/view/mainView';
 import { relative } from 'path';
 
@@ -39,12 +39,16 @@ const Main = () => {
       fontFamily: "'Roboto', sans-serif",
     }}>
       <Header />
-      <Welcome popUp={popUp} setPopUp={setPopUp} />
+      <Welcome
+      // never have been used
+      //popUp={popUp} setPopUp={setPopUp}
+      />
       <NavSideBar
         setView={setView}
         setPopUp={setPopUp}
         setSelectedTable={setSelectedTable}
         tableIndexState={tableIndexState}
+        initialTableState={initialTableState}
       />
       <MainView
         view={view}

@@ -38,27 +38,9 @@ const FadeThePage = styled.div`
   right: 0;
   z-index: 9999;
   background: rgba(90, 90, 90, 0.5);
-`
+`;
 
-function TableForm({
-  setPopUp,
-  setTables,
-  setSelectedTable,
-  selectedTable,
-  tableIndexState,
-  setTableIndexState
-}) {
-  //Creating Table Inputs (these are fields)
-  const fieldInputs = [];
-  const createTableInputs = () => {
-    const fields = Object.keys(selectedTable.fields)
-    for (let i = 0; i < fields.length; i++) {
-      fieldInputs.push(<TableInput field={selectedTable.fields[i]} key={i} />)
-    }
-  }
-  createTableInputs();
-
-  const Button = styled.button`
+const Button = styled.button`
   padding: 6px;
   font-size: 0.6em;
   margin: 5px;
@@ -68,20 +50,41 @@ function TableForm({
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.12);
 `;
 
-  const CloseButton = styled.span`
-  font-size: 1.3em;
+const CloseButton = styled.span`
+  font-size: 1em;
   margin: 5px;
   padding: 5px;
   color: white;
   &:hover {
     color: #DD399C;
+    cursor: pointer;
   }
-`
+`;
 
-  const Buttons = styled.span`
+const Buttons = styled.span`
   float: right;
   margin-right: 5px;
-`
+`;
+
+function TableForm({
+  setPopUp,
+  setTables,
+  setSelectedTable,
+  selectedTable,
+  tableIndexState,
+  setTableIndexState
+}) {
+  
+  //Creating Table Inputs (these are fields)
+  const fieldInputs = [];
+  const createTableInputs = () => {
+    const fields = Object.keys(selectedTable.fields);
+    for (let i = 0; i < fields.length; i++) {
+      const currentFieldKey = fields[i];
+      fieldInputs.push(<TableInput field={selectedTable.fields[currentFieldKey]} key={i} />);
+    }
+  }
+  createTableInputs();
 
   return (
     <FadeThePage>
@@ -92,11 +95,15 @@ function TableForm({
               <Button>Add Fields</Button>
               <Button>Submit Table</Button>
               <CloseButton onClick={() => { setPopUp('') }}>
-                <i className="far fa-times-circle"></i>
+                <i className="fas fa-times"></i>
               </CloseButton>
             </Buttons>
           </TableHeader>
-          <TableNameInput name={selectedTable.type} />
+          <TableNameInput
+            name={selectedTable.type}
+            selectedTable={selectedTable}
+            setSelectedTable={setSelectedTable}
+          />
           <Table id='table' >
             <tbody>
               <TableField />

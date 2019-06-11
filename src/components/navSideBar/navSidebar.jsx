@@ -12,7 +12,8 @@ const SideBar = styled.div`
   height: calc(100vh - 64px);
 `
 //when someone clicks table, the schema should stay.
-function NavSideBar({ setView, setPopUp, setSelectedTable, tableIndexState }) {
+// do we need tableIndexState here?
+function NavSideBar({ setView, setPopUp, setSelectedTable, tableIndexState, initialTableState }) {
   const buttons = () => {
     let input = [];
     const popUp = ['', '', '', 'table'];
@@ -24,34 +25,7 @@ function NavSideBar({ setView, setPopUp, setSelectedTable, tableIndexState }) {
         setView(route[i]);
         setPopUp(popUp[i]);
         if (i === 3) {
-          console.log('Creating new table');
-          setSelectedTable({
-            type: '',
-            fields: {
-              0: {
-                name: '',
-                type: 'string',
-                primaryKey: false,
-                autoIncrement: false,
-                unique: false,
-                defaultValue: '',
-                required: false,
-                multipleValues: false,
-                relationSelected: false,
-                relation: {
-                  tableIndex: -1,
-                  fieldIndex: -1,
-                  refType: ''
-                },
-                refBy: new Set(),
-                queryable: true,
-                tableNum: -1,
-                fieldNum: -1,
-              }
-            },
-            fieldIndex: 2,
-            tableID: tableIndexState
-          })
+          setSelectedTable(initialTableState);
         }
       }
       input.push(

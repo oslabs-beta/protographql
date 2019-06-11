@@ -9,27 +9,35 @@ const buildGQLQueryType = tables => {
     const table = tables[tbIndex];
     gqlQuery += `${tabs(2)}getAll${table.type}: [${table.type}]\n`;
     
-    // Check if table is queryable
+    // Check if table has at least one queryable field
+    // and extract the last queryable field index from table
     let queryable = false;
-    let customQuery = `${tabs(2)}get${table.type}(\n`;
+    let lastQryFieldIndex = -1;
     for (let fieldIndex in table.fields) {
       const field = table.fields[fieldIndex];
-      // check if the field is queryable
       if (field.queryable) {
         queryable = true;
-        customQuery += `${tabs(3)}${field.name}: ${field.type}`;
-
-        if (table.fieldIndex - 1 !== field.fieldNum) customQuery += ',';
-        customQuery += `\n`;
+        lastQryFieldIndex = Math.max(fieldIndex, lastQryFieldIndex);
       }
     }
 
     // If the table has at least one queryable field, then provide a query by that field
     if (queryable) {
-      gqlQuery += customQuery;
+      gqlQuery += `${tabs(2)}get${table.type}(\n`;
+      for (let fieldIndex in table.fields) {
+        const field = table.fields[fieldIndex];
+        // check if the field is queryable
+        if (field.queryable) {
+          gqlQuery += `${tabs(3)}${field.name}: ${field.type}`;
+
+          if (lastQryFieldIndex !== Number(fieldIndex)) gqlQuery += ',';
+          gqlQuery += `\n`;
+        }
+      }
       gqlQuery += `${tabs(2)}): [${table.type}]\n`;
     }
   }
+
   gqlQuery += `${tabs(1)}}\n`;
 
   return gqlQuery;

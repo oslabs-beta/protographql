@@ -89,7 +89,7 @@ export const tablesState = {
         tableNum: 0,
         fieldNum: 2,
         refBy: {},
-        queryable: true
+        queryable: false
       }
     },
     fieldIndex: 3,

@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
     paddingTop: '8px',
     paddingLeft: '16px',
     paddingRight: '16px',
-  }
+  },
 }));
 
 function SchemaTable({ table, setTables, setPopUp, tableKey, setView, deleteTable, setSelectedTable }) {

@@ -8,7 +8,7 @@ const View = styled.div`
   justify-content: flex-start;
 `
 
-function SchemaView({ tables, setTables, setPopUp, view, setView }) {
+function SchemaView({ tables, setTables, setPopUp, view, setView, setSelectedTable }) {
   const deleteTable = id => {
     const newTables = { ...tables };
     delete newTables[id];
@@ -26,6 +26,7 @@ function SchemaView({ tables, setTables, setPopUp, view, setView }) {
       setView={setView}
       style={{ margin: "10px" }}
       deleteTable={deleteTable}
+      setSelectedTable={setSelectedTable}
     />
   ))
 

@@ -3,8 +3,8 @@ import Header from '../components/header/header';
 import NavSideBar from '../components/navSideBar/navSidebar';
 import Welcome from '../components/popup/welcome';
 import TableDetailView from '../components/view/tableDetailView';
-import * as state from '../state/initialState';
-// import * as state from '../state/mockState';
+// import * as state from '../state/initialState';
+import * as state from '../state/mockState';
 import MainView from '../components/view/mainView';
 import { relative } from 'path';
 

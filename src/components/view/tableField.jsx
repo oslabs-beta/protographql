@@ -19,14 +19,14 @@ function TableField() {
       <Th>Field Name</Th>
       <Th>Type</Th>
       <Th>Default Value</Th>
-      <Th>Primary Key</Th>
-      <Th>Auto Increment</Th>
-      <Th>Unique</Th>
-      <Th>Required</Th>
-      <Th>Queryable</Th>
-      <Th>Foreign Key</Th>
+      <Th className="slider-header">Primary Key</Th>
+      {/* <Th>Auto Increment</Th> */}
+      <Th className="slider-header">Unique</Th>
+      <Th className="slider-header">Required</Th>
+      <Th className="slider-header">Queryable</Th>
+      <Th className="slider-header">Foreign Key</Th>
     </Tr>
-  )
+  );
 }
 
 export default TableField;

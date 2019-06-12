@@ -21,7 +21,7 @@ const CustomTable = styled.div`
 
 const TableFooter = styled.div`
   border-top: 1px solid rgba(0,0,0,0.2);
-  height: 38px;
+  height: auto;
   margin: 0 auto;
   min-width: 700px;
   max-width: 1000px;
@@ -62,14 +62,15 @@ const Button = styled.span`
   margin: 8px;
   margin-right: 10px;
   margin-left: 10px;
-  padding: 5px 10px;
-  padding-top: 4px;
+  padding: 10px 0px;
   border-radius: 5px;
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.10);
   background-color: rgba(50, 67, 83, 0.85);
   color: white;
+  width: 25%;
+  text-align: center;
   &:hover {
-    color: #DD399C;
+    background-color: #DD399C;
   }
 `;
 

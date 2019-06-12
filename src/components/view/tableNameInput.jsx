@@ -26,7 +26,7 @@ function TableNameInput({ name, selectedTable, setSelectedTable }) {
         type="text"
         placeholder="Enter Table Name * "
         defaultValue={name}
-        onChange={ (e) => {onTableNameChange(e); console.log('This is my captured name', selectedTable.type) }}
+        onChange={onTableNameChange}
       />
     </Wrapper>
   )

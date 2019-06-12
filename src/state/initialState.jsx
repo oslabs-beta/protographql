@@ -2,7 +2,7 @@ export const selectedTableState = {
   type: '',
   fields: {},
   fieldIndex: 1,
-  tableID: -1
+  tableID: 0
 };
 
 export const initialTableState = {
@@ -10,7 +10,7 @@ export const initialTableState = {
   fields: {
       1: {
       name: '',
-      type: 'string',
+      type: 'String',
       primaryKey: false,
       autoIncrement: false,
       unique: false,
@@ -25,17 +25,17 @@ export const initialTableState = {
       },
       refBy: new Set(),
       queryable: true,
-      tableNum: tableIndexState,
+      tableNum: 0,
       fieldNum: 1,
     }
   },
   fieldIndex: 2,
-  tableID: -1
+  tableID: 0
 };
 
 export const selectedFieldState = {
   name: '',
-  type: 'string',
+  type: 'String',
   primaryKey: false,
   autoIncrement: false,
   unique: false,

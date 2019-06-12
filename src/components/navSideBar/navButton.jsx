@@ -23,7 +23,7 @@ const Button = styled.div`
   height: 60px;
   background-color: none;
   margin: auto;
-  width: 100%;
+  // width: 100%;
   margin-left: calc(15.5px + .25vw);
   margin-top: 25px;
 `;
@@ -33,14 +33,12 @@ const Icon = styled.span`
   font-size: calc(14px + 1vw);
 `;
 
-const NavButton = (props) => {
+const NavButton = ({ className, click, view, style }) => {
   return (
-    <ButtonContainer onClick={props.click}>
+    <ButtonContainer style={style} onClick={click}>
       <Button>
-        <Icon>
-          <i className={props.className} />
-        </Icon>
-        {props.view}
+        <Icon><i className={className} /></Icon>
+        {view}
       </Button>
     </ButtonContainer>
   )

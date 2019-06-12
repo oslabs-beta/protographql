@@ -7,7 +7,6 @@ small, strike, strong, sub, sup, tt, var,
 b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed, 
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
@@ -49,7 +48,6 @@ table {
 /******************/
 
 
-
 input:focus {
   outline: none;
 }
@@ -57,6 +55,10 @@ input:focus {
 /******************/
 /* Slider Buttons */
 /******************/
+
+.slider-header {
+	width: 70px;
+}
 
 .switch {
   position: relative;

@@ -39,15 +39,28 @@ const useStyles = makeStyles(theme => ({
   title: {
     variant: "h6",
     id: "tableTitle",
-    color: 'textSecondary',
+    // color: 'textSecondary',
     minWidth: 200,
     paddingTop: '8px',
     paddingLeft: '16px',
     paddingRight: '16px',
+    color: '#dd399c',
+    fontWeight: 400,
+    letterSpacing: '0.1em',
   },
+  button: {
+    color: 'black',
+  }
 }));
 
-function SchemaTable({ table, setTables, setPopUp, tableKey, setView, deleteTable, setSelectedTable }) {
+function SchemaTable({ table,
+  setTables,
+  setPopUp,
+  tableKey,
+  setView,
+  deleteTable,
+  setSelectedTable
+}) {
   const classes = useStyles();
   const fields = (
     Object.keys(table.fields).map(fieldKey => (
@@ -62,13 +75,19 @@ function SchemaTable({ table, setTables, setPopUp, tableKey, setView, deleteTabl
       <Typography className={classes.title}  >
         {table.type}
         <span style={{ float: "right" }} >
-          <Delete onClick={() => deleteTable(tableKey)} />
+          <Delete
+            className={classes.button}
+            onClick={() => deleteTable(tableKey)}
+          />
         </span>
         <span style={{ float: "right", marginRight: 5 }}>
-          <Edit onClick={() => {
-            setSelectedTable(table);
-            setPopUp('table')
-          }} />
+          <Edit
+            className={classes.button}
+            onClick={() => {
+              setSelectedTable(table);
+              setPopUp('table');
+            }}
+          />
         </span>
       </Typography>
 

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const Tr = styled.tr`
   border-top: 1px solid rgba(0, 0, 0, 0.2);
+  vertical-align: middle;
 `;
 
 const Td = styled.td`
@@ -43,7 +44,7 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
     type,
     unique,
   } = field;
-  
+
   function isChecked(id, field) {
     const selectedSwitch = document.querySelector(id);
     if (field) selectedSwitch.click();
@@ -51,15 +52,15 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
 
   useEffect(() => {
     isChecked("#primaryKey" + fieldNum, primaryKey);
-    isChecked("#autoIncrement" + fieldNum, autoIncrement);
+    // isChecked("#autoIncrement" + fieldNum, autoIncrement);
     isChecked("#unique" + fieldNum, unique);
     isChecked("#required" + fieldNum, required);
     isChecked("#queryable" + fieldNum, queryable);
   }, []);
 
   const onFieldNameChange = (e) => {
-    const newTable = {...selectedTable};
-    const newField = {...newTable.fields[fieldIndex - 1]};
+    const newTable = { ...selectedTable };
+    const newField = { ...newTable.fields[fieldIndex - 1] };
     newField.name = e.target.value;
     newTable.fields[fieldIndex - 1] = newField;
     setSelectedTable(newTable);
@@ -67,8 +68,8 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
   }
 
   const onFieldDefaultValueChange = (e) => {
-    const newTable = {...selectedTable};
-    const newField = {...newTable.fields[fieldIndex - 1]};
+    const newTable = { ...selectedTable };
+    const newField = { ...newTable.fields[fieldIndex - 1] };
     newField.defaultValue = e.target.value;
     newTable.fields[fieldIndex - 1] = newField;
     setSelectedTable(newTable);
@@ -88,15 +89,15 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
       </Td>
       <Td>
         <select
-        className="select-css"
-        defaultValue={type}
-        onChange={(e) => {
-          const newTable = {...selectedTable};
-          const newField = {...newTable.fields[fieldIndex - 1]};
-          newField.type = e.target.value;
-          newTable.fields[fieldIndex - 1] = newField;
-          setSelectedTable(newTable);
-        }}
+          className="select-css"
+          defaultValue={type}
+          onChange={(e) => {
+            const newTable = { ...selectedTable };
+            const newField = { ...newTable.fields[fieldIndex - 1] };
+            newField.type = e.target.value;
+            newTable.fields[fieldIndex - 1] = newField;
+            setSelectedTable(newTable);
+          }}
         >
           <option value="ID">ID</option>
           <option value="String">String</option>
@@ -121,8 +122,8 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
             className="slider round"
             onClick={(e) => {
               e.target.value = !e.target.value;
-              const newTable = {...selectedTable};
-              const newField = {...newTable.fields[fieldIndex - 1]};
+              const newTable = { ...selectedTable };
+              const newField = { ...newTable.fields[fieldIndex - 1] };
               newField.primaryKey = e.target.value;
               newTable.fields[fieldIndex - 1] = newField;
               setSelectedTable(newTable);
@@ -131,7 +132,7 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
           />
         </label>
       </Td>
-      <Td>
+      {/* <Td>
         <label className="switch">
           <input type="checkbox" />
           <span
@@ -139,8 +140,8 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
             className="slider round"
             onClick={(e) => {
               e.target.value = !e.target.value;
-              const newTable = {...selectedTable};
-              const newField = {...newTable.fields[fieldIndex - 1]};
+              const newTable = { ...selectedTable };
+              const newField = { ...newTable.fields[fieldIndex - 1] };
               newField.autoIncrement = e.target.value;
               newTable.fields[fieldIndex - 1] = newField;
               setSelectedTable(newTable);
@@ -148,7 +149,7 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
             value={false}
           />
         </label>
-      </Td>
+      </Td> */}
       <Td>
         <label className="switch">
           <input type="checkbox" />
@@ -157,8 +158,8 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
             className="slider round"
             onClick={(e) => {
               e.target.value = !e.target.value;
-              const newTable = {...selectedTable};
-              const newField = {...newTable.fields[fieldIndex - 1]};
+              const newTable = { ...selectedTable };
+              const newField = { ...newTable.fields[fieldIndex - 1] };
               newField.unique = e.target.value;
               newTable.fields[fieldIndex - 1] = newField;
               setSelectedTable(newTable);
@@ -175,8 +176,8 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
             className="slider round"
             onClick={(e) => {
               e.target.value = !e.target.value;
-              const newTable = {...selectedTable};
-              const newField = {...newTable.fields[fieldIndex - 1]};
+              const newTable = { ...selectedTable };
+              const newField = { ...newTable.fields[fieldIndex - 1] };
               newField.required = e.target.value;
               newTable.fields[fieldIndex - 1] = newField;
               setSelectedTable(newTable);
@@ -193,8 +194,8 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
             className="slider round"
             onClick={(e) => {
               e.target.value = !e.target.value;
-              const newTable = {...selectedTable};
-              const newField = {...newTable.fields[fieldIndex - 1]};
+              const newTable = { ...selectedTable };
+              const newField = { ...newTable.fields[fieldIndex - 1] };
               newField.queryable = e.target.value;
               newTable.fields[fieldIndex - 1] = newField;
               setSelectedTable(newTable);

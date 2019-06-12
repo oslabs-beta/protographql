@@ -7,7 +7,6 @@ import Draggable from 'react-draggable';
 import { tablesState } from '../../state/initialState';
 
 const CustomTable = styled.div`
-  border: 1px solid rgba(0, 0, 0, 0.14);
   height: auto;
   margin: 0 auto;
   min-width: 550px;
@@ -15,19 +14,22 @@ const CustomTable = styled.div`
   position: relative;
   background-color: white;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.12);
+  position: fixed;
+  top: 50%;
+  left: 18%;
 `;
 
 const TableFooter = styled.div`
-  border: 1px solid rgba(50,67,83,1);
+  border-top: 1px solid rgba(0,0,0,0.2);
   height: auto;
   margin: 0 auto;
   min-width: 700px;
   max-width: 1000px;
   position: relative;
-  background-color: rgba(50,67,83,1);
+  background-color: white;
   display: flex;
   justify-content: space-between;
-`
+`;
 
 const Table = styled.table`
   width: 100%;
@@ -36,11 +38,11 @@ const Table = styled.table`
 
 
 const TableHeader = styled.div`
-    height: 30px;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    width: 100%;
-    background: rgba(50,67,83,1);
+  height: 15px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  width: 100%;
+  background: rgba(50,67,83,1);
 `;
 
 const FadeThePage = styled.div`
@@ -53,21 +55,22 @@ const FadeThePage = styled.div`
   background: rgba(90, 90, 90, 0.5);
 `;
 
-  const Button = styled.span`
+const Button = styled.span`
+  height: auto;
   font-size: .85em;
+  font-weight: 300;
   margin: 8px;
   margin-right: 10px;
   margin-left: 10px;
-  padding: 7px;
-  border: 1px solid white;
-  border-radius: 8px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 10px 0px;
+  border-radius: 5px;
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.10);
-  background-color: #646875;
+  background-color: rgba(50, 67, 83, 0.85);
   color: white;
+  width: 30%;
+  text-align: center;
   &:hover {
-    color: #DD399C;
+    background-color: #13873E;
   }
 `;
 
@@ -96,7 +99,7 @@ function TableForm({
   setTableIndexState,
   tables
 }) {
-  
+
   //Creating Table Inputs (these are fields)
   const fieldInputs = [];
   const createTableInputs = () => {
@@ -140,21 +143,17 @@ function TableForm({
             </tbody>
           </Table>
           <TableFooter>
-              <Button>
-                <i className="fas fa-plus"></i> Add Field
-              </Button>
-              <Button
-                onClick={e => {
-                  setTables({...tables, [selectedTable.tableID]: selectedTable});
-                  setTableIndexState(tableIndexState + 1);
-                  console.log('This should be our table ', selectedTable);
-                }}>
-               <i
-                className="far fa-save"
-                color= "black"
-               />
-               Save
-              </Button>
+            <Button>
+              <i className="fas fa-plus" /> Add Field
+            </Button>
+            <Button
+              onClick={e => {
+                setTables({ ...tables, [selectedTable.tableID]: selectedTable });
+                setTableIndexState(tableIndexState + 1);
+                console.log('This should be our table ', selectedTable);
+              }}>
+              <i className="far fa-save" color="black" /> Save
+            </Button>
           </TableFooter>
         </CustomTable>
       </Draggable >

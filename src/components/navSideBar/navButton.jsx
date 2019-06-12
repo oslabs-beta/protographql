@@ -37,11 +37,10 @@ const NavButton = (props) => {
   return (
     <ButtonContainer onClick={props.click}>
       <Button>
-        <Icon><i className={props.className}></i>
+        <Icon>
+          <i className={props.className} />
         </Icon>
         {props.view}
-        <Icon>
-        </Icon>
       </Button>
     </ButtonContainer>
   )

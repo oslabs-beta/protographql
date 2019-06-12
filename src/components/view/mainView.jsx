@@ -15,6 +15,8 @@ function MainView({
   tableIndexState, 
   setTableIndexState,
 }) {
+
+  console.log()
   return (
     <div style={{ gridArea: "main" }}>
       {view === 'code' && <CodeView tables={tables} />}
@@ -34,6 +36,7 @@ function MainView({
         selectedTable={selectedTable}
         tableIndexState={tableIndexState}
         setTableIndexState={setTableIndexState}
+        tables={tables}
       />}
     </div>
   )

@@ -4,6 +4,7 @@ import TableNameInput from './tableNameInput';
 import TableField from './tableField';
 import TableInput from './tableInput';
 import Draggable from 'react-draggable';
+import { tablesState } from '../../state/initialState';
 
 const CustomTable = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.14);
@@ -50,25 +51,7 @@ const FadeThePage = styled.div`
   right: 0;
   z-index: 9999;
   background: rgba(90, 90, 90, 0.5);
-`
-
-function TableForm({
-  setPopUp,
-  setTables,
-  setSelectedTable,
-  selectedTable,
-  tableIndexState,
-  setTableIndexState
-}) {
-  //Creating Table Inputs (these are fields)
-  const fieldInputs = [];
-  const createTableInputs = () => {
-    const fields = Object.keys(selectedTable.fields)
-    for (let i = 0; i < fields.length; i++) {
-      fieldInputs.push(<TableInput field={selectedTable.fields[i]} key={i} />)
-    }
-  }
-  createTableInputs();
+`;
 
   const Button = styled.span`
   font-size: .85em;
@@ -88,20 +71,51 @@ function TableForm({
   }
 `;
 
-  const CloseButton = styled.span`
-  font-size: 1.3em;
+const CloseButton = styled.span`
+  font-size: 1em;
   margin: 5px;
   padding: 5px;
   color: white;
   &:hover {
     color: #DD399C;
+    cursor: pointer;
   }
-`
+`;
 
-  const Buttons = styled.span`
+const Buttons = styled.span`
   float: right;
   margin-right: 5px;
-`
+`;
+
+function TableForm({
+  setPopUp,
+  setTables,
+  setSelectedTable,
+  selectedTable,
+  tableIndexState,
+  setTableIndexState,
+  tables
+}) {
+  
+  //Creating Table Inputs (these are fields)
+  const fieldInputs = [];
+  const createTableInputs = () => {
+    const fields = Object.keys(selectedTable.fields);
+    for (let i = 0; i < fields.length; i++) {
+      const currentFieldKey = fields[i];
+      fieldInputs.push(
+        <TableInput
+          field={selectedTable.fields[currentFieldKey]}
+          selectedTable={selectedTable}
+          setSelectedTable={setSelectedTable}
+          fieldIndex={selectedTable.fieldIndex}
+          key={i}
+        />);
+    }
+  }
+  createTableInputs();
+
+  console.log('This is my table num: ', selectedTable.tableID)
 
   return (
     <FadeThePage>
@@ -110,11 +124,15 @@ function TableForm({
           <TableHeader id="header" style={{ cursor: "move" }} setPopUp={setPopUp}>
             <Buttons>
               <CloseButton onClick={() => { setPopUp('') }}>
-                <i className="far fa-times-circle"></i>
+                <i className="fas fa-times"></i>
               </CloseButton>
             </Buttons>
           </TableHeader>
-          <TableNameInput name={selectedTable.type} />
+          <TableNameInput
+            name={selectedTable.type}
+            selectedTable={selectedTable}
+            setSelectedTable={setSelectedTable}
+          />
           <Table id='table' >
             <tbody>
               <TableField />
@@ -125,8 +143,17 @@ function TableForm({
               <Button>
                 <i className="fas fa-plus"></i> Add Field
               </Button>
-              <Button>
-               <i className="far fa-save" color= "black"></i> Save
+              <Button
+                onClick={e => {
+                  setTables({...tables, [selectedTable.tableID]: selectedTable});
+                  setTableIndexState(tableIndexState + 1);
+                  console.log('This should be our table ', selectedTable);
+                }}>
+               <i
+                className="far fa-save"
+                color= "black"
+               />
+               Save
               </Button>
           </TableFooter>
         </CustomTable>

@@ -67,10 +67,10 @@ const Button = styled.span`
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.10);
   background-color: rgba(50, 67, 83, 0.85);
   color: white;
-  width: 25%;
+  width: 30%;
   text-align: center;
   &:hover {
-    background-color: #DD399C;
+    background-color: #13873E;
   }
 `;
 

@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: '16px',
     paddingRight: '16px',
     color: '#dd399c',
-    fontWeight: 500,
+    fontWeight: 400,
     letterSpacing: '0.1em',
   },
   button: {

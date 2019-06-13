@@ -52,7 +52,7 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
 
   useEffect(() => {
     isChecked("#primaryKey" + fieldNum, primaryKey);
-    // isChecked("#autoIncrement" + fieldNum, autoIncrement);
+    isChecked("#autoIncrement" + fieldNum, autoIncrement);
     isChecked("#unique" + fieldNum, unique);
     isChecked("#required" + fieldNum, required);
     isChecked("#queryable" + fieldNum, queryable);
@@ -64,21 +64,19 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
     newField.name = e.target.value;
     newTable.fields[fieldIndex - 1] = newField;
     setSelectedTable(newTable);
-    // console.log('This should be our changed field name', selectedTable.fields)
   }
 
-  const onFieldDefaultValueChange = (e) => {
+  const onFieldDefaultValueChange = e => {
     const newTable = { ...selectedTable };
     const newField = { ...newTable.fields[fieldIndex - 1] };
     newField.defaultValue = e.target.value;
     newTable.fields[fieldIndex - 1] = newField;
     setSelectedTable(newTable);
-    console.log('This should be our changed field name', selectedTable.fields)
   }
 
   return (
     <Tr>
-      <Td><i className="fas fa-trash" style={{ fontSize: "18px" }}></i></Td>
+      <Td><i className="fas fa-trash" style={{ fontSize: "18px" }} /></Td>
       <Td>
         <Input
           type="text"
@@ -132,7 +130,7 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
           />
         </label>
       </Td>
-      {/* <Td>
+      <Td>
         <label className="switch">
           <input type="checkbox" />
           <span
@@ -149,7 +147,7 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
             value={false}
           />
         </label>
-      </Td> */}
+      </Td>
       <Td>
         <label className="switch">
           <input type="checkbox" />

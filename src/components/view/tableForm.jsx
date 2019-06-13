@@ -70,7 +70,7 @@ const Button = styled.span`
   width: 30%;
   text-align: center;
   &:hover {
-    background-color: #13873E;
+    background-color: #DD399C;
   }
 `;
 
@@ -118,8 +118,6 @@ function TableForm({
   }
   createTableInputs();
 
-  console.log('This is my table num: ', selectedTable.tableID)
-
   return (
     <FadeThePage>
       <Draggable handle="#header">
@@ -150,7 +148,6 @@ function TableForm({
               onClick={e => {
                 setTables({ ...tables, [selectedTable.tableID]: selectedTable });
                 setTableIndexState(tableIndexState + 1);
-                console.log('This should be our table ', selectedTable);
               }}>
               <i className="far fa-save" color="black" /> Save
             </Button>

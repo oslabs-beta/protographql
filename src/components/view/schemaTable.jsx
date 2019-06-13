@@ -1,7 +1,7 @@
 import React from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Table, Typography, TableBody, TableCell, TableHead, TableRow, Paper } from '@material-ui/core/';
-import { Edit, Delete } from '@material-ui/icons';
+import styled from 'styled-components';
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -39,25 +39,29 @@ const useStyles = makeStyles(theme => ({
   title: {
     variant: "h6",
     id: "tableTitle",
-    // color: 'textSecondary',
     minWidth: 200,
-    paddingTop: '8px',
+    paddingTop: '3px',
     paddingLeft: '16px',
-    paddingRight: '16px',
+    paddingRight: '7px',
     color: '#dd399c',
     fontWeight: 400,
     letterSpacing: '0.1em',
-  },
-  button: {
-    color: 'black',
   }
 }));
 
-function SchemaTable({ table,
-  setTables,
+const Buttons = styled.div`
+  color: black;
+  margin-left: 5px;
+  cursor: pointer;
+  &:hover{
+    color: #DD399C;
+  }
+`;
+
+function SchemaTable({ 
+  table,
   setPopUp,
   tableKey,
-  setView,
   deleteTable,
   setSelectedTable
 }) {
@@ -74,20 +78,21 @@ function SchemaTable({ table,
     <Paper className={classes.root} style={{ margin: '10px' }}>
       <Typography className={classes.title}  >
         {table.type}
-        <span style={{ float: "right" }} >
-          <Delete
-            className={classes.button}
-            onClick={() => deleteTable(tableKey)}
-          />
+        <span style={{ float: "right" }}>
+          <Buttons>
+            <i className="fas fa-trash" onClick={() => deleteTable(tableKey)} />
+          </Buttons>
         </span>
         <span style={{ float: "right", marginRight: 5 }}>
-          <Edit
-            className={classes.button}
-            onClick={() => {
-              setSelectedTable(table);
-              setPopUp('table');
-            }}
-          />
+          <Buttons>
+            <i 
+              className="fas fa-edit" 
+              onClick={() => {
+                setSelectedTable(table);
+                setPopUp('table');
+              }}
+            />
+          </Buttons>
         </span>
       </Typography>
 

@@ -71,6 +71,7 @@ const Button = styled.span`
   text-align: center;
   &:hover {
     background-color: #DD399C;
+    cursor: pointer;
   }
 `;
 

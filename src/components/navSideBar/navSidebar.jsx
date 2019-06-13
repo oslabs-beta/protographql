@@ -29,6 +29,7 @@ function NavSideBar({ setView, setPopUp, setSelectedTable, tableIndexState, init
         if (i === 3) {
           const initialTableStateCopy = JSON.parse(JSON.stringify(initialTableState));
           initialTableStateCopy.tableID = tableIndexState;
+          initialTableStateCopy.fields[1].tableNum = tableIndexState;
           setSelectedTable(initialTableStateCopy);
         }
       }

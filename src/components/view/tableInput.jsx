@@ -59,12 +59,11 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
   }, []);
 
   const onFieldNameChange = (e) => {
-    const newTable = { ...selectedTable };
-    const newField = { ...newTable.fields[fieldIndex - 1] };
+    const newTable = JSON.parse(JSON.stringify(selectedTable));
+    const newField = JSON.parse(JSON.stringify(newTable.fields[fieldIndex - 1]));
     newField.name = e.target.value;
     newTable.fields[fieldIndex - 1] = newField;
     setSelectedTable(newTable);
-    // console.log('This should be our changed field name', selectedTable.fields)
   }
 
   const onFieldDefaultValueChange = (e) => {
@@ -73,7 +72,6 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
     newField.defaultValue = e.target.value;
     newTable.fields[fieldIndex - 1] = newField;
     setSelectedTable(newTable);
-    console.log('This should be our changed field name', selectedTable.fields)
   }
 
   return (

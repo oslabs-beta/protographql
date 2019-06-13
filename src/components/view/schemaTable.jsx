@@ -67,6 +67,8 @@ function SchemaTable({ table,
       {
         name: table.fields[fieldKey].name,
         type: table.fields[fieldKey].type,
+        tableNum: table.fields[fieldKey].tableNum,
+        fieldNum: table.fields[fieldKey].fieldNum
       }
     ))
   )
@@ -101,7 +103,7 @@ function SchemaTable({ table,
 
         <TableBody>
           {fields.map(field => (
-            <StyledTableRow key={field.name}>
+            <StyledTableRow key={field.tableNum + '-' + field.name + '-' + field.fieldNum}>
               <StyledTableCell component="th" scope="field">
                 {field.name}
               </StyledTableCell>

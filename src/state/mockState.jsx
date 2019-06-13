@@ -10,7 +10,7 @@ export const initialTableState = {
   fields: {
       1: {
       name: '',
-      type: 'string',
+      type: 'ID',
       primaryKey: false,
       autoIncrement: false,
       unique: false,
@@ -33,9 +33,9 @@ export const initialTableState = {
   tableID: -1
 };
 
-export const selectedFieldState = {
+export const initialFieldState = {
   name: '',
-  type: 'string',
+  type: 'ID',
   primaryKey: false,
   autoIncrement: false,
   unique: false,

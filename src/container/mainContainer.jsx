@@ -17,12 +17,12 @@ import { relative } from 'path';
 
 const Main = () => {
   const [selectedTable, setSelectedTable] = useState(state.selectedTableState);
-  const [selectedField, setSelectedField] = useState(state.selectedFieldState);
   const [tableIndexState, setTableIndexState] = useState(state.tableIndexState);
   const [tables, setTables] = useState(state.tablesState);
   const [view, setView] = useState(state.viewState);
   const [popUp, setPopUp] = useState(state.popUpState);
   const initialTableState = state.initialTableState;
+  const initialFieldState = state.initialFieldState;
 
   //Rendered components and elements
   // can't use styled components here because of the gridTemplateAreas
@@ -62,6 +62,7 @@ const Main = () => {
         tableIndexState={tableIndexState}
         setTableIndexState={setTableIndexState}
         initialTableState={initialTableState}
+        initialFieldState={initialFieldState}
       />
     </div>
   )

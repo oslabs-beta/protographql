@@ -97,7 +97,8 @@ function TableForm({
   selectedTable,
   tableIndexState,
   setTableIndexState,
-  tables
+  tables,
+  initialFieldState
 }) {
 
   //Creating Table Inputs (these are fields)
@@ -106,19 +107,18 @@ function TableForm({
     const fields = Object.keys(selectedTable.fields);
     for (let i = 0; i < fields.length; i++) {
       const currentFieldKey = fields[i];
+      console.log('keys ', selectedTable.tableID + "-" + "field" + "-" +  i)
       fieldInputs.push(
         <TableInput
           field={selectedTable.fields[currentFieldKey]}
           selectedTable={selectedTable}
           setSelectedTable={setSelectedTable}
           fieldIndex={selectedTable.fieldIndex}
-          key={i}
+          key={selectedTable.tableID + "-" + "field" + "-" +  i}
         />);
     }
   }
   createTableInputs();
-
-  console.log('This is my table num: ', selectedTable.tableID)
 
   return (
     <FadeThePage>
@@ -138,19 +138,29 @@ function TableForm({
           />
           <Table id='table' >
             <tbody>
-              <TableField />
+              <TableField key={'tableID-' + selectedTable.tableID}/>
               {fieldInputs}
             </tbody>
           </Table>
           <TableFooter>
-            <Button>
+            <Button 
+              onClick={ () => {
+                const selectedTableStateCopy = JSON.parse(JSON.stringify(selectedTable));
+                const newField = JSON.parse(JSON.stringify(initialFieldState));
+                newField.tableNum = selectedTableStateCopy.tableID;
+                newField.fieldNum = selectedTableStateCopy.fieldIndex;
+                selectedTableStateCopy.fields[selectedTableStateCopy.fieldIndex] = newField;
+                console.log('Table state copy ',selectedTableStateCopy);
+                console.log('New Field ',newField);
+                selectedTableStateCopy.fieldIndex += 1;
+                setSelectedTable(selectedTableStateCopy);  
+            }}>
               <i className="fas fa-plus" /> Add Field
             </Button>
             <Button
               onClick={e => {
                 setTables({ ...tables, [selectedTable.tableID]: selectedTable });
                 setTableIndexState(tableIndexState + 1);
-                console.log('This should be our table ', selectedTable);
               }}>
               <i className="far fa-save" color="black" /> Save
             </Button>

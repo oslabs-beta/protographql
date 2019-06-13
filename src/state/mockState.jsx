@@ -50,7 +50,8 @@ export const initialFieldState = {
   },
   tableNum: -1,
   fieldNum: -1,
-  refBy: new Set()
+  refBy: new Set(),
+  queryable: true
 };
 
 export const tableIndexState = 2;

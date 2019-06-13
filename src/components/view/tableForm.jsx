@@ -107,14 +107,13 @@ function TableForm({
     const fields = Object.keys(selectedTable.fields);
     for (let i = 0; i < fields.length; i++) {
       const currentFieldKey = fields[i];
-      console.log('keys ', selectedTable.tableID + "-" + "field" + "-" +  i)
       fieldInputs.push(
         <TableInput
           field={selectedTable.fields[currentFieldKey]}
           selectedTable={selectedTable}
           setSelectedTable={setSelectedTable}
-          fieldIndex={selectedTable.fieldIndex}
-          key={selectedTable.tableID + "-" + "field" + "-" +  i}
+          fieldIndex={currentFieldKey}
+          key={selectedTable.tableID + "-" + "field" + "-" +  currentFieldKey}
         />);
     }
   }
@@ -150,8 +149,6 @@ function TableForm({
                 newField.tableNum = selectedTableStateCopy.tableID;
                 newField.fieldNum = selectedTableStateCopy.fieldIndex;
                 selectedTableStateCopy.fields[selectedTableStateCopy.fieldIndex] = newField;
-                console.log('Table state copy ',selectedTableStateCopy);
-                console.log('New Field ',newField);
                 selectedTableStateCopy.fieldIndex += 1;
                 setSelectedTable(selectedTableStateCopy);  
             }}>
@@ -161,6 +158,7 @@ function TableForm({
               onClick={e => {
                 setTables({ ...tables, [selectedTable.tableID]: selectedTable });
                 setTableIndexState(tableIndexState + 1);
+                setPopUp('');
               }}>
               <i className="far fa-save" color="black" /> Save
             </Button>

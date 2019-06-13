@@ -60,17 +60,17 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
 
   const onFieldNameChange = (e) => {
     const newTable = JSON.parse(JSON.stringify(selectedTable));
-    const newField = JSON.parse(JSON.stringify(newTable.fields[fieldIndex - 1]));
+    const newField = JSON.parse(JSON.stringify(newTable.fields[fieldIndex]));
     newField.name = e.target.value;
-    newTable.fields[fieldIndex - 1] = newField;
+    newTable.fields[fieldIndex] = newField;
     setSelectedTable(newTable);
   }
 
   const onFieldDefaultValueChange = (e) => {
-    const newTable = { ...selectedTable };
-    const newField = { ...newTable.fields[fieldIndex - 1] };
+    const newTable = JSON.parse(JSON.stringify(selectedTable));
+    const newField = JSON.parse(JSON.stringify(newTable.fields[fieldIndex]));
     newField.defaultValue = e.target.value;
-    newTable.fields[fieldIndex - 1] = newField;
+    newTable.fields[fieldIndex] = newField;
     setSelectedTable(newTable);
   }
 
@@ -90,10 +90,10 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
           className="select-css"
           defaultValue={type}
           onChange={(e) => {
-            const newTable = { ...selectedTable };
-            const newField = { ...newTable.fields[fieldIndex - 1] };
+            const newTable = JSON.parse(JSON.stringify(selectedTable));
+            const newField = JSON.parse(JSON.stringify(newTable.fields[fieldIndex]));
             newField.type = e.target.value;
-            newTable.fields[fieldIndex - 1] = newField;
+            newTable.fields[fieldIndex] = newField;
             setSelectedTable(newTable);
           }}
         >
@@ -120,10 +120,10 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
             className="slider round"
             onClick={(e) => {
               e.target.value = !e.target.value;
-              const newTable = { ...selectedTable };
-              const newField = { ...newTable.fields[fieldIndex - 1] };
+              const newTable = JSON.parse(JSON.stringify(selectedTable));
+              const newField = JSON.parse(JSON.stringify(newTable.fields[fieldIndex]));
               newField.primaryKey = e.target.value;
-              newTable.fields[fieldIndex - 1] = newField;
+              newTable.fields[fieldIndex] = newField;
               setSelectedTable(newTable);
             }}
             value={false}
@@ -138,10 +138,10 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
             className="slider round"
             onClick={(e) => {
               e.target.value = !e.target.value;
-              const newTable = { ...selectedTable };
-              const newField = { ...newTable.fields[fieldIndex - 1] };
+              const newTable = JSON.parse(JSON.stringify(selectedTable));
+              const newField = JSON.parse(JSON.stringify(newTable.fields[fieldIndex]));
               newField.autoIncrement = e.target.value;
-              newTable.fields[fieldIndex - 1] = newField;
+              newTable.fields[fieldIndex] = newField;
               setSelectedTable(newTable);
             }}
             value={false}
@@ -156,10 +156,10 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
             className="slider round"
             onClick={(e) => {
               e.target.value = !e.target.value;
-              const newTable = { ...selectedTable };
-              const newField = { ...newTable.fields[fieldIndex - 1] };
+              const newTable = JSON.parse(JSON.stringify(selectedTable));
+              const newField = JSON.parse(JSON.stringify(newTable.fields[fieldIndex]));
               newField.unique = e.target.value;
-              newTable.fields[fieldIndex - 1] = newField;
+              newTable.fields[fieldIndex] = newField;
               setSelectedTable(newTable);
             }}
             value={false}
@@ -174,10 +174,10 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
             className="slider round"
             onClick={(e) => {
               e.target.value = !e.target.value;
-              const newTable = { ...selectedTable };
-              const newField = { ...newTable.fields[fieldIndex - 1] };
+              const newTable = JSON.parse(JSON.stringify(selectedTable));
+              const newField = JSON.parse(JSON.stringify(newTable.fields[fieldIndex]));
               newField.required = e.target.value;
-              newTable.fields[fieldIndex - 1] = newField;
+              newTable.fields[fieldIndex] = newField;
               setSelectedTable(newTable);
             }}
             value={false}
@@ -192,10 +192,10 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
             className="slider round"
             onClick={(e) => {
               e.target.value = !e.target.value;
-              const newTable = { ...selectedTable };
-              const newField = { ...newTable.fields[fieldIndex - 1] };
+              const newTable = JSON.parse(JSON.stringify(selectedTable));
+              const newField = JSON.parse(JSON.stringify(newTable.fields[fieldIndex]));
               newField.queryable = e.target.value;
-              newTable.fields[fieldIndex - 1] = newField;
+              newTable.fields[fieldIndex] = newField;
               setSelectedTable(newTable);
             }}
             value={false}

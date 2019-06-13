@@ -43,6 +43,7 @@ const useStyles = makeStyles(theme => ({
     paddingTop: '3px',
     paddingLeft: '16px',
     paddingRight: '7px',
+    paddingBottom: '2px',
     color: '#dd399c',
     fontWeight: 400,
     letterSpacing: '0.1em',
@@ -110,7 +111,9 @@ function SchemaTable({
               <StyledTableCell component="th" scope="field">
                 {field.name}
               </StyledTableCell>
-              <StyledTableCell align="right">{field.type}</StyledTableCell>
+              <StyledTableCell align="right">
+                {field.type}
+              </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

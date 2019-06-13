@@ -16,7 +16,6 @@ function MainView({
   setTableIndexState,
   initialFieldState
 }) {
-
   return (
     <div style={{ gridArea: "main" }}>
       {view === 'code' && <CodeView tables={tables} />}

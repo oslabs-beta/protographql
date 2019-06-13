@@ -70,7 +70,8 @@ const Button = styled.span`
   width: 30%;
   text-align: center;
   &:hover {
-    background-color: #13873E;
+    background-color: #DD399C;
+    cursor: pointer;
   }
 `;
 

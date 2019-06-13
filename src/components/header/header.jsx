@@ -36,7 +36,6 @@ function Header() {
       <AppBar position="static" className={classes.header}>
         <Toolbar >
           <IconButton edge="start" className={classes.menuButton} style={{ padding: '0px 8px' }} aria-label="Menu">
-            {/* <img src="../public/assets/pictures/GraphQL_Logo.png" height="40" /> */}
             <img src="../public/assets/pictures/ProtoGraphQLLogo.png" height="50" />
           </IconButton>
           <Typography variant="h3" className={classes.title}>

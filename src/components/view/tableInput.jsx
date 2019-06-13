@@ -52,7 +52,7 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
 
   useEffect(() => {
     isChecked("#primaryKey" + fieldNum, primaryKey);
-    // isChecked("#autoIncrement" + fieldNum, autoIncrement);
+    isChecked("#autoIncrement" + fieldNum, autoIncrement);
     isChecked("#unique" + fieldNum, unique);
     isChecked("#required" + fieldNum, required);
     isChecked("#queryable" + fieldNum, queryable);
@@ -76,7 +76,7 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
 
   return (
     <Tr>
-      <Td><i className="fas fa-trash" style={{ fontSize: "18px" }}></i></Td>
+      <Td><i className="fas fa-trash" style={{ fontSize: "18px" }} /></Td>
       <Td>
         <Input
           type="text"
@@ -130,7 +130,7 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
           />
         </label>
       </Td>
-      {/* <Td>
+      <Td>
         <label className="switch">
           <input type="checkbox" />
           <span
@@ -147,7 +147,7 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
             value={false}
           />
         </label>
-      </Td> */}
+      </Td>
       <Td>
         <label className="switch">
           <input type="checkbox" />

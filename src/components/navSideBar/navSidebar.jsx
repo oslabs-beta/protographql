@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import NavButton from './navButton';
 import styled from 'styled-components';
 
@@ -33,16 +33,35 @@ function NavSideBar({ setView, setPopUp, setSelectedTable, tableIndexState, init
           setSelectedTable(initialTableStateCopy);
         }
       }
-      if (i !== 3) input.push(<NavButton key={i} className={icons[i]} view={text} click={click} />);
-      else input.push(<NavButton key={i} className={icons[i]} view={text} click={click} style={{ position: 'absolute', bottom: 0, borderTop: '1px solid rgba(0, 0, 0, 0.08)', width: '100%' }} />)
+      if (i !== 3) input.push(
+        <NavButton 
+          key={i} 
+          className={icons[i]} 
+          view={text} 
+          click={click} 
+        />
+      );
+      else input.push(
+        <NavButton 
+          key={i} 
+          className={icons[i]} 
+          view={text} 
+          click={click} 
+          style={{ 
+            position: 'absolute', 
+            bottom: 0, 
+            borderTop: '1px solid rgba(0, 0, 0, 0.08)', 
+            width: '100%' 
+          }} 
+        />
+      );
 
-    })
+    });
+
     return input;
   }
   return (
-    <SideBar>
-      {buttons()}
-    </SideBar>
+    <SideBar>{buttons()}</SideBar>
   )
 }
 

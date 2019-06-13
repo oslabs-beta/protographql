@@ -20,7 +20,7 @@ function TableField() {
       <Th>Type</Th>
       <Th>Default Value</Th>
       <Th className="slider-header">Primary Key</Th>
-      {/* <Th>Auto Increment</Th> */}
+      <Th className="slider-header">Auto Increment</Th>
       <Th className="slider-header">Unique</Th>
       <Th className="slider-header">Required</Th>
       <Th className="slider-header">Queryable</Th>

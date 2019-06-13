@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import buildGQLSchema from '../../utils/buildGQLSchema';
 import buildGQLResolvers from '../../utils/buildGQLResolvers';
+import buildSQLScripts from '../../utils/buildSQLScripts';
 
 const Code = styled.div`
   margin: 20px;
@@ -42,6 +43,12 @@ const Title = styled.p`
 function CodeView({ tables }) {
   return (
     <Code>
+      <Column>
+        <Title>SQL Scripts</Title>
+        <pre>
+          {buildSQLScripts(tables)}
+        </pre>
+      </Column>
       <Column>
         <Title>GraphQL Schema</Title>
         <pre>

@@ -52,33 +52,31 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
 
   useEffect(() => {
     isChecked("#primaryKey" + fieldNum, primaryKey);
-    // isChecked("#autoIncrement" + fieldNum, autoIncrement);
+    isChecked("#autoIncrement" + fieldNum, autoIncrement);
     isChecked("#unique" + fieldNum, unique);
     isChecked("#required" + fieldNum, required);
     isChecked("#queryable" + fieldNum, queryable);
   }, []);
 
   const onFieldNameChange = (e) => {
-    const newTable = { ...selectedTable };
-    const newField = { ...newTable.fields[fieldIndex - 1] };
+    const newTable = JSON.parse(JSON.stringify(selectedTable));
+    const newField = JSON.parse(JSON.stringify(newTable.fields[fieldIndex]));
     newField.name = e.target.value;
-    newTable.fields[fieldIndex - 1] = newField;
+    newTable.fields[fieldIndex] = newField;
     setSelectedTable(newTable);
-    // console.log('This should be our changed field name', selectedTable.fields)
   }
 
   const onFieldDefaultValueChange = (e) => {
-    const newTable = { ...selectedTable };
-    const newField = { ...newTable.fields[fieldIndex - 1] };
+    const newTable = JSON.parse(JSON.stringify(selectedTable));
+    const newField = JSON.parse(JSON.stringify(newTable.fields[fieldIndex]));
     newField.defaultValue = e.target.value;
-    newTable.fields[fieldIndex - 1] = newField;
+    newTable.fields[fieldIndex] = newField;
     setSelectedTable(newTable);
-    console.log('This should be our changed field name', selectedTable.fields)
   }
 
   return (
     <Tr>
-      <Td><i className="fas fa-trash" style={{ fontSize: "18px" }}></i></Td>
+      <Td><i className="fas fa-trash" style={{ fontSize: "18px" }} /></Td>
       <Td>
         <Input
           type="text"
@@ -92,10 +90,10 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
           className="select-css"
           defaultValue={type}
           onChange={(e) => {
-            const newTable = { ...selectedTable };
-            const newField = { ...newTable.fields[fieldIndex - 1] };
+            const newTable = JSON.parse(JSON.stringify(selectedTable));
+            const newField = JSON.parse(JSON.stringify(newTable.fields[fieldIndex]));
             newField.type = e.target.value;
-            newTable.fields[fieldIndex - 1] = newField;
+            newTable.fields[fieldIndex] = newField;
             setSelectedTable(newTable);
           }}
         >
@@ -122,17 +120,17 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
             className="slider round"
             onClick={(e) => {
               e.target.value = !e.target.value;
-              const newTable = { ...selectedTable };
-              const newField = { ...newTable.fields[fieldIndex - 1] };
+              const newTable = JSON.parse(JSON.stringify(selectedTable));
+              const newField = JSON.parse(JSON.stringify(newTable.fields[fieldIndex]));
               newField.primaryKey = e.target.value;
-              newTable.fields[fieldIndex - 1] = newField;
+              newTable.fields[fieldIndex] = newField;
               setSelectedTable(newTable);
             }}
             value={false}
           />
         </label>
       </Td>
-      {/* <Td>
+      <Td>
         <label className="switch">
           <input type="checkbox" />
           <span
@@ -140,16 +138,16 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
             className="slider round"
             onClick={(e) => {
               e.target.value = !e.target.value;
-              const newTable = { ...selectedTable };
-              const newField = { ...newTable.fields[fieldIndex - 1] };
+              const newTable = JSON.parse(JSON.stringify(selectedTable));
+              const newField = JSON.parse(JSON.stringify(newTable.fields[fieldIndex]));
               newField.autoIncrement = e.target.value;
-              newTable.fields[fieldIndex - 1] = newField;
+              newTable.fields[fieldIndex] = newField;
               setSelectedTable(newTable);
             }}
             value={false}
           />
         </label>
-      </Td> */}
+      </Td>
       <Td>
         <label className="switch">
           <input type="checkbox" />
@@ -158,10 +156,10 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
             className="slider round"
             onClick={(e) => {
               e.target.value = !e.target.value;
-              const newTable = { ...selectedTable };
-              const newField = { ...newTable.fields[fieldIndex - 1] };
+              const newTable = JSON.parse(JSON.stringify(selectedTable));
+              const newField = JSON.parse(JSON.stringify(newTable.fields[fieldIndex]));
               newField.unique = e.target.value;
-              newTable.fields[fieldIndex - 1] = newField;
+              newTable.fields[fieldIndex] = newField;
               setSelectedTable(newTable);
             }}
             value={false}
@@ -176,10 +174,10 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
             className="slider round"
             onClick={(e) => {
               e.target.value = !e.target.value;
-              const newTable = { ...selectedTable };
-              const newField = { ...newTable.fields[fieldIndex - 1] };
+              const newTable = JSON.parse(JSON.stringify(selectedTable));
+              const newField = JSON.parse(JSON.stringify(newTable.fields[fieldIndex]));
               newField.required = e.target.value;
-              newTable.fields[fieldIndex - 1] = newField;
+              newTable.fields[fieldIndex] = newField;
               setSelectedTable(newTable);
             }}
             value={false}
@@ -194,10 +192,10 @@ function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
             className="slider round"
             onClick={(e) => {
               e.target.value = !e.target.value;
-              const newTable = { ...selectedTable };
-              const newField = { ...newTable.fields[fieldIndex - 1] };
+              const newTable = JSON.parse(JSON.stringify(selectedTable));
+              const newField = JSON.parse(JSON.stringify(newTable.fields[fieldIndex]));
               newField.queryable = e.target.value;
-              newTable.fields[fieldIndex - 1] = newField;
+              newTable.fields[fieldIndex] = newField;
               setSelectedTable(newTable);
             }}
             value={false}

@@ -70,7 +70,8 @@ const Button = styled.span`
   width: 30%;
   text-align: center;
   &:hover {
-    background-color: #13873E;
+    background-color: #DD399C;
+    cursor: pointer;
   }
 `;
 
@@ -97,7 +98,8 @@ function TableForm({
   selectedTable,
   tableIndexState,
   setTableIndexState,
-  tables
+  tables,
+  initialFieldState
 }) {
 
   //Creating Table Inputs (these are fields)
@@ -111,14 +113,12 @@ function TableForm({
           field={selectedTable.fields[currentFieldKey]}
           selectedTable={selectedTable}
           setSelectedTable={setSelectedTable}
-          fieldIndex={selectedTable.fieldIndex}
-          key={i}
+          fieldIndex={currentFieldKey}
+          key={selectedTable.tableID + "-" + "field" + "-" +  currentFieldKey}
         />);
     }
   }
   createTableInputs();
-
-  console.log('This is my table num: ', selectedTable.tableID)
 
   return (
     <FadeThePage>
@@ -138,19 +138,28 @@ function TableForm({
           />
           <Table id='table' >
             <tbody>
-              <TableField />
+              <TableField key={'tableID-' + selectedTable.tableID}/>
               {fieldInputs}
             </tbody>
           </Table>
           <TableFooter>
-            <Button>
+            <Button 
+              onClick={ () => {
+                const selectedTableStateCopy = JSON.parse(JSON.stringify(selectedTable));
+                const newField = JSON.parse(JSON.stringify(initialFieldState));
+                newField.tableNum = selectedTableStateCopy.tableID;
+                newField.fieldNum = selectedTableStateCopy.fieldIndex;
+                selectedTableStateCopy.fields[selectedTableStateCopy.fieldIndex] = newField;
+                selectedTableStateCopy.fieldIndex += 1;
+                setSelectedTable(selectedTableStateCopy);  
+            }}>
               <i className="fas fa-plus" /> Add Field
             </Button>
             <Button
               onClick={e => {
                 setTables({ ...tables, [selectedTable.tableID]: selectedTable });
                 setTableIndexState(tableIndexState + 1);
-                console.log('This should be our table ', selectedTable);
+                setPopUp('');
               }}>
               <i className="far fa-save" color="black" /> Save
             </Button>

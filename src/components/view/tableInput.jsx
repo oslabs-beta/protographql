@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import deepClone from '../../utils/deepClone';
 
 
 /*-------------------- Styled Components --------------------*/
@@ -69,16 +70,16 @@ function TableInput({
   }, []);
 
   const onFieldNameChange = (e) => {
-    const newTable = JSON.parse(JSON.stringify(selectedTable));
-    const newField = JSON.parse(JSON.stringify(newTable.fields[fieldIndex]));
+    const newTable = deepClone(selectedTable);
+    const newField = deepClone(newTable.fields[fieldIndex]);
     newField.name = e.target.value;
     newTable.fields[fieldIndex] = newField;
     setSelectedTable(newTable);
   }
 
   const onFieldDefaultValueChange = (e) => {
-    const newTable = JSON.parse(JSON.stringify(selectedTable));
-    const newField = JSON.parse(JSON.stringify(newTable.fields[fieldIndex]));
+    const newTable = deepClone(selectedTable);
+    const newField = deepClone(newTable.fields[fieldIndex]);
     newField.defaultValue = e.target.value;
     newTable.fields[fieldIndex] = newField;
     setSelectedTable(newTable);
@@ -100,8 +101,8 @@ function TableInput({
           className="select-css"
           defaultValue={type}
           onChange={(e) => {
-            const newTable = JSON.parse(JSON.stringify(selectedTable));
-            const newField = JSON.parse(JSON.stringify(newTable.fields[fieldIndex]));
+            const newTable = deepClone(selectedTable);
+            const newField = deepClone(newTable.fields[fieldIndex]);
             newField.type = e.target.value;
             newTable.fields[fieldIndex] = newField;
             setSelectedTable(newTable);
@@ -130,8 +131,8 @@ function TableInput({
             className="slider round"
             onClick={(e) => {
               e.target.value = !e.target.value;
-              const newTable = JSON.parse(JSON.stringify(selectedTable));
-              const newField = JSON.parse(JSON.stringify(newTable.fields[fieldIndex]));
+              const newTable = deepClone(selectedTable);
+              const newField = deepClone(newTable.fields[fieldIndex]);
               newField.primaryKey = e.target.value;
               newTable.fields[fieldIndex] = newField;
               setSelectedTable(newTable);
@@ -148,8 +149,8 @@ function TableInput({
             className="slider round"
             onClick={(e) => {
               e.target.value = !e.target.value;
-              const newTable = JSON.parse(JSON.stringify(selectedTable));
-              const newField = JSON.parse(JSON.stringify(newTable.fields[fieldIndex]));
+              const newTable = deepClone(selectedTable);
+              const newField = deepClone(newTable.fields[fieldIndex]);
               newField.autoIncrement = e.target.value;
               newTable.fields[fieldIndex] = newField;
               setSelectedTable(newTable);
@@ -166,8 +167,8 @@ function TableInput({
             className="slider round"
             onClick={(e) => {
               e.target.value = !e.target.value;
-              const newTable = JSON.parse(JSON.stringify(selectedTable));
-              const newField = JSON.parse(JSON.stringify(newTable.fields[fieldIndex]));
+              const newTable = deepClone(selectedTable);
+              const newField = deepClone(newTable.fields[fieldIndex]);
               newField.unique = e.target.value;
               newTable.fields[fieldIndex] = newField;
               setSelectedTable(newTable);
@@ -184,8 +185,8 @@ function TableInput({
             className="slider round"
             onClick={(e) => {
               e.target.value = !e.target.value;
-              const newTable = JSON.parse(JSON.stringify(selectedTable));
-              const newField = JSON.parse(JSON.stringify(newTable.fields[fieldIndex]));
+              const newTable = deepClone(selectedTable);
+              const newField = deepClone(newTable.fields[fieldIndex]);
               newField.required = e.target.value;
               newTable.fields[fieldIndex] = newField;
               setSelectedTable(newTable);
@@ -202,8 +203,8 @@ function TableInput({
             className="slider round"
             onClick={(e) => {
               e.target.value = !e.target.value;
-              const newTable = JSON.parse(JSON.stringify(selectedTable));
-              const newField = JSON.parse(JSON.stringify(newTable.fields[fieldIndex]));
+              const newTable = deepClone(selectedTable);
+              const newField = deepClone(newTable.fields[fieldIndex]);
               newField.queryable = e.target.value;
               newTable.fields[fieldIndex] = newField;
               setSelectedTable(newTable);

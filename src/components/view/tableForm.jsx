@@ -161,8 +161,10 @@ function TableForm({
               <i className="fas fa-plus" /> Add Field
             </Button>
             <Button
-              onClick={e => {
-                setTables({ ...tables, [selectedTable.tableID]: selectedTable });
+              onClick={() => {
+                const newTables = deepClone(tables);
+                newTables[selectedTable.tableID] = selectedTable;
+                setTables(newTables);
                 setTableIndexState(tableIndexState + 1);
                 setPopUp('');
               }}>

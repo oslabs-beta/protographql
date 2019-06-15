@@ -1,4 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import { Store } from '../../state/store';
+import { 
+  SET_POP_UP, 
+  SET_TABLES, 
+  SET_SELECTED_TABLE, 
+  SET_TABLE_INDEX 
+} from '../../actions/actionTypes';
 import styled from 'styled-components';
 import TableNameInput from './tableNameInput';
 import TableField from './tableField';
@@ -96,16 +103,17 @@ const Buttons = styled.span`
 
 /*-------------------- Functional Component --------------------*/
 
-function TableForm({
-  setPopUp,
-  setTables,
-  setSelectedTable,
-  selectedTable,
-  tableIndexState,
-  setTableIndexState,
-  tables,
-  initialField
-}) {
+function TableForm() {
+
+  const {
+    dispatch,
+    state: {
+      selectedTable, 
+      tables, 
+      initialField, 
+      tableIndex 
+    }
+  } = useContext(Store);
 
   /*-------------------- Table Input Function --------------------*/
   const fieldInputs = [];
@@ -117,7 +125,7 @@ function TableForm({
         <TableInput
           field={selectedTable.fields[currentFieldKey]}
           selectedTable={selectedTable}
-          setSelectedTable={setSelectedTable}
+          setSelectedTable={payload => dispatch({ type: SET_SELECTED_TABLE, payload })}
           fieldIndex={currentFieldKey}
           key={selectedTable.tableID + "-" + "field" + "-" +  currentFieldKey}
         />);
@@ -127,19 +135,19 @@ function TableForm({
 
   return (
     <FadeThePage>
-      <Draggable handle="#header">
+      <Draggable handle="#header">     
         <CustomTable>
           <TableHeader id="header" >
             <Buttons>
-              <CloseButton onClick={() => { setPopUp('') }}>
+              <CloseButton onClick={ () => dispatch({ type: SET_POP_UP, payload: '' }) }>
                 <i className="fas fa-times"></i>
               </CloseButton>
             </Buttons>
           </TableHeader>
           <TableNameInput
-            name={selectedTable.type}
+            name={selectedTable.type}     
             selectedTable={selectedTable}
-            setSelectedTable={setSelectedTable}
+            setSelectedTable={payload => dispatch({ type: SET_SELECTED_TABLE, payload })}
           />
           <Table id='table' >
             <tbody>
@@ -156,7 +164,7 @@ function TableForm({
                 newField.fieldNum = selectedTableStateCopy.fieldIndex;
                 selectedTableStateCopy.fields[selectedTableStateCopy.fieldIndex] = newField;
                 selectedTableStateCopy.fieldIndex += 1;
-                setSelectedTable(selectedTableStateCopy);  
+                dispatch({ type: SET_SELECTED_TABLE, payload: selectedTableStateCopy });
             }}>
               <i className="fas fa-plus" /> Add Field
             </Button>
@@ -164,9 +172,9 @@ function TableForm({
               onClick={() => {
                 const newTables = deepClone(tables);
                 newTables[selectedTable.tableID] = selectedTable;
-                setTables(newTables);
-                setTableIndexState(tableIndexState + 1);
-                setPopUp('');
+                dispatch({ type: SET_TABLES, payload: newTables });
+                dispatch({ type: SET_TABLE_INDEX, payload: tableIndex + 1 });
+                dispatch({ type: SET_POP_UP, payload: '' });
               }}>
               <i className="far fa-save" color="black" /> Save
             </Button>

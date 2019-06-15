@@ -28,7 +28,7 @@ function NavSideBar() {
   const { 
     dispatch,
     state: {
-      tableIndexState,
+      tableIndex,
       initialTable
     }
   } = useContext(Store);
@@ -63,8 +63,8 @@ function NavSideBar() {
 
         if (i === 3) {
           const initialTableCopy = deepClone(initialTable);
-          initialTableCopy.tableID = tableIndexState;
-          initialTableCopy.fields[1].tableNum = tableIndexState;
+          initialTableCopy.tableID = tableIndex;
+          initialTableCopy.fields[1].tableNum = tableIndex;
           dispatch({ type: SET_SELECTED_TABLE, payload: initialTableCopy });
         }
       }

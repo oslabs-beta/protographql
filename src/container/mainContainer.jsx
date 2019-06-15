@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from '../components/header/header';
 import NavSideBar from '../components/navSideBar/navSidebar';
 import Welcome from '../components/popup/welcome';
-// import * as state from '../state/initialState';
-import * as state from '../state/mockState';
 import MainView from '../components/view/mainView';
-import { Store } from '../state/store';
 
 /* Comments
   SetView toggles the tab shown in the sandbox area
@@ -14,18 +11,7 @@ import { Store } from '../state/store';
   potential popups are welcome, table details, and export (select folder to save & success)
 */
 
-const Main = (props) => {
-
-  const { state } = React.useContext(Store);
-  const [selectedTable, setSelectedTable] = useState(state.selectedTable);
-  const [tableIndexState, setTableIndexState] = useState(state.tableIndex);
-  const [tables, setTables] = useState(state.tables);
-  const [view, setView] = useState(state.view);
-  const [popUp, setPopUp] = useState(state.popUp);
-  const initialTable = state.initialTable;
-  const initialField = state.initialField;
-
-  console.log('Props in main: ', state);
+const Main = () => {
 
   //Rendered components and elements
   // can't use styled components here because of the gridTemplateAreas
@@ -44,20 +30,7 @@ const Main = (props) => {
       <Header />
       <Welcome />
       <NavSideBar />
-      <MainView
-        view={view}
-        tables={tables}
-        setTables={setTables}
-        setPopUp={setPopUp}
-        setView={setView}
-        popUp={popUp}
-        setSelectedTable={setSelectedTable}
-        selectedTable={selectedTable}
-        tableIndexState={tableIndexState}
-        setTableIndexState={setTableIndexState}
-        initialTable={initialTable}
-        initialField={initialField}
-      />
+      <MainView />
     </div>
   )
 }

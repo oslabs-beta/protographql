@@ -10,24 +10,8 @@ function MainView() {
   return (
     <div style={{ gridArea: "main" }}>
       {view === 'code' && <CodeView />}
-      {view === 'schema' && <SchemaView
-        tables={tables}
-        setTables={setTables}
-        setPopUp={setPopUp}
-        setView={setView}
-        view={view}
-        setSelectedTable={setSelectedTable}
-      />}
-      {popUp === 'table' && <TableForm
-        setPopUp={setPopUp}
-        setTables={setTables}
-        setSelectedTable={setSelectedTable}
-        selectedTable={selectedTable}
-        tableIndexState={tableIndexState}
-        setTableIndexState={setTableIndexState}
-        tables={tables}
-        initialField={initialField}
-      />}
+      {view === 'schema' && <SchemaView />}
+      {popUp === 'table' && <TableForm />}
     </div>
   )
 }

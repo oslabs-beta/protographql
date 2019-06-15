@@ -93,15 +93,8 @@ function DraggableDialog(
         </DialogActionsDiv>
 
         <ContentDiv style={{ marginTop: "15px", marginBottom: "25px" }}>
-          Lorem ipsum dolor amet tousled listicle VHS, hammock blog adaptogen
-          prism jianbing offal viral lyft echo park 3 wolf moon. Freegan wolf
-          meh cardigan fingerstache paleo. Drinking vinegar vaporware 90's
-          knausgaard, pok pok subway tile flexitarian ethical kombucha
-          kickstarter. Hell of slow-carb semiotics yr you probably haven't heard
-          of them keffiyeh lyft iceland chicharrones. Authentic pinterest offal,
-          microdosing blog taiyaki schlitz meditation literally. Hella echo park
-          butcher normcore, ugh mumblecore helvetica pinterest art party
-          scenester retro. Sartorial street art palo santo.
+          Please prepare your credit card.
+          
         </ContentDiv>
       </Dialog>
     </div>

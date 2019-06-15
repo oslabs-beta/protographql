@@ -2,10 +2,10 @@ import tabs from './tabs';
 
 const buildSQLScripts = tables => {
     let tableObj = Object.values(tables); // array with actual table objects
-    let output = `\n\n`;
+    let output = ``;
     for(let i = 0; i < tableObj.length; i++){
         let tableType = tableObj[i].type;
-        output += `\n\n CREATE TABLE "${tableType}" (`
+        output += `\n CREATE TABLE "${tableType}" (`
         let fieldObjs = Object.values(tableObj[i].fields); // array of field Objects per table
         let req;
         let autoInc;
@@ -15,7 +15,7 @@ const buildSQLScripts = tables => {
         for(let j = 0; j < fieldObjs.length; j++){
             let relation = tables[parseInt(fieldObjs[j].relation.tableIndex)];
             let fieldType;
-            fieldObjs[j].relationSelected ? related = `\nALTER TABLE '${tableType}' ADD CONTRAINT '${relation.type}' );` : related = '';
+            fieldObjs[j].relationSelected ? related = `\nALTER TABLE '${tableType}' ADD CONSTRAINT '${relation.type}' );` : related = '';
             fieldObjs[j].required ? req = `NOT NULL` : req = '';
             fieldObjs[j].autoIncrement && fieldObjs[j].type !== 'ID' ? autoInc = `SERIAL` : autoInc = '';
             fieldObjs[j].unique ? uniqu = `UNIQUE` : uniqu = '';

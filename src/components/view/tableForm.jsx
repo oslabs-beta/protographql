@@ -104,7 +104,7 @@ function TableForm({
   tableIndexState,
   setTableIndexState,
   tables,
-  initialFieldState
+  initialField
 }) {
 
   /*-------------------- Table Input Function --------------------*/
@@ -151,7 +151,7 @@ function TableForm({
             <Button 
               onClick={ () => {
                 const selectedTableStateCopy = deepClone(selectedTable);
-                const newField = deepClone(initialFieldState);
+                const newField = deepClone(initialField);
                 newField.tableNum = selectedTableStateCopy.tableID;
                 newField.fieldNum = selectedTableStateCopy.fieldIndex;
                 selectedTableStateCopy.fields[selectedTableStateCopy.fieldIndex] = newField;

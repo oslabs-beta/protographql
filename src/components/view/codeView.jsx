@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Store } from '../../state/store';
 import styled from 'styled-components';
 import buildGQLSchema from '../../utils/buildGQLSchema';
 import buildGQLResolvers from '../../utils/buildGQLResolvers';
@@ -43,7 +44,10 @@ const Title = styled.p`
 
 /*-------------------- Functional Component --------------------*/
 
-function CodeView({ tables }) {
+function CodeView() {
+
+  const { state: { tables } } = useContext(Store);
+
   return (
     <Code>
       <Column style={{ gridColumn: "1 / 2", gridRow: "1 / 3" }}>

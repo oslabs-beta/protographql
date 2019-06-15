@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useContext }  from "react";
 import {
   Button, 
   Dialog, 
@@ -67,13 +67,14 @@ function PaperComponent(props) {
 
 function DraggableDialog(props) {
 
-  const { state: { popUp }, dispatch, state } = React.useContext(Store);
-
-  console.log('Our state: ', state);
+  //USE CONTEXT
+  const { state: { popUp }, dispatch } = useContext(Store);
 
   const handleClose = () => {
     dispatch({type: SET_POP_UP, payload: ''});
   }
+
+  //END OF USE CONTEXT
 
   return (
     <div>

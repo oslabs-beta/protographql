@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import NavButton from './navButton';
 import styled from 'styled-components';
 import deepClone from '../../utils/deepClone';
+import { Store } from '../../state/store';
+import { 
+  SET_POP_UP,
+  SET_VIEW,
+  SET_SELECTED_TABLE
+ } from '../../actions/actionTypes';
 
 /*-------------------- Styled Components --------------------*/
 
@@ -17,13 +23,17 @@ const SideBar = styled.div`
 
 /*-------------------- Functional Component --------------------*/
 
-function NavSideBar({ 
-  setView, 
-  setPopUp, 
-  setSelectedTable, 
-  tableIndexState, 
-  initialTableState 
-}) {
+function NavSideBar() {
+
+  const { 
+    dispatch,
+    state: {
+      tableIndexState,
+      initialTable
+    }
+  } = useContext(Store);
+
+
   const buttons = () => {
     const input = [];
     const popUp = ['', '', '', 'table'];
@@ -33,8 +43,8 @@ function NavSideBar({
     views.forEach((text, i) => {
       const click = () => {
 
-        setView(route[i]);
-        setPopUp(popUp[i]);
+        dispatch({ type: SET_VIEW, payload: route[i] });
+        dispatch({ type: SET_POP_UP, payload: popUp[i] });
 
         if (i !== 3) {
           const currentButton = document.querySelector(`#${views[i]}`);
@@ -52,10 +62,10 @@ function NavSideBar({
         }
 
         if (i === 3) {
-          const initialTableStateCopy = deepClone(initialTableState);
-          initialTableStateCopy.tableID = tableIndexState;
-          initialTableStateCopy.fields[1].tableNum = tableIndexState;
-          setSelectedTable(initialTableStateCopy);
+          const initialTableCopy = deepClone(initialTable);
+          initialTableCopy.tableID = tableIndexState;
+          initialTableCopy.fields[1].tableNum = tableIndexState;
+          dispatch({ type: SET_SELECTED_TABLE, payload: initialTableCopy });
         }
       }
       if (i !== 3) input.push(

@@ -17,13 +17,13 @@ import { Store } from '../state/store';
 const Main = (props) => {
 
   const { state } = React.useContext(Store);
-  const [selectedTable, setSelectedTable] = useState(state.selectedTableState);
-  const [tableIndexState, setTableIndexState] = useState(state.tableIndexState);
-  const [tables, setTables] = useState(state.tablesState);
-  const [view, setView] = useState(state.viewState);
+  const [selectedTable, setSelectedTable] = useState(state.selectedTable);
+  const [tableIndexState, setTableIndexState] = useState(state.tableIndex);
+  const [tables, setTables] = useState(state.tables);
+  const [view, setView] = useState(state.view);
   const [popUp, setPopUp] = useState(state.popUp);
-  const initialTableState = state.initialTableState;
-  const initialFieldState = state.initialFieldState;
+  const initialTable = state.initialTable;
+  const initialField = state.initialField;
 
   console.log('Props in main: ', state);
 
@@ -43,13 +43,7 @@ const Main = (props) => {
     }}>
       <Header />
       <Welcome />
-      <NavSideBar
-        setView={setView}
-        setPopUp={setPopUp}
-        setSelectedTable={setSelectedTable}
-        tableIndexState={tableIndexState}
-        initialTableState={initialTableState}
-      />
+      <NavSideBar />
       <MainView
         view={view}
         tables={tables}
@@ -61,8 +55,8 @@ const Main = (props) => {
         selectedTable={selectedTable}
         tableIndexState={tableIndexState}
         setTableIndexState={setTableIndexState}
-        initialTableState={initialTableState}
-        initialFieldState={initialFieldState}
+        initialTable={initialTable}
+        initialField={initialField}
       />
     </div>
   )

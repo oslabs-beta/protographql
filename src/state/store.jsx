@@ -5,10 +5,30 @@ const initialState = state;
 
 console.log('Initial State inside the store.jsx: ', initialState);
 
+export const SET_POP_UP = "SET_POP_UP";
+export const SET_SELECTED_TABLE = "SET_SELECTED_TABLE";
+export const SET_TABLE_INDEX = "SET_TABLE_INDEX";
+export const SET_TABLES = "SET_TABLES";
+export const SET_VIEW = "SET_VIEW";
+
 function reducer (state, action) {
+  console.log(action);
   switch (action.type) {
-    case "SET_POPUP":
+    case "SET_POP_UP":
       return { ...state, popUp: action.payload };
+
+    case "SET_SELECTED_TABLE":
+      return { ...state, selectedTable: action.payload };
+
+    case "SET_TABLE_INDEX":
+      return { ...state, tableIndex: action.payload };
+
+    case "SET_TABLES":
+      return { ...state, tables: action.payload };
+
+    case "SET_VIEW":
+      console.log(action.type)
+      return { ...state, view: action.payload };
 
     default:
       return state;

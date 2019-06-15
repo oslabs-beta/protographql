@@ -5,18 +5,17 @@ import buildGQLResolvers from '../../utils/buildGQLResolvers';
 import buildSQLScripts from '../../utils/buildSQLScripts';
 
 const Code = styled.div`
-  margin: 20px;
+  margin: 13px;
   font-family: Courier New, Consolas, Monaco, Lucida Console;
   font-size: 15px;
   background-color: #EFF0F1;
-  display: flex;
+  display: grid;
+  height: calc(100vh - 26px - 64px);
 `;
 
 // Height is currently hard-coded. May need to look into dynamic solution
 const Column = styled.div`
-  height: calc(100vh - 40px - 64px - 42px);
   background-color: white;
-  width: 50%;
   margin: 10px;
   padding: 10px;
   overflow: scroll;
@@ -43,19 +42,19 @@ const Title = styled.p`
 function CodeView({ tables }) {
   return (
     <Code>
-      <Column>
-        <Title>SQL Scripts</Title>
-        <pre>
-          {buildSQLScripts(tables)}
-        </pre>
-      </Column>
-      <Column>
+      <Column style={{ gridColumn: "1 / 2", gridRow: "1 / 3" }}>
         <Title>GraphQL Schema</Title>
         <pre>
           {buildGQLSchema(tables)}
         </pre>
       </Column>
-      <Column>
+      <Column style={{ gridColumn: "2 / 3", gridRow: "1 / 2" }}>
+        <Title>SQL Scripts</Title>
+        <pre>
+          {buildSQLScripts(tables)}
+        </pre>
+      </Column>
+      <Column style={{ gridColumn: "2 / 3", gridRow: "2 / 3" }}>
         <Title>GraphQL Resolvers</Title>
         <pre>
           {buildGQLResolvers(tables)}

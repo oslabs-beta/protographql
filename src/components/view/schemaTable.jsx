@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Buttons = styled.div`
+const Buttons = styled.span`
   color: black;
   margin-left: 5px;
   cursor: pointer;

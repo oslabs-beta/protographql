@@ -27,7 +27,6 @@ function MainView({
         view={view}
         setSelectedTable={setSelectedTable}
       />}
-      {/* {view === 'table' && <TableForm />}  */}
       {popUp === 'table' && <TableForm
         setPopUp={setPopUp}
         setTables={setTables}

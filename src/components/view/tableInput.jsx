@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
+
+/*-------------------- Styled Components --------------------*/
+
 const Tr = styled.tr`
   border-top: 1px solid rgba(0, 0, 0, 0.2);
   vertical-align: middle;
@@ -26,8 +29,15 @@ const Input = styled.input`
   font-size: .75em;
 `;
 
+/*-------------------- Functional Component --------------------*/
 
-function TableInput({ field, selectedTable, fieldIndex, setSelectedTable }) {
+function TableInput({ 
+  field, 
+  selectedTable, 
+  fieldIndex, 
+  setSelectedTable 
+}) {
+
   const {
     autoIncrement,
     defaultValue,

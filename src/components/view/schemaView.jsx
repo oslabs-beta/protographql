@@ -1,16 +1,28 @@
-import React, { Fragment } from 'react';
-import SchemaTable from './schemaTable'
+import React from 'react';
+import SchemaTable from './schemaTable';
 import styled from 'styled-components';
+import deepClone from  '../../utils/deepClone';
+
+/*-------------------- Styled Component --------------------*/
 
 const View = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-`
+`;
 
-function SchemaView({ tables, setTables, setPopUp, view, setView, setSelectedTable }) {
+/*-------------------- Functional Component --------------------*/
+
+function SchemaView({ 
+  tables, 
+  setTables, 
+  setPopUp, 
+  setView, 
+  setSelectedTable 
+}) {
+
   const deleteTable = id => {
-    const newTables = { ...tables };
+    const newTables = deepClone(tables);
     delete newTables[id];
     setTables(newTables);
   }

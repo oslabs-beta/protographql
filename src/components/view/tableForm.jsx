@@ -4,7 +4,9 @@ import TableNameInput from './tableNameInput';
 import TableField from './tableField';
 import TableInput from './tableInput';
 import Draggable from 'react-draggable';
-import { tablesState } from '../../state/initialState';
+import deepClone from '../../utils/deepClone';
+
+/*-------------------- Styled Components --------------------*/
 
 const CustomTable = styled.div`
   height: auto;
@@ -43,6 +45,7 @@ const TableHeader = styled.div`
   padding-bottom: 4px;
   width: 100%;
   background: rgba(50,67,83,1);
+  cursor: move;
 `;
 
 const FadeThePage = styled.div`
@@ -91,6 +94,8 @@ const Buttons = styled.span`
   margin-right: 5px;
 `;
 
+/*-------------------- Functional Component --------------------*/
+
 function TableForm({
   setPopUp,
   setTables,
@@ -102,7 +107,7 @@ function TableForm({
   initialFieldState
 }) {
 
-  //Creating Table Inputs (these are fields)
+  /*-------------------- Table Input Function --------------------*/
   const fieldInputs = [];
   const createTableInputs = () => {
     const fields = Object.keys(selectedTable.fields);
@@ -124,7 +129,7 @@ function TableForm({
     <FadeThePage>
       <Draggable handle="#header">
         <CustomTable>
-          <TableHeader id="header" style={{ cursor: "move" }} setPopUp={setPopUp}>
+          <TableHeader id="header" >
             <Buttons>
               <CloseButton onClick={() => { setPopUp('') }}>
                 <i className="fas fa-times"></i>
@@ -145,8 +150,8 @@ function TableForm({
           <TableFooter>
             <Button 
               onClick={ () => {
-                const selectedTableStateCopy = JSON.parse(JSON.stringify(selectedTable));
-                const newField = JSON.parse(JSON.stringify(initialFieldState));
+                const selectedTableStateCopy = deepClone(selectedTable);
+                const newField = deepClone(initialFieldState);
                 newField.tableNum = selectedTableStateCopy.tableID;
                 newField.fieldNum = selectedTableStateCopy.fieldIndex;
                 selectedTableStateCopy.fields[selectedTableStateCopy.fieldIndex] = newField;

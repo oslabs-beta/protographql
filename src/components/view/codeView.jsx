@@ -1,8 +1,10 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import buildGQLSchema from '../../utils/buildGQLSchema';
 import buildGQLResolvers from '../../utils/buildGQLResolvers';
 import buildSQLScripts from '../../utils/buildSQLScripts';
+
+/*-------------------- Styled Components --------------------*/
 
 const Code = styled.div`
   margin: 13px;
@@ -13,11 +15,11 @@ const Code = styled.div`
   height: calc(100vh - 26px - 64px);
 `;
 
-// Height is currently hard-coded. May need to look into dynamic solution
 const Column = styled.div`
   background-color: white;
   margin: 10px;
   padding: 10px;
+  height: auto;
   overflow: scroll;
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.12);
@@ -38,6 +40,8 @@ const Title = styled.p`
   font-family: "Roboto", sans-serif;
   padding-bottom: 15px;
 `;
+
+/*-------------------- Functional Component --------------------*/
 
 function CodeView({ tables }) {
   return (

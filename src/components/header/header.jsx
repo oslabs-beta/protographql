@@ -8,6 +8,8 @@ import {
   IconButton
 } from '@material-ui/core';
 
+/*-------------------- Styled components --------------------*/
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 3,
@@ -27,6 +29,8 @@ const useStyles = makeStyles(theme => ({
   }
 
 }));
+
+/*-------------------- Functional Component --------------------*/
 
 function Header() {
   const classes = useStyles();

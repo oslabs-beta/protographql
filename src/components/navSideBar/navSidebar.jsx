@@ -1,7 +1,9 @@
 import React from 'react';
 import NavButton from './navButton';
 import styled from 'styled-components';
+import deepClone from '../../utils/deepClone';
 
+/*-------------------- Styled Components --------------------*/
 
 const SideBar = styled.div`
   background-color: white;
@@ -13,17 +15,23 @@ const SideBar = styled.div`
   position: relative;
 `;
 
-//when someone clicks table, the schema should stay.
-// do we need tableIndexState here?
-function NavSideBar({ setView, setPopUp, setSelectedTable, tableIndexState, initialTableState }) {
+/*-------------------- Functional Component --------------------*/
+
+function NavSideBar({ 
+  setView, 
+  setPopUp, 
+  setSelectedTable, 
+  tableIndexState, 
+  initialTableState 
+}) {
   const buttons = () => {
-    let input = [];
+    const input = [];
     const popUp = ['', '', '', 'table'];
     const views = ['Schema', 'Code', 'Export', 'Add Table'];
     const icons = ["fas fa-code-branch", "fas fa-code", "fas fa-file-download", "fas fa-plus-square"]
     const route = ['schema', 'code', 'export', 'schema'];
     views.forEach((text, i) => {
-      let click = () => {
+      const click = () => {
 
         setView(route[i]);
         setPopUp(popUp[i]);
@@ -44,7 +52,7 @@ function NavSideBar({ setView, setPopUp, setSelectedTable, tableIndexState, init
         }
 
         if (i === 3) {
-          const initialTableStateCopy = JSON.parse(JSON.stringify(initialTableState));
+          const initialTableStateCopy = deepClone(initialTableState);
           initialTableStateCopy.tableID = tableIndexState;
           initialTableStateCopy.fields[1].tableNum = tableIndexState;
           setSelectedTable(initialTableStateCopy);
@@ -74,7 +82,6 @@ function NavSideBar({ setView, setPopUp, setSelectedTable, tableIndexState, init
       );
 
     });
-
     return input;
   }
   return (

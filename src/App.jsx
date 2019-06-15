@@ -1,4 +1,4 @@
 import * as React from "react";
 import Main from './container/mainContainer';
 
-export const App = (props) => <Main />;
+export const App = () => <Main />;

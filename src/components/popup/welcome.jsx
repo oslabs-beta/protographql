@@ -1,14 +1,18 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import Paper from "@material-ui/core/Paper";
+import {
+  Button, 
+  Dialog, 
+  DialogActions, 
+  DialogContent, 
+  DialogContentText, 
+  DialogTitle, 
+  Paper
+} from "@material-ui/core";
 import Draggable from "react-draggable";
 import { styled } from "@material-ui/styles";
+
+/*-------------------- Styled components --------------------*/
 
 const Title = styled(DialogTitle)({
   width: "500px",
@@ -25,7 +29,6 @@ const Text = styled(DialogContentText)({
   margin: '15px',
   textAlign: "center",
   marginBottom: '7px',
-  // border: '1px solid black',
 });
 
 const ContentDiv = styled(DialogContent)({
@@ -34,7 +37,6 @@ const ContentDiv = styled(DialogContent)({
   textAlign: 'center',
   width: '500px',
   color: '#161e26',
-  // border: '1px solid black',
 });
 
 const StartButton = styled(Button)({
@@ -51,6 +53,8 @@ const DialogActionsDiv = styled(DialogActions)({
   margin: 0,
 });
 
+/*-------------------- Functional Component --------------------*/
+
 function PaperComponent(props) {
   return (
     <Draggable cancel={'[class*="MuiDialogContent-root"]'}>
@@ -59,15 +63,14 @@ function PaperComponent(props) {
   );
 }
 
-function DraggableDialog(
-  //{ popUp, setPopUp }
-  ) {
-  const [open, setOpen] = React.useState(true);
-  const handleClose = () => setOpen(false);
+function DraggableDialog({ popUp, setPopUp }) {
+  const handleClose = () => {
+    setPopUp('');
+  }
 
   return (
     <div>
-      <Dialog open={open} PaperComponent={PaperComponent}>
+      <Dialog open={popUp === 'welcome'} PaperComponent={PaperComponent}>
         <Title style={{ cursor: "move" }} id="draggable-dialog-title">P R O T O G R A P H Q L</Title>
 
         <ContentDiv>
@@ -89,12 +92,11 @@ function DraggableDialog(
         </ContentDiv>
 
         <DialogActionsDiv>
-          <StartButton onClick={handleClose} color="primary">Start</StartButton>
+          <StartButton onClick={handleClose} color="primary" >Start</StartButton>
         </DialogActionsDiv>
 
         <ContentDiv style={{ marginTop: "15px", marginBottom: "25px" }}>
           Please prepare your credit card.
-          
         </ContentDiv>
       </Dialog>
     </div>

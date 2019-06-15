@@ -1,9 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import deepClone from '../../utils/deepClone';
+
+/*-------------------- Styled Components --------------------*/
 
 const Wrapper = styled.div`
   background-color: white;
-`
+`;
 
 const Input = styled.input`
   padding: 5px 10px;
@@ -21,10 +24,14 @@ const Input = styled.input`
   }
 `;
 
+/*-------------------- Functional Component --------------------*/
+
 function TableNameInput({ name, selectedTable, setSelectedTable }) {
 
   const onTableNameChange = (e) => {
-    setSelectedTable({ ...selectedTable, type: e.target.value });
+    const newSelectedTable = deepClone(selectedTable);
+    newSelectedTable.type = e.target.value;
+    setSelectedTable(newSelectedTable);
   }
 
   return (

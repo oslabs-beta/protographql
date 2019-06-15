@@ -1,7 +1,17 @@
 import React from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
-import { Table, Typography, TableBody, TableCell, TableHead, TableRow, Paper } from '@material-ui/core/';
+import { 
+  Table, 
+  Typography, 
+  TableBody, 
+  TableCell, 
+  TableHead, 
+  TableRow, 
+  Paper 
+} from '@material-ui/core/';
 import styled from 'styled-components';
+
+/*-------------------- Styled Components --------------------*/
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -58,6 +68,8 @@ const Buttons = styled.span`
     color: #DD399C;
   }
 `;
+
+/*-------------------- Functional Component --------------------*/
 
 function SchemaTable({ 
   table,

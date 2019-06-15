@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Draggable from 'react-draggable';
+
+/*-------------------- Styled Components --------------------*/
 
 const Tr = styled.tr`
   border-top: 1px solid rgba(0, 0, 0, 0.2);
@@ -11,6 +12,7 @@ const Th = styled.th`
   padding: .9em;
 `;
 
+/*-------------------- Functional Component --------------------*/
 
 function TableField() {
   return (

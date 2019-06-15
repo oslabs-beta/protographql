@@ -1,6 +1,8 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
+/*-------------------- Styled Components --------------------*/
+
 const fontColor = keyframes`
   to {
     color: #e535ab;
@@ -32,6 +34,8 @@ const Icon = styled.span`
   margin: 5px;
   font-size: calc(14px + 1vw);
 `;
+
+/*-------------------- Functional Component --------------------*/
 
 const NavButton = ({ className, click, view, style }) => {
   return (

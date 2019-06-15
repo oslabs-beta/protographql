@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import Header from '../components/header/header';
 import NavSideBar from '../components/navSideBar/navSidebar';
 import Welcome from '../components/popup/welcome';
-import TableDetailView from '../components/view/tableDetailView';
 // import * as state from '../state/initialState';
 import * as state from '../state/mockState';
 import MainView from '../components/view/mainView';
-import { relative } from 'path';
 
 /* Comments
   SetView toggles the tab shown in the sandbox area
@@ -39,10 +37,7 @@ const Main = () => {
       fontFamily: "'Roboto', sans-serif",
     }}>
       <Header />
-      <Welcome
-      // never have been used
-      //popUp={popUp} setPopUp={setPopUp}
-      />
+      <Welcome setPopUp={setPopUp} popUp={popUp} />
       <NavSideBar
         setView={setView}
         setPopUp={setPopUp}

@@ -195,4 +195,4 @@ export const tablesState = {
 
 export const viewState = 'table';
 
-export const popUpState = 'welcome';
+export const popUp = 'welcome';

@@ -11,6 +11,8 @@ import {
 } from "@material-ui/core";
 import Draggable from "react-draggable";
 import { styled } from "@material-ui/styles";
+import { Store } from '../../state/store';
+import { SET_POP_UP } from '../../actions/actionTypes';
 
 /*-------------------- Styled components --------------------*/
 
@@ -63,9 +65,14 @@ function PaperComponent(props) {
   );
 }
 
-function DraggableDialog({ popUp, setPopUp }) {
+function DraggableDialog(props) {
+
+  const { state: { popUp }, dispatch, state } = React.useContext(Store);
+
+  console.log('Our state: ', state);
+
   const handleClose = () => {
-    setPopUp('');
+    dispatch({type: SET_POP_UP, payload: ''});
   }
 
   return (

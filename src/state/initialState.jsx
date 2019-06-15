@@ -64,4 +64,4 @@ export const viewState = 'schema';
 
 //this will toggle popups
 //potential popups are welcome and export (select folder to save & success)
-export const popUpState = 'welcome';
+export const popUp = 'welcome';

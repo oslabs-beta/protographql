@@ -4,7 +4,8 @@ import {
   SET_POP_UP, 
   SET_TABLES, 
   SET_SELECTED_TABLE, 
-  SET_TABLE_INDEX 
+  SET_TABLE_INDEX,
+  EDIT_FIELD
 } from '../../actions/actionTypes';
 import styled from 'styled-components';
 import TableNameInput from './tableNameInput';
@@ -125,7 +126,7 @@ function TableForm() {
         <TableInput
           field={selectedTable.fields[currentFieldKey]}
           selectedTable={selectedTable}
-          setSelectedTable={payload => dispatch({ type: SET_SELECTED_TABLE, payload })}
+          editField={payload => dispatch({ type: EDIT_FIELD, payload })}
           fieldIndex={currentFieldKey}
           key={selectedTable.tableID + "-" + "field" + "-" +  currentFieldKey}
         />);

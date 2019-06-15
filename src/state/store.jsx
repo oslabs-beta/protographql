@@ -1,21 +1,32 @@
 import React from 'react';
 import * as state from '../state/mockState';
+import deepClone from '../utils/deepClone';
 
 const initialState = state;
 
-export const SET_POP_UP = "SET_POP_UP";
-export const SET_SELECTED_TABLE = "SET_SELECTED_TABLE";
-export const SET_TABLE_INDEX = "SET_TABLE_INDEX";
-export const SET_TABLES = "SET_TABLES";
-export const SET_VIEW = "SET_VIEW";
-
 function reducer(state, action) {
+
+  const newState = deepClone(state);
+  let selectedTable;
+
   switch (action.type) {
     case "SET_POP_UP":
       return { ...state, popUp: action.payload };
 
+    case "EDIT_FIELD":
+      const { fieldKey, fieldProperty, value } = action.payload;
+      newState.selectedTable.fields[fieldKey][fieldProperty] = value;
+      return { ...state, selectedTable: newState.selectedTable};
+
     case "SET_SELECTED_TABLE":
-      return { ...state, selectedTable: action.payload };
+      
+      if (action.payload === -1) {
+        selectedTable = newState.initialTable;
+        selectedTable.tableID = newState.tableIndex;
+        selectedTable.fields[1].tableNum = newState.tableIndex;
+      }
+      if (action.payload !== -1) selectedTable = newState.tables[action.payload];
+      return { ...state, selectedTable };
 
     case "SET_TABLE_INDEX":
       return { ...state, tableIndex: action.payload };

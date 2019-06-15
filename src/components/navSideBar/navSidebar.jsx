@@ -61,12 +61,7 @@ function NavSideBar() {
           }
         }
 
-        if (i === 3) {
-          const initialTableCopy = deepClone(initialTable);
-          initialTableCopy.tableID = tableIndex;
-          initialTableCopy.fields[1].tableNum = tableIndex;
-          dispatch({ type: SET_SELECTED_TABLE, payload: initialTableCopy });
-        }
+        if (i === 3) dispatch({ type: SET_SELECTED_TABLE, payload: -1 });
       }
       if (i !== 3) input.push(
         <NavButton 

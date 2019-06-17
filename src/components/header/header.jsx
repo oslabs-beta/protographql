@@ -47,9 +47,10 @@ function Header() {
             <span className={classes.pink}>GraphQL</span>
           </Typography>
           <Button color="inherit">
-            <a href="https://github.com/oslabs-beta/protographql">
-              <img src="../public/assets/pictures/GitHub-Mark-Light-64px.png" height="40" />
-            </a>
+            <i class="fas fa-file-alt fa-3x"></i>
+          </Button>
+          <Button color="inherit">
+            <img src="../public/assets/pictures/GitHub-Mark-Light-64px.png" height="45" />
           </Button>
         </Toolbar>
       </AppBar>

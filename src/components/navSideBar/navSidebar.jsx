@@ -1,12 +1,11 @@
 import React, { useContext } from 'react';
 import NavButton from './navButton';
 import styled from 'styled-components';
-import deepClone from '../../utils/deepClone';
 import { Store } from '../../state/store';
 import { 
   SET_POP_UP,
   SET_VIEW,
-  SET_SELECTED_TABLE
+  ADD_TABLE
  } from '../../actions/actionTypes';
 
 /*-------------------- Styled Components --------------------*/
@@ -25,14 +24,7 @@ const SideBar = styled.div`
 
 function NavSideBar() {
 
-  const { 
-    dispatch,
-    state: {
-      tableIndex,
-      initialTable
-    }
-  } = useContext(Store);
-
+  const { dispatch } = useContext(Store);
 
   const buttons = () => {
     const input = [];
@@ -61,7 +53,7 @@ function NavSideBar() {
           }
         }
 
-        if (i === 3) dispatch({ type: SET_SELECTED_TABLE, payload: -1 });
+        if (i === 3) dispatch({ type: ADD_TABLE });
       }
       if (i !== 3) input.push(
         <NavButton 

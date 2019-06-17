@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Store } from '../../state/store';
+import { SET_POP_UP } from '../../actions/actionTypes';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   AppBar,
@@ -7,6 +9,8 @@ import {
   Button,
   IconButton
 } from '@material-ui/core';
+
+
 
 /*-------------------- Styled components --------------------*/
 
@@ -26,14 +30,26 @@ const useStyles = makeStyles(theme => ({
   },
   pink: {
     color: "#DD399C",
+  },
+  button: {
+    color: 'white',
+    backgroundColor: '#324353',
+    border: '1px solid white',
+    marginRight: '10px',
+    "&:hover": {
+      backgroundColor: '#EEEFF0',
+      transform: 'scale(1.01)',
+      color: '#324353',
+      border: '1px solid #324353',
+    }
   }
-
 }));
 
 /*-------------------- Functional Component --------------------*/
 
 function Header() {
   const classes = useStyles();
+  const { state: { popUp }, dispatch } = useContext(Store);
 
   return (
     <div className={classes.root}>
@@ -46,10 +62,11 @@ function Header() {
             <span>Proto</span>
             <span className={classes.pink}>GraphQL</span>
           </Typography>
-          <Button color="inherit">
-            <a href="https://github.com/oslabs-beta/protographql">
-              <img src="../public/assets/pictures/GitHub-Mark-Light-64px.png" height="40" />
-            </a>
+          <Button color="inherit" className={classes.button} onClick={() => { dispatch({ type: SET_POP_UP, payload: 'welcome' }) }}>
+            <i className="fas fa-file-alt fa-3x"></i>
+          </Button>
+          <Button color="inherit" className={classes.button}>
+            <i className="fab fa-github fa-3x"></i>
           </Button>
         </Toolbar>
       </AppBar>

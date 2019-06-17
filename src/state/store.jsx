@@ -13,6 +13,12 @@ function reducer(state, action) {
     case "SET_POP_UP":
       return { ...state, popUp: action.payload };
 
+    case "ADD_TABLE":
+      selectedTable = newState.initialTable;
+      selectedTable.tableID = newState.tableIndex;
+      selectedTable.fields[1].tableNum = newState.tableIndex;  
+      return { ...state, selectedTable, tableIndex: newState.tableIndex + 1 };
+
     case "ADD_FIELD":
       // Assign which table and field this newly added field belongs to
       newState.initialField.tableNum = newState.selectedTable.tableID;

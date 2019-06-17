@@ -2,10 +2,10 @@ import React, { useContext } from 'react';
 import { Store } from '../../state/store';
 import { 
   SET_POP_UP, 
-  SET_TABLES, 
-  SET_SELECTED_TABLE, 
+  SET_TABLES,
   SET_TABLE_INDEX,
   EDIT_FIELD,
+  ADD_FIELD,
   EDIT_SELECTED_TABLE_NAME
 } from '../../actions/actionTypes';
 import styled from 'styled-components';
@@ -158,15 +158,7 @@ function TableForm() {
           </Table>
           <TableFooter>
             <Button 
-              onClick={ () => {
-                const selectedTableStateCopy = deepClone(selectedTable);
-                const newField = deepClone(initialField);
-                newField.tableNum = selectedTableStateCopy.tableID;
-                newField.fieldNum = selectedTableStateCopy.fieldIndex;
-                selectedTableStateCopy.fields[selectedTableStateCopy.fieldIndex] = newField;
-                selectedTableStateCopy.fieldIndex += 1;
-                dispatch({ type: SET_SELECTED_TABLE, payload: selectedTableStateCopy });
-            }}>
+              onClick={ () => dispatch({ type: ADD_FIELD }) }>
               <i className="fas fa-plus" /> Add Field
             </Button>
             <Button

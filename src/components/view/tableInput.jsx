@@ -52,14 +52,21 @@ const Input = styled.input`
   font-size: .75em;
 `;
 
+const TrashCan = styled.span`
+  font-size: 18px;
+  &:hover {
+    color: #DD399C;
+    cursor: pointer;
+  }
+`;
+
 /*-------------------- Functional Component --------------------*/
 
 function TableInput({ 
   field, 
-  selectedTable, 
   fieldIndex, 
-  setSelectedTable,
-  editField
+  editField,
+  deleteField
 }) {
 
   const {
@@ -94,7 +101,10 @@ function TableInput({
 
   return (
     <Tr>
-      <Td><i className="fas fa-trash" style={{ fontSize: "18px" }} /></Td>
+      <Td>
+        <TrashCan onClick={ () => deleteField(fieldIndex) }>
+          <i className="fas fa-trash" />
+        </TrashCan></Td>
       <Td>
         <Input
           type="text"

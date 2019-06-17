@@ -4,8 +4,9 @@ import {
   SET_POP_UP, 
   SET_TABLES,
   SET_TABLE_INDEX,
-  EDIT_FIELD,
   ADD_FIELD,
+  DELETE_FIELD,
+  EDIT_FIELD,
   EDIT_SELECTED_TABLE_NAME
 } from '../../actions/actionTypes';
 import styled from 'styled-components';
@@ -93,8 +94,9 @@ const CloseButton = styled.span`
   padding: 5px;
   color: white;
   &:hover {
-    color: #DD399C;
     cursor: pointer;
+
+    color: #DD399C;
   }
 `;
 
@@ -126,8 +128,8 @@ function TableForm() {
       fieldInputs.push(
         <TableInput
           field={selectedTable.fields[currentFieldKey]}
-          selectedTable={selectedTable}
-          editField={payload => dispatch({ type: EDIT_FIELD, payload })}
+          editField={ payload => dispatch({ type: EDIT_FIELD, payload }) }
+          deleteField={ payload => dispatch({ type: DELETE_FIELD, payload }) }
           fieldIndex={currentFieldKey}
           key={selectedTable.tableID + "-" + "field" + "-" +  currentFieldKey}
         />);

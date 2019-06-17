@@ -22,6 +22,10 @@ function reducer(state, action) {
       newState.selectedTable.fields[newState.selectedTable.fieldIndex++] = newState.initialField;
       return { ...state, selectedTable: newState.selectedTable };
 
+    case "DELETE_FIELD":
+      delete newState.selectedTable.fields[action.payload];
+      return { ...state, selectedTable: newState.selectedTable };
+
     case "EDIT_FIELD":
       const { fieldKey, fieldProperty, value } = action.payload;
       newState.selectedTable.fields[fieldKey][fieldProperty] = value;

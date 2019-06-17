@@ -19,17 +19,20 @@ function createWindow() {
     //      properties: ['openFile', 'openDirectory', 'multiSelections']
     //  }));
 
-     // Serve our index.html file
-     win.loadFile('index.html');
+    //Maximize browser window
+    win.maximize();
 
-     // Open developer tools panel when our window opens
-     win.webContents.openDevTools();
+    // Serve our index.html file
+    win.loadFile('index.html');
 
-     // Add event listener to set our global window variable to null
-     // This is needed so that window is able to reopen when user relaunches the app
-     win.on('closed', () => {
-         win = null;
-     });
+    // Open developer tools panel when our window opens
+    //  win.webContents.openDevTools();
+
+    // Add event listener to set our global window variable to null
+    // This is needed so that window is able to reopen when user relaunches the app
+    win.on('closed', () => {
+        win = null;
+    });
 }
 
 // Creates our window when electron has initialized for the first time

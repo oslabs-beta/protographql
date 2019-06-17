@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import deepClone from '../../utils/deepClone';
 
 /*-------------------- Styled Components --------------------*/
 
@@ -26,13 +25,9 @@ const Input = styled.input`
 
 /*-------------------- Functional Component --------------------*/
 
-function TableNameInput({ name, selectedTable, setSelectedTable }) {
+function TableNameInput({ name, editSelectedTableName }) {
 
-  const onTableNameChange = (e) => {
-    const newSelectedTable = deepClone(selectedTable);
-    newSelectedTable.type = e.target.value;
-    setSelectedTable(newSelectedTable);
-  }
+  const onTableNameChange = (e) => editSelectedTableName(e.target.value);
 
   return (
     <Wrapper>

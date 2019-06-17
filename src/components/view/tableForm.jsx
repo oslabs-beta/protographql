@@ -5,7 +5,8 @@ import {
   SET_TABLES, 
   SET_SELECTED_TABLE, 
   SET_TABLE_INDEX,
-  EDIT_FIELD
+  EDIT_FIELD,
+  EDIT_SELECTED_TABLE_NAME
 } from '../../actions/actionTypes';
 import styled from 'styled-components';
 import TableNameInput from './tableNameInput';
@@ -146,9 +147,8 @@ function TableForm() {
             </Buttons>
           </TableHeader>
           <TableNameInput
-            name={selectedTable.type}     
-            selectedTable={selectedTable}
-            setSelectedTable={payload => dispatch({ type: SET_SELECTED_TABLE, payload })}
+            name={selectedTable.type}
+            editSelectedTableName={payload => dispatch({ type: EDIT_SELECTED_TABLE_NAME, payload })}
           />
           <Table id='table' >
             <tbody>

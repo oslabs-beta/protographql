@@ -32,14 +32,15 @@ const useStyles = makeStyles(theme => ({
     color: "#DD399C",
   },
   button: {
-    color: '#DD399C',
+    color: 'white',
     backgroundColor: '#324353',
-    border: '1px solid #DD399C',
+    border: '1px solid white',
     marginRight: '10px',
     "&:hover": {
-      color: '#324353',
-      backgroundColor: '#DD399C',
+      backgroundColor: '#EEEFF0',
       transform: 'scale(1.01)',
+      color: '#324353',
+      border: '1px solid #324353',
     }
   }
 }));

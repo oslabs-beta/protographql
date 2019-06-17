@@ -51,12 +51,13 @@ function Header() {
   const classes = useStyles();
   const { state: { popUp }, dispatch } = useContext(Store);
 
+
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.header}>
         <Toolbar >
           <IconButton edge="start" className={classes.menuButton} style={{ padding: '0px 8px' }} aria-label="Menu">
-            <img src="../public/assets/pictures/ProtoGraphQLLogo.png" height="50" />
+            <img src="./public/assets/pictures/ProtoGraphQLLogo.png" height="50" />
           </IconButton>
           <Typography variant="h3" className={classes.title}>
             <span>Proto</span>

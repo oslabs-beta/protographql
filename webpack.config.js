@@ -49,6 +49,17 @@ module.exports = {
             enforce: "pre",
             test: /\.js$/,
             loader: "source-map-loader"
+          },
+
+          {
+            test: /\.(png|jp(e*)g|svg|gif)$/,
+            use: [{
+              loader: 'url-loader',
+              options: {
+                limit: 800,
+                name: 'images/[hash]-[name]'
+              }
+            }]
           }
       ]
   }

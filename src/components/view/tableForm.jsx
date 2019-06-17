@@ -2,9 +2,10 @@ import React, { useContext } from 'react';
 import { Store } from '../../state/store';
 import { 
   SET_POP_UP, 
-  SET_TABLES, 
-  SET_SELECTED_TABLE, 
+  SET_TABLES,
   SET_TABLE_INDEX,
+  ADD_FIELD,
+  DELETE_FIELD,
   EDIT_FIELD,
   EDIT_SELECTED_TABLE_NAME
 } from '../../actions/actionTypes';
@@ -93,8 +94,9 @@ const CloseButton = styled.span`
   padding: 5px;
   color: white;
   &:hover {
-    color: #DD399C;
     cursor: pointer;
+
+    color: #DD399C;
   }
 `;
 
@@ -126,8 +128,8 @@ function TableForm() {
       fieldInputs.push(
         <TableInput
           field={selectedTable.fields[currentFieldKey]}
-          selectedTable={selectedTable}
-          editField={payload => dispatch({ type: EDIT_FIELD, payload })}
+          editField={ payload => dispatch({ type: EDIT_FIELD, payload }) }
+          deleteField={ payload => dispatch({ type: DELETE_FIELD, payload }) }
           fieldIndex={currentFieldKey}
           key={selectedTable.tableID + "-" + "field" + "-" +  currentFieldKey}
         />);
@@ -158,15 +160,7 @@ function TableForm() {
           </Table>
           <TableFooter>
             <Button 
-              onClick={ () => {
-                const selectedTableStateCopy = deepClone(selectedTable);
-                const newField = deepClone(initialField);
-                newField.tableNum = selectedTableStateCopy.tableID;
-                newField.fieldNum = selectedTableStateCopy.fieldIndex;
-                selectedTableStateCopy.fields[selectedTableStateCopy.fieldIndex] = newField;
-                selectedTableStateCopy.fieldIndex += 1;
-                dispatch({ type: SET_SELECTED_TABLE, payload: selectedTableStateCopy });
-            }}>
+              onClick={ () => dispatch({ type: ADD_FIELD }) }>
               <i className="fas fa-plus" /> Add Field
             </Button>
             <Button

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron .",
     "build": "webpack -p",
-    "dev": "webpack-dev-server --mode=development & electron .",
+    "dev": "webpack-dev-server --mode=development",
     "test": "test"
   },
   "repository": {

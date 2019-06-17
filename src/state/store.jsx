@@ -13,6 +13,15 @@ function reducer(state, action) {
     case "SET_POP_UP":
       return { ...state, popUp: action.payload };
 
+    case "ADD_FIELD":
+      // Assign which table and field this newly added field belongs to
+      newState.initialField.tableNum = newState.selectedTable.tableID;
+      newState.initialField.fieldNum = newState.selectedTable.fieldIndex;
+
+      // Add the new field to our selectedTable and increment the field index on our selectedTable
+      newState.selectedTable.fields[newState.selectedTable.fieldIndex++] = newState.initialField;
+      return { ...state, selectedTable: newState.selectedTable };
+
     case "EDIT_FIELD":
       const { fieldKey, fieldProperty, value } = action.payload;
       newState.selectedTable.fields[fieldKey][fieldProperty] = value;

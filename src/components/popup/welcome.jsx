@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useContext }  from "react";
 import {
   Button, 
   Dialog, 
@@ -11,6 +11,8 @@ import {
 } from "@material-ui/core";
 import Draggable from "react-draggable";
 import { styled } from "@material-ui/styles";
+import { Store } from '../../state/store';
+import { SET_POP_UP } from '../../actions/actionTypes';
 
 /*-------------------- Styled components --------------------*/
 
@@ -63,10 +65,16 @@ function PaperComponent(props) {
   );
 }
 
-function DraggableDialog({ popUp, setPopUp }) {
+function DraggableDialog(props) {
+
+  //USE CONTEXT
+  const { state: { popUp }, dispatch } = useContext(Store);
+
   const handleClose = () => {
-    setPopUp('');
+    dispatch({type: SET_POP_UP, payload: ''});
   }
+
+  //END OF USE CONTEXT
 
   return (
     <div>

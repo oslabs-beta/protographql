@@ -58,7 +58,8 @@ function TableInput({
   field, 
   selectedTable, 
   fieldIndex, 
-  setSelectedTable 
+  setSelectedTable,
+  editField
 }) {
 
   const {
@@ -91,22 +92,6 @@ function TableInput({
     isChecked("#queryable" + fieldNum, queryable);
   }, []);
 
-  const onFieldNameChange = (e) => {
-    const newTable = deepClone(selectedTable);
-    const newField = deepClone(newTable.fields[fieldIndex]);
-    newField.name = e.target.value;
-    newTable.fields[fieldIndex] = newField;
-    setSelectedTable(newTable);
-  }
-
-  const onFieldDefaultValueChange = (e) => {
-    const newTable = deepClone(selectedTable);
-    const newField = deepClone(newTable.fields[fieldIndex]);
-    newField.defaultValue = e.target.value;
-    newTable.fields[fieldIndex] = newField;
-    setSelectedTable(newTable);
-  }
-
   return (
     <Tr>
       <Td><i className="fas fa-trash" style={{ fontSize: "18px" }} /></Td>
@@ -115,19 +100,13 @@ function TableInput({
           type="text"
           placeholder="Field Name"
           defaultValue={name}
-          onChange={onFieldNameChange}
+          onChange={e => editField({ value: e.target.value, fieldKey: fieldIndex, fieldProperty: "name" })}
         />
       </Td>
       <Td>
         <Selected
           defaultValue={type}
-          onChange={(e) => {
-            const newTable = deepClone(selectedTable);
-            const newField = deepClone(newTable.fields[fieldIndex]);
-            newField.type = e.target.value;
-            newTable.fields[fieldIndex] = newField;
-            setSelectedTable(newTable);
-          }}
+          onChange={e => editField({ value: e.target.value, fieldKey: fieldIndex, fieldProperty: "type" })}
         >
           <option value="ID">ID</option>
           <option value="String">String</option>
@@ -141,7 +120,7 @@ function TableInput({
           type="text"
           placeholder="Default Value"
           defaultValue={defaultValue}
-          onChange={onFieldDefaultValueChange}
+          onChange={e =>  editField({ value: e.target.value, fieldKey: fieldIndex, fieldProperty: "defaultValue" })}
         />
       </Td>
       <Td>
@@ -152,11 +131,7 @@ function TableInput({
             className="slider round"
             onClick={(e) => {
               e.target.value = !e.target.value;
-              const newTable = deepClone(selectedTable);
-              const newField = deepClone(newTable.fields[fieldIndex]);
-              newField.primaryKey = e.target.value;
-              newTable.fields[fieldIndex] = newField;
-              setSelectedTable(newTable);
+              editField({ value: e.target.value, fieldKey: fieldIndex, fieldProperty: "primaryKey" });
             }}
             value={false}
           />
@@ -170,11 +145,7 @@ function TableInput({
             className="slider round"
             onClick={(e) => {
               e.target.value = !e.target.value;
-              const newTable = deepClone(selectedTable);
-              const newField = deepClone(newTable.fields[fieldIndex]);
-              newField.autoIncrement = e.target.value;
-              newTable.fields[fieldIndex] = newField;
-              setSelectedTable(newTable);
+              editField({ value: e.target.value, fieldKey: fieldIndex, fieldProperty: "autoIncrement" });
             }}
             value={false}
           />
@@ -188,11 +159,7 @@ function TableInput({
             className="slider round"
             onClick={(e) => {
               e.target.value = !e.target.value;
-              const newTable = deepClone(selectedTable);
-              const newField = deepClone(newTable.fields[fieldIndex]);
-              newField.unique = e.target.value;
-              newTable.fields[fieldIndex] = newField;
-              setSelectedTable(newTable);
+              editField({ value: e.target.value, fieldKey: fieldIndex, fieldProperty: "unique" });
             }}
             value={false}
           />
@@ -206,11 +173,7 @@ function TableInput({
             className="slider round"
             onClick={(e) => {
               e.target.value = !e.target.value;
-              const newTable = deepClone(selectedTable);
-              const newField = deepClone(newTable.fields[fieldIndex]);
-              newField.required = e.target.value;
-              newTable.fields[fieldIndex] = newField;
-              setSelectedTable(newTable);
+              editField({ value: e.target.value, fieldKey: fieldIndex, fieldProperty: "required" });
             }}
             value={false}
           />
@@ -224,11 +187,7 @@ function TableInput({
             className="slider round"
             onClick={(e) => {
               e.target.value = !e.target.value;
-              const newTable = deepClone(selectedTable);
-              const newField = deepClone(newTable.fields[fieldIndex]);
-              newField.queryable = e.target.value;
-              newTable.fields[fieldIndex] = newField;
-              setSelectedTable(newTable);
+              editField({ value: e.target.value, fieldKey: fieldIndex, fieldProperty: "queryable" });
             }}
             value={false}
           />

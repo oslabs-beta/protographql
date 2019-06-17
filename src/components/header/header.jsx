@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   AppBar,
@@ -7,6 +7,9 @@ import {
   Button,
   IconButton
 } from '@material-ui/core';
+import { Store } from '../../state/store';
+import { SET_POP_UP } from '../../actions/actionTypes';
+
 
 /*-------------------- Styled components --------------------*/
 
@@ -34,6 +37,7 @@ const useStyles = makeStyles(theme => ({
 
 function Header() {
   const classes = useStyles();
+  const { state: { popUp }, dispatch } = useContext(Store);
 
   return (
     <div className={classes.root}>
@@ -46,8 +50,8 @@ function Header() {
             <span>Proto</span>
             <span className={classes.pink}>GraphQL</span>
           </Typography>
-          <Button color="inherit">
-            <i class="fas fa-file-alt fa-3x"></i>
+          <Button color="inherit" onClick={() => { dispatch({ type: SET_POP_UP, payload: 'welcome' }) }}>
+            <i className="fas fa-file-alt fa-3x"></i>
           </Button>
           <Button color="inherit">
             <img src="../public/assets/pictures/GitHub-Mark-Light-64px.png" height="45" />

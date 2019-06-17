@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron .",
     "build": "webpack -p",
-    "dev": "webpack-dev-server --mode=development",
+    "dev": "webpack-dev-server --mode=development & electron .",
     "test": "test"
   },
   "repository": {
@@ -38,7 +38,6 @@
     "styled-components": "^4.3.1",
     "ts-loader": "^6.0.2",
     "typescript": "^3.5.1",
-    "url-loader": "^2.0.0",
     "webpack": "^4.32.2",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.5.1"

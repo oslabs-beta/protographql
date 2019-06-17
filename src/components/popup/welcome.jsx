@@ -85,7 +85,7 @@ function DraggableDialog(props) {
           <Text>
             <img
               alt="restLogo"
-              src="../../../public/assets/pictures/Rest-Logo.png"
+              src="./public/assets/pictures/Rest-Logo.png"
               height="125px"
             />
           </Text>
@@ -93,7 +93,7 @@ function DraggableDialog(props) {
           <Text>
             <img
               alt="graphQLLogo"
-              src="../../../public/assets/pictures/GraphQL-Logo.png"
+              src="./public/assets/pictures/GraphQL-Logo.png"
               height="125px"
             />
           </Text>

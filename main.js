@@ -26,7 +26,7 @@ function createWindow() {
     win.loadFile('index.html');
 
     // Open developer tools panel when our window opens
-    //  win.webContents.openDevTools();
+     win.webContents.openDevTools();
 
     // Add event listener to set our global window variable to null
     // This is needed so that window is able to reopen when user relaunches the app

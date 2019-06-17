@@ -54,7 +54,9 @@ function Header() {
             <i className="fas fa-file-alt fa-3x"></i>
           </Button>
           <Button color="inherit">
-            <img src="../public/assets/pictures/GitHub-Mark-Light-64px.png" height="45" />
+            <a href="https://github.com/oslabs-beta/protographql">
+              <img src="../public/assets/pictures/GitHub-Mark-Light-64px.png" height="45" />
+            </a>
           </Button>
         </Toolbar>
       </AppBar>

@@ -5,7 +5,7 @@ import { Store } from '../../state/store';
 import { 
   SET_POP_UP,
   SET_VIEW,
-  ADD_TABLE
+  ADD_TABLE,
  } from '../../actions/actionTypes';
 
 /*-------------------- Styled Components --------------------*/

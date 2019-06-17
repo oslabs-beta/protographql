@@ -76,7 +76,7 @@ function SchemaTable({
   setPopUp,
   tableKey,
   deleteTable,
-  setSelectedTable
+  editTable
 }) {
   const classes = useStyles();
   const fields = (
@@ -103,7 +103,7 @@ function SchemaTable({
             <i 
               className="fas fa-edit" 
               onClick={() => {
-                setSelectedTable(tableKey);``
+                editTable(tableKey);
                 setPopUp('table');
               }}
             />

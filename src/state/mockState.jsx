@@ -1,11 +1,11 @@
-export const selectedTableState = {
+export const selectedTable = {
   type: '',
   fields: {},
   fieldIndex: 1,
   tableID: -1
 };
 
-export const initialTableState = {
+export const initialTable = {
   type: '',
   fields: {
       1: {
@@ -25,7 +25,7 @@ export const initialTableState = {
       },
       refBy: new Set(),
       queryable: true,
-      tableNum: tableIndexState,
+      tableNum: tableIndex,
       fieldNum: 1,
     }
   },
@@ -33,7 +33,7 @@ export const initialTableState = {
   tableID: -1
 };
 
-export const initialFieldState = {
+export const initialField = {
   name: '',
   type: 'ID',
   primaryKey: false,
@@ -54,9 +54,9 @@ export const initialFieldState = {
   queryable: true
 };
 
-export const tableIndexState = 2;
+export const tableIndex = 2;
 
-export const tablesState = {
+export const tables = {
   0: {
     type: 'Author',
     fields: {
@@ -193,6 +193,6 @@ export const tablesState = {
   },
 };
 
-export const viewState = 'table';
+export const view = 'table';
 
-export const popUpState = 'welcome';
+export const popUp = 'welcome';

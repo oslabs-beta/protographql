@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from '../components/header/header';
 import NavSideBar from '../components/navSideBar/navSidebar';
 import Welcome from '../components/popup/welcome';
-// import * as state from '../state/initialState';
-import * as state from '../state/mockState';
 import MainView from '../components/view/mainView';
 
 /* Comments
@@ -14,13 +12,6 @@ import MainView from '../components/view/mainView';
 */
 
 const Main = () => {
-  const [selectedTable, setSelectedTable] = useState(state.selectedTableState);
-  const [tableIndexState, setTableIndexState] = useState(state.tableIndexState);
-  const [tables, setTables] = useState(state.tablesState);
-  const [view, setView] = useState(state.viewState);
-  const [popUp, setPopUp] = useState(state.popUpState);
-  const initialTableState = state.initialTableState;
-  const initialFieldState = state.initialFieldState;
 
   //Rendered components and elements
   // can't use styled components here because of the gridTemplateAreas
@@ -37,28 +28,9 @@ const Main = () => {
       fontFamily: "'Roboto', sans-serif",
     }}>
       <Header />
-      <Welcome setPopUp={setPopUp} popUp={popUp} />
-      <NavSideBar
-        setView={setView}
-        setPopUp={setPopUp}
-        setSelectedTable={setSelectedTable}
-        tableIndexState={tableIndexState}
-        initialTableState={initialTableState}
-      />
-      <MainView
-        view={view}
-        tables={tables}
-        setTables={setTables}
-        setPopUp={setPopUp}
-        setView={setView}
-        popUp={popUp}
-        setSelectedTable={setSelectedTable}
-        selectedTable={selectedTable}
-        tableIndexState={tableIndexState}
-        setTableIndexState={setTableIndexState}
-        initialTableState={initialTableState}
-        initialFieldState={initialFieldState}
-      />
+      <Welcome />
+      <NavSideBar />
+      <MainView />
     </div>
   )
 }

@@ -103,7 +103,7 @@ function SchemaTable({
             <i 
               className="fas fa-edit" 
               onClick={() => {
-                setSelectedTable(table);
+                setSelectedTable(tableKey);``
                 setPopUp('table');
               }}
             />

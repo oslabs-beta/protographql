@@ -1,11 +1,11 @@
-export const selectedTableState = {
+export const selectedTable = {
   type: '',
   fields: {},
   fieldIndex: 1,
   tableID: 0
 };
 
-export const initialTableState = {
+export const initialTable = {
   type: '',
   fields: {
       1: {
@@ -33,7 +33,7 @@ export const initialTableState = {
   tableID: 0
 };
 
-export const initialFieldState = {
+export const initialField = {
   name: '',
   type: 'ID',
   primaryKey: false,
@@ -54,14 +54,14 @@ export const initialFieldState = {
   fieldNum: -1,
 };
 
-export const tableIndexState = 0;
+export const tableIndex = 0;
 
-export const tablesState = {};
+export const tables = {};
 
 //this will toggle the tab shown in the sandbox area
 //potential tabs for MVP are code & schema, stretch would include GQL setup area
-export const viewState = 'schema';
+export const view = 'schema';
 
 //this will toggle popups
 //potential popups are welcome and export (select folder to save & success)
-export const popUpState = 'welcome';
+export const popUp = 'welcome';

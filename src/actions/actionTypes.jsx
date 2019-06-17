@@ -4,3 +4,4 @@ export const SET_TABLE_INDEX = "SET_TABLE_INDEX";
 export const SET_TABLES = "SET_TABLES";
 export const SET_VIEW = "SET_VIEW";
 export const EDIT_FIELD = "EDIT_FIELD";
+export const EDIT_SELECTED_TABLE_NAME = "EDIT_SELECTED_TABLE_NAME";

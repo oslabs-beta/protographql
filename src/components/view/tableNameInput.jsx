@@ -25,9 +25,9 @@ const Input = styled.input`
 
 /*-------------------- Functional Component --------------------*/
 
-function TableNameInput({ name, editSelectedTableName }) {
+function TableNameInput({ name, editTableName }) {
 
-  const onTableNameChange = (e) => editSelectedTableName(e.target.value);
+  const onTableNameChange = (e) => editTableName(e.target.value);
 
   return (
     <Wrapper>

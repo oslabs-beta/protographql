@@ -7,7 +7,7 @@ import {
   ADD_FIELD,
   DELETE_FIELD,
   EDIT_FIELD,
-  EDIT_SELECTED_TABLE_NAME
+  EDIT_TABLE_NAME
 } from '../../actions/actionTypes';
 import styled from 'styled-components';
 import TableNameInput from './tableNameInput';
@@ -150,7 +150,7 @@ function TableForm() {
           </TableHeader>
           <TableNameInput
             name={selectedTable.type}
-            editSelectedTableName={payload => dispatch({ type: EDIT_SELECTED_TABLE_NAME, payload })}
+            editTableName={payload => dispatch({ type: EDIT_TABLE_NAME, payload })}
           />
           <Table id='table' >
             <tbody>

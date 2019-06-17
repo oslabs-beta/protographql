@@ -6,7 +6,8 @@ import {
   SET_TABLES, 
   SET_POP_UP, 
   SET_VIEW, 
-  SET_SELECTED_TABLE 
+  EDIT_TABLE 
+
 } from '../../actions/actionTypes';
 import deepClone from  '../../utils/deepClone';
 
@@ -36,12 +37,12 @@ function SchemaView() {
       key={tableKey}
       tableKey={tableKey}
       table={tables[tableKey]}
-      setTables={payload => dispatch({ type: SET_TABLES, payload })}
-      setPopUp={payload => dispatch({ type: SET_POP_UP, payload })}
-      setView={payload => dispatch({ type: SET_VIEW, payload })}
+      setTables={ payload => dispatch({ type: SET_TABLES, payload }) }
+      setPopUp={ payload => dispatch({ type: SET_POP_UP, payload }) }
+      setView={ payload => dispatch({ type: SET_VIEW, payload }) }
       style={{ margin: "10px" }}
       deleteTable={deleteTable}
-      setSelectedTable={payload => dispatch({ type: SET_SELECTED_TABLE, payload })}
+      editTable={ payload => dispatch({ type: EDIT_TABLE, payload }) }
     />
   ))
 

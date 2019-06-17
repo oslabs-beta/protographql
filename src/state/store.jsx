@@ -18,6 +18,10 @@ function reducer(state, action) {
       newState.selectedTable.fields[fieldKey][fieldProperty] = value;
       return { ...state, selectedTable: newState.selectedTable};
 
+    case "EDIT_SELECTED_TABLE_NAME":
+      newState.selectedTable.type = action.payload;
+      return { ...state, selectedTable: newState.selectedTable };
+
     case "SET_SELECTED_TABLE":
       
       if (action.payload === -1) {

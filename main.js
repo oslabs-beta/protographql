@@ -13,7 +13,7 @@ function createWindow() {
             nodeIntegration: true
         },
         // this is only for Windows and Linux
-        icon: path.join(__dirname, '/public/assets/pictures/icon.png')
+        icon: './public/assets/pictures/ProtoGraphQLLogo.png'
      });
     //  console.log('Our dialog: ', dialog.showOpenDialog({
     //      properties: ['openFile', 'openDirectory', 'multiSelections']
@@ -23,6 +23,7 @@ function createWindow() {
     win.maximize();
 
     // Serve our index.html file
+    // mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
     win.loadFile('index.html');
 
     // Open developer tools panel when our window opens
@@ -37,6 +38,7 @@ function createWindow() {
 
 // Creates our window when electron has initialized for the first time
 app.on('ready', createWindow);
+
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit();

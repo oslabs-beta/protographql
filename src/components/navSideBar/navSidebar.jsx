@@ -32,57 +32,52 @@ function NavSideBar() {
     const views = ['Schema', 'Code', 'Export', 'Add Table'];
     const icons = ["fas fa-code-branch", "fas fa-code", "fas fa-file-download", "fas fa-plus-square"]
     const route = ['schema', 'code', 'export', 'schema'];
-    views.forEach((text, i) => {
-      const click = () => {
-
-        dispatch({ type: SET_VIEW, payload: route[i] });
-        dispatch({ type: SET_POP_UP, payload: popUp[i] });
-
-        if (i !== 3) {
-          const currentButton = document.querySelector(`#${views[i]}`);
-          currentButton.style.boxShadow = "4px 4px 4px rgba(0, 0, 0, 0.10)";
-          currentButton.style.border = "2px solid rgba(0, 0, 0, 0.12)";
-          currentButton.style.borderRight = "4px solid rgba(221, 57, 156, 1)";
-          for (let j = 0; j < views.length - 1; j++) {
-            if (i !== j) {
-              const button = document.querySelector(`#${views[j]}`);
-              button.style.boxShadow = "1px 2px 3px rgba(0, 0, 0, 0.10)";
-              button.style.border = "none";
-              button.style.borderRight = "1px solid rgba(0, 0, 0, 0.12)";
-            }
-          }
-        }
-
-        if (i === 3) dispatch({ type: ADD_TABLE });
-      }
-      if (i !== 3) input.push(
-        <NavButton 
-          key={i} 
-          className={icons[i]} 
-          view={text} 
-          click={click} 
-        />
-      );
-      else input.push(
-        <NavButton 
-          key={i} 
-          className={icons[i]} 
-          view={text} 
-          click={click} 
+    
+  return (
+    <SideBar>
+      <NavButton 
+          key='NavButton0' 
+          className='fas fa-code-branch'
+          view='Schema' 
+          click={() => {
+            dispatch({ type: SET_VIEW, payload: 'schema' })
+            dispatch({ type: SET_POP_UP, payload: '' })
+          }}
+      />
+      <NavButton 
+          key='NavButton0' 
+          className='fas fa-code'
+          view='Code' 
+          click={() => {
+            dispatch({ type: SET_VIEW, payload: 'code' })
+            dispatch({ type: SET_POP_UP, payload: '' })
+          }}
+      />
+      <NavButton 
+          key='NavButton0' 
+          className='fas fa-file-download'
+          view='Export' 
+          click={() => {
+            dispatch({ type: SET_VIEW, payload: 'export' })
+            dispatch({ type: SET_POP_UP, payload: '' })
+          }}
+      />
+      <NavButton 
+          key='NavButton0' 
+          className='fas fa-plus-square'
+          view='Add Table' 
+          click={() => {
+            dispatch({ type: SET_VIEW, payload: 'schema' })
+            dispatch({ type: SET_POP_UP, payload: 'table' })
+          }} 
           style={{ 
             position: 'absolute', 
             bottom: 0, 
             borderTop: '1px solid rgba(0, 0, 0, 0.08)', 
             width: '100%' 
-          }} 
+          }}
         />
-      );
-
-    });
-    return input;
-  }
-  return (
-    <SideBar>{buttons()}</SideBar>
+    </SideBar>
   )
 }
 

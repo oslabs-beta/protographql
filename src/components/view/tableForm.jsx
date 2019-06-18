@@ -2,8 +2,7 @@ import React, { useContext } from 'react';
 import { Store } from '../../state/store';
 import { 
   SET_POP_UP, 
-  SET_TABLES,
-  SET_TABLE_INDEX,
+  SAVE_TABLE,
   ADD_FIELD,
   DELETE_FIELD,
   EDIT_FIELD,
@@ -14,7 +13,6 @@ import TableNameInput from './tableNameInput';
 import TableField from './tableField';
 import TableInput from './tableInput';
 import Draggable from 'react-draggable';
-import deepClone from '../../utils/deepClone';
 
 /*-------------------- Styled Components --------------------*/
 
@@ -109,15 +107,7 @@ const Buttons = styled.span`
 
 function TableForm() {
 
-  const {
-    dispatch,
-    state: {
-      selectedTable, 
-      tables, 
-      initialField, 
-      tableIndex 
-    }
-  } = useContext(Store);
+  const { dispatch, state: { selectedTable } } = useContext(Store);
 
   /*-------------------- Table Input Function --------------------*/
   const fieldInputs = [];
@@ -165,10 +155,7 @@ function TableForm() {
             </Button>
             <Button
               onClick={() => {
-                const newTables = deepClone(tables);
-                newTables[selectedTable.tableID] = selectedTable;
-                dispatch({ type: SET_TABLES, payload: newTables });
-                dispatch({ type: SET_TABLE_INDEX, payload: tableIndex + 1 });
+                dispatch({ type: SAVE_TABLE });
                 dispatch({ type: SET_POP_UP, payload: '' });
               }}>
               <i className="far fa-save" color="black" /> Save

@@ -1,10 +1,10 @@
 export const SET_POP_UP = "SET_POP_UP";
-export const SET_SELECTED_TABLE = "SET_SELECTED_TABLE";
-export const SET_TABLE_INDEX = "SET_TABLE_INDEX";
-export const SET_TABLES = "SET_TABLES";
+export const SAVE_TABLE = "SAVE_TABLE";
 export const SET_VIEW = "SET_VIEW";
 export const EDIT_FIELD = "EDIT_FIELD";
 export const ADD_FIELD = "ADD_FIELD";
 export const DELETE_FIELD = "DELETE_FIELD";
-export const EDIT_SELECTED_TABLE_NAME = "EDIT_SELECTED_TABLE_NAME";
+export const EDIT_TABLE_NAME = "EDIT_TABLE_NAME";
 export const ADD_TABLE = "ADD_TABLE";
+export const EDIT_TABLE = "EDIT_TABLE";
+export const DELETE_TABLE = "DELETE_TABLE";

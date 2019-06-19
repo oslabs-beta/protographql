@@ -51,5 +51,8 @@ module.exports = {
             loader: "source-map-loader"
           },
       ]
-  }
+  },
+  node: {
+    fs: "empty"
+ }
 };

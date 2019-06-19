@@ -1,5 +1,7 @@
 const { app, BrowserWindow, dialog } = require('electron');
 const path = require('path');
+const ipc = require('electron').ipcMain;
+
 
 // Global reference of the window object to avoid JS garbage collection
 // when window is created
@@ -47,3 +49,25 @@ app.on('window-all-closed', () => {
 app.on('activate', () => {
     if (win === null) createWindow();
 })
+
+//function to run when user clicks export
+function showExportDialog(event) {
+    dialog.showSaveDialog(
+      {
+        title: 'Choose location to save folder in',
+        defaultPath: app.getPath('desktop'),
+        message: 'Choose location to save folder in',
+        nameFieldLabel: 'Application Name'
+      },
+      result => {
+        // console.log(result);
+        // if (nameLabel === 'JSON Name') event.sender.send('json-location', result);
+        event.sender.send('export-project-location', result);
+      }
+    );
+  }
+  
+  //listener for export button being clicked
+  ipc.on('show-export-dialog', event => {
+    showExportDialog(event);
+  });

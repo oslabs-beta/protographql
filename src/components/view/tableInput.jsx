@@ -62,9 +62,9 @@ const TrashCan = styled.span`
 
 /*-------------------- Functional Component --------------------*/
 
-function TableInput({ 
-  field, 
-  fieldIndex, 
+function TableInput({
+  field,
+  fieldIndex,
   editField,
   deleteField
 }) {
@@ -102,11 +102,12 @@ function TableInput({
   return (
     <Tr>
       <Td>
-        <TrashCan onClick={ () => deleteField(fieldIndex) }>
+        <TrashCan onClick={() => deleteField(fieldIndex)}>
           <i className="fas fa-trash" />
         </TrashCan></Td>
       <Td>
         <Input
+          required
           type="text"
           placeholder="Field Name"
           defaultValue={name}
@@ -130,7 +131,7 @@ function TableInput({
           type="text"
           placeholder="Default Value"
           defaultValue={defaultValue}
-          onChange={e =>  editField({ value: e.target.value, fieldKey: fieldIndex, fieldProperty: "defaultValue" })}
+          onChange={e => editField({ value: e.target.value, fieldKey: fieldIndex, fieldProperty: "defaultValue" })}
         />
       </Td>
       <Td>
@@ -203,7 +204,42 @@ function TableInput({
           />
         </label>
       </Td>
-      <Td>Foreign Key</Td>
+      <Td>
+        <Selected
+          defaultValue={type}
+          onChange={e => editField({ value: e.target.value, fieldKey: fieldIndex, fieldProperty: "type" })}
+        >
+          <option value="ID">ID</option>
+          <option value="String">String</option>
+          <option value="Boolean">Boolean</option>
+          <option value="Int">Int</option>
+          <option value="Float">Float</option>
+        </Selected>
+      </Td>
+      <Td>
+        <Selected
+          defaultValue={type}
+          onChange={e => editField({ value: e.target.value, fieldKey: fieldIndex, fieldProperty: "type" })}
+        >
+          <option value="ID">ID</option>
+          <option value="String">String</option>
+          <option value="Boolean">Boolean</option>
+          <option value="Int">Int</option>
+          <option value="Float">Float</option>
+        </Selected>
+      </Td>
+      <Td>
+        <Selected
+          defaultValue={type}
+          onChange={e => editField({ value: e.target.value, fieldKey: fieldIndex, fieldProperty: "type" })}
+        >
+          <option value="ID">ID</option>
+          <option value="String">String</option>
+          <option value="Boolean">Boolean</option>
+          <option value="Int">Int</option>
+          <option value="Float">Float</option>
+        </Selected>
+      </Td>
     </Tr >
   )
 }

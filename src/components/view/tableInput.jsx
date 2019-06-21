@@ -86,6 +86,10 @@ function TableInput({
     unique,
   } = field;
 
+  const { refType } = relation;
+  const relationFieldIdx = relation.tableIndex;
+  const relationTableIdx = relation.fieldIndex;
+
   function isChecked(id, field) {
     const selectedSwitch = document.querySelector(id);
     if (field) selectedSwitch.click();
@@ -230,14 +234,13 @@ function TableInput({
       </Td>
       <Td>
         <Selected
-          defaultValue={type}
-          onChange={e => editField({ value: e.target.value, fieldKey: fieldIndex, fieldProperty: "type" })}
+          defaultValue={refType}
+          onChange={e => editField({ value: e.target.value, fieldKey: fieldIndex, fieldProperty: "refType" })}
         >
-          <option value="ID">ID</option>
-          <option value="String">String</option>
-          <option value="Boolean">Boolean</option>
-          <option value="Int">Int</option>
-          <option value="Float">Float</option>
+          <option value=""></option>
+          <option value="one to one">one to one</option>
+          <option value="many to one">many to one</option>
+          <option value="many to many">many to many</option>
         </Selected>
       </Td>
     </Tr >

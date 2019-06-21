@@ -66,6 +66,7 @@ function TableInput({
   field,
   fieldIndex,
   editField,
+  editRelations,
   deleteField
 }) {
 
@@ -88,7 +89,10 @@ function TableInput({
 
   const { refType } = relation;
   const relationFieldIdx = relation.tableIndex;
+  console.log('relationFieldIdx: ', relationFieldIdx);
   const relationTableIdx = relation.fieldIndex;
+  console.log('relationTableIdx: ', relationTableIdx);
+
 
   function isChecked(id, field) {
     const selectedSwitch = document.querySelector(id);
@@ -129,7 +133,7 @@ function TableInput({
           <option value="Int">Int</option>
           <option value="Float">Float</option>
         </Selected>
-      </Td >
+      </Td>
       <Td>
         <Input
           type="text"
@@ -210,32 +214,24 @@ function TableInput({
       </Td>
       <Td>
         <Selected
-          defaultValue={type}
-          onChange={e => editField({ value: e.target.value, fieldKey: fieldIndex, fieldProperty: "type" })}
+          defaultValue={relationTableIdx}
+          // onChange={e => editRelations({ value: e.target.value, fieldKey: fieldIndex, fieldProperty: "relationTableIdx" })}
         >
-          <option value="ID">ID</option>
-          <option value="String">String</option>
-          <option value="Boolean">Boolean</option>
-          <option value="Int">Int</option>
-          <option value="Float">Float</option>
+          <option value=""></option>
         </Selected>
       </Td>
       <Td>
         <Selected
-          defaultValue={type}
-          onChange={e => editField({ value: e.target.value, fieldKey: fieldIndex, fieldProperty: "type" })}
+          defaultValue={relationFieldIdx}
+          // onChange={e => editRelations({ value: e.target.value, fieldKey: fieldIndex, fieldProperty: "relationFieldIdx" })}
         >
-          <option value="ID">ID</option>
-          <option value="String">String</option>
-          <option value="Boolean">Boolean</option>
-          <option value="Int">Int</option>
-          <option value="Float">Float</option>
+          <option value=""></option>
         </Selected>
       </Td>
       <Td>
         <Selected
           defaultValue={refType}
-          onChange={e => editField({ value: e.target.value, fieldKey: fieldIndex, fieldProperty: "refType" })}
+          onChange={e => editRelations({ relationValue: e.target.value, relationFieldKey: fieldIndex, relationFieldProperty: "refType" })}
         >
           <option value=""></option>
           <option value="one to one">one to one</option>

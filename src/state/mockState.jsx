@@ -179,7 +179,7 @@ export const tables = {
         relationSelected: true,
         relation: {
             tableIndex: '0',
-            fieldIndex: '0',
+            fieldIndex: '1',
             refType: 'many to one'
         },
         tableNum: 1,

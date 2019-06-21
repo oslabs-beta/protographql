@@ -18,15 +18,17 @@ function TableField() {
   return (
     <Tr>
       <Th>Delete</Th>
-      <Th>Field Name</Th>
-      <Th>Type</Th>
-      <Th>Default Value</Th>
+      <Th className="other-header">Field Name</Th>
+      <Th className="other-header">Type</Th>
+      <Th className="other-header">Default Value</Th>
       <Th className="slider-header">Primary Key</Th>
       <Th className="slider-header">Auto Increment</Th>
       <Th className="slider-header">Unique</Th>
       <Th className="slider-header">Required</Th>
       <Th className="slider-header">Queryable</Th>
-      <Th className="slider-header">Foreign Key</Th>
+      <Th className="other-header">Table Relationship</Th>
+      <Th className="other-header">Field Relationship</Th>
+      <Th className="other-header">Type of Relationship</Th>
     </Tr>
   );
 }

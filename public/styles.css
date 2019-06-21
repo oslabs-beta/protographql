@@ -56,8 +56,12 @@ input:focus {
 /* Slider Buttons */
 /******************/
 
+.other-header{
+  width: 80px;
+}
+
 .slider-header {
-	width: 70px;
+	width: 50px;
 }
 
 .switch {

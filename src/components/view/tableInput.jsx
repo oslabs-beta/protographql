@@ -67,7 +67,8 @@ function TableInput({
   fieldIndex,
   editField,
   editRelations,
-  deleteField
+  deleteField,
+  tables
 }) {
 
   const {
@@ -88,11 +89,8 @@ function TableInput({
   } = field;
 
   const { refType } = relation;
-  const relationFieldIdx = relation.tableIndex;
-  console.log('relationFieldIdx: ', relationFieldIdx);
   const relationTableIdx = relation.fieldIndex;
-  console.log('relationTableIdx: ', relationTableIdx);
-
+  const relationFieldIdx = relation.tableIndex;
 
   function isChecked(id, field) {
     const selectedSwitch = document.querySelector(id);
@@ -106,6 +104,22 @@ function TableInput({
     isChecked("#required" + fieldNum, required);
     isChecked("#queryable" + fieldNum, queryable);
   }, []);
+
+  const relationalTableNames = [];
+  const populateTableRelationOptions = () => {
+    for (let key in tables) {
+      relationalTableNames.push(<option key={key}>{tables[key].type}</option>);
+    }
+  }
+  populateTableRelationOptions();
+  
+  const relationalFieldsNames = [];
+  const populateFieldRelationOptions = () => {
+    for (let key in tables) {
+      relationalFieldsNames.push(<option key={key}>{tables[key].type}</option>);
+    }
+  }
+  populateFieldRelationOptions();
 
   return (
     <Tr>
@@ -214,10 +228,16 @@ function TableInput({
       </Td>
       <Td>
         <Selected
-          defaultValue={relationTableIdx}
+          defaultValue={typeof relationTableIdx === 'string' ?
+          tables[relationTableIdx].type :
+          ""}
           // onChange={e => editRelations({ value: e.target.value, fieldKey: fieldIndex, fieldProperty: "relationTableIdx" })}
         >
+          {/* {typeof relationTableIdx === 'string' ?
+          <option value={tables[relationTableIdx].type}>{tables[relationTableIdx].type}</option> :
+          <option value=""></option>} */}
           <option value=""></option>
+          {relationalTableNames}
         </Selected>
       </Td>
       <Td>
@@ -225,7 +245,10 @@ function TableInput({
           defaultValue={relationFieldIdx}
           // onChange={e => editRelations({ value: e.target.value, fieldKey: fieldIndex, fieldProperty: "relationFieldIdx" })}
         >
-          <option value=""></option>
+          {typeof relationFieldIdx === 'string' ?
+          <option value={relationTableIdx}>{relationTableIdx}</option> :
+          <option value=""></option>}
+          {/* {relationalFieldsNames} */}
         </Selected>
       </Td>
       <Td>

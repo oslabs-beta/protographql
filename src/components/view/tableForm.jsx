@@ -108,7 +108,7 @@ const Buttons = styled.span`
 
 function TableForm() {
 
-  const { dispatch, state: { selectedTable } } = useContext(Store);
+  const { dispatch, state: { selectedTable, tables } } = useContext(Store);
 
   /*-------------------- Table Input Function --------------------*/
   const fieldInputs = [];
@@ -124,6 +124,7 @@ function TableForm() {
           deleteField={ payload => dispatch({ type: DELETE_FIELD, payload }) }
           fieldIndex={currentFieldKey}
           key={selectedTable.tableID + "-" + "field" + "-" +  currentFieldKey}
+          tables={tables}
         />);
     }
   }

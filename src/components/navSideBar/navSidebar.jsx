@@ -9,6 +9,9 @@ import {
   SAVE_TABLE,
  } from '../../actions/actionTypes';
 
+const electron = window.require('electron');
+const ipc  = electron.ipcRenderer;
+
 /*-------------------- Styled Components --------------------*/
 
 const SideBar = styled.div`
@@ -23,6 +26,23 @@ const SideBar = styled.div`
 
 /*-------------------- Functional Component --------------------*/
 
+const views = ["Schema", "Code", "Export"]
+
+function changeButtonStyleOnClick (view) {
+  const currentButton = document.querySelector(`#${view}`);
+  currentButton.style.boxShadow = "4px 4px 4px rgba(0, 0, 0, 0.10)";	
+  currentButton.style.border = "2px solid rgba(0, 0, 0, 0.12)";	
+  currentButton.style.borderRight = "4px solid rgba(221, 57, 156, 1)";	
+  for (let j = 0; j < views.length; j++) {	
+    if (view !== views[j]) {
+      const button = document.querySelector(`#${views[j]}`);	
+      button.style.boxShadow = "1px 2px 3px rgba(0, 0, 0, 0.10)";	
+      button.style.border = "none";	
+      button.style.borderRight = "1px solid rgba(0, 0, 0, 0.12)";	
+    }
+  }
+}
+
 function NavSideBar() {
   const { dispatch } = useContext(Store);
   return (
@@ -31,27 +51,32 @@ function NavSideBar() {
           key='NavButton0' 
           className='fas fa-code-branch'
           view='Schema' 
-          click={() => {
+          click={(e) => {
             dispatch({ type: SET_VIEW, payload: 'schema' })
             dispatch({ type: SET_POP_UP, payload: '' })
+            changeButtonStyleOnClick("Schema")
           }}
       />
       <NavButton 
           key='NavButton1' 
           className='fas fa-code'
           view='Code' 
-          click={() => {
+          click={(e) => {
             dispatch({ type: SET_VIEW, payload: 'code' })
             dispatch({ type: SET_POP_UP, payload: '' })
+            changeButtonStyleOnClick("Code")
           }}
       />
       <NavButton 
           key='NavButton2' 
           className='fas fa-file-download'
           view='Export' 
-          click={() => {
+          click={(e) => {
             dispatch({ type: SET_VIEW, payload: 'export' })
             dispatch({ type: SET_POP_UP, payload: '' })
+            changeButtonStyleOnClick("Export")
+            //emitting message to electron window to open save dialog
+            ipc.send('show-export-dialog');
           }}
       />
       <NavButton 

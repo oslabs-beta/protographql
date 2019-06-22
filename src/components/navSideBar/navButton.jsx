@@ -25,7 +25,6 @@ const Button = styled.div`
   height: 60px;
   background-color: none;
   margin: auto;
-  // width: 100%;
   margin-left: calc(15.5px + .25vw);
   margin-top: 25px;
 `;

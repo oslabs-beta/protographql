@@ -71,8 +71,8 @@ function showExportDialog(event) {
 
         // listen for all archive data to be written and output associated details
         output.on('close', function() {
-          console.log(archive.pointer() + ' total bytes');
-          console.log('archiver has been finalized and the output file descriptor has closed.');
+          console.log('Zip file size is ', archive.pointer() + ' total bytes');
+          console.log('Archived zip file is complete.');
           dialog.showMessageBox(win, 
             {
               type: "info",

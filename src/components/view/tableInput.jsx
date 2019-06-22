@@ -62,11 +62,13 @@ const TrashCan = styled.span`
 
 /*-------------------- Functional Component --------------------*/
 
-function TableInput({ 
-  field, 
-  fieldIndex, 
+function TableInput({
+  field,
+  fieldIndex,
   editField,
-  deleteField
+  editRelations,
+  deleteField,
+  tables
 }) {
 
   const {
@@ -86,6 +88,10 @@ function TableInput({
     unique,
   } = field;
 
+  const { refType } = relation;
+  let relationTableIdx = relation.tableIndex;
+  let relationFieldIdx = relation.fieldIndex;
+
   function isChecked(id, field) {
     const selectedSwitch = document.querySelector(id);
     if (field) selectedSwitch.click();
@@ -99,20 +105,43 @@ function TableInput({
     isChecked("#queryable" + fieldNum, queryable);
   }, []);
 
+  const relationalTableNames = [];
+  const populateTableRelationOptions = () => {
+    for (let key in tables) {
+      relationalTableNames.push(<option value={key} key={key}>{tables[key].type}</option>);
+    }
+  }
+  populateTableRelationOptions();
+  
+  const relationalFieldsNames = [];
+  const populateFieldRelationOptions = (relTblIdx) => {
+    if (relTblIdx !== -1) {
+      for (let field in tables[relTblIdx].fields) {
+        relationalFieldsNames.push(<option value={field} key={field + tables[relTblIdx].fields[field].name}>{tables[relTblIdx].fields[field].name}</option>);
+      }
+    }
+  }
+  populateFieldRelationOptions(relationTableIdx);
+
   return (
     <Tr>
+
       <Td>
-        <TrashCan onClick={ () => deleteField(fieldIndex) }>
+        <TrashCan onClick={() => deleteField(fieldIndex)}>
           <i className="fas fa-trash" />
-        </TrashCan></Td>
+        </TrashCan>
+      </Td>
+
       <Td>
         <Input
+          required
           type="text"
           placeholder="Field Name"
           defaultValue={name}
           onChange={e => editField({ value: e.target.value, fieldKey: fieldIndex, fieldProperty: "name" })}
         />
       </Td>
+
       <Td>
         <Selected
           defaultValue={type}
@@ -124,15 +153,17 @@ function TableInput({
           <option value="Int">Int</option>
           <option value="Float">Float</option>
         </Selected>
-      </Td >
+      </Td>
+
       <Td>
         <Input
           type="text"
           placeholder="Default Value"
           defaultValue={defaultValue}
-          onChange={e =>  editField({ value: e.target.value, fieldKey: fieldIndex, fieldProperty: "defaultValue" })}
+          onChange={e => editField({ value: e.target.value, fieldKey: fieldIndex, fieldProperty: "defaultValue" })}
         />
       </Td>
+
       <Td>
         <label className="switch">
           <input type="checkbox" />
@@ -147,6 +178,7 @@ function TableInput({
           />
         </label>
       </Td>
+
       <Td>
         <label className="switch">
           <input type="checkbox" />
@@ -161,6 +193,7 @@ function TableInput({
           />
         </label>
       </Td>
+
       <Td>
         <label className="switch">
           <input type="checkbox" />
@@ -175,6 +208,7 @@ function TableInput({
           />
         </label>
       </Td>
+
       <Td>
         <label className="switch">
           <input type="checkbox" />
@@ -189,6 +223,7 @@ function TableInput({
           />
         </label>
       </Td>
+
       <Td>
         <label className="switch">
           <input type="checkbox" />
@@ -203,7 +238,70 @@ function TableInput({
           />
         </label>
       </Td>
-      <Td>Foreign Key</Td>
+
+      {/* relationship to table */}
+      <Td>
+        <Selected
+          defaultValue={ relationTableIdx != -1 ? relationTableIdx : ""}
+          onChange={
+            e => {
+              if (e.target.value === "") {
+                relationTableIdx = -1;
+                relationFieldIdx = -1;
+                editRelations({
+                  relationValue: -1, 
+                  relationFieldKey: fieldIndex, 
+                  relationFieldProperty: "tableIndex" 
+                })
+              }
+              else 
+              editRelations({
+              relationValue: e.target.value, 
+              relationFieldKey: fieldIndex, 
+              relationFieldProperty: "tableIndex" 
+            })
+          }}
+        >
+          <option value=""></option>
+          {relationalTableNames}
+        </Selected>
+      </Td>
+
+      {/* relationship to table fields */}
+      <Td>
+        <Selected
+          defaultValue={relationFieldIdx != -1 ? relationFieldIdx : ""}
+          onChange={
+            e => {
+              editRelations({
+              relationValue: e.target.value, 
+              relationFieldKey: fieldIndex, 
+              relationFieldProperty: "fieldIndex" 
+            })}
+          }
+        >
+          <option value=""></option>
+          {relationalFieldsNames}
+        </Selected>
+      </Td>
+
+      <Td>
+        <Selected
+          defaultValue={refType}
+          onChange={
+            e => editRelations({
+              relationValue: e.target.value, 
+              relationFieldKey: fieldIndex, 
+              relationFieldProperty: "refType" 
+            })
+          }
+        >
+          <option value=""></option>
+          <option value="one to one">one to one</option>
+          <option value="many to one">many to one</option>
+          <option value="many to many">many to many</option>
+        </Selected>
+      </Td>
     </Tr >
   )
 }

@@ -36,6 +36,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#324353',
     border: '1px solid white',
     marginRight: '10px',
+    minWidth: '50px',
     "&:hover": {
       backgroundColor: '#EEEFF0',
       transform: 'scale(1.01)',
@@ -64,10 +65,10 @@ function Header() {
             <span className={classes.pink}>GraphQL</span>
           </Typography>
           <Button color="inherit" className={classes.button} onClick={() => { dispatch({ type: SET_POP_UP, payload: 'welcome' }) }}>
-            <i className="fas fa-file-alt fa-3x"></i>
+            <i className="fas fa-file-alt fa-3x" style={{fontSize: "33px"}}></i>
           </Button>
           <Button color="inherit" className={classes.button}>
-            <i className="fab fa-github fa-3x"></i>
+            <i className="fab fa-github fa-3x" style={{fontSize: "33px"}}></i>
           </Button>
         </Toolbar>
       </AppBar>

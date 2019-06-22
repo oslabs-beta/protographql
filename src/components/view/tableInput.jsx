@@ -89,8 +89,8 @@ function TableInput({
   } = field;
 
   const { refType } = relation;
-  const relationTableIdx = relation.fieldIndex;
-  const relationFieldIdx = relation.tableIndex;
+  const relationTableIdx = relation.tableIndex;
+  const relationFieldIdx = relation.fieldIndex;
 
   function isChecked(id, field) {
     const selectedSwitch = document.querySelector(id);
@@ -108,18 +108,18 @@ function TableInput({
   const relationalTableNames = [];
   const populateTableRelationOptions = () => {
     for (let key in tables) {
-      relationalTableNames.push(<option key={key}>{tables[key].type}</option>);
+      relationalTableNames.push(<option value={key} key={key}>{tables[key].type}</option>);
     }
   }
   populateTableRelationOptions();
   
-  const relationalFieldsNames = [];
-  const populateFieldRelationOptions = () => {
-    for (let key in tables) {
-      relationalFieldsNames.push(<option key={key}>{tables[key].type}</option>);
-    }
-  }
-  populateFieldRelationOptions();
+  // const relationalFieldsNames = [];
+  // const populateFieldRelationOptions = () => {
+  //   for (let key in tables) {
+  //     relationalFieldsNames.push(<option key={key}>{tables[key].type}</option>);
+  //   }
+  // }
+  // populateFieldRelationOptions();
 
   return (
     <Tr>
@@ -228,14 +228,11 @@ function TableInput({
       </Td>
       <Td>
         <Selected
-          defaultValue={typeof relationTableIdx === 'string' ?
-          tables[relationTableIdx].type :
-          ""}
-          // onChange={e => editRelations({ value: e.target.value, fieldKey: fieldIndex, fieldProperty: "relationTableIdx" })}
+          defaultValue={ relationTableIdx != -1 ? relationTableIdx : ""}
+          onChange={e => {
+            editRelations({ relationValue: e.target.value, relationFieldKey: fieldIndex, relationFieldProperty: "tableIndex" })}
+          }
         >
-          {/* {typeof relationTableIdx === 'string' ?
-          <option value={tables[relationTableIdx].type}>{tables[relationTableIdx].type}</option> :
-          <option value=""></option>} */}
           <option value=""></option>
           {relationalTableNames}
         </Selected>

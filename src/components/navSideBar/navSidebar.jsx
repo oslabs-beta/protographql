@@ -9,6 +9,9 @@ import {
   SAVE_TABLE,
  } from '../../actions/actionTypes';
 
+const electron = window.require('electron');
+const ipc  = electron.ipcRenderer;
+
 /*-------------------- Styled Components --------------------*/
 
 const SideBar = styled.div`
@@ -72,6 +75,8 @@ function NavSideBar() {
             dispatch({ type: SET_VIEW, payload: 'export' })
             dispatch({ type: SET_POP_UP, payload: '' })
             changeButtonStyleOnClick("Export")
+            //emitting message to electron window to open save dialog
+            ipc.send('show-export-dialog');
           }}
       />
       <NavButton 

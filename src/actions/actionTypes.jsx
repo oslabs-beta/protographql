@@ -7,4 +7,5 @@ export const DELETE_FIELD = "DELETE_FIELD";
 export const EDIT_TABLE_NAME = "EDIT_TABLE_NAME";
 export const ADD_TABLE = "ADD_TABLE";
 export const EDIT_TABLE = "EDIT_TABLE";
+export const EDIT_RELATIONS = "EDIT_RELATIONS";
 export const DELETE_TABLE = "DELETE_TABLE";

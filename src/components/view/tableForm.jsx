@@ -6,6 +6,7 @@ import {
   ADD_FIELD,
   DELETE_FIELD,
   EDIT_FIELD,
+  EDIT_RELATIONS,
   EDIT_TABLE_NAME
 } from '../../actions/actionTypes';
 import styled from 'styled-components';
@@ -107,7 +108,7 @@ const Buttons = styled.span`
 
 function TableForm() {
 
-  const { dispatch, state: { selectedTable } } = useContext(Store);
+  const { dispatch, state: { selectedTable, tables } } = useContext(Store);
 
   /*-------------------- Table Input Function --------------------*/
   const fieldInputs = [];
@@ -119,9 +120,11 @@ function TableForm() {
         <TableInput
           field={selectedTable.fields[currentFieldKey]}
           editField={ payload => dispatch({ type: EDIT_FIELD, payload }) }
+          editRelations={ payload => dispatch({ type: EDIT_RELATIONS, payload }) }
           deleteField={ payload => dispatch({ type: DELETE_FIELD, payload }) }
           fieldIndex={currentFieldKey}
           key={selectedTable.tableID + "-" + "field" + "-" +  currentFieldKey}
+          tables={tables}
         />);
     }
   }

@@ -41,6 +41,14 @@ function reducer(state, action) {
       newState.selectedTable.fields[fieldKey][fieldProperty] = value;
       return { ...state, selectedTable: newState.selectedTable};
 
+    case "EDIT_RELATIONS":
+      const { relationFieldKey, relationFieldProperty, relationValue } = action.payload;
+      const currentRelation = newState.selectedTable.fields[relationFieldKey].relation;
+      currentRelation[relationFieldProperty] = relationValue;
+      if (currentRelation.tableIndex !== -1) newState.selectedTable.fields[relationFieldKey].relationSelected = true;
+      else newState.selectedTable.fields[relationFieldKey].relationSelected = false;
+      return { ...state, selectedTable: newState.selectedTable};
+
     case "EDIT_TABLE_NAME":
       newState.selectedTable.type = action.payload;
       return { ...state, selectedTable: newState.selectedTable };

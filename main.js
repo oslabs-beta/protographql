@@ -3,7 +3,6 @@ const path = require('path');
 const ipc = require('electron').ipcMain;
 const archiver = require('archiver')
 const fs = require('fs');
-const JSZip = require("jszip");
 
 // Global reference of the window object to avoid JS garbage collection
 // when window is created

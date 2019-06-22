@@ -1,56 +1,45 @@
-import tabs from './tabs';
 
-const buildSQLScripts = tables => {
-    let tableObj = Object.values(tables); // array with actual table objects
-    let output = ``;
-    for(let i = 0; i < tableObj.length; i++){
-        let tableType = tableObj[i].type;
-        output += `\n CREATE TABLE "${tableType}" (`
-        let fieldObjs = Object.values(tableObj[i].fields); // array of field Objects per table
-        let req;
-        let autoInc;
-        let uniqu;
-        let pk;
-        var related;
-        for(let j = 0; j < fieldObjs.length; j++){
-            let relation = tables[parseInt(fieldObjs[j].relation.tableIndex)];
-            let fieldType;
-            fieldObjs[j].relationSelected ? related = `\nALTER TABLE '${tableType}' ADD CONSTRAINT '${relation.type}' );` : related = '';
-            fieldObjs[j].required ? req = `NOT NULL` : req = '';
-            fieldObjs[j].autoIncrement && fieldObjs[j].type !== 'ID' ? autoInc = `SERIAL` : autoInc = '';
-            fieldObjs[j].unique ? uniqu = `UNIQUE` : uniqu = '';
-            fieldObjs[j].primaryKey ? pk = `PRIMARY KEY ('${tableType}')` : pk = '';
-            if(fieldObjs[j].type === 'ID' && fieldObjs[j].autoIncrement) {
-                fieldType = 'SERIAL';
-            }else if(!fieldObjs[j].type){
-                fieldType = ``;
-            }else{
-                fieldType = fieldObjs[j].type
-            }
-            output += `\n${tabs(2)} ${fieldObjs[j].name} ${fieldType} ${pk} ${autoInc} ${req} ${uniqu}`;
+const showFields = (tableObj,fieldIdxArr, tables) => {
+    const totalFields = tableObj.fieldIndex;
+    let foreignKey = false;
+    let output = ``
+    for(let field = 0; field < totalFields; field++){
+      if(fieldIdxArr[field]){
+        let propertyArr = Object.values(fieldIdxArr[field])
+        if(propertyArr[0].length > 0) output += `\n  "${propertyArr[0]}": ${propertyArr[1]}`;
+        if(propertyArr[3]) output += ` SERIAL`
+        if(propertyArr[2]) output += ` PRIMARY KEY`;
+        if(propertyArr[4]) output += ` UNIQUE `;
+        if(propertyArr[5]) output += `!`;
+        if(propertyArr[8]) {
+            foreignKey = true;
+            output += `);\n\n ALTER TABLE '${tables[propertyArr[10]].type}' ADD CONSTRAINT '${tables[propertyArr[9].tableIndex].type}';`;
         }
-        output += `);`
-        output += `\n${related}`;
-    } 
+      }
+    }
+    if(!foreignKey){
+      output += `);`
+    }
     return output;
-}
+   }
 
-
-// CREATE TABLE "Author" (
-//     "id"  serial  UNIQUE,
-//     "Name"  varchar,
-//     CONSTRAINT Author_pk PRIMARY KEY ("id")
-//   ) WITH (
-//     OIDS=FALSE
-//   );
-
-// CREATE TABLE "Books" (
-//     "id"  serial  UNIQUE,
-//     "Title"  varchar,
-//     "authorID"  varchar,
-//     CONSTRAINT Books_pk PRIMARY KEY ("id")
-//   ) WITH (
-//     OIDS=FALSE
-//   );
+   const buildSQLScripts = input => {
+    const tables = Object.values(input); // array with actual table objects
+    let output = ``;
+    tables.forEach((table,idx) => {
+        if(idx > 0){
+          const tableName = table.type;
+          output += `\n\n CREATE TABLE "${tableName}" (`
+          const fieldObjs = Object.values(table.fields); // array of field properties per table
+          output += showFields(table,fieldObjs,tables);
+        }else{
+          const tableName = table.type;
+          output += `CREATE TABLE "${tableName}" (`
+          const fieldObjs = Object.values(table.fields); // array of field properties per table
+          output += showFields(table,fieldObjs,tables);
+        }
+    })
+    return output;
+    }
 
 export default buildSQLScripts;

@@ -6,10 +6,16 @@ import {
   SET_POP_UP,
   SET_VIEW,
   ADD_TABLE,
+  SAVE_TABLE,
  } from '../../actions/actionTypes';
 
 const electron = window.require('electron');
-const fs = electron.remote.require('fs');
+// const remote = require('electron').remote;
+// const electronFs = remote.require('fs');
+// const archiver = require('archiver')
+const path = require('path')
+const fs = require('fs');
+// const JSZip = require("jszip");
 const ipc  = electron.ipcRenderer;
 
 /*-------------------- Styled Components --------------------*/
@@ -27,10 +33,7 @@ const SideBar = styled.div`
 /*-------------------- Functional Component --------------------*/
 
 function NavSideBar() {
-
   const { dispatch } = useContext(Store);
-
-    
   return (
     <SideBar>
       <NavButton 
@@ -43,7 +46,7 @@ function NavSideBar() {
           }}
       />
       <NavButton 
-          key='NavButton0' 
+          key='NavButton1' 
           className='fas fa-code'
           view='Code' 
           click={() => {
@@ -52,23 +55,24 @@ function NavSideBar() {
           }}
       />
       <NavButton 
-          key='NavButton0' 
+          key='NavButton2' 
           className='fas fa-file-download'
           view='Export' 
           click={() => {
             dispatch({ type: SET_VIEW, payload: 'export' })
             dispatch({ type: SET_POP_UP, payload: '' })
+            //emitting message to electron window to open save dialog
             ipc.send('show-export-dialog');
           }}
       />
       <NavButton 
-          key='NavButton0' 
+          key='NavButton3' 
           className='fas fa-plus-square'
           view='Add Table' 
           click={() => {
             dispatch({ type: SET_VIEW, payload: 'schema' })
             dispatch({ type: SET_POP_UP, payload: 'table' })
-            dispatch()
+            dispatch({ type: ADD_TABLE })
           }} 
           style={{ 
             position: 'absolute', 

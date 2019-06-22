@@ -1,7 +1,9 @@
 const { app, BrowserWindow, dialog } = require('electron');
 const path = require('path');
 const ipc = require('electron').ipcMain;
-
+const archiver = require('archiver')
+const fs = require('fs');
+const JSZip = require("jszip");
 
 // Global reference of the window object to avoid JS garbage collection
 // when window is created
@@ -52,17 +54,59 @@ app.on('activate', () => {
 
 //function to run when user clicks export
 function showExportDialog(event) {
-    dialog.showSaveDialog(
+    dialog.showOpenDialog(
       {
         title: 'Choose location to save folder in',
         defaultPath: app.getPath('desktop'),
         message: 'Choose location to save folder in',
-        nameFieldLabel: 'Application Name'
+        properties: ['openDirectory']
       },
       result => {
-        // console.log(result);
-        // if (nameLabel === 'JSON Name') event.sender.send('json-location', result);
-        event.sender.send('export-project-location', result);
+        //if user closes dialog window without selecting a folder
+        if (!result) return;
+
+        const output = fs.createWriteStream(result + '/apollo-server.zip');
+        const archive = archiver('zip', {
+          zlib: { level: 9 } // Sets the compression level.
+        });
+
+        // listen for all archive data to be written and output associated details
+        output.on('close', function() {
+          console.log(archive.pointer() + ' total bytes');
+          console.log('archiver has been finalized and the output file descriptor has closed.');
+          dialog.showMessageBox(win, 
+            {
+              type: "info",
+              message:"Export Successful!",
+              detail: 'File saved to ' + result + '/apollo-server.zip'
+            }
+          )
+        });
+
+        // good practice to catch warnings (ie stat failures and other non-blocking errors)
+        archive.on('warning', function(err) {
+          if (err.code === 'ENOENT') {
+            console.error(err)
+          } else {
+            // throw error
+            throw err;
+          }
+        });
+
+        archive.on('error', function(err) {
+          throw err;
+        });
+
+        // append files from apollo-server directory and naming it `apollo-server` within the archive
+        archive.directory(__dirname + '/apollo-server/', 'apollo-server');
+
+        //pipe the archive details to our zip file
+        archive.pipe(output);
+
+
+        // finalize the archive (ie we are done appending files but streams have to finish yet)
+        // 'close' will be fired afterwards
+        archive.finalize();
       }
     );
   }

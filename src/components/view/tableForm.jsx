@@ -39,6 +39,7 @@ const TableFooter = styled.div`
   position: relative;
   background-color: white;
   display: flex;
+  flex-direction: row-reverse;
   justify-content: space-between;
 `;
 
@@ -94,7 +95,6 @@ const CloseButton = styled.span`
   color: white;
   &:hover {
     cursor: pointer;
-
     color: #DD399C;
   }
 `;
@@ -133,7 +133,8 @@ function TableForm() {
   return (
     <FadeThePage>
       <Draggable handle="#header">
-        <CustomTable onSubmit={() => {
+        <CustomTable onSubmit={e => {
+          e.preventDefault();
           dispatch({ type: SAVE_TABLE });
           dispatch({ type: SET_POP_UP, payload: '' });
         }}>
@@ -155,13 +156,14 @@ function TableForm() {
             </tbody>
           </Table>
           <TableFooter>
-            <Button
-              onClick={() => dispatch({ type: ADD_FIELD })}>
-              <i className="fas fa-plus" /> Add Field
-            </Button>
-            <Button
-              type="submit">
+            <Button type="submit" value="default action">
               <i className="far fa-save" color="black" /> Save
+            </Button>
+            <Button onClick={e => {
+              e.preventDefault();
+              dispatch({ type: ADD_FIELD });
+            }}>
+              <i className="fas fa-plus" /> Add Field
             </Button>
           </TableFooter>
         </CustomTable>

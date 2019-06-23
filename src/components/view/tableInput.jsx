@@ -125,6 +125,8 @@ function TableInput({
   }
   populateFieldRelationOptions(relationTableIdx);
 
+
+
   return (
     <Tr>
       <Td>
@@ -247,8 +249,8 @@ function TableInput({
           onChange={
             e => {
               if (e.target.value === "") {
-                relationTableIdx = -1;
-                relationFieldIdx = -1;
+                // relationTableIdx = -1;
+                // relationFieldIdx = -1;
                 editRelations({
                   relationValue: -1,
                   relationFieldKey: fieldIndex,
@@ -302,10 +304,11 @@ function TableInput({
             })
           }
         >
-          <option value=""></option>
-          <option value="one to one">one to one</option>
-          <option value="many to one">many to one</option>
-          <option value="many to many">many to many</option>
+          {relationTableIdx !== -1 && <option value=""></option>}
+          {relationTableIdx !== -1 && <option value="one to one">one to one</option>}
+          {relationTableIdx !== -1 && <option value="many to one">many to one</option>}
+          {relationTableIdx !== -1 && <option value="many to many">many to many</option>}
+
         </Selected>
       </Td>
     </Tr >

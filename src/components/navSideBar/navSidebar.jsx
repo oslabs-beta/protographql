@@ -26,7 +26,7 @@ const SideBar = styled.div`
 
 /*-------------------- Functional Component --------------------*/
 
-const views = ["Schema", "Code", "Export"]
+const views = ["Schema", "Code", "Visualize", "Export"]
 
 function changeButtonStyleOnClick (view) {
   const currentButton = document.querySelector(`#${view}`);
@@ -68,7 +68,17 @@ function NavSideBar() {
           }}
       />
       <NavButton 
-          key='NavButton2' 
+        key='NavButton2' 
+        className='fas fa-project-diagram'
+        view='Visualize' 
+        click={(e) => {
+          dispatch({ type: SET_VIEW, payload: 'visualize' })
+          dispatch({ type: SET_POP_UP, payload: '' })
+          changeButtonStyleOnClick("Visualize")
+        }}
+      />
+      <NavButton 
+          key='NavButton3' 
           className='fas fa-file-download'
           view='Export' 
           click={(e) => {
@@ -80,7 +90,7 @@ function NavSideBar() {
           }}
       />
       <NavButton 
-          key='NavButton3' 
+          key='NavButton4' 
           className='fas fa-plus-square'
           view='Add Table' 
           click={() => {

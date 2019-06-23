@@ -133,7 +133,10 @@ function TableForm() {
   return (
     <FadeThePage>
       <Draggable handle="#header">
-        <CustomTable>
+        <CustomTable onSubmit={() => {
+          dispatch({ type: SAVE_TABLE });
+          dispatch({ type: SET_POP_UP, payload: '' });
+        }}>
           <TableHeader id="header" >
             <Buttons>
               <CloseButton onClick={() => dispatch({ type: SET_POP_UP, payload: '' })}>
@@ -158,14 +161,8 @@ function TableForm() {
             </Button>
             <Button
               type="submit">
-              {/* // onClick={() => {
-              //   dispatch({ type: SAVE_TABLE });
-              //   dispatch({ type: SET_POP_UP, payload: '' });
-              // }}> */}
               <i className="far fa-save" color="black" /> Save
             </Button>
-            <input type="submit" value="Submit" />
-            <button type="submit">SUBIT MEEE</button>
           </TableFooter>
         </CustomTable>
       </Draggable >

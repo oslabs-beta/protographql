@@ -27,8 +27,9 @@ const Selected = styled.select`
 	background-repeat: no-repeat, repeat;
 	background-position: right .7em top 50%, 0 0;
   background-size: .65em auto, 100%;
-  ::hover {
-    border-color: #888;
+  &:disabled {
+    opacity: .35;
+    border: 1px solid black;
   }
 `;
 

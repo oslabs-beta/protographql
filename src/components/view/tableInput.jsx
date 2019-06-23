@@ -28,8 +28,9 @@ const Selected = styled.select`
 	background-position: right .7em top 50%, 0 0;
   background-size: .65em auto, 100%;
   &:disabled {
-    opacity: .35;
-    border: 1px solid black;
+    opacity: .70;
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
   }
 `;
 

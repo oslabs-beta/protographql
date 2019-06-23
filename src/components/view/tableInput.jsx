@@ -112,7 +112,7 @@ function TableInput({
     }
   }
   populateTableRelationOptions();
-  
+
   const relationalFieldsNames = [];
   const populateFieldRelationOptions = (relTblIdx) => {
     if (relTblIdx !== -1) {
@@ -125,7 +125,6 @@ function TableInput({
 
   return (
     <Tr>
-
       <Td>
         <TrashCan onClick={() => deleteField(fieldIndex)}>
           <i className="fas fa-trash" />
@@ -242,25 +241,25 @@ function TableInput({
       {/* relationship to table */}
       <Td>
         <Selected
-          defaultValue={ relationTableIdx != -1 ? relationTableIdx : ""}
+          defaultValue={relationTableIdx != -1 ? relationTableIdx : ""}
           onChange={
             e => {
               if (e.target.value === "") {
                 relationTableIdx = -1;
                 relationFieldIdx = -1;
                 editRelations({
-                  relationValue: -1, 
-                  relationFieldKey: fieldIndex, 
-                  relationFieldProperty: "tableIndex" 
+                  relationValue: -1,
+                  relationFieldKey: fieldIndex,
+                  relationFieldProperty: "tableIndex"
                 })
               }
-              else 
-              editRelations({
-              relationValue: e.target.value, 
-              relationFieldKey: fieldIndex, 
-              relationFieldProperty: "tableIndex" 
-            })
-          }}
+              else
+                editRelations({
+                  relationValue: e.target.value,
+                  relationFieldKey: fieldIndex,
+                  relationFieldProperty: "tableIndex"
+                })
+            }}
         >
           <option value=""></option>
           {relationalTableNames}
@@ -270,14 +269,17 @@ function TableInput({
       {/* relationship to table fields */}
       <Td>
         <Selected
+          required={relationTableIdx !== -1}
+          disabled={relationTableIdx === -1}
           defaultValue={relationFieldIdx != -1 ? relationFieldIdx : ""}
           onChange={
             e => {
               editRelations({
-              relationValue: e.target.value, 
-              relationFieldKey: fieldIndex, 
-              relationFieldProperty: "fieldIndex" 
-            })}
+                relationValue: e.target.value,
+                relationFieldKey: fieldIndex,
+                relationFieldProperty: "fieldIndex"
+              })
+            }
           }
         >
           <option value=""></option>
@@ -287,12 +289,14 @@ function TableInput({
 
       <Td>
         <Selected
+          required={relationTableIdx !== -1}
+          disabled={relationTableIdx === -1}
           defaultValue={refType}
           onChange={
             e => editRelations({
-              relationValue: e.target.value, 
-              relationFieldKey: fieldIndex, 
-              relationFieldProperty: "refType" 
+              relationValue: e.target.value,
+              relationFieldKey: fieldIndex,
+              relationFieldProperty: "refType"
             })
           }
         >

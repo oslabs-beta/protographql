@@ -27,8 +27,10 @@ const Selected = styled.select`
 	background-repeat: no-repeat, repeat;
 	background-position: right .7em top 50%, 0 0;
   background-size: .65em auto, 100%;
-  ::hover {
-    border-color: #888;
+  &:disabled {
+    opacity: .70;
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
   }
 `;
 
@@ -112,7 +114,7 @@ function TableInput({
     }
   }
   populateTableRelationOptions();
-  
+
   const relationalFieldsNames = [];
   const populateFieldRelationOptions = (relTblIdx) => {
     if (relTblIdx !== -1) {
@@ -123,9 +125,10 @@ function TableInput({
   }
   populateFieldRelationOptions(relationTableIdx);
 
+
+
   return (
     <Tr>
-
       <Td>
         <TrashCan onClick={() => deleteField(fieldIndex)}>
           <i className="fas fa-trash" />
@@ -242,25 +245,25 @@ function TableInput({
       {/* relationship to table */}
       <Td>
         <Selected
-          defaultValue={ relationTableIdx != -1 ? relationTableIdx : ""}
+          defaultValue={relationTableIdx != -1 ? relationTableIdx : ""}
           onChange={
             e => {
               if (e.target.value === "") {
-                relationTableIdx = -1;
-                relationFieldIdx = -1;
+                // relationTableIdx = -1;
+                // relationFieldIdx = -1;
                 editRelations({
-                  relationValue: -1, 
-                  relationFieldKey: fieldIndex, 
-                  relationFieldProperty: "tableIndex" 
+                  relationValue: -1,
+                  relationFieldKey: fieldIndex,
+                  relationFieldProperty: "tableIndex"
                 })
               }
-              else 
-              editRelations({
-              relationValue: e.target.value, 
-              relationFieldKey: fieldIndex, 
-              relationFieldProperty: "tableIndex" 
-            })
-          }}
+              else
+                editRelations({
+                  relationValue: e.target.value,
+                  relationFieldKey: fieldIndex,
+                  relationFieldProperty: "tableIndex"
+                })
+            }}
         >
           <option value=""></option>
           {relationalTableNames}
@@ -270,14 +273,17 @@ function TableInput({
       {/* relationship to table fields */}
       <Td>
         <Selected
+          required={relationTableIdx !== -1}
+          disabled={relationTableIdx === -1}
           defaultValue={relationFieldIdx != -1 ? relationFieldIdx : ""}
           onChange={
             e => {
               editRelations({
-              relationValue: e.target.value, 
-              relationFieldKey: fieldIndex, 
-              relationFieldProperty: "fieldIndex" 
-            })}
+                relationValue: e.target.value,
+                relationFieldKey: fieldIndex,
+                relationFieldProperty: "fieldIndex"
+              })
+            }
           }
         >
           <option value=""></option>
@@ -287,19 +293,22 @@ function TableInput({
 
       <Td>
         <Selected
+          required={relationTableIdx !== -1}
+          disabled={relationTableIdx === -1}
           defaultValue={refType}
           onChange={
             e => editRelations({
-              relationValue: e.target.value, 
-              relationFieldKey: fieldIndex, 
-              relationFieldProperty: "refType" 
+              relationValue: e.target.value,
+              relationFieldKey: fieldIndex,
+              relationFieldProperty: "refType"
             })
           }
         >
-          <option value=""></option>
-          <option value="one to one">one to one</option>
-          <option value="many to one">many to one</option>
-          <option value="many to many">many to many</option>
+          {relationTableIdx !== -1 && <option value=""></option>}
+          {relationTableIdx !== -1 && <option value="one to one">one to one</option>}
+          {relationTableIdx !== -1 && <option value="many to one">many to one</option>}
+          {relationTableIdx !== -1 && <option value="many to many">many to many</option>}
+
         </Selected>
       </Td>
     </Tr >

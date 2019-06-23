@@ -66,18 +66,18 @@ function NavSideBar() {
           changeButtonStyleOnClick("Code")
         }}
       />
-      {/* <NavButton 
-          key='NavButton2' 
-          className='fas fa-file-download'
-          view='Export' 
-          click={(e) => {
-            dispatch({ type: SET_VIEW, payload: 'export' })
-            dispatch({ type: SET_POP_UP, payload: '' })
-            changeButtonStyleOnClick("Export")
-            //emitting message to electron window to open save dialog
-            ipc.send('show-export-dialog');
-          }}
-      /> */}
+      <NavButton
+        key='NavButton2'
+        className='fas fa-file-download'
+        view='Export'
+        click={(e) => {
+          dispatch({ type: SET_VIEW, payload: 'export' })
+          dispatch({ type: SET_POP_UP, payload: '' })
+          changeButtonStyleOnClick("Export")
+          //emitting message to electron window to open save dialog
+          ipc.send('show-export-dialog');
+        }}
+      />
       <NavButton
         key='NavButton3'
         className='fas fa-plus-square'

@@ -181,10 +181,109 @@ export const view = 'table';
 
 export const popUp = 'welcome';
 
-export const gqlSchema = `const { gql } = require('apollo-server-express');\n\nmodule.exports = typeDefs;\n`;
+export const gqlSchema = `const { gql } = require('apollo-server-express');
 
-export const gqlResolvers = `const pool = require('../db/sqlPool');\n\nmodule.exports = resolvers;\n`;
+const typeDefs = gql\`
 
-export const sqlScripts = '';
+  type Author {
+    id: ID
+    first_name: String!
+    last_name: String!
+  }
+
+  type Books {
+    id: ID
+    name: String!
+    author: Author
+  }
+
+  type Query {
+    getAllAuthor: [Author]
+    getAllBooks: [Books]
+    getBooks(
+      id: ID,
+      name: String,
+      author_id: ID
+    ): [Books]
+  }
+
+\`;
+
+module.exports = typeDefs;`;
+
+export const gqlResolvers = `const pool = require('../db/sqlPool');
+
+const resolvers = {
+
+  Query: {
+    getAllAuthor() {
+      const sql = \`SELECT * FROM "Author";\`;
+      return pool.query(sql)
+        .then(res => res.rows)
+        .catch(err => console.error('Error is: ', err));
+    },
+    getAllBooks() {
+      const sql = \`SELECT * FROM "Books";\`;
+      return pool.query(sql)
+        .then(res => res.rows)
+        .catch(err => console.error('Error is: ', err));
+    },
+    getBooks(parent, args, context, info) {
+      let sql = \`SELECT * FROM "Books"\`;
+      let whereClause = \` WHERE \`;
+      Object.keys(args).forEach((fieldName, i , arr) => {
+        whereClause += \`"\${fieldName}" = '\${args[fieldName]}'\`;
+        if (i !== arr.length - 1) whereClause += \` AND \`;
+        else whereClause += \`;\`;
+      });
+      sql += whereClause;
+      return pool.query(sql)
+        .then(res => res.rows)
+        .catch(err => console.error('Error is: ', err));
+    },
+  },
+
+  Author: {
+    id: (parent, args, context, info) => {
+      return parent.id;
+    },
+    first_name: (parent, args, context, info) => {
+      return parent.first_name;
+    },
+    last_name: (parent, args, context, info) => {
+      return parent.last_name;
+    },
+  },
+
+  Books: {
+    id: (parent, args, context, info) => {
+      return parent.id;
+    },
+    name: (parent, args, context, info) => {
+      return parent.name;
+    },
+    author: (parent, args, context, info) => {
+      const sql = \`SELECT * FROM "Author" WHERE "id" = '\${parent.author_id}';\`;
+      return pool.query(sql)
+        .then(res => res.rows[0])
+        .catch(err => console.error('Error is: ', err))
+    },
+  },
+
+}
+
+module.exports = resolvers;`;
+
+export const sqlScripts = `CREATE TABLE "Author"(
+  "id" SERIAL PRIMARY KEY UNIQUE,
+  "first_name" VARCHAR(256) NOT NULL,
+  "last_name" VARCHAR(256) NOT NULL
+);
+
+CREATE TABLE "Books"(
+  "id" SERIAL PRIMARY KEY UNIQUE,
+  "name" VARCHAR(256) NOT NULL,
+  "author_id" SERIAL NOT NULL
+);`;
 
 export const dbConnectionURI = '';

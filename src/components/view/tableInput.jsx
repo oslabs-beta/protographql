@@ -72,10 +72,8 @@ function TableInput({
 }) {
 
   const {
-    autoIncrement,
     defaultValue,
     fieldNum,
-    multipleValues,
     name,
     primaryKey,
     queryable,
@@ -99,7 +97,6 @@ function TableInput({
 
   useEffect(() => {
     isChecked("#primaryKey" + fieldNum, primaryKey);
-    isChecked("#autoIncrement" + fieldNum, autoIncrement);
     isChecked("#unique" + fieldNum, unique);
     isChecked("#required" + fieldNum, required);
     isChecked("#queryable" + fieldNum, queryable);
@@ -173,21 +170,6 @@ function TableInput({
             onClick={(e) => {
               e.target.value = !e.target.value;
               editField({ value: e.target.value, fieldKey: fieldIndex, fieldProperty: "primaryKey" });
-            }}
-            value={false}
-          />
-        </label>
-      </Td>
-
-      <Td>
-        <label className="switch">
-          <input type="checkbox" />
-          <span
-            id={"autoIncrement" + fieldNum}
-            className="slider round"
-            onClick={(e) => {
-              e.target.value = !e.target.value;
-              editField({ value: e.target.value, fieldKey: fieldIndex, fieldProperty: "autoIncrement" });
             }}
             value={false}
           />

@@ -10,7 +10,7 @@ const showFields = fields => {
     output += `${tabs(1)}"${field.name}"`;
     output += field.type === `String` ? ` VARCHAR(256)` : ``;
     output += field.type === `ID` ? ` SERIAL` : ``;
-    output += field.type !== `String` || field.type !== `ID` ? ` ${field.type}` : ``;
+    output += field.type !== `String` && field.type !== `ID` ? ` ${field.type}` : ``;
     output += field.primaryKey ? ` PRIMARY KEY` : ``;
     output += field.unique ? ` UNIQUE` : ``;
     output += field.required ? ` NOT NULL` : ``;

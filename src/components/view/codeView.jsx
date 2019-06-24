@@ -1,9 +1,6 @@
 import React, { useContext } from 'react';
 import { Store } from '../../state/store';
 import styled from 'styled-components';
-import buildGQLSchema from '../../utils/buildGQLSchema';
-import buildGQLResolvers from '../../utils/buildGQLResolvers';
-import buildSQLScripts from '../../utils/buildSQLScripts';
 
 /*-------------------- Styled Components --------------------*/
 
@@ -46,28 +43,21 @@ const Title = styled.p`
 
 function CodeView() {
 
-  const { state: { tables, gqlSchema } } = useContext(Store);
+  const { state: { gqlSchema, gqlResolvers, sqlScripts } } = useContext(Store);
 
   return (
     <Code>
       <Column style={{ gridColumn: "1 / 2", gridRow: "1 / 3" }}>
         <Title>GraphQL Schema</Title>
-        <pre>
-          {/* {buildGQLSchema(tables)} */}
-          {gqlSchema}
-        </pre>
+        <pre>{gqlSchema}</pre>
       </Column>
       <Column style={{ gridColumn: "2 / 3", gridRow: "1 / 2" }}>
         <Title>SQL Scripts</Title>
-        <pre>
-          {buildSQLScripts(tables)}
-        </pre>
+        <pre>{sqlScripts}</pre>
       </Column>
       <Column style={{ gridColumn: "2 / 3", gridRow: "2 / 3" }}>
         <Title>GraphQL Resolvers</Title>
-        <pre>
-          {buildGQLResolvers(tables)}
-        </pre>
+        <pre>{gqlResolvers}</pre>
       </Column>
     </Code>
   );

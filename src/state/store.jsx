@@ -63,7 +63,9 @@ function reducer(state, action) {
         ...state, 
         tables: newState.tables, 
         tableIndex: newState.tableIndex + 1, 
-        gqlSchema: buildGQLSchema(newState.tables) 
+        gqlSchema: buildGQLSchema(newState.tables),
+        gqlResolvers: buildGQLResolvers(newState.tables),
+        sqlScripts: buildSQLScripts(newState.tables)
       };
 
     case "DELETE_TABLE":

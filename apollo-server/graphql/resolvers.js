@@ -1,4 +1,4 @@
-const pool = require('./sqlPool');
+const pool = require('../db/sqlPool');
 
 const resolvers = {
 
@@ -18,7 +18,7 @@ const resolvers = {
     getBooks(parent, args, context, info) {
       let sql = `SELECT * FROM "Books"`;
       let whereClause = ` WHERE `;
-      Object.keys(args).forEach((fieldName, i , arr) => {
+      Object.keys(args).forEach((fieldName, i, arr) => {
         whereClause += `"${fieldName}" = '${args[fieldName]}'`;
         if (i !== arr.length - 1) whereClause += ` AND `;
         else whereClause += `;`;

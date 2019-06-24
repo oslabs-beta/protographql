@@ -22,7 +22,6 @@ function TableField() {
       <Th className="other-header">Type</Th>
       <Th className="other-header">Default Value</Th>
       <Th className="slider-header">Primary Key</Th>
-      <Th className="slider-header">Auto Increment</Th>
       <Th className="slider-header">Unique</Th>
       <Th className="slider-header">Required</Th>
       <Th className="slider-header">Queryable</Th>

@@ -8,9 +8,29 @@ const showFields = fields => {
   for (let i in fields) {
     const field = fields[i];
     output += `${tabs(1)}"${field.name}"`;
-    output += field.type === `String` ? ` VARCHAR(256)` : ``;
-    output += field.type === `ID` ? ` SERIAL` : ``;
-    output += field.type !== `String` && field.type !== `ID` ? ` ${field.type}` : ``;
+    
+    let sqlType = '';
+    switch(field.type) {
+      case `ID`:
+        sqlType += ` SERIAL`;
+        break;
+      case `String`:
+        sqlType += ` VARCHAR(256)`;
+        break;
+      case `Int`:
+        sqlType += ` INTEGER`;
+        break;
+      case `Float`:
+        sqlType += ` FLOAT(8)`;
+        break;
+      case `Boolean`:
+        sqlType += ` BOOLEAN`;
+        break;
+      default:
+        sqlType += field.type;
+    }
+    
+    output += sqlType;
     output += field.primaryKey ? ` PRIMARY KEY` : ``;
     output += field.unique ? ` UNIQUE` : ``;
     output += field.required ? ` NOT NULL` : ``;

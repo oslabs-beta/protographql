@@ -43,7 +43,14 @@ function changeButtonStyleOnClick(view) {
 }
 
 function NavSideBar() {
-  const { dispatch } = useContext(Store);
+  const { 
+    dispatch,
+    state: {
+      gqlSchema,
+      gqlResolvers,
+      sqlScripts,
+    }
+  } = useContext(Store);
   return (
     <SideBar>
       <NavButton
@@ -75,7 +82,7 @@ function NavSideBar() {
           dispatch({ type: SET_POP_UP, payload: '' })
           changeButtonStyleOnClick("Export")
           //emitting message to electron window to open save dialog
-          ipc.send('show-export-dialog');
+          ipc.send('show-export-dialog', gqlSchema, gqlResolvers, sqlScripts);
         }}
       />
       <NavButton

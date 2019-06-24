@@ -10,17 +10,14 @@ let win;
 
 function createWindow() {
   win = new BrowserWindow({
-      width: 800,
-      height: 600,
-      webPreferences: {
-          nodeIntegration: true
-      },
-      // this is only for Windows and Linux
-      icon: './public/assets/pictures/ProtoGraphQLLogo.png'
-    });
-  //  console.log('Our dialog: ', dialog.showOpenDialog({
-  //      properties: ['openFile', 'openDirectory', 'multiSelections']
-  //  }));
+    width: 800,
+    height: 600,
+    webPreferences: {
+        nodeIntegration: true
+    },
+    // this is only for Windows and Linux
+    icon: './public/assets/pictures/ProtoGraphQLLogo.png'
+  });
 
   //Maximize browser window
   win.maximize();
@@ -30,12 +27,12 @@ function createWindow() {
   win.loadFile('index.html');
 
   // Open developer tools panel when our window opens
-    win.webContents.openDevTools();
+  win.webContents.openDevTools();
 
   // Add event listener to set our global window variable to null
   // This is needed so that window is able to reopen when user relaunches the app
   win.on('closed', () => {
-      win = null;
+    win = null;
   });
 }
 
@@ -50,8 +47,17 @@ app.on('activate', () => {
   if (win === null) createWindow();
 });
 
+// Overwrite default Apollo Server code files
+const createFile = (fileName, data) => {
+  try {
+    fs.writeFileSync(path.join(__dirname, `/apollo-server/${fileName}`), data, 'utf8');
+  } catch(err) {
+    return console.error(err);
+  } 
+}
+
 //function to run when user clicks export
-function showExportDialog(event) {
+function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts) {
   dialog.showOpenDialog(
     {
       title: 'Choose location to save folder in',
@@ -63,14 +69,9 @@ function showExportDialog(event) {
       //if user closes dialog window without selecting a folder
       if (!result) return;
 
-      // Overwrite Apollo Server code files
-      try {
-        console.log('File writing now...');
-        fs.writeFileSync(path.join(__dirname, '/apollo-server/test.js'), testFile(), 'utf8');
-        console.log('File overwritten!');
-      } catch(err) {
-        return console.error(err);
-      } 
+      createFile('schema.js', gqlSchema);
+      createFile('resolvers.js', gqlResolvers);
+      createFile('createTables.sql', sqlScripts);
 
       const output = fs.createWriteStream(result + '/apollo-server.zip');
       const archive = archiver('zip', {
@@ -92,12 +93,8 @@ function showExportDialog(event) {
 
       // good practice to catch warnings (ie stat failures and other non-blocking errors)
       archive.on('warning', function(err) {
-        if (err.code === 'ENOENT') {
-          console.error(err)
-        } else {
-          // throw error
-          throw err;
-        }
+        if (err.code === 'ENOENT') console.error(err)
+        else throw err;
       });
 
       archive.on('error', function(err) {
@@ -118,8 +115,6 @@ function showExportDialog(event) {
 }
   
 //listener for export button being clicked
-ipc.on('show-export-dialog', event => {
-  showExportDialog(event);
+ipc.on('show-export-dialog', (event, gqlSchema, gqlResolvers, sqlScripts) => {
+  showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts);
 });
-
-const testFile = () => 'Does this export file work?';

@@ -67,3 +67,5 @@ export const gqlSchema = `const { gql } = require('apollo-server-express');\n\nm
 export const gqlResolvers = `const pool = require('./sqlPool');\n\nmodule.exports = resolvers;\n`;
 
 export const sqlScripts = ``;
+
+export const dbConnectionURI = '';

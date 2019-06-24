@@ -74,7 +74,11 @@ span{
   transition: all .15s ease-in-out;
 }
 
-span:hover{
+a {
+  color: white;
+}
+
+a:hover{
   color: #DD399C;
 }
 

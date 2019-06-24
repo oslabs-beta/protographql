@@ -8,15 +8,13 @@ export const selectedTable = {
 export const initialTable = {
   type: '',
   fields: {
-      1: {
+    1: {
       name: '',
       type: 'ID',
       primaryKey: false,
-      autoIncrement: false,
       unique: false,
       defaultValue: '',
       required: false,
-      multipleValues: false,
       relationSelected: false,
       relation: {
         tableIndex: -1,
@@ -37,11 +35,9 @@ export const initialField = {
   name: '',
   type: 'ID',
   primaryKey: false,
-  autoIncrement: false,
   unique: false,
   defaultValue: '',
   required: false,
-  multipleValues: false,
   relationSelected: false,
   relation: {
     tableIndex: -1,
@@ -65,3 +61,11 @@ export const view = 'schema';
 //this will toggle popups
 //potential popups are welcome and export (select folder to save & success)
 export const popUp = 'welcome';
+
+export const gqlSchema = `const { gql } = require('apollo-server-express');\n\nmodule.exports = typeDefs;\n`;
+
+export const gqlResolvers = `const pool = require('../db/sqlPool');\n\nmodule.exports = resolvers;\n`;
+
+export const sqlScripts = ``;
+
+export const dbConnectionURI = '';

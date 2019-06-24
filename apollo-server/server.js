@@ -7,7 +7,7 @@ const app = express();
 const path = require('path');
 const server = new ApolloServer({ typeDefs, resolvers });
 
-server.applyMiddleware({ app }); // app is from an existing express app
+server.applyMiddleware({ app }); 
 
 app.use(express.static(path.join(__dirname, './public')))
 

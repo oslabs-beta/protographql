@@ -12,11 +12,9 @@ export const initialTable = {
       name: '',
       type: 'ID',
       primaryKey: false,
-      autoIncrement: false,
       unique: false,
       defaultValue: '',
       required: false,
-      multipleValues: false,
       relationSelected: false,
       relation: {
         tableIndex: -1,
@@ -37,11 +35,9 @@ export const initialField = {
   name: '',
   type: 'ID',
   primaryKey: false,
-  autoIncrement: false,
   unique: false,
   defaultValue: '',
   required: false,
-  multipleValues: false,
   relationSelected: false,
   relation: {
     tableIndex: -1,

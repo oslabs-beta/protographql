@@ -1,45 +1,35 @@
-const showFields = (table, fields, tables) => {
-  const totalFields = table.fieldIndex;
-  let foreignKey = false;
-  let output = ``;
-  for (let fieldIndex = 0; fieldIndex < totalFields; fieldIndex++) {
-    if (fields[fieldIndex]) {
-      let propertyArr = Object.values(fields[fieldIndex]);
-      if (propertyArr[0].length > 0) output += `\n  "${propertyArr[0]}"`;
-      
-      if (propertyArr[1] !== 'ID' && propertyArr[1] !== 'String') output += ` ${propertyArr[1]}`;
-      else if (propertyArr[1] === 'String') output += ` VARCHAR(256)`;
+import tabs from './tabs';
 
-      if (propertyArr[3] || propertyArr[1] === 'ID') output += ` SERIAL`;
-      if (propertyArr[2]) output += ` PRIMARY KEY`;
-      if (propertyArr[4]) output += ` UNIQUE`;
-      if (propertyArr[5]) output += ` NOT NULL`;
-      // if (propertyArr[8]) {
-      //   if (propertyArr[9].tableIndex > -1 && tables[propertyArr[9].tableIndex]) {
-      //     output += `);\n\n ${tables[propertyArr[10]].type} REFERENCES ${tables[propertyArr[9].tableIndex].type} `;
-      //     if (tables[propertyArr[9].tableIndex].fields[propertyArr[9].fieldIndex]) {
-      //       output += `(${tables[propertyArr[9].tableIndex].fields[propertyArr[9].fieldIndex].name})`
-      //     }
-      //   }
-      //   foreignKey = true;
-        // output += `);\n\n ALTER TABLE '${tables[propertyArr[10]].type}' ADD CONSTRAINT '${tables[propertyArr[9].tableIndex].type}';`;
-      // }
-    }
-    if (fieldIndex < totalFields - 1) output += `,`;
-    else output += `\n);`;
+const showFields = fields => {
+  const totalFields = Math.max(...Object.keys(fields));
+  let output = ``;
+
+  // Define each field in SQL
+  for (let i in fields) {
+    const field = fields[i];
+    output += `${tabs(1)}"${field.name}"`;
+
+    if (field.type === `String`) output += ` VARCHAR(256)`;
+    else if (field.type !== `ID`) output += ` ${field.type}`;
+
+    output += field.autoIncrement || field.type === `ID` ? ` SERIAL` : ``;
+    output += field.primaryKey ? ` PRIMARY KEY` : ``;
+    output += field.unique ? ` UNIQUE` : ``;
+    output += field.required ? ` NOT NULL` : ``;
+    output += field.defaultValue ? ` DEFAULT '${field.defaultValue}'` : ``;
+    output += i < totalFields ? `,\n` : `\n)`;
   }
 
   return output;
 }
 
-const buildSQLScripts = input => {
-  const tables = Object.values(input); // array with actual table objects
+const buildSQLScripts = tableState => {
+  const tables = Object.values(tableState); // array with actual table objects
   let sqlScripts = ``;
 
   tables.forEach(table => {
-    sqlScripts += `CREATE TABLE "${table.type}" (`;
-    const fields = Object.values(table.fields); // array of field properties per table
-    sqlScripts += showFields(table, fields, tables);
+    sqlScripts += `CREATE TABLE "${table.type}" (\n`;
+    sqlScripts += showFields(table.fields);
     sqlScripts += `\n\n`; 
   });
 

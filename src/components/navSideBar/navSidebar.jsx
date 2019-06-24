@@ -2,15 +2,14 @@ import React, { useContext } from 'react';
 import NavButton from './navButton';
 import styled from 'styled-components';
 import { Store } from '../../state/store';
-import { 
+import {
   SET_POP_UP,
   SET_VIEW,
   ADD_TABLE,
-  SAVE_TABLE,
- } from '../../actions/actionTypes';
+} from '../../actions/actionTypes';
 
-// const electron = window.require('electron');
-// const ipc  = electron.ipcRenderer;
+const electron = window.require('electron');
+const ipc = electron.ipcRenderer;
 
 /*-------------------- Styled Components --------------------*/
 
@@ -26,19 +25,19 @@ const SideBar = styled.div`
 
 /*-------------------- Functional Component --------------------*/
 
-const views = ["Schema", "Code", "Export"]
+const views = ["Schema", "Code", "Visualize", "Export"]
 
-function changeButtonStyleOnClick (view) {
+function changeButtonStyleOnClick(view) {
   const currentButton = document.querySelector(`#${view}`);
-  currentButton.style.boxShadow = "4px 4px 4px rgba(0, 0, 0, 0.10)";	
-  currentButton.style.border = "2px solid rgba(0, 0, 0, 0.12)";	
-  currentButton.style.borderRight = "4px solid rgba(221, 57, 156, 1)";	
-  for (let j = 0; j < views.length; j++) {	
+  currentButton.style.boxShadow = "4px 4px 4px rgba(0, 0, 0, 0.10)";
+  currentButton.style.border = "2px solid rgba(0, 0, 0, 0.12)";
+  currentButton.style.borderRight = "4px solid rgba(221, 57, 156, 1)";
+  for (let j = 0; j < views.length; j++) {
     if (view !== views[j]) {
-      const button = document.querySelector(`#${views[j]}`);	
-      button.style.boxShadow = "1px 2px 3px rgba(0, 0, 0, 0.10)";	
-      button.style.border = "none";	
-      button.style.borderRight = "1px solid rgba(0, 0, 0, 0.12)";	
+      const button = document.querySelector(`#${views[j]}`);
+      button.style.boxShadow = "1px 2px 3px rgba(0, 0, 0, 0.10)";
+      button.style.border = "none";
+      button.style.borderRight = "1px solid rgba(0, 0, 0, 0.12)";
     }
   }
 }
@@ -47,28 +46,38 @@ function NavSideBar() {
   const { dispatch } = useContext(Store);
   return (
     <SideBar>
-      <NavButton 
-          key='NavButton0' 
-          className='fas fa-code-branch'
-          view='Schema' 
-          click={(e) => {
-            dispatch({ type: SET_VIEW, payload: 'schema' })
-            dispatch({ type: SET_POP_UP, payload: '' })
-            changeButtonStyleOnClick("Schema")
-          }}
+      <NavButton
+        key='NavButton0'
+        className='fas fa-code-branch'
+        view='Schema'
+        click={(e) => {
+          dispatch({ type: SET_VIEW, payload: 'schema' })
+          dispatch({ type: SET_POP_UP, payload: '' })
+          changeButtonStyleOnClick("Schema")
+        }}
+      />
+      <NavButton
+        key='NavButton1'
+        className='fas fa-code'
+        view='Code'
+        click={(e) => {
+          dispatch({ type: SET_VIEW, payload: 'code' })
+          dispatch({ type: SET_POP_UP, payload: '' })
+          changeButtonStyleOnClick("Code")
+        }}
       />
       <NavButton 
-          key='NavButton1' 
-          className='fas fa-code'
-          view='Code' 
-          click={(e) => {
-            dispatch({ type: SET_VIEW, payload: 'code' })
-            dispatch({ type: SET_POP_UP, payload: '' })
-            changeButtonStyleOnClick("Code")
-          }}
+        key='NavButton2' 
+        className='fas fa-project-diagram'
+        view='Visualize' 
+        click={(e) => {
+          dispatch({ type: SET_VIEW, payload: 'visualize' })
+          dispatch({ type: SET_POP_UP, payload: '' })
+          changeButtonStyleOnClick("Visualize")
+        }}
       />
       <NavButton 
-          key='NavButton2' 
+          key='NavButton3' 
           className='fas fa-file-download'
           view='Export' 
           click={(e) => {
@@ -80,7 +89,7 @@ function NavSideBar() {
           }}
       />
       <NavButton 
-          key='NavButton3' 
+          key='NavButton4' 
           className='fas fa-plus-square'
           view='Add Table' 
           click={() => {

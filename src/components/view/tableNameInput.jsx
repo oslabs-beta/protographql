@@ -32,6 +32,7 @@ function TableNameInput({ name, editTableName }) {
   return (
     <Wrapper>
       <Input
+        required
         type="text"
         placeholder="Enter Table Name * "
         defaultValue={name}

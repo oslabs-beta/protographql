@@ -70,7 +70,13 @@ function reducer(state, action) {
 
     case "DELETE_TABLE":
       delete newState.tables[action.payload];
-      return { ...state, tables: newState.tables };
+      return { 
+        ...state, 
+        tables: newState.tables,
+        gqlSchema: buildGQLSchema(newState.tables),
+        gqlResolvers: buildGQLResolvers(newState.tables),
+        sqlScripts: buildSQLScripts(newState.tables) 
+      };
 
     case "SET_VIEW":
       return { ...state, view: action.payload };

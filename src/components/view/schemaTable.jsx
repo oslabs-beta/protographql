@@ -1,13 +1,13 @@
 import React from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
-import { 
-  Table, 
-  Typography, 
-  TableBody, 
-  TableCell, 
-  TableHead, 
-  TableRow, 
-  Paper 
+import {
+  Table,
+  Typography,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  Paper
 } from '@material-ui/core/';
 import styled from 'styled-components';
 
@@ -39,9 +39,7 @@ const StyledTableRow = withStyles(theme => ({
 const useStyles = makeStyles(theme => ({
   root: {
     width: 250,
-    maxHeight: 300,
-    marginTop: theme.spacing(3),
-    overflowX: 'auto',
+    height: '100%',
   },
   table: {
     minWidth: 200
@@ -71,7 +69,7 @@ const Buttons = styled.span`
 
 /*-------------------- Functional Component --------------------*/
 
-function SchemaTable({ 
+function SchemaTable({
   table,
   setPopUp,
   tableKey,
@@ -100,8 +98,8 @@ function SchemaTable({
         </span>
         <span style={{ float: "right", marginRight: 5 }}>
           <Buttons>
-            <i 
-              className="fas fa-edit" 
+            <i
+              className="fas fa-edit"
               onClick={() => {
                 editTable(tableKey);
                 setPopUp('table');

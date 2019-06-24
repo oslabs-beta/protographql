@@ -1,6 +1,9 @@
 import React from 'react';
 import * as state from '../state/mockState';
 import deepClone from '../utils/deepClone';
+import buildGQLSchema from '../utils/buildGQLSchema';
+import buildGQLResolvers from '../utils/buildGQLResolvers';
+import buildSQLScripts from '../utils/buildSQLScripts';
 
 const initialState = state;
 
@@ -56,7 +59,12 @@ function reducer(state, action) {
     // This case will increment tableIndex regardless whether we're adding a new table or editing an existing one
     case "SAVE_TABLE":
       newState.tables[newState.selectedTable.tableID] = newState.selectedTable;
-      return { ...state, tables: newState.tables, tableIndex: newState.tableIndex + 1 };
+      return { 
+        ...state, 
+        tables: newState.tables, 
+        tableIndex: newState.tableIndex + 1, 
+        gqlSchema: buildGQLSchema(newState.tables) 
+      };
 
     case "DELETE_TABLE":
       delete newState.tables[action.payload];

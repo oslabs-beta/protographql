@@ -46,14 +46,15 @@ const Title = styled.p`
 
 function CodeView() {
 
-  const { state: { tables } } = useContext(Store);
+  const { state: { tables, gqlSchema } } = useContext(Store);
 
   return (
     <Code>
       <Column style={{ gridColumn: "1 / 2", gridRow: "1 / 3" }}>
         <Title>GraphQL Schema</Title>
         <pre>
-          {buildGQLSchema(tables)}
+          {/* {buildGQLSchema(tables)} */}
+          {gqlSchema}
         </pre>
       </Column>
       <Column style={{ gridColumn: "2 / 3", gridRow: "1 / 2" }}>

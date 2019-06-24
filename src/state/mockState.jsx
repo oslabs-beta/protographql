@@ -196,3 +196,5 @@ export const tables = {
 export const view = 'table';
 
 export const popUp = 'welcome';
+
+export const gqlSchema = `const { gql } = require('apollo-server-express');\n\nmodule.exports = typeDefs;\n`;

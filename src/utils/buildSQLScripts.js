@@ -8,29 +8,26 @@ const showFields = fields => {
   for (let i in fields) {
     const field = fields[i];
     output += `${tabs(1)}"${field.name}"`;
-
-    if (field.type === `String`) output += ` VARCHAR(256)`;
-    else if (field.type !== `ID`) output += ` ${field.type}`;
-
-    output += field.autoIncrement || field.type === `ID` ? ` SERIAL` : ``;
+    output += field.type === `String` ? ` VARCHAR(256)` : ``;
+    output += field.type === `ID` ? ` SERIAL` : ``;
+    output += field.type !== `String` || field.type !== `ID` ? ` ${field.type}` : ``;
     output += field.primaryKey ? ` PRIMARY KEY` : ``;
     output += field.unique ? ` UNIQUE` : ``;
     output += field.required ? ` NOT NULL` : ``;
     output += field.defaultValue ? ` DEFAULT '${field.defaultValue}'` : ``;
-    output += i < totalFields ? `,\n` : `\n)`;
+    output += i < totalFields ? `,\n` : `\n);\n\n`;
   }
 
   return output;
 }
 
 const buildSQLScripts = tableState => {
-  const tables = Object.values(tableState); // array with actual table objects
+  const tables = Object.values(tableState); 
   let sqlScripts = ``;
 
   tables.forEach(table => {
     sqlScripts += `CREATE TABLE "${table.type}" (\n`;
     sqlScripts += showFields(table.fields);
-    sqlScripts += `\n\n`; 
   });
 
   return sqlScripts;

@@ -39,7 +39,7 @@ body{
 #logo{
   height: 250px;
   margin-bottom: 20px;
-  animation-delay: 2s;
+  animation-delay: 2.5s;
   animation-name: spin;
   animation-duration: 100000ms;
   animation-iteration-count: infinite;
@@ -64,7 +64,7 @@ h1, h2{
   font-size: 1.5em;
   font-weight: 500;
   margin: 5px;
-  letter-spacing: .1px;
+  letter-spacing: .2px;
 }
 
 span{
@@ -113,8 +113,8 @@ button:hover{
   animation-fill-mode: both;
   -webkit-animation-timing-function: ease-in-out;
   animation-timing-function: ease-in-out;
-  animation-iteration-count: 2;
-  -webkit-animation-iteration-count: 2;
+  animation-iteration-count: 3;
+  -webkit-animation-iteration-count: 3;
   animation-name: bounce;
   -moz-animation-name: bounce;
 }

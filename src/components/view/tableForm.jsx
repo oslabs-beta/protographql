@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Store } from '../../state/store';
-import { 
-  SET_POP_UP, 
+import {
+  SET_POP_UP,
   SAVE_TABLE,
   ADD_FIELD,
   DELETE_FIELD,
@@ -17,7 +17,7 @@ import Draggable from 'react-draggable';
 
 /*-------------------- Styled Components --------------------*/
 
-const CustomTable = styled.div`
+const CustomTable = styled.form`
   height: auto;
   margin: 0 auto;
   min-width: 550px;
@@ -39,6 +39,7 @@ const TableFooter = styled.div`
   position: relative;
   background-color: white;
   display: flex;
+  flex-direction: row-reverse;
   justify-content: space-between;
 `;
 
@@ -67,7 +68,7 @@ const FadeThePage = styled.div`
   background: rgba(90, 90, 90, 0.5);
 `;
 
-const Button = styled.span`
+const Button = styled.button`
   height: auto;
   font-size: .85em;
   font-weight: 300;
@@ -94,7 +95,6 @@ const CloseButton = styled.span`
   color: white;
   &:hover {
     cursor: pointer;
-
     color: #DD399C;
   }
 `;
@@ -119,11 +119,11 @@ function TableForm() {
       fieldInputs.push(
         <TableInput
           field={selectedTable.fields[currentFieldKey]}
-          editField={ payload => dispatch({ type: EDIT_FIELD, payload }) }
-          editRelations={ payload => dispatch({ type: EDIT_RELATIONS, payload }) }
-          deleteField={ payload => dispatch({ type: DELETE_FIELD, payload }) }
+          editField={payload => dispatch({ type: EDIT_FIELD, payload })}
+          editRelations={payload => dispatch({ type: EDIT_RELATIONS, payload })}
+          deleteField={payload => dispatch({ type: DELETE_FIELD, payload })}
           fieldIndex={currentFieldKey}
-          key={selectedTable.tableID + "-" + "field" + "-" +  currentFieldKey}
+          key={selectedTable.tableID + "-" + "field" + "-" + currentFieldKey}
           tables={tables}
         />);
     }
@@ -132,11 +132,15 @@ function TableForm() {
 
   return (
     <FadeThePage>
-      <Draggable handle="#header">     
-        <CustomTable>
+      <Draggable handle="#header">
+        <CustomTable onSubmit={e => {
+          e.preventDefault();
+          dispatch({ type: SAVE_TABLE });
+          dispatch({ type: SET_POP_UP, payload: '' });
+        }}>
           <TableHeader id="header" >
             <Buttons>
-              <CloseButton onClick={ () => dispatch({ type: SET_POP_UP, payload: '' }) }>
+              <CloseButton onClick={() => dispatch({ type: SET_POP_UP, payload: '' })}>
                 <i className="fas fa-times"></i>
               </CloseButton>
             </Buttons>
@@ -147,26 +151,24 @@ function TableForm() {
           />
           <Table id='table' >
             <tbody>
-              <TableField key={'tableID-' + selectedTable.tableID}/>
+              <TableField key={'tableID-' + selectedTable.tableID} />
               {fieldInputs}
             </tbody>
           </Table>
           <TableFooter>
-            <Button 
-              onClick={ () => dispatch({ type: ADD_FIELD }) }>
-              <i className="fas fa-plus" /> Add Field
-            </Button>
-            <Button
-              onClick={() => {
-                dispatch({ type: SAVE_TABLE });
-                dispatch({ type: SET_POP_UP, payload: '' });
-              }}>
+            <Button type="submit" value="default action">
               <i className="far fa-save" color="black" /> Save
+            </Button>
+            <Button onClick={e => {
+              e.preventDefault();
+              dispatch({ type: ADD_FIELD });
+            }}>
+              <i className="fas fa-plus" /> Add Field
             </Button>
           </TableFooter>
         </CustomTable>
       </Draggable >
-    </FadeThePage>
+    </FadeThePage >
   )
 }
 

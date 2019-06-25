@@ -9,8 +9,8 @@ import {
 } from '../../actions/actionTypes';
 
 //comment out to use web-dev-server instead of electron
-const electron = window.require('electron');
-const ipc = electron.ipcRenderer;
+// const electron = window.require('electron');
+// const ipc = electron.ipcRenderer;
 
 /*-------------------- Styled Components --------------------*/
 
@@ -62,6 +62,7 @@ function NavSideBar() {
           dispatch({ type: SET_VIEW, payload: 'schema' })
           dispatch({ type: SET_POP_UP, payload: '' })
           changeButtonStyleOnClick("Schema")
+          document.querySelector("svg").remove();
         }}
       />
       <NavButton
@@ -72,6 +73,7 @@ function NavSideBar() {
           dispatch({ type: SET_VIEW, payload: 'code' })
           dispatch({ type: SET_POP_UP, payload: '' })
           changeButtonStyleOnClick("Code")
+          document.querySelector("svg").remove();
         }}
       />
       <NavButton 
@@ -92,8 +94,9 @@ function NavSideBar() {
             dispatch({ type: SET_VIEW, payload: 'export' })
             dispatch({ type: SET_POP_UP, payload: '' })
             changeButtonStyleOnClick("Export")
+            document.querySelector("svg").remove();
             //emitting message to electron window to open save dialog
-            ipc.send('show-export-dialog', gqlSchema, gqlResolvers, sqlScripts);
+            // ipc.send('show-export-dialog', gqlSchema, gqlResolvers, sqlScripts);
           }}
       />
       <NavButton 
@@ -104,6 +107,7 @@ function NavSideBar() {
             dispatch({ type: SET_VIEW, payload: 'schema' })
             dispatch({ type: SET_POP_UP, payload: 'table' })
             dispatch({ type: ADD_TABLE })
+            document.querySelector("svg").remove();
           }} 
           style={{ 
             position: 'absolute', 

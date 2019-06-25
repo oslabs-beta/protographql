@@ -1,9 +1,9 @@
 import tabs from './tabs';
 
 const buildGQLResolvers = tables => {
-  let gqlResolvers = `const pool = require('./sqlPool');\n\n`;
+  let gqlResolvers = `const pool = require('../db/sqlPool');\n\n`;
   gqlResolvers += `const resolvers = {\n\n`;
-  
+
   // QUERY TYPE RESOLVERS
   gqlResolvers += `${tabs(1)}Query: {\n`;
   for (let tbIndex in tables) {
@@ -27,7 +27,7 @@ const buildGQLResolvers = tables => {
         lastQryFieldIndex = Math.max(fieldIndex, lastQryFieldIndex);
       }
     }
-    
+
     // Custom Queries (get____(args: ...))
     let customQryResolver = ``;
     if (queryable) {
@@ -41,7 +41,7 @@ const buildGQLResolvers = tables => {
       customQryResolver += `${tabs(3)}});\n`;
       customQryResolver += `${tabs(3)}sql += whereClause;\n`;
     }
-  
+
     customQryResolver += `${tabs(3)}return pool.query(sql)\n`;
     customQryResolver += `${tabs(4)}.then(res => res.rows)\n`;
     customQryResolver += `${tabs(4)}.catch(err => console.error('Error is: ', err));\n`;

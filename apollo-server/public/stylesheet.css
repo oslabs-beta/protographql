@@ -1,0 +1,154 @@
+* {
+  /* border: 1px solid black; */
+}
+
+body{
+  background-color:#ccc;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+  min-width: 1200px;
+  min-height: 750px;
+}
+
+#main {
+  background:#324353;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  width: 90vw;
+  border-radius: 5px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.10);
+  max-width: 1150px;
+}
+
+#logo-div{
+  height: auto;
+  margin-right: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#logo{
+  height: 250px;
+  margin-bottom: 20px;
+  animation-delay: 2.5s;
+  animation-name: spin;
+  animation-duration: 100000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+#logo:hover{
+  animation-duration: 100ms;
+  animation-timing-function: ease-in;
+  cursor: pointer;
+}
+
+#text-div{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 15px;
+  text-align: center;
+}
+
+h1, h2{
+  font-size: 1.5em;
+  font-weight: 500;
+  margin: 5px;
+  letter-spacing: .2px;
+}
+
+span{
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: all .15s ease-in-out;
+}
+
+a {
+  color: white;
+}
+
+a:hover{
+  color: #DD399C;
+}
+
+p {
+  font-size: .80em;
+  color: #222;
+  margin-top: 0;
+}
+
+button {
+  margin-top: 25px;
+  padding: 15px 20px;
+  font-size: 1em;
+  border-radius: 3px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  background-color: white;
+  border: 1px solid white;
+  color: #222;
+  transition: all .2s ease-in-out;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.10);
+}
+
+button:hover{
+  /* border: 1px solid #DD399C; */
+  /* background-color: #324353; */
+  transform: scale(1.05);
+  color: #DD399C;
+  /* box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.10); */
+}
+
+#bounce{
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 3;
+  -webkit-animation-iteration-count: 3;
+  animation-name: bounce;
+  -moz-animation-name: bounce;
+}
+
+
+
+@keyframes bounce {
+	0%, 100%, 20%, 50%, 80% {
+		-webkit-transform: translateY(0);
+		-ms-transform:     translateY(0);
+		transform:         translateY(0)
+	}
+	40% {
+		-webkit-transform: translateY(-9px);
+		-ms-transform:     translateY(-9px);
+		transform:         translateY(-9px)
+	}
+	60% {
+		-webkit-transform: translateY(-4px);
+		-ms-transform:     translateY(-4px);
+		transform:         translateY(-4px)
+	}
+}
+
+
+@keyframes spin {
+  from {
+      transform:rotate(0deg);
+  }
+  to {
+      transform:rotate(360deg);
+  }
+}

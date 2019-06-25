@@ -8,15 +8,13 @@ export const selectedTable = {
 export const initialTable = {
   type: '',
   fields: {
-      1: {
+    1: {
       name: '',
       type: 'ID',
       primaryKey: false,
-      autoIncrement: false,
       unique: false,
       defaultValue: '',
       required: false,
-      multipleValues: false,
       relationSelected: false,
       relation: {
         tableIndex: -1,
@@ -37,10 +35,8 @@ export const initialField = {
   name: '',
   type: 'ID',
   primaryKey: false,
-  autoIncrement: false,
   unique: false,
   required: false,
-  multipleValues: false,
   defaultValue: '',
   relationSelected: false,
   relation: {
@@ -64,10 +60,8 @@ export const tables = {
         name: 'id',
         type: 'ID',
         primaryKey: true,
-        autoIncrement: true,
         unique: true,
         required: false,
-        multipleValues: false,
         defaultValue: '',
         relationSelected: false,
         relation: {
@@ -84,16 +78,14 @@ export const tables = {
         name: 'first_name',
         type: 'String',
         primaryKey: false,
-        autoIncrement: false,
         unique: false,
         required: true,
-        multipleValues: false,
         defaultValue: '',
         relationSelected: false,
         relation: {
-            tableIndex: -1,
-            fieldIndex: -1,
-            refType: ''
+          tableIndex: -1,
+          fieldIndex: -1,
+          refType: ''
         },
         tableNum: 0,
         fieldNum: 1,
@@ -104,16 +96,14 @@ export const tables = {
         name: 'last_name',
         type: 'String',
         primaryKey: false,
-        autoIncrement: false,
         unique: false,
         required: true,
-        multipleValues: false,
         defaultValue: '',
         relationSelected: false,
         relation: {
-            tableIndex: -1,
-            fieldIndex: -1,
-            refType: ''
+          tableIndex: -1,
+          fieldIndex: -1,
+          refType: ''
         },
         tableNum: 0,
         fieldNum: 2,
@@ -131,16 +121,14 @@ export const tables = {
         name: 'id',
         type: 'ID',
         primaryKey: true,
-        autoIncrement: true,
         unique: true,
         required: false,
-        multipleValues: false,
         defaultValue: '',
         relationSelected: false,
         relation: {
-            tableIndex: -1,
-            fieldIndex: -1,
-            refType: ''
+          tableIndex: -1,
+          fieldIndex: -1,
+          refType: ''
         },
         tableNum: 1,
         fieldNum: 0,
@@ -151,16 +139,14 @@ export const tables = {
         name: 'name',
         type: 'String',
         primaryKey: false,
-        autoIncrement: false,
         unique: false,
         required: true,
-        multipleValues: false,
         defaultValue: '',
         relationSelected: false,
         relation: {
-            tableIndex: -1,
-            fieldIndex: -1,
-            refType: ''
+          tableIndex: -1,
+          fieldIndex: -1,
+          refType: ''
         },
         tableNum: 1,
         fieldNum: 1,
@@ -171,16 +157,14 @@ export const tables = {
         name: 'author_id',
         type: 'ID',
         primaryKey: false,
-        autoIncrement: false,
         unique: false,
         required: true,
-        multipleValues: false,
         defaultValue: '',
         relationSelected: true,
         relation: {
-            tableIndex: '0',
-            fieldIndex: '0',
-            refType: 'many to one'
+          tableIndex: '0',
+          fieldIndex: '0',
+          refType: 'many to one'
         },
         tableNum: 1,
         fieldNum: 2,
@@ -196,3 +180,110 @@ export const tables = {
 export const view = 'table';
 
 export const popUp = 'welcome';
+
+export const gqlSchema = `const { gql } = require('apollo-server-express');
+
+const typeDefs = gql\`
+
+  type Author {
+    id: ID
+    first_name: String!
+    last_name: String!
+  }
+
+  type Books {
+    id: ID
+    name: String!
+    author: Author
+  }
+
+  type Query {
+    getAllAuthor: [Author]
+    getAllBooks: [Books]
+    getBooks(
+      id: ID,
+      name: String,
+      author_id: ID
+    ): [Books]
+  }
+
+\`;
+
+module.exports = typeDefs;`;
+
+export const gqlResolvers = `const pool = require('../db/sqlPool');
+
+const resolvers = {
+
+  Query: {
+    getAllAuthor() {
+      const sql = \`SELECT * FROM "Author";\`;
+      return pool.query(sql)
+        .then(res => res.rows)
+        .catch(err => console.error('Error is: ', err));
+    },
+    getAllBooks() {
+      const sql = \`SELECT * FROM "Books";\`;
+      return pool.query(sql)
+        .then(res => res.rows)
+        .catch(err => console.error('Error is: ', err));
+    },
+    getBooks(parent, args, context, info) {
+      let sql = \`SELECT * FROM "Books"\`;
+      let whereClause = \` WHERE \`;
+      Object.keys(args).forEach((fieldName, i , arr) => {
+        whereClause += \`"\${fieldName}" = '\${args[fieldName]}'\`;
+        if (i !== arr.length - 1) whereClause += \` AND \`;
+        else whereClause += \`;\`;
+      });
+      sql += whereClause;
+      return pool.query(sql)
+        .then(res => res.rows)
+        .catch(err => console.error('Error is: ', err));
+    },
+  },
+
+  Author: {
+    id: (parent, args, context, info) => {
+      return parent.id;
+    },
+    first_name: (parent, args, context, info) => {
+      return parent.first_name;
+    },
+    last_name: (parent, args, context, info) => {
+      return parent.last_name;
+    },
+  },
+
+  Books: {
+    id: (parent, args, context, info) => {
+      return parent.id;
+    },
+    name: (parent, args, context, info) => {
+      return parent.name;
+    },
+    author: (parent, args, context, info) => {
+      const sql = \`SELECT * FROM "Author" WHERE "id" = '\${parent.author_id}';\`;
+      return pool.query(sql)
+        .then(res => res.rows[0])
+        .catch(err => console.error('Error is: ', err))
+    },
+  },
+
+}
+
+module.exports = resolvers;`;
+
+export const sqlScripts = `CREATE TABLE "Author"(
+  "id" SERIAL PRIMARY KEY UNIQUE,
+  "first_name" VARCHAR(256) NOT NULL,
+  "last_name" VARCHAR(256) NOT NULL
+);
+
+CREATE TABLE "Books"(
+  "id" SERIAL PRIMARY KEY UNIQUE,
+  "name" VARCHAR(256) NOT NULL,
+  "author_id" SERIAL NOT NULL
+);`;
+
+export const dbConnectionURI = '';

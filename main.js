@@ -9,108 +9,112 @@ const fs = require('fs');
 let win;
 
 function createWindow() {
-    win = new BrowserWindow({
-        width: 800,
-        height: 600,
-        webPreferences: {
-            nodeIntegration: true
-        },
-        // this is only for Windows and Linux
-        icon: './public/assets/pictures/ProtoGraphQLLogo.png'
-     });
-    //  console.log('Our dialog: ', dialog.showOpenDialog({
-    //      properties: ['openFile', 'openDirectory', 'multiSelections']
-    //  }));
+  win = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+        nodeIntegration: true
+    },
+    // this is only for Windows and Linux
+    icon: './public/assets/pictures/ProtoGraphQLLogo.png'
+  });
 
-    //Maximize browser window
-    win.maximize();
+  //Maximize browser window
+  win.maximize();
 
-    // Serve our index.html file
-    // mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
-    win.loadFile('index.html');
+  // Serve our index.html file
+  // mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
+  win.loadFile('index.html');
 
-    // Open developer tools panel when our window opens
-     win.webContents.openDevTools();
+  // Open developer tools panel when our window opens
+  win.webContents.openDevTools();
 
-    // Add event listener to set our global window variable to null
-    // This is needed so that window is able to reopen when user relaunches the app
-    win.on('closed', () => {
-        win = null;
-    });
+  // Add event listener to set our global window variable to null
+  // This is needed so that window is able to reopen when user relaunches the app
+  win.on('closed', () => {
+    win = null;
+  });
 }
 
 // Creates our window when electron has initialized for the first time
 app.on('ready', createWindow);
 
-
 app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') app.quit();
-})
+  if (process.platform !== 'darwin') app.quit();
+});
 
 app.on('activate', () => {
-    if (win === null) createWindow();
-})
+  if (win === null) createWindow();
+});
+
+// Overwrite default Apollo Server code files
+const createFile = (fileName, data) => {
+  try {
+    fs.writeFileSync(path.join(__dirname, `/apollo-server/${fileName}`), data, 'utf8');
+  } catch(err) {
+    return console.error(err);
+  } 
+}
 
 //function to run when user clicks export
-function showExportDialog(event) {
-    dialog.showOpenDialog(
-      {
-        title: 'Choose location to save folder in',
-        defaultPath: app.getPath('desktop'),
-        message: 'Choose location to save folder in',
-        properties: ['openDirectory']
-      },
-      result => {
-        //if user closes dialog window without selecting a folder
-        if (!result) return;
+function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts) {
+  dialog.showOpenDialog(
+    {
+      title: 'Choose location to save folder in',
+      defaultPath: app.getPath('desktop'),
+      message: 'Choose location to save folder in',
+      properties: ['openDirectory']
+    },
+    result => {
+      //if user closes dialog window without selecting a folder
+      if (!result) return;
 
-        const output = fs.createWriteStream(result + '/apollo-server.zip');
-        const archive = archiver('zip', {
-          zlib: { level: 9 } // Sets the compression level.
-        });
+      createFile('schema.js', gqlSchema);
+      createFile('resolvers.js', gqlResolvers);
+      createFile('createTables.sql', sqlScripts);
 
-        // listen for all archive data to be written and output associated details
-        output.on('close', function() {
-          console.log('Zip file size is ', archive.pointer() + ' total bytes');
-          console.log('Archived zip file is complete.');
-          dialog.showMessageBox(win, 
-            {
-              type: "info",
-              message:"Export Successful!",
-              detail: 'File saved to ' + result + '/apollo-server.zip'
-            }
-          )
-        });
+      const output = fs.createWriteStream(result + '/apollo-server.zip');
+      const archive = archiver('zip', {
+        zlib: { level: 9 } // Sets the compression level.
+      });
 
-        // good practice to catch warnings (ie stat failures and other non-blocking errors)
-        archive.on('warning', function(err) {
-          if (err.code === 'ENOENT') {
-            console.error(err)
-          } else {
-            // throw error
-            throw err;
+      // listen for all archive data to be written and output associated details
+      output.on('close', function() {
+        console.log('Zip file size is ', archive.pointer() + ' total bytes');
+        console.log('Archived zip file is complete.');
+        dialog.showMessageBox(win, 
+          {
+            type: "info",
+            message:"Export Successful!",
+            detail: 'File saved to ' + result + '/apollo-server.zip'
           }
-        });
+        )
+      });
 
-        archive.on('error', function(err) {
-          throw err;
-        });
+      // good practice to catch warnings (ie stat failures and other non-blocking errors)
+      archive.on('warning', function(err) {
+        if (err.code === 'ENOENT') console.error(err)
+        else throw err;
+      });
 
-        // append files from apollo-server directory and naming it `apollo-server` within the archive
-        archive.directory(__dirname + '/apollo-server/', 'apollo-server');
+      archive.on('error', function(err) {
+        throw err;
+      });
 
-        //pipe the archive details to our zip file
-        archive.pipe(output);
+      // append files from apollo-server directory and naming it `apollo-server` within the archive
+      archive.directory(__dirname + '/apollo-server/', 'apollo-server');
 
+      // pipe the archive details to our zip file
+      archive.pipe(output);
 
-        // finalize the archive (ie we are done appending files but streams have to finish yet)
-        // 'close' will be fired afterwards
-        archive.finalize();
-      }
-    );
-  }
+      // finalize the archive (ie we are done appending files but streams have to finish yet)
+      // 'close' will be fired afterwards
+      archive.finalize();
+    }
+  );
+}
   
-  //listener for export button being clicked
-  ipc.on('show-export-dialog', event => {
-    showExportDialog(event);
-  });
+//listener for export button being clicked
+ipc.on('show-export-dialog', (event, gqlSchema, gqlResolvers, sqlScripts) => {
+  showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts);
+});

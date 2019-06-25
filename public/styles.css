@@ -138,10 +138,10 @@ input:checked + .slider:before {
   padding: 16px;
   position: fixed;
   z-index: 9999;
-  right: 1%;
-  bottom: 30px;
+  right: 30px;
+  top: 100px;
   font-size: 17px;
-  opacity: .85;
+  opacity: .9;
 }
 
 #snackbar.show {
@@ -151,21 +151,21 @@ input:checked + .slider:before {
 }
 
 @-webkit-keyframes fadein {
-  from {bottom: 0; opacity: 0;} 
-  to {bottom: 30px; opacity: .85;}
+  from {right: 0; opacity: 0;} 
+  to {right: 30px; opacity: .9;}
 }
 
 @keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: .85;}
+  from {right: 0; opacity: 0;}
+  to {right: 30px; opacity: .9;}
 }
 
 @-webkit-keyframes fadeout {
-  from {bottom: 30px; opacity: .85;} 
-  to {bottom: 0; opacity: 0;}
+  from {right: 30px; opacity: .9;} 
+  to {right: 0; opacity: 0;}
 }
 
 @keyframes fadeout {
-  from {bottom: 30px; opacity: .85;}
-  to {bottom: 0; opacity: 0;}
+  from {right: 30px; opacity: .9;}
+  to {right: 0; opacity: 0;}
 }

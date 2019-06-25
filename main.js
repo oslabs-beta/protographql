@@ -13,7 +13,7 @@ function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-        nodeIntegration: true
+      nodeIntegration: true
     },
     // this is only for Windows and Linux
     icon: './public/assets/pictures/ProtoGraphQLLogo.png'
@@ -25,9 +25,6 @@ function createWindow() {
   // Serve our index.html file
   // mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
   win.loadFile('index.html');
-
-  // Open developer tools panel when our window opens
-  win.webContents.openDevTools();
 
   // Add event listener to set our global window variable to null
   // This is needed so that window is able to reopen when user relaunches the app
@@ -48,12 +45,12 @@ app.on('activate', () => {
 });
 
 // Overwrite default Apollo Server code files
-const createFile = (fileName, data) => {
+const createFile = (filePath, data) => {
   try {
-    fs.writeFileSync(path.join(__dirname, `/apollo-server/${fileName}`), data, 'utf8');
-  } catch(err) {
+    fs.writeFileSync(path.join(__dirname, `/apollo-server/${filePath}`), data, 'utf8');
+  } catch (err) {
     return console.error(err);
-  } 
+  }
 }
 
 //function to run when user clicks export
@@ -69,9 +66,9 @@ function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts) {
       //if user closes dialog window without selecting a folder
       if (!result) return;
 
-      createFile('schema.js', gqlSchema);
-      createFile('resolvers.js', gqlResolvers);
-      createFile('createTables.sql', sqlScripts);
+      createFile('graphql/schema.js', gqlSchema);
+      createFile('graphql/resolvers.js', gqlResolvers);
+      createFile('db/createTables.sql', sqlScripts);
 
       const output = fs.createWriteStream(result + '/apollo-server.zip');
       const archive = archiver('zip', {
@@ -79,25 +76,25 @@ function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts) {
       });
 
       // listen for all archive data to be written and output associated details
-      output.on('close', function() {
+      output.on('close', function () {
         console.log('Zip file size is ', archive.pointer() + ' total bytes');
         console.log('Archived zip file is complete.');
-        dialog.showMessageBox(win, 
+        dialog.showMessageBox(win,
           {
             type: "info",
-            message:"Export Successful!",
+            message: "Export Successful!",
             detail: 'File saved to ' + result + '/apollo-server.zip'
           }
         )
       });
 
       // good practice to catch warnings (ie stat failures and other non-blocking errors)
-      archive.on('warning', function(err) {
+      archive.on('warning', function (err) {
         if (err.code === 'ENOENT') console.error(err)
         else throw err;
       });
 
-      archive.on('error', function(err) {
+      archive.on('error', function (err) {
         throw err;
       });
 
@@ -113,7 +110,7 @@ function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts) {
     }
   );
 }
-  
+
 //listener for export button being clicked
 ipc.on('show-export-dialog', (event, gqlSchema, gqlResolvers, sqlScripts) => {
   showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts);

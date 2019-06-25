@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Store } from '../../state/store';
-const path = window.require('path');
+import * as d3 from 'd3';
 
 /*-------------------- Styled Components --------------------*/
 
@@ -64,7 +64,7 @@ function VisualizeView() {
         .attr('ry', 20)
         .attr('stroke', 'rgba(0, 0, 0, 0.2')
         .attr('stroke-width', 1)
-        .attr('fill', '#EEEFF0')
+        .attr('fill', 'white')
 
       shapes.append('rect')
         .filter(d => d.depth % 2 === 1)
@@ -77,7 +77,7 @@ function VisualizeView() {
         .attr('height', 30)
         .attr('stroke', 'rgba(0, 0, 0, 0.2')
         .attr('stroke-width', 1)
-        .attr('fill', '#EEEFF0')
+        .attr('fill', 'white')
         .attr('drop-shadow', '2px 2px 3px rgba(0, 0, 0, 0.12)')
 
       g.selectAll('text').data(root.descendants())
@@ -85,7 +85,6 @@ function VisualizeView() {
         .attr('x', d => d.y)
         .attr('y', d => d.x)
         .attr('dy', '0.32em')
-        // .attr('text-shadow', '-1px -1px 3px white, -1px 1px 3px white, 1px -1px 3px white, 1px 1px 3px white')
         .attr('text-anchor', d => d.children || d.depth === 2 ? 'middle' : 'start')
         .text(d => {
           if (d.depth === 0 || d.depth === 2) return d.data.name;
@@ -94,6 +93,26 @@ function VisualizeView() {
         .attr('font-family', 'Helvetica')
         .attr('font-size', 12)
     })
+
+
+    // for the GLOW
+    //Container for the gradients
+    const defs = svg.append("defs");
+
+    //Filter for the outside glow
+    const filter = defs.append("filter")
+      .attr("id","glow");
+    filter.append("feGaussianBlur")
+      .attr("stdDeviation","3.5")
+      .attr("result","coloredBlur");
+    const feMerge = filter.append("feMerge");
+    feMerge.append("feMergeNode")
+      .attr("in","coloredBlur");
+    feMerge.append("feMergeNode")
+      .attr("in","SourceGraphic");
+
+    d3.selectAll("ellipse")
+      .style("filter", "url(#glow)");
 
   return (
     <div></div>

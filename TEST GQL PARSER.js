@@ -183,6 +183,4 @@ const buildGQLObjTypes = tables => {
 }
 
 console.log(JSON.parse(buildGQLObjTypes(tables)))
-const test = buildGQLObjTypes(tables)
-
-
+const test = buildGQLObjTypes(tables);

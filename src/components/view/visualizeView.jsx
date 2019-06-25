@@ -1,9 +1,29 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Store } from '../../state/store';
 import * as d3 from 'd3';
+import styled from 'styled-components';
+import VisualizerSideBar from '../sideBar/visualizerSidebar';
 
 /*-------------------- Styled Components --------------------*/
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 65px auto;
+  grid-template-areas: 
+    "viz viz viz viz bar"
+    "viz viz viz viz bar";
+  height: 100vh;
+  background-color: #EEEFF0;
+  font-family: "Roboto", sans-serif;
+`;
 
+const Viz = styled.div`
+  display: grid;
+  grid-area: viz;
+  height: 100vh;
+  background-color: #EEEFF0;
+  font-family: "Roboto", sans-serif;
+`;
 
 
 /*-------------------- Functional Component --------------------*/
@@ -12,7 +32,9 @@ function VisualizeView() {
 
   const { state: { visualizeJSON } } = useContext(Store);
 
-  const svg = d3.select('#mainView').append('svg');
+  const createViz = () => {
+    console.log('runnign create viz', d3.select('#vizView'))
+    const svg = d3.select('#vizView').append('svg');
   const width = 700;
   const height = 600;
 
@@ -110,9 +132,16 @@ function VisualizeView() {
 
     d3.selectAll("ellipse")
       .style("filter", "url(#glow)");
+  }
+  
+  useEffect(createViz,[])
 
   return (
-    <div></div>
+    <Container>
+      <Viz id="vizView"></Viz>
+      <VisualizerSideBar></VisualizerSideBar>
+    </Container>   
+    
   );
 }
 

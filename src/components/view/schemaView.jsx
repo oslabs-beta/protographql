@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import SchemaTable from './schemaTable';
 import styled from 'styled-components';
 import { Store } from '../../state/store';

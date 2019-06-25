@@ -13,6 +13,7 @@ const queryableFieldsArrayCreator = fields => {
   return queryFieldsArray
 }
 
+//Check all fields of a table and return objects with the fields name and type
 const fieldNameType = fields => {
   let fieldJson =``
   for(let i = 0; i < fields.length; i++) {
@@ -49,12 +50,13 @@ export const buildVisualizerJson = tables => {
   //If there are no queryable fields return root
   if (queryableTableArray.length === 0) return root +='}'
 
+  //Building children of root query
   root += `, "children":[`
   for (let i = 0; i < queryableTableArray.length; i++) {
-    //get All
+    //get All query
       root += `{"name":"getAll${queryableTableArray[i].type}","type":"[${queryableTableArray[i].type}]","children":[{"name":"${queryableTableArray[i].type}","type":"[${queryableTableArray[i].type}]"}]},`
 
-    //get
+    //get query
     root += `{"name": "get${queryableTableArray[i].type}","type":"[${queryableTableArray[i].type}]","children":[{"name": "${queryableTableArray[i].type}","type": "[${queryableTableArray[i].type}]","children": [${fieldNameType(queryableTableArray[i].fields)}]}]}`
 
     if (i !== queryableTableArray.length - 1) root += `,`

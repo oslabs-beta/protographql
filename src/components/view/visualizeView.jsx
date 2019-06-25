@@ -94,7 +94,7 @@ function VisualizeView() {
 
     // for the GLOW
     //Container for the gradients
-    const defs = svg.append("defs");
+    const defs = g.append("defs");
 
     //Filter for the outside glow
     const filter = defs.append("filter")

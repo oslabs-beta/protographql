@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import {
   Table,
@@ -10,7 +10,6 @@ import {
   Paper
 } from '@material-ui/core/';
 import styled from 'styled-components';
-import debounce from '../../utils/debounce';
 
 /*-------------------- Styled Components --------------------*/
 
@@ -68,13 +67,18 @@ const Buttons = styled.span`
   }
 `;
 
-/*-------------------- Debounce --------------------*/
-
-// debounceDeleteTable is defined globally to prevent 
-// reinitalization of the debounce boolean during rerender
-let debounceDeleteTable;
-
 /*-------------------- Functional Component --------------------*/
+
+// function deleteTableFunc() {
+//   let disabled = false;
+//   function inner() {
+//     if (disabled) return;
+//     else {
+//       disabled = true;
+//       setTimeout(() => disabled = false, 3000)
+//     }
+//   }
+// }
 
 function SchemaTable({
   table,
@@ -95,17 +99,13 @@ function SchemaTable({
     ))
   )
 
-  useEffect(() => {
-    debounceDeleteTable = debounce(deleteTable)
-  }, [])
-
   return (
     <Paper className={classes.root} style={{ margin: '10px' }}>
       <Typography className={classes.title}  >
         {table.type}
         <span style={{ float: "right" }}>
           <Buttons>
-            <i className="fas fa-trash" onClick={() => debounceDeleteTable(tableKey)} />
+            <i className="fas fa-trash" onClick={() => deleteTable(tableKey)} />
           </Buttons>
         </span>
         <span style={{ float: "right", marginRight: 5 }}>

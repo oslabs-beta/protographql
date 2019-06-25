@@ -24,10 +24,6 @@ function reducer(state, action) {
       selectedTable.fields[1].tableNum = newState.tableIndex;
       return { ...state, selectedTable, tableIndex: newState.tableIndex + 1 };
 
-    case "EDIT_TABLE":
-      selectedTable = newState.tables[action.payload];
-      return { ...state, selectedTable };
-
     case "ADD_FIELD":
       // Assign which table and field this newly added field belongs to
       newState.initialField.tableNum = newState.selectedTable.tableID;
@@ -37,19 +33,9 @@ function reducer(state, action) {
       newState.selectedTable.fields[newState.selectedTable.fieldIndex++] = newState.initialField;
       return { ...state, selectedTable: newState.selectedTable };
 
-    case "DELETE_FIELD":
-      tables = Object.values(newState.tables);
-      for (let table of tables) {
-        const fields = Object.values(table.fields);
-        for (let field of fields) {
-          if (Number(field.relation.tableIndex) === Number(newState.selectedTable.tableID) && field.relation.fieldIndex === action.payload) {
-            return { ...state, displayError: true };
-          }
-        }
-      }
-
-      delete newState.selectedTable.fields[action.payload];
-      return { ...state, selectedTable: newState.selectedTable };
+    case "EDIT_TABLE":
+      selectedTable = newState.tables[action.payload];
+      return { ...state, selectedTable };
 
     case "EDIT_FIELD":
       const { fieldKey, fieldProperty, value } = action.payload;
@@ -80,17 +66,20 @@ function reducer(state, action) {
         sqlScripts: buildSQLScripts(newState.tables)
       };
 
+
     case "DELETE_TABLE":
       tables = Object.values(newState.tables);
       for (let table of tables) {
         const fields = Object.values(table.fields);
         for (let field of fields) {
           if (Number(field.relation.tableIndex) === Number(action.payload)) {
-            return { ...state, displayError: true };
+            newState.displayError.status = true;
+            newState.displayError.relatedTable = table.type;
+            newState.displayError.relatedField = field.name;
+            return { ...state, displayError: newState.displayError };
           }
         }
       }
-
       delete newState.tables[action.payload];
       return {
         ...state,
@@ -100,11 +89,29 @@ function reducer(state, action) {
         sqlScripts: buildSQLScripts(newState.tables)
       };
 
+    case "DELETE_FIELD":
+      tables = Object.values(newState.tables);
+      for (let table of tables) {
+        const fields = Object.values(table.fields);
+        for (let field of fields) {
+          if (Number(field.relation.tableIndex) === Number(newState.selectedTable.tableID) && field.relation.fieldIndex === action.payload) {
+            newState.displayError.status = true;
+            newState.displayError.relatedTable = table.type;
+            newState.displayError.relatedField = field.name;
+            return { ...state, displayError: newState.displayError };
+          }
+        }
+      }
+
+      delete newState.selectedTable.fields[action.payload];
+      return { ...state, selectedTable: newState.selectedTable };
+
     case "SET_VIEW":
       return { ...state, view: action.payload };
 
     case "HIDE_ERROR":
-      return { ...state, displayError: false };
+      newState.displayError.status = false;
+      return { ...state, displayError: newState.displayError };
 
     default:
       return state;

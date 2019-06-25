@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import SchemaTable from './schemaTable';
 import styled from 'styled-components';
 import { Store } from '../../state/store';
@@ -17,7 +17,7 @@ const View = styled.div`
   flex-wrap: wrap;
   justify-content: flex-start;
 `;
-    
+
 /*-------------------- Functional Component --------------------*/
 
 function SchemaView() {
@@ -38,13 +38,16 @@ function SchemaView() {
     />
   ))
 
-  if (displayError) setTimeout(() => dispatch({ type: HIDE_ERROR }), 3000);
+  if (displayError.status) setTimeout(() => dispatch({ type: HIDE_ERROR }), 3000);
 
   return (
     <View >
       {tablesArray}
-      <div className={displayError ? 'show' : ''} id="snackbar">Cannot delete. <br />
-        Please remove dependencies.</div>
+      {displayError.status &&
+        <div className="show" id="snackbar">
+          Please remove relationship from <br />
+          '{displayError.relatedField}' field in '{displayError.relatedTable}' table first.
+        </div>}
     </View >
   )
 }

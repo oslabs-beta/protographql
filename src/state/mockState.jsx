@@ -288,4 +288,4 @@ CREATE TABLE "Books"(
 
 export const dbConnectionURI = '';
 
-export const displayError = false;
+export const displayError = { status: false, relatedTable: -1, relatedField: -1 };

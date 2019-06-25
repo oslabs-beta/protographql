@@ -9,5 +9,5 @@ export const ADD_TABLE = "ADD_TABLE";
 export const EDIT_TABLE = "EDIT_TABLE";
 export const EDIT_RELATIONS = "EDIT_RELATIONS";
 export const DELETE_TABLE = "DELETE_TABLE";
-export const HIDE_ERROR = "HIDE_ERROR";
+export const HIDE_DISPLAY_ERROR = "HIDE_DISPLAY_ERROR";
 export const THROTTLE_DISPLAY_ERROR = "THROTTLE_DISPLAY_ERROR";

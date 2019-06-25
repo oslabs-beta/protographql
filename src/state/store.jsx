@@ -109,7 +109,7 @@ function reducer(state, action) {
     case "SET_VIEW":
       return { ...state, view: action.payload };
 
-    case "HIDE_ERROR":
+    case "HIDE_DISPLAY_ERROR":
       newState.displayError.displayStatus = false;
       return { ...state, displayError: newState.displayError };
 

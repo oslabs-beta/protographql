@@ -7,7 +7,7 @@ import {
   SET_VIEW,
   EDIT_TABLE,
   DELETE_TABLE,
-  HIDE_ERROR,
+  HIDE_DISPLAY_ERROR,
   THROTTLE_DISPLAY_ERROR,
 } from '../../actions/actionTypes';
 
@@ -43,7 +43,7 @@ function SchemaView() {
   if (displayError.displayStatus && displayError.throttleStatus) {
     dispatch({ type: THROTTLE_DISPLAY_ERROR });
     setTimeout(() => {
-      dispatch({ type: HIDE_ERROR });
+      dispatch({ type: HIDE_DISPLAY_ERROR });
       dispatch({ type: THROTTLE_DISPLAY_ERROR });
     }, 3000);
   }

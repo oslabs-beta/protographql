@@ -69,17 +69,6 @@ const Buttons = styled.span`
 
 /*-------------------- Functional Component --------------------*/
 
-// function deleteTableFunc() {
-//   let disabled = false;
-//   function inner() {
-//     if (disabled) return;
-//     else {
-//       disabled = true;
-//       setTimeout(() => disabled = false, 3000)
-//     }
-//   }
-// }
-
 function SchemaTable({
   table,
   setPopUp,

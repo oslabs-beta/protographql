@@ -18,6 +18,8 @@ const View = styled.div`
   justify-content: flex-start;
 `;
 
+/*------------------------ Global Variable ----------------------*/
+
 let canInvoke = true;
 
 /*-------------------- Functional Component --------------------*/
@@ -45,12 +47,11 @@ function SchemaView() {
     if (canInvoke) {
       canInvoke = false;
       setTimeout(() => {
-        dispatch({ type: HIDE_ERROR })
+        dispatch({ type: HIDE_ERROR });
         canInvoke = true;
       }, 3000);
     }
   }
-
 
   return (
     <View >

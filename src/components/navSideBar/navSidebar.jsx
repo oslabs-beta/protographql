@@ -9,8 +9,8 @@ import {
 } from '../../actions/actionTypes';
 
 //comment out to use web-dev-server instead of electron
-// const electron = window.require('electron');
-// const ipc = electron.ipcRenderer;
+const electron = window.require('electron');
+const ipc = electron.ipcRenderer;
 
 /*-------------------- Styled Components --------------------*/
 

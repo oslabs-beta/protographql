@@ -9,7 +9,7 @@ function MainView() {
 
   const { state: { view, popUp } } = useContext(Store);
   return (
-    <div style={{ gridArea: "main", overflowX: "auto", }}>
+    <div style={{ gridArea: "main", overflowX: "auto", }} id="mainView">
       {view === 'code' && <CodeView />}
       {view === 'schema' && <SchemaView />}
       {view === 'visualize' && <VisualizeView />}

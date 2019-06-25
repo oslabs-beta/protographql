@@ -10,7 +10,7 @@ import * as d3 from 'd3';
 
 function VisualizeView() {
 
-  const { state: { tables } } = useContext(Store);
+  const { state: { visualizeJSON } } = useContext(Store);
 
   const svg = d3.select('#mainView').append('svg');
   const width = 700;
@@ -32,9 +32,7 @@ function VisualizeView() {
   //   zoomG.attr('transform', event.transform);
   // }));
 
-  d3.json('./src/state/visualize.json')
-    .then(d => {
-      const root = d3.hierarchy(d);
+      const root = d3.hierarchy(visualizeJSON);
   
       const links = tree(root).links();
       const LinkGenerator = d3.linkHorizontal()
@@ -93,7 +91,6 @@ function VisualizeView() {
         })
         .attr('font-family', 'Helvetica')
         .attr('font-size', 12)
-    })
 
 
     // for the GLOW

@@ -32,7 +32,7 @@ export const buildVisualizerJson = tables => {
   let root = `{"name":"Queries"`
   
   //if we have no tables return only root
-  if (Object.keys(tables).length === 0) return root +='}'
+  if (Object.keys(tables).length === 0) return JSON.parse(root +='}')
 
   const tableArray = Object.values(tables)
   const queryableTableArray = [] 
@@ -48,7 +48,7 @@ export const buildVisualizerJson = tables => {
   })
 
   //If there are no queryable fields return root
-  if (queryableTableArray.length === 0) return root +='}'
+  if (queryableTableArray.length === 0) return JSON.parse(root +='}')
 
   //Building children of root query
   root += `, "children":[`
@@ -62,5 +62,5 @@ export const buildVisualizerJson = tables => {
     if (i !== queryableTableArray.length - 1) root += `,`
   }
   root += `]}`
-  return root
+  return JSON.parse(root)
 }

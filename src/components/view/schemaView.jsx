@@ -18,6 +18,8 @@ const View = styled.div`
   justify-content: flex-start;
 `;
 
+let canInvoke = true;
+
 /*-------------------- Functional Component --------------------*/
 
 function SchemaView() {
@@ -38,7 +40,17 @@ function SchemaView() {
     />
   ))
 
-  if (displayError.status) setTimeout(() => dispatch({ type: HIDE_ERROR }), 3000);
+  // Dispatch hide error only once per lifecycle of displayError.status = true
+  if (displayError.status) {
+    if (canInvoke) {
+      canInvoke = false;
+      setTimeout(() => {
+        dispatch({ type: HIDE_ERROR })
+        canInvoke = true;
+      }, 3000);
+    }
+  }
+
 
   return (
     <View >

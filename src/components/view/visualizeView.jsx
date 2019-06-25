@@ -83,7 +83,7 @@ function VisualizeView() {
         .attr('x', d => d.y)
         .attr('y', d => d.x)
         .attr('dy', '0.32em')
-        .attr('text-anchor', d => d.children || d.depth === 2 ? 'middle' : 'start')
+        .attr('text-anchor', d => d.depth === 3 ? 'start' : 'middle')
         .text(d => {
           if (d.depth === 0 || d.depth === 2) return d.data.name;
           else return `${d.data.name}: ${d.data.type}`;

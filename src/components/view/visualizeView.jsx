@@ -12,7 +12,36 @@ function VisualizeView() {
 
   const { state: { visualizeJSON } } = useContext(Store);
 
+  function responsivefy(svg) {
+    // get container + svg aspect ratio
+    var container = d3.select(svg.node().parentNode),
+      width = parseInt(svg.style("width")),
+      height = parseInt(svg.style("height")),
+      aspect = width / height;
+
+    // add viewBox and preserveAspectRatio properties,
+    // and call resize so that svg resizes on inital page load
+    svg.attr("viewBox", "0 0 " + width + " " + height)
+      .attr("perserveAspectRatio", "xMinYMid")
+      .call(resize);
+
+    // to register multiple listeners for same event type, 
+    // you need to add namespace, i.e., 'click.foo'
+    // necessary if you call invoke this function for multiple svgs
+    // api docs: https://github.com/mbostock/d3/wiki/Selections#on
+    d3.select(window).on("resize." + container.attr("id"), resize);
+
+    // get width of container and resize svg to fit it
+    function resize() {
+      var targetWidth = parseInt(container.style("width"));
+      svg.attr("width", targetWidth);
+      svg.attr("height", Math.round(targetWidth / aspect));
+    }
+  }
+
+
   const svg = d3.select('#mainView').append('svg');
+
   const width = 700;
   const height = 600;
 
@@ -25,6 +54,7 @@ function VisualizeView() {
   const g = svg
     .attr('width', width)
     .attr('height', height)
+    .call(responsivefy)
     .append('g')
       .attr('transform', `translate(${margin.left})`)
 
@@ -61,12 +91,13 @@ function VisualizeView() {
         .attr('cy', d => d.x)
         .attr('rx', 50)
         .attr('ry', 20)
-        .attr('stroke', 'rgba(0, 0, 0, 0.2')
-        .attr('stroke-width', 1)
+        .attr('stroke', 'rgba(0, 0, 0, 0.12')
+        .attr('stroke-width', 0.5)
         .attr('fill', 'white')
 
       shapes.append('rect')
         .filter(d => d.depth % 2 === 1)
+        .attr('class', 'rect')
         .attr('x', d => {
           if (d.depth === 3) return d.y - 20;
           else return d.y - 60;
@@ -74,8 +105,8 @@ function VisualizeView() {
         .attr('y', d => d.x - 15)
         .attr('width', 120)
         .attr('height', 30)
-        .attr('stroke', 'rgba(0, 0, 0, 0.2')
-        .attr('stroke-width', 1)
+        .attr('stroke', 'rgba(0, 0, 0, 0.12')
+        .attr('stroke-width', 0.5)
         .attr('fill', 'white')
         .attr('drop-shadow', '2px 2px 3px rgba(0, 0, 0, 0.12)')
 
@@ -95,13 +126,13 @@ function VisualizeView() {
 
     // for the GLOW
     //Container for the gradients
-    const defs = g.append("defs");
+    const defs = svg.append("defs");
 
     //Filter for the outside glow
     const filter = defs.append("filter")
       .attr("id","glow");
     filter.append("feGaussianBlur")
-      .attr("stdDeviation","3.5")
+      .attr("stdDeviation","5")
       .attr("result","coloredBlur");
     const feMerge = filter.append("feMerge");
     feMerge.append("feMergeNode")
@@ -109,11 +140,11 @@ function VisualizeView() {
     feMerge.append("feMergeNode")
       .attr("in","SourceGraphic");
 
-      
-    console.log('d3.selectAll("rect"): ', d3.selectAll(".ellipse"));
+    d3.selectAll(".ellipse")
+      .style("filter", "url(#glow)");
 
-    // document.querySelectorAll("ellipse")
-    //   .style("filter", "url(#glow)");
+    d3.selectAll(".rect")
+      .style("filter", "url(#glow)");
 
   return (
     <div></div>

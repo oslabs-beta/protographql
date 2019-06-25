@@ -17,7 +17,7 @@ const View = styled.div`
   flex-wrap: wrap;
   justify-content: flex-start;
 `;
-
+    
 /*-------------------- Functional Component --------------------*/
 
 function SchemaView() {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import {
   Table,
@@ -67,6 +67,21 @@ const Buttons = styled.span`
   }
 `;
 
+/*-------------------- Debounce --------------------*/
+
+function debounce(callback) {
+  let invoked = false;
+  return (arg) => {
+    if (!invoked) {
+      invoked = true;
+      callback(arg);
+      setTimeout(() => { invoked = false }, 5000);
+    }
+  }
+}
+
+let debounceDeleteTable;
+
 /*-------------------- Functional Component --------------------*/
 
 function SchemaTable({
@@ -87,13 +102,18 @@ function SchemaTable({
       }
     ))
   )
+
+  useEffect(() => {
+    debounceDeleteTable = debounce(deleteTable)
+  }, [])
+
   return (
     <Paper className={classes.root} style={{ margin: '10px' }}>
       <Typography className={classes.title}  >
         {table.type}
         <span style={{ float: "right" }}>
           <Buttons>
-            <i className="fas fa-trash" onClick={() => deleteTable(tableKey)} />
+            <i className="fas fa-trash" onClick={() => debounceDeleteTable(tableKey)} />
           </Buttons>
         </span>
         <span style={{ float: "right", marginRight: 5 }}>

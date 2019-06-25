@@ -10,6 +10,7 @@ import {
   Paper
 } from '@material-ui/core/';
 import styled from 'styled-components';
+import debounce from '../../utils/debounce';
 
 /*-------------------- Styled Components --------------------*/
 
@@ -69,17 +70,8 @@ const Buttons = styled.span`
 
 /*-------------------- Debounce --------------------*/
 
-function debounce(callback) {
-  let invoked = false;
-  return (arg) => {
-    if (!invoked) {
-      invoked = true;
-      callback(arg);
-      setTimeout(() => { invoked = false }, 5000);
-    }
-  }
-}
-
+// debounceDeleteTable is defined globally to prevent 
+// reinitalization of the debounce boolean during rerender
 let debounceDeleteTable;
 
 /*-------------------- Functional Component --------------------*/

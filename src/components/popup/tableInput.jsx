@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import deepClone from '../../utils/deepClone';
-
+import debounce from '../../utils/debounce';
 
 /*-------------------- Styled Components --------------------*/
 
@@ -62,6 +62,12 @@ const TrashCan = styled.span`
   }
 `;
 
+/*-------------------- Debounce --------------------*/
+
+// debounceDeleteField is defined globally to prevent 
+// reinitalization of the debounce boolean during rerender
+let debounceDeleteField;
+
 /*-------------------- Functional Component --------------------*/
 
 function TableInput({
@@ -98,6 +104,7 @@ function TableInput({
   }
 
   useEffect(() => {
+    debounceDeleteField = debounce(deleteField);
     isChecked("#primaryKey" + fieldNum, primaryKey);
     isChecked("#unique" + fieldNum, unique);
     isChecked("#required" + fieldNum, required);
@@ -122,12 +129,10 @@ function TableInput({
   }
   populateFieldRelationOptions(relationTableIdx);
 
-
-
   return (
     <Tr>
       <Td>
-        <TrashCan onClick={() => deleteField(fieldIndex)}>
+        <TrashCan onClick={() => debounceDeleteField(fieldIndex)}>
           <i className="fas fa-trash" />
         </TrashCan>
       </Td>

@@ -62,5 +62,5 @@ export const buildVisualizerJson = tables => {
     if (i !== queryableTableArray.length - 1) root += `,`
   }
   root += `]}`
-  return root
+  return JSON.parse(root)
 }

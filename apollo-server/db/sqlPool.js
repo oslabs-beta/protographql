@@ -5,7 +5,7 @@ const pool = new Pool({
   host: 'isilo.db.elephantsql.com',
   database: 'kzbujefd',
   user: 'kzbujefd',
-  password: 'az33ZfTosSKCrfqnrM1dtGHDPIywoiQ2',
+  password: '_nFA29sPXovD5T8fDONkVlAq3Mam7qVU',
   port: 5432
 });
 

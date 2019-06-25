@@ -8,6 +8,7 @@ import {
   ADD_TABLE,
 } from '../../actions/actionTypes';
 
+//comment out to use web-dev-server instead of electron
 const electron = window.require('electron');
 const ipc = electron.ipcRenderer;
 

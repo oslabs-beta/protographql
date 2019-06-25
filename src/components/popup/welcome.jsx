@@ -75,7 +75,6 @@ function DraggableDialog(props) {
   }
 
   const keyUpToHandleClose = (e) => {
-    console.log(e);
     if (e.keyCode == 13 || e.keyCode == 27) {
       dispatch({ type: SET_POP_UP, payload: '' });
     }

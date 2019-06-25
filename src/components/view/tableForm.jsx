@@ -130,8 +130,15 @@ function TableForm() {
   }
   createTableInputs();
 
+  /*------------- Enter / Esc Key to Close Pop Up  ---------------*/
+  const keyUpToHandleClose = (e) => {
+    if (e.keyCode == 27) {
+      dispatch({ type: SET_POP_UP, payload: '' });
+    }
+  }
+
   return (
-    <FadeThePage>
+    <FadeThePage onKeyUp={keyUpToHandleClose}>
       <Draggable handle="#header">
         <CustomTable onSubmit={e => {
           e.preventDefault();

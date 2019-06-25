@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import SchemaView from '../../components/view/schemaView';
 import CodeView from '../../components/view/codeView';
-import TableForm from '../view/tableForm';
+import TableForm from '../popup/tableForm';
 import { Store } from '../../state/store';
 
 function MainView() {

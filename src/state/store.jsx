@@ -73,7 +73,7 @@ function reducer(state, action) {
         const fields = Object.values(table.fields);
         for (let field of fields) {
           if (Number(field.relation.tableIndex) === Number(action.payload)) {
-            newState.displayError.status = true;
+            newState.displayError.displayStatus = true;
             newState.displayError.relatedTable = table.type;
             newState.displayError.relatedField = field.name;
             return { ...state, displayError: newState.displayError };
@@ -95,7 +95,7 @@ function reducer(state, action) {
         const fields = Object.values(table.fields);
         for (let field of fields) {
           if (Number(field.relation.tableIndex) === Number(newState.selectedTable.tableID) && field.relation.fieldIndex === action.payload) {
-            newState.displayError.status = true;
+            newState.displayError.displayStatus = true;
             newState.displayError.relatedTable = table.type;
             newState.displayError.relatedField = field.name;
             return { ...state, displayError: newState.displayError };
@@ -110,7 +110,11 @@ function reducer(state, action) {
       return { ...state, view: action.payload };
 
     case "HIDE_ERROR":
-      newState.displayError.status = false;
+      newState.displayError.displayStatus = false;
+      return { ...state, displayError: newState.displayError };
+
+    case "THROTTLE_DISPLAY_ERROR":
+      newState.displayError.throttleStatus = !newState.displayError.throttleStatus;
       return { ...state, displayError: newState.displayError };
 
     default:

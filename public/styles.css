@@ -128,19 +128,20 @@ input:checked + .slider:before {
 /* Snackbar - cause we hungry */
 
 #snackbar {
+  text-align: center;
   visibility: hidden;
   min-width: 250px;
   margin-left: -125px;
   background-color: #333;
   color: #fff;
-  text-align: center;
   border-radius: 2px;
   padding: 16px;
   position: fixed;
-  z-index: 1;
-  left: 50%;
+  z-index: 9999;
+  right: 1%;
   bottom: 30px;
   font-size: 17px;
+  opacity: .85;
 }
 
 #snackbar.show {
@@ -151,20 +152,20 @@ input:checked + .slider:before {
 
 @-webkit-keyframes fadein {
   from {bottom: 0; opacity: 0;} 
-  to {bottom: 30px; opacity: 1;}
+  to {bottom: 30px; opacity: .85;}
 }
 
 @keyframes fadein {
   from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
+  to {bottom: 30px; opacity: .85;}
 }
 
 @-webkit-keyframes fadeout {
-  from {bottom: 30px; opacity: 1;} 
+  from {bottom: 30px; opacity: .85;} 
   to {bottom: 0; opacity: 0;}
 }
 
 @keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
+  from {bottom: 30px; opacity: .85;}
   to {bottom: 0; opacity: 0;}
 }

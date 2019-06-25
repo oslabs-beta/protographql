@@ -6,7 +6,8 @@ import {
   SET_POP_UP,
   SET_VIEW,
   EDIT_TABLE,
-  DELETE_TABLE
+  DELETE_TABLE,
+  HIDE_ERROR,
 } from '../../actions/actionTypes';
 
 /*-------------------- Styled Component --------------------*/
@@ -21,7 +22,7 @@ const View = styled.div`
 
 function SchemaView() {
 
-  const { dispatch, state: { tables } } = useContext(Store);
+  const { dispatch, state: { tables, displayError } } = useContext(Store);
 
   const tablesArray = Object.keys(tables).map(tableKey => (
     <SchemaTable
@@ -37,18 +38,14 @@ function SchemaView() {
     />
   ))
 
+  if (displayError) setTimeout(() => dispatch({ type: HIDE_ERROR }), 3000);
+
   return (
     <View >
       {tablesArray}
-      <button onClick={
-        () => {
-          var x = document.getElementById("snackbar");
-          x.className = "show";
-          setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-        }
-      }>Show Snackbar</button>
-      <div id="snackbar">Cannot delete</div>
-    </View>
+      <div className={displayError ? 'show' : ''} id="snackbar">Cannot delete. <br />
+        Please remove dependencies.</div>
+    </View >
   )
 }
 

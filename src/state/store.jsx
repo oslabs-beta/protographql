@@ -43,7 +43,7 @@ function reducer(state, action) {
         const fields = Object.values(table.fields);
         for (let field of fields) {
           if (Number(field.relation.tableIndex) === Number(newState.selectedTable.tableID) && field.relation.fieldIndex === action.payload) {
-            return { ...state, popUp: 'welcome' };
+            return { ...state, displayError: true };
           }
         }
       }
@@ -86,7 +86,7 @@ function reducer(state, action) {
         const fields = Object.values(table.fields);
         for (let field of fields) {
           if (Number(field.relation.tableIndex) === Number(action.payload)) {
-            return { ...state, popUp: 'welcome' };
+            return { ...state, displayError: true };
           }
         }
       }
@@ -102,6 +102,9 @@ function reducer(state, action) {
 
     case "SET_VIEW":
       return { ...state, view: action.payload };
+
+    case "HIDE_ERROR":
+      return { ...state, displayError: false };
 
     default:
       return state;

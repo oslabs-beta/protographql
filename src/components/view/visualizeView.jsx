@@ -55,6 +55,7 @@ function VisualizeView() {
 
       shapes.append('ellipse')
         .filter(d => d.depth % 2 === 0)
+        .attr('class', 'ellipse')
         .attr('cx', d => {
           if (d.depth === 3) return d.y + 55;
           else return d.y;
@@ -85,7 +86,7 @@ function VisualizeView() {
         .attr('x', d => d.y)
         .attr('y', d => d.x)
         .attr('dy', '0.32em')
-        .attr('text-anchor', d => d.children || d.depth === 2 ? 'middle' : 'start')
+        .attr('text-anchor', d => d.depth === 3 ? 'start' : 'middle')
         .text(d => {
           if (d.depth === 0 || d.depth === 2) return d.data.name;
           else return `${d.data.name}: ${d.data.type}`;
@@ -111,8 +112,11 @@ function VisualizeView() {
     feMerge.append("feMergeNode")
       .attr("in","SourceGraphic");
 
-    d3.selectAll("ellipse")
-      .style("filter", "url(#glow)");
+      
+    console.log('d3.selectAll("rect"): ', d3.selectAll(".ellipse"));
+
+    // document.querySelectorAll("ellipse")
+    //   .style("filter", "url(#glow)");
 
   return (
     <div></div>

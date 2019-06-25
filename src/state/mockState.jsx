@@ -12,11 +12,9 @@ export const initialTable = {
       name: '',
       type: 'ID',
       primaryKey: false,
-      autoIncrement: false,
       unique: false,
       defaultValue: '',
       required: false,
-      multipleValues: false,
       relationSelected: false,
       relation: {
         tableIndex: -1,
@@ -37,10 +35,8 @@ export const initialField = {
   name: '',
   type: 'ID',
   primaryKey: false,
-  autoIncrement: false,
   unique: false,
   required: false,
-  multipleValues: false,
   defaultValue: '',
   relationSelected: false,
   relation: {
@@ -64,10 +60,8 @@ export const tables = {
         name: 'id',
         type: 'ID',
         primaryKey: true,
-        autoIncrement: true,
         unique: true,
         required: false,
-        multipleValues: false,
         defaultValue: '',
         relationSelected: false,
         relation: {
@@ -84,10 +78,8 @@ export const tables = {
         name: 'first_name',
         type: 'String',
         primaryKey: false,
-        autoIncrement: false,
         unique: false,
         required: true,
-        multipleValues: false,
         defaultValue: '',
         relationSelected: false,
         relation: {
@@ -104,10 +96,8 @@ export const tables = {
         name: 'last_name',
         type: 'String',
         primaryKey: false,
-        autoIncrement: false,
         unique: false,
         required: true,
-        multipleValues: false,
         defaultValue: '',
         relationSelected: false,
         relation: {
@@ -131,10 +121,8 @@ export const tables = {
         name: 'id',
         type: 'ID',
         primaryKey: true,
-        autoIncrement: true,
         unique: true,
         required: false,
-        multipleValues: false,
         defaultValue: '',
         relationSelected: false,
         relation: {
@@ -151,10 +139,8 @@ export const tables = {
         name: 'name',
         type: 'String',
         primaryKey: false,
-        autoIncrement: false,
         unique: false,
         required: true,
-        multipleValues: false,
         defaultValue: '',
         relationSelected: false,
         relation: {
@@ -171,10 +157,8 @@ export const tables = {
         name: 'author_id',
         type: 'ID',
         primaryKey: false,
-        autoIncrement: false,
         unique: false,
         required: true,
-        multipleValues: false,
         defaultValue: '',
         relationSelected: true,
         relation: {
@@ -196,3 +180,11 @@ export const tables = {
 export const view = 'table';
 
 export const popUp = 'welcome';
+
+export const gqlSchema = `const { gql } = require('apollo-server-express');\n\nmodule.exports = typeDefs;\n`;
+
+export const gqlResolvers = `const pool = require('./sqlPool');\n\nmodule.exports = resolvers;\n`;
+
+export const sqlScripts = '';
+
+export const dbConnectionURI = '';

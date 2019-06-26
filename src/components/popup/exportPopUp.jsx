@@ -77,7 +77,6 @@ function ExportPopUp(props) {
               // emitting message to electron window to open save dialog
               ipc.send('show-export-dialog', gqlSchema, gqlResolvers, sqlScripts, buildSQLPool(uri));
               dispatch({ type: SET_POP_UP, payload: '' });
-              dispatch({ type: SET_VIEW, payload: 'schema' });
             } else {
               document.querySelector('#error').classList.remove('invisible')
             }

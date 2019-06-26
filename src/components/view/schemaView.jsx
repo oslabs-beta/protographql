@@ -45,7 +45,7 @@ function SchemaView() {
     setTimeout(() => {
       dispatch({ type: HIDE_DISPLAY_ERROR });
       dispatch({ type: THROTTLE_DISPLAY_ERROR });
-    }, 3000);
+    }, 3250);
   }
 
   return (

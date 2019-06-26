@@ -9,6 +9,19 @@ const resolvers = {
         .then(res => res.rows)
         .catch(err => console.error('Error is: ', err));
     },
+    getAuthor(parent, args, context, info) {
+      let sql = `SELECT * FROM "Author"`;
+      let whereClause = ` WHERE `;
+      Object.keys(args).forEach((fieldName, i , arr) => {
+        whereClause += `"${fieldName}" = '${args[fieldName]}'`;
+        if (i !== arr.length - 1) whereClause += ` AND `;
+        else whereClause += `;`;
+      });
+      sql += whereClause;
+      return pool.query(sql)
+        .then(res => res.rows)
+        .catch(err => console.error('Error is: ', err));
+    },
     getAllBooks() {
       const sql = `SELECT * FROM "Books";`;
       return pool.query(sql)
@@ -39,6 +52,12 @@ const resolvers = {
     },
     last_name: (parent, args, context, info) => {
       return parent.last_name;
+    },
+    books: (parent, args, context, info) => {
+      const sql = `SELECT * FROM "Books" WHERE "id" = '${parent.book_id}';`;
+      return pool.query(sql)
+        .then(res => res.rows[0])
+        .catch(err => console.error('Error is: ', err))
     },
   },
 

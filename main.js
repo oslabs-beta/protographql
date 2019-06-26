@@ -12,6 +12,7 @@ function createWindow() {
   win = new BrowserWindow({
     width: 800,
     height: 600,
+    minHeight: 600,
     webPreferences: {
       nodeIntegration: true
     },
@@ -19,8 +20,11 @@ function createWindow() {
     icon: './public/assets/pictures/ProtoGraphQLLogo.png'
   });
 
+  win.setMinimumSize(265, 630);
+
   //Maximize browser window
   win.maximize();
+
 
   // Serve our index.html file
   // mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);

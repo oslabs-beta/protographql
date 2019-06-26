@@ -39,28 +39,42 @@ const ColorLegend = styled.div`
   padding: 10px;
 `
 
+const ColorContainer = styled.div`
+  margin-right: 20px;
+  display: flex;
+  width: 200px;
+  height: 20px;
+`
+
 const Blue = styled.div`
+  vertical-align: middle;
+  margin-left: 20px;
   background-color: #4668D6;
   width: 30px;
   height: 15px;
 `
 
-const Colar = styled.div`
+const Coral = styled.div`
+  vertical-align: middle;
+  margin-left: 20px;
   background-color: #EF476F;
   width: 30px;
   height: 15px;
 `
 
 const Green = styled.div`
+  vertical-align: middle; 
+  margin-left: 20px;
   background-color: #06D6A0;
   width: 30px;
   height: 15px;
 `
 
 const Text = styled.span`
-  margin-left: 30px;
+  padding-left: 10px;
   font-size: 14px;
   font-weight: 300;
+  color:none;
 `
 
 /*-------------------- Functional Component --------------------*/
@@ -87,9 +101,9 @@ function VisualizerSideBar() {
         {vizTypes}
         <ColorLegend>
           Color Legend
-          <Blue><Text>Queries</Text></Blue>
-          <Colar><Text>Types</Text></Colar>
-          <Green><Text>Queryable Fields</Text></Green>
+          <ColorContainer style={{marginTop: '10px'}}><Blue></Blue><Text>Queries</Text></ColorContainer>
+          <ColorContainer><Coral></Coral><Text>Types</Text></ColorContainer>
+          <ColorContainer><Green></Green><Text>Queryable Fields</Text></ColorContainer>
         </ColorLegend>
     </SideBar>
   )

@@ -22,8 +22,10 @@ const ButtonContainer = styled.div`
 `;
 
 const TypeName = styled.div`
+  margin-left: 20px;
+  text-decoration: underline;
   font-weight: 450
-  text-align: center;
+  text-align: left;
   font-size: 18px;
   padding-bottom: 20px
 `;

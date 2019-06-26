@@ -26,7 +26,7 @@ const Header = styled.p`
 `
 
 const TypeContainer = styled.div`
-  height: calc(100vh - 164px);
+  height: calc(100vh - 179px);
   overflow-y: scroll;
   ::-webkit-scrollbar {
     -webkit-appearance: none;
@@ -40,15 +40,13 @@ const TypeContainer = styled.div`
 `
 
 const ColorLegend = styled.div`
-  position: absolute;
   bottom: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
-  height: 100px;
-  text-align: center;
-  font-size: 22px;
-  font-weight: 600;
   padding-top: 10px;
-  padding-bottom: 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  height: 115px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
 `
 
 const ColorContainer = styled.div`
@@ -58,6 +56,7 @@ const ColorContainer = styled.div`
 `
 
 const Blue = styled.div`
+  text-align: left;
   vertical-align: middle;
   margin-left: 20px;
   background-color: #4668D6;
@@ -66,6 +65,7 @@ const Blue = styled.div`
 `
 
 const Coral = styled.div`
+  text-align: left;
   vertical-align: middle;
   margin-left: 20px;
   background-color: #EF476F;
@@ -74,6 +74,7 @@ const Coral = styled.div`
 `
 
 const Green = styled.div`
+  text-align: left;
   vertical-align: middle; 
   margin-left: 20px;
   background-color: #06D6A0;

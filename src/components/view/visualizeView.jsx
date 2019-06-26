@@ -33,8 +33,7 @@ function VisualizeView() {
   const { state: { visualizeJSON } } = useContext(Store);
 
   const createViz = () => {
-    console.log('runnign create viz', d3.select('#vizView'))
-    const svg = d3.select('#vizView').append('svg');
+  const svg = d3.select('#vizView').append('svg');
   const width = 700;
   const height = 600;
 

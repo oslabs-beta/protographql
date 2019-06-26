@@ -84,7 +84,6 @@ function NavSideBar() {
           dispatch({ type: SET_VIEW, payload: 'visualize' })
           dispatch({ type: SET_POP_UP, payload: '' })
           changeButtonStyleOnClick("Visualize")
-          // console.log('querySelector("svg"): ', document.querySelector("svg"));
           document.querySelector("svg") ? document.querySelector("svg").remove() : "";
         }}
       />

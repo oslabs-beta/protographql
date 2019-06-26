@@ -27,6 +27,42 @@ const Header = styled.p`
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 `
 
+const ColorLegend = styled.div`
+  position: absolute;
+  bottom: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  width: 100%;
+  height: 200px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  padding: 10px;
+`
+
+const Blue = styled.div`
+  background-color: #4668D6;
+  width: 30px;
+  height: 15px;
+`
+
+const Colar = styled.div`
+  background-color: #EF476F;
+  width: 30px;
+  height: 15px;
+`
+
+const Green = styled.div`
+  background-color: #06D6A0;
+  width: 30px;
+  height: 15px;
+`
+
+const Text = styled.span`
+  margin-left: 30px;
+  font-size: 14px;
+  font-weight: 300;
+`
+
 /*-------------------- Functional Component --------------------*/
 
 
@@ -49,6 +85,12 @@ function VisualizerSideBar() {
     <SideBar>
       <Header>Types</Header>
         {vizTypes}
+        <ColorLegend>
+          Color Legend
+          <Blue><Text>Queries</Text></Blue>
+          <Colar><Text>Types</Text></Colar>
+          <Green><Text>Queryable Fields</Text></Green>
+        </ColorLegend>
     </SideBar>
   )
 }

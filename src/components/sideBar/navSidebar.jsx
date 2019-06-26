@@ -74,17 +74,6 @@ function NavSideBar() {
           dispatch({ type: SET_VIEW, payload: 'visualize' })
           dispatch({ type: SET_POP_UP, payload: '' })
           changeButtonStyleOnClick("Visualize")
-          // console.log('querySelector("svg"): ', document.querySelector("svg"));
-          document.querySelector("svg") ? document.querySelector("svg").remove() : "";
-        }}
-      />
-      <NavButton
-        key='NavButton3'
-        className='fas fa-file-download'
-        view='Export'
-        click={(e) => {
-          dispatch({ type: SET_POP_UP, payload: 'export' })
-          changeButtonStyleOnClick("Export")
           document.querySelector("svg") ? document.querySelector("svg").remove() : "";
         }}
       />

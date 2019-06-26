@@ -20,7 +20,7 @@ const SideBar = styled.div`
 `;
 
 const Header = styled.p`
-  font-size: 30px;
+  font-size: 24px;
   padding: 8px;
   font-weight: 500;
   text-align: center;

@@ -4,7 +4,7 @@ import * as state from '../state/mockState';
 import deepClone from '../utils/deepClone';
 import buildGQLSchema from '../utils/buildGQLSchema';
 import buildGQLResolvers from '../utils/buildGQLResolvers';
-import buildENV from '../utils/buildENV';
+import buildSQLScripts from '../utils/buildSQLScripts';
 import { buildVisualizerJson } from '../utils/buildVisualizerJson';
 
 const initialState = state;

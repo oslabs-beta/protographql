@@ -9,9 +9,7 @@ import { updateArrayBindingPattern } from 'typescript';
 const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 65px auto;
   grid-template-areas: 
-    "viz viz viz viz bar"
     "viz viz viz viz bar";
   height: calc(100vh - 64px);
   background-color: #EEEFF0;

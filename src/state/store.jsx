@@ -58,9 +58,9 @@ function reducer(state, action) {
     // This case will increment tableIndex regardless whether we're adding a new table or editing an existing one
     case "SAVE_TABLE":
       newState.tables[newState.selectedTable.tableID] = newState.selectedTable;
-      return { 
-        ...state, 
-        tables: newState.tables, 
+      return {
+        ...state,
+        tables: newState.tables,
         tableIndex: newState.tableIndex + 1,
         visualizeJSON: buildVisualizerJson(newState.tables),
         gqlSchema: buildGQLSchema(newState.tables),
@@ -86,7 +86,7 @@ function reducer(state, action) {
       return {
         ...state,
         tables: newState.tables,
-        visualizeJSON: buildVisualizerJson(newState.tables), 
+        visualizeJSON: buildVisualizerJson(newState.tables),
         gqlSchema: buildGQLSchema(newState.tables),
         gqlResolvers: buildGQLResolvers(newState.tables),
         sqlScripts: buildSQLScripts(newState.tables)
@@ -119,6 +119,10 @@ function reducer(state, action) {
     case "THROTTLE_DISPLAY_ERROR":
       newState.displayError.throttleStatus = !newState.displayError.throttleStatus;
       return { ...state, displayError: newState.displayError };
+
+    case "SET_PSQL_URI":
+      console.log(action.payload);
+      return { ...state, psqlConnectionURI: action.payload };
 
     default:
       return state;

@@ -173,7 +173,7 @@ export const view = 'table';
 
 export const popUp = 'welcome';
 
-export const visualizeJSON = {"name":"Queries", "children":[{"name":"getAllAuthor","type":"[Author]","children":[{"name":"Author","type":"[Author]"}]},{"name": "getAuthor","type":"[Author]","children":[{"name": "Author","type": "[Author]","children": [{"name":"id", "type":"ID"},{"name":"first_name", "type":"String"},{"name":"last_name", "type":"String"}]}]},{"name":"getAllBooks","type":"[Books]","children":[{"name":"Books","type":"[Books]"}]},{"name": "getBooks","type":"[Books]","children":[{"name": "Books","type": "[Books]","children": [{"name":"id", "type":"ID"},{"name":"name", "type":"String"},{"name":"author_id", "type":"ID"}]}]}]}
+export const visualizeJSON = { "name": "Queries", "children": [{ "name": "getAllAuthor", "type": "[Author]", "children": [{ "name": "Author", "type": "[Author]" }] }, { "name": "getAuthor", "type": "[Author]", "children": [{ "name": "Author", "type": "[Author]", "children": [{ "name": "id", "type": "ID" }, { "name": "first_name", "type": "String" }, { "name": "last_name", "type": "String" }] }] }, { "name": "getAllBooks", "type": "[Books]", "children": [{ "name": "Books", "type": "[Books]" }] }, { "name": "getBooks", "type": "[Books]", "children": [{ "name": "Books", "type": "[Books]", "children": [{ "name": "id", "type": "ID" }, { "name": "name", "type": "String" }, { "name": "author_id", "type": "ID" }] }] }] }
 
 export const gqlSchema = `const { gql } = require('apollo-server-express');
 
@@ -280,6 +280,6 @@ CREATE TABLE "Books"(
   "author_id" SERIAL NOT NULL
 );`;
 
-export const dbConnectionURI = '';
+export const psqlConnectionURI = '';
 
 export const displayError = { displayStatus: false, throttleStatus: true, relatedTable: -1, relatedField: -1 };

@@ -280,6 +280,4 @@ CREATE TABLE "Books"(
   "author_id" SERIAL NOT NULL
 );`;
 
-export const psqlConnectionURI = '';
-
 export const displayError = { displayStatus: false, throttleStatus: true, relatedTable: -1, relatedField: -1 };

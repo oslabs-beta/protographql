@@ -8,7 +8,12 @@ import {
 } from "@material-ui/core";
 import { styled } from "@material-ui/styles";
 import { Store } from '../../state/store';
-import { SET_POP_UP, SET_PSQL_URI } from '../../actions/actionTypes';
+import { SET_POP_UP } from '../../actions/actionTypes';
+import buildSQLPool from '../../utils/buildSQLPool';
+
+//comment out to use web-dev-server instead of electron
+// const electron = window.require('electron');
+// const ipc = electron.ipcRenderer;
 
 /*-------------------- Styled components --------------------*/
 
@@ -38,7 +43,7 @@ const DialogActionsDiv = styled(DialogActions)({
 
 function ExportPopUp(props) {
 
-  const { state: { popUp }, dispatch } = useContext(Store);
+  const { state: { popUp, gqlSchema, gqlResolvers, sqlScripts }, dispatch } = useContext(Store);
 
   const handleClose = () => {
     dispatch({ type: SET_POP_UP, payload: '' });
@@ -60,7 +65,8 @@ function ExportPopUp(props) {
             e.preventDefault();
             const uri = e.target.childNodes[0].value.toLowerCase();
             if (uri.slice(0, 11) === 'postgres://' || uri.slice(0, 13) === 'postgresql://') {
-              dispatch({ type: SET_PSQL_URI, payload: uri })
+              // emitting message to electron window to open save dialog
+              ipc.send('show-export-dialog', gqlSchema, gqlResolvers, sqlScripts, buildSQLPool(uri));
             } else {
               //dispatch error snackbar 
             }

@@ -120,10 +120,6 @@ function reducer(state, action) {
       newState.displayError.throttleStatus = !newState.displayError.throttleStatus;
       return { ...state, displayError: newState.displayError };
 
-    case "SET_PSQL_URI":
-      console.log(action.payload);
-      return { ...state, psqlConnectionURI: action.payload };
-
     default:
       return state;
   }

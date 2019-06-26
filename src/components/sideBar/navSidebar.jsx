@@ -8,10 +8,6 @@ import {
   ADD_TABLE,
 } from '../../actions/actionTypes';
 
-//comment out to use web-dev-server instead of electron
-// const electron = window.require('electron');
-// const ipc = electron.ipcRenderer;
-
 /*-------------------- Styled Components --------------------*/
 
 const SideBar = styled.div`
@@ -44,14 +40,8 @@ function changeButtonStyleOnClick(view) {
 }
 
 function NavSideBar() {
-  const {
-    dispatch,
-    state: {
-      gqlSchema,
-      gqlResolvers,
-      sqlScripts,
-    }
-  } = useContext(Store);
+  const { dispatch } = useContext(Store);
+
   return (
     <SideBar>
       <NavButton
@@ -93,12 +83,9 @@ function NavSideBar() {
         className='fas fa-file-download'
         view='Export'
         click={(e) => {
-          // dispatch({ type: SET_VIEW, payload: 'export' })
           dispatch({ type: SET_POP_UP, payload: 'export' })
           changeButtonStyleOnClick("Export")
           document.querySelector("svg") ? document.querySelector("svg").remove() : "";
-          //emitting message to electron window to open save dialog
-          // ipc.send('show-export-dialog', gqlSchema, gqlResolvers, sqlScripts);
         }}
       />
       <NavButton

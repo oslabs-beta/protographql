@@ -9,11 +9,9 @@ import { updateArrayBindingPattern } from 'typescript';
 const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 65px auto;
   grid-template-areas: 
-    "viz viz viz viz bar"
     "viz viz viz viz bar";
-  height: 100vh;
+  height: calc(100vh - 64px);
   background-color: #EEEFF0;
   font-family: "Roboto", sans-serif;
 `;
@@ -24,6 +22,7 @@ const Viz = styled.div`
   height: 100vh;
   background-color: #EEEFF0;
   font-family: "Roboto", sans-serif;
+  height: calc(100vh - 64px);
 `;
 
 

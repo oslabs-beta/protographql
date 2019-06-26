@@ -1,4 +1,4 @@
-const URI = 'postgres://post';
+const URI = 'postgres://test';
 const { Pool } = require('pg');
 
 const pool = new Pool({

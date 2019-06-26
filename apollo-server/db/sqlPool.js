@@ -1,4 +1,4 @@
-const URI = 'postgres://kzbujefd:WjcJvMm3x3LGZF2QSyYmVltE1IV4Pwiq@isilo.db.elephantsql.com:5432/kzbujefd';
+const URI = 'postgres://post';
 const { Pool } = require('pg');
 
 const pool = new Pool({
@@ -8,7 +8,7 @@ const pool = new Pool({
 
 pool.connect((err, client, done) => {
   if (err) return console.log(`Error connecting to db, ${err}`);
-  console.log('Connected to db :)')
+  console.log('Connected to db :smile:')
   done();
 })
 

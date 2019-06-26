@@ -1,4 +1,4 @@
-const URI = '';
+const URI = 'postgres://kzbujefd:WjcJvMm3x3LGZF2QSyYmVltE1IV4Pwiq@isilo.db.elephantsql.com:5432/kzbujefd';
 const { Pool } = require('pg');
 
 const pool = new Pool({

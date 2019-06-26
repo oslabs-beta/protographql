@@ -12,7 +12,7 @@ const buildSQLPool = URI => {
 
   SQLPool += `pool.connect((err, client, done) => {\n`
   SQLPool += `${tabs(1)}if (err) return console.log(\`Error connecting to db, \${err}\`);\n`;
-  SQLPool += `${tabs(1)}console.log('Connected to db :)')\n`;
+  SQLPool += `${tabs(1)}console.log('Connected to db :smile:')\n`;
   SQLPool += `${tabs(1)}done();\n`;
   SQLPool += `})\n\n`;
 
@@ -21,4 +21,5 @@ const buildSQLPool = URI => {
 }
 
 export default buildSQLPool;
+
 

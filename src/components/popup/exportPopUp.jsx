@@ -8,12 +8,13 @@ import {
 } from "@material-ui/core";
 import { styled } from "@material-ui/styles";
 import { Store } from '../../state/store';
-import { SET_POP_UP } from '../../actions/actionTypes';
+import { SET_POP_UP, SET_VIEW } from '../../actions/actionTypes';
 import buildSQLPool from '../../utils/buildSQLPool';
+import TextField from '@material-ui/core/TextField';
 
 //comment out to use web-dev-server instead of electron
-// const electron = window.require('electron');
-// const ipc = electron.ipcRenderer;
+const electron = window.require('electron');
+const ipc = electron.ipcRenderer;
 
 /*-------------------- Styled components --------------------*/
 
@@ -38,6 +39,10 @@ const DialogActionsDiv = styled(DialogActions)({
   margin: 0,
 });
 
+const Input = styled(TextField)({
+  margin: '15px 0px',
+  width: 500,
+})
 
 /*-------------------- Functional Component --------------------*/
 
@@ -59,25 +64,29 @@ function ExportPopUp(props) {
     <div onKeyUp={keyUpToHandleClose}>
       <Dialog open={popUp === 'export'}>
         <Title>E X P O R T </Title>
-
-        <DialogActionsDiv>
-          <form onSubmit={(e) => {
+        <form
+          style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+          onSubmit={(e) => {
             e.preventDefault();
-            const uri = e.target.childNodes[0].value.toLowerCase();
-            if (uri.slice(0, 11) === 'postgres://' || uri.slice(0, 13) === 'postgresql://') {
+            const uri = e.target.childNodes[0].childNodes[1].childNodes[0].value;
+            if (uri.slice(0, 11).toLowerCase() === 'postgres://' || uri.slice(0, 13).toLowerCase() === 'postgresql://') {
               // emitting message to electron window to open save dialog
               ipc.send('show-export-dialog', gqlSchema, gqlResolvers, sqlScripts, buildSQLPool(uri));
+              dispatch({ type: SET_POP_UP, payload: '' });
+              dispatch({ type: SET_VIEW, payload: 'schema' });
             } else {
               //dispatch error snackbar 
+              console.log("Error");
             }
           }}>
-            <input type="text" placeholder="Enter Postgres Connection URI" required />
-            <br />
+          <Input label="Enter Postgres Connection URI" margin="normal" type="text" required />
+          {/* <Input type="text" placeholder="Enter Postgres Connection URI" required></Input> */}
+          <br />
+          <DialogActionsDiv>
             <StyledButton type="submit" color="primary">Export</StyledButton>
             <StyledButton onClick={handleClose} color="primary">Close</StyledButton>
-          </form>
-        </DialogActionsDiv>
-
+          </DialogActionsDiv>
+        </form>
       </Dialog>
     </div >
   );

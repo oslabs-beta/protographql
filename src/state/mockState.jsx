@@ -21,7 +21,6 @@ export const initialTable = {
         fieldIndex: -1,
         refType: ''
       },
-      refBy: {},
       queryable: true,
       tableNum: tableIndex,
       fieldNum: 1,
@@ -46,7 +45,6 @@ export const initialField = {
   },
   tableNum: -1,
   fieldNum: -1,
-  refBy: {},
   queryable: true
 };
 
@@ -71,7 +69,6 @@ export const tables = {
         },
         tableNum: 0,
         fieldNum: 0,
-        refBy: {},
         queryable: false
       },
       1: {
@@ -89,7 +86,6 @@ export const tables = {
         },
         tableNum: 0,
         fieldNum: 1,
-        refBy: {},
         queryable: false
       },
       2: {
@@ -107,7 +103,6 @@ export const tables = {
         },
         tableNum: 0,
         fieldNum: 2,
-        refBy: {},
         queryable: false
       }
     },
@@ -132,7 +127,6 @@ export const tables = {
         },
         tableNum: 1,
         fieldNum: 0,
-        refBy: {},
         queryable: true
       },
       1: {
@@ -150,7 +144,6 @@ export const tables = {
         },
         tableNum: 1,
         fieldNum: 1,
-        refBy: {},
         queryable: true
       },
       2: {
@@ -168,7 +161,6 @@ export const tables = {
         },
         tableNum: 1,
         fieldNum: 2,
-        refBy: {},
         queryable: true
       }
     },

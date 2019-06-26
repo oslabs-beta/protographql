@@ -21,7 +21,6 @@ export const initialTable = {
         fieldIndex: -1,
         refType: ''
       },
-      refBy: new Set(),
       queryable: true,
       tableNum: 0,
       fieldNum: 1,
@@ -44,7 +43,6 @@ export const initialField = {
     fieldIndex: -1,
     refType: ''
   },
-  refBy: new Set(),
   queryable: true,
   tableNum: -1,
   fieldNum: -1,

@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
-import React, { useContext }  from "react";
+import React, { useContext } from "react";
 import {
-  Button, 
-  Dialog, 
-  DialogActions, 
-  DialogContent, 
-  DialogContentText, 
-  DialogTitle, 
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   Paper
 } from "@material-ui/core";
 import Draggable from "react-draggable";
@@ -71,13 +71,19 @@ function DraggableDialog(props) {
   const { state: { popUp }, dispatch } = useContext(Store);
 
   const handleClose = () => {
-    dispatch({type: SET_POP_UP, payload: ''});
+    dispatch({ type: SET_POP_UP, payload: '' });
+  }
+
+  const keyUpToHandleClose = (e) => {
+    if (e.keyCode == 13 || e.keyCode == 27) {
+      dispatch({ type: SET_POP_UP, payload: '' });
+    }
   }
 
   //END OF USE CONTEXT
 
   return (
-    <div>
+    <div onKeyUp={keyUpToHandleClose}>
       <Dialog open={popUp === 'welcome'} PaperComponent={PaperComponent}>
         <Title style={{ cursor: "move" }} id="draggable-dialog-title">P R O T O G R A P H Q L</Title>
 

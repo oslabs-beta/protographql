@@ -64,7 +64,7 @@ const FadeThePage = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 9999;
+  z-index: 9998;
   background: rgba(90, 90, 90, 0.5);
 `;
 
@@ -130,8 +130,15 @@ function TableForm() {
   }
   createTableInputs();
 
+  /*------------- Enter / Esc Key to Close Pop Up  ---------------*/
+  const keyUpToHandleClose = (e) => {
+    if (e.keyCode == 27) {
+      dispatch({ type: SET_POP_UP, payload: '' });
+    }
+  }
+
   return (
-    <FadeThePage>
+    <FadeThePage onKeyUp={keyUpToHandleClose}>
       <Draggable handle="#header">
         <CustomTable onSubmit={e => {
           e.preventDefault();

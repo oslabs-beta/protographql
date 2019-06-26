@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import React from 'react';
 import * as state from '../state/mockState';
 import deepClone from '../utils/deepClone';
@@ -11,6 +12,7 @@ function reducer(state, action) {
 
   const newState = deepClone(state);
   let selectedTable;
+  let tables;
 
   switch (action.type) {
     case "SET_POP_UP":
@@ -19,12 +21,8 @@ function reducer(state, action) {
     case "ADD_TABLE":
       selectedTable = newState.initialTable;
       selectedTable.tableID = newState.tableIndex;
-      selectedTable.fields[1].tableNum = newState.tableIndex;  
+      selectedTable.fields[1].tableNum = newState.tableIndex;
       return { ...state, selectedTable, tableIndex: newState.tableIndex + 1 };
-
-    case "EDIT_TABLE":
-      selectedTable = newState.tables[action.payload];
-      return { ...state, selectedTable };
 
     case "ADD_FIELD":
       // Assign which table and field this newly added field belongs to
@@ -35,14 +33,14 @@ function reducer(state, action) {
       newState.selectedTable.fields[newState.selectedTable.fieldIndex++] = newState.initialField;
       return { ...state, selectedTable: newState.selectedTable };
 
-    case "DELETE_FIELD":
-      delete newState.selectedTable.fields[action.payload];
-      return { ...state, selectedTable: newState.selectedTable };
+    case "EDIT_TABLE":
+      selectedTable = newState.tables[action.payload];
+      return { ...state, selectedTable };
 
     case "EDIT_FIELD":
       const { fieldKey, fieldProperty, value } = action.payload;
       newState.selectedTable.fields[fieldKey][fieldProperty] = value;
-      return { ...state, selectedTable: newState.selectedTable};
+      return { ...state, selectedTable: newState.selectedTable };
 
     case "EDIT_RELATIONS":
       const { relationFieldKey, relationFieldProperty, relationValue } = action.payload;
@@ -50,7 +48,7 @@ function reducer(state, action) {
       currentRelation[relationFieldProperty] = relationValue;
       if (currentRelation.tableIndex !== -1) newState.selectedTable.fields[relationFieldKey].relationSelected = true;
       else newState.selectedTable.fields[relationFieldKey].relationSelected = false;
-      return { ...state, selectedTable: newState.selectedTable};
+      return { ...state, selectedTable: newState.selectedTable };
 
     case "EDIT_TABLE_NAME":
       newState.selectedTable.type = action.payload;
@@ -59,27 +57,65 @@ function reducer(state, action) {
     // This case will increment tableIndex regardless whether we're adding a new table or editing an existing one
     case "SAVE_TABLE":
       newState.tables[newState.selectedTable.tableID] = newState.selectedTable;
-      return { 
-        ...state, 
-        tables: newState.tables, 
-        tableIndex: newState.tableIndex + 1, 
+      return {
+        ...state,
+        tables: newState.tables,
+        tableIndex: newState.tableIndex + 1,
         gqlSchema: buildGQLSchema(newState.tables),
         gqlResolvers: buildGQLResolvers(newState.tables),
         sqlScripts: buildSQLScripts(newState.tables)
       };
 
+
     case "DELETE_TABLE":
+      tables = Object.values(newState.tables);
+      for (let table of tables) {
+        const fields = Object.values(table.fields);
+        for (let field of fields) {
+          if (Number(field.relation.tableIndex) === Number(action.payload)) {
+            newState.displayError.displayStatus = true;
+            newState.displayError.relatedTable = table.type;
+            newState.displayError.relatedField = field.name;
+            return { ...state, displayError: newState.displayError };
+          }
+        }
+      }
       delete newState.tables[action.payload];
-      return { 
-        ...state, 
+      return {
+        ...state,
         tables: newState.tables,
         gqlSchema: buildGQLSchema(newState.tables),
         gqlResolvers: buildGQLResolvers(newState.tables),
-        sqlScripts: buildSQLScripts(newState.tables) 
+        sqlScripts: buildSQLScripts(newState.tables)
       };
+
+    case "DELETE_FIELD":
+      tables = Object.values(newState.tables);
+      for (let table of tables) {
+        const fields = Object.values(table.fields);
+        for (let field of fields) {
+          if (Number(field.relation.tableIndex) === Number(newState.selectedTable.tableID) && field.relation.fieldIndex === action.payload) {
+            newState.displayError.displayStatus = true;
+            newState.displayError.relatedTable = table.type;
+            newState.displayError.relatedField = field.name;
+            return { ...state, displayError: newState.displayError };
+          }
+        }
+      }
+
+      delete newState.selectedTable.fields[action.payload];
+      return { ...state, selectedTable: newState.selectedTable };
 
     case "SET_VIEW":
       return { ...state, view: action.payload };
+
+    case "HIDE_DISPLAY_ERROR":
+      newState.displayError.displayStatus = false;
+      return { ...state, displayError: newState.displayError };
+
+    case "THROTTLE_DISPLAY_ERROR":
+      newState.displayError.throttleStatus = !newState.displayError.throttleStatus;
+      return { ...state, displayError: newState.displayError };
 
     default:
       return state;
@@ -88,7 +124,7 @@ function reducer(state, action) {
 
 export const Store = React.createContext("");
 
-export function StoreProvider (props) {
+export function StoreProvider(props) {
   const [state, dispatch] = React.useReducer(reducer, initialState);
   const value = { state, dispatch };
   return <Store.Provider value={value}>{props.children}</Store.Provider>

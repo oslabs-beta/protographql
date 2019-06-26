@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import deepClone from '../../utils/deepClone';
 
-
 /*-------------------- Styled Components --------------------*/
 
 const Tr = styled.tr`
@@ -121,8 +120,6 @@ function TableInput({
     }
   }
   populateFieldRelationOptions(relationTableIdx);
-
-
 
   return (
     <Tr>

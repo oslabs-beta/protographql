@@ -44,7 +44,7 @@ function changeButtonStyleOnClick(view) {
 }
 
 function NavSideBar() {
-  const { 
+  const {
     dispatch,
     state: {
       gqlSchema,

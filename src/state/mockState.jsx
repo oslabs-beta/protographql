@@ -21,7 +21,7 @@ export const initialTable = {
         fieldIndex: -1,
         refType: ''
       },
-      refBy: new Set(),
+      refBy: {},
       queryable: true,
       tableNum: tableIndex,
       fieldNum: 1,
@@ -46,7 +46,7 @@ export const initialField = {
   },
   tableNum: -1,
   fieldNum: -1,
-  refBy: new Set(),
+  refBy: {},
   queryable: true
 };
 
@@ -287,3 +287,5 @@ CREATE TABLE "Books"(
 );`;
 
 export const dbConnectionURI = '';
+
+export const displayError = { displayStatus: false, throttleStatus: true, relatedTable: -1, relatedField: -1 };

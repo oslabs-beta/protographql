@@ -21,7 +21,7 @@ const Container = styled.div`
 const Viz = styled.div`
   display: grid;
   grid-area: viz;
-  height: 100vh;
+  height: calc(100vh - 64px);
   background-color: #EEEFF0;
   font-family: "Roboto", sans-serif;
   height: calc(100vh - 64px);

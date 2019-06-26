@@ -8,7 +8,7 @@ body{
   justify-content: center;
   height: 90vh;
   min-width: 1200px;
-  min-height: 750px;
+  min-height: 700px;
 }
 
 #main {
@@ -102,40 +102,6 @@ button:hover{
   transform: scale(1.05);
   color: #DD399C;
 }
-
-#bounce{
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  -webkit-animation-timing-function: ease-in-out;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: 3;
-  -webkit-animation-iteration-count: 3;
-  animation-name: bounce;
-  -moz-animation-name: bounce;
-}
-
-
-
-@keyframes bounce {
-	0%, 100%, 20%, 50%, 80% {
-		-webkit-transform: translateY(0);
-		-ms-transform:     translateY(0);
-		transform:         translateY(0)
-	}
-	40% {
-		-webkit-transform: translateY(-9px);
-		-ms-transform:     translateY(-9px);
-		transform:         translateY(-9px)
-	}
-	60% {
-		-webkit-transform: translateY(-4px);
-		-ms-transform:     translateY(-4px);
-		transform:         translateY(-4px)
-	}
-}
-
 
 @keyframes spin {
   from {

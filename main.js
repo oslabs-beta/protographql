@@ -58,7 +58,7 @@ const createFile = (filePath, data) => {
 }
 
 //function to run when user clicks export
-function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts) {
+function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, sqlPool) {
   dialog.showOpenDialog(
     {
       title: 'Choose location to save folder in',
@@ -73,6 +73,7 @@ function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts) {
       createFile('graphql/schema.js', gqlSchema);
       createFile('graphql/resolvers.js', gqlResolvers);
       createFile('db/createTables.sql', sqlScripts);
+      createFile('db/sqlPool.js', sqlPool);
 
       const output = fs.createWriteStream(result + '/apollo-server.zip');
       const archive = archiver('zip', {
@@ -116,6 +117,6 @@ function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts) {
 }
 
 //listener for export button being clicked
-ipc.on('show-export-dialog', (event, gqlSchema, gqlResolvers, sqlScripts) => {
-  showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts);
+ipc.on('show-export-dialog', (event, gqlSchema, gqlResolvers, sqlScripts, sqlPool) => {
+  showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, sqlPool);
 });

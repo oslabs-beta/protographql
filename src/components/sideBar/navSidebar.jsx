@@ -8,10 +8,6 @@ import {
   ADD_TABLE,
 } from '../../actions/actionTypes';
 
-//comment out to use web-dev-server instead of electron
-// const electron = window.require('electron');
-// const ipc = electron.ipcRenderer;
-
 /*-------------------- Styled Components --------------------*/
 
 const SideBar = styled.div`
@@ -44,14 +40,8 @@ function changeButtonStyleOnClick(view) {
 }
 
 function NavSideBar() {
-  const {
-    dispatch,
-    state: {
-      gqlSchema,
-      gqlResolvers,
-      sqlScripts,
-    }
-  } = useContext(Store);
+  const { dispatch } = useContext(Store);
+
   return (
     <SideBar>
       <NavButton
@@ -76,10 +66,10 @@ function NavSideBar() {
           document.querySelector("svg") ? document.querySelector("svg").remove() : "";
         }}
       />
-      <NavButton 
-        key='NavButton2' 
+      <NavButton
+        key='NavButton2'
         className='fas fa-project-diagram'
-        view='Visualize' 
+        view='Visualize'
         click={(e) => {
           dispatch({ type: SET_VIEW, payload: 'visualize' })
           dispatch({ type: SET_POP_UP, payload: '' })
@@ -87,36 +77,33 @@ function NavSideBar() {
           document.querySelector("svg") ? document.querySelector("svg").remove() : "";
         }}
       />
-      <NavButton 
-          key='NavButton3' 
-          className='fas fa-file-download'
-          view='Export' 
-          click={(e) => {
-            dispatch({ type: SET_VIEW, payload: 'export' })
-            dispatch({ type: SET_POP_UP, payload: '' })
-            changeButtonStyleOnClick("Export")
-            document.querySelector("svg") ? document.querySelector("svg").remove() : "";
-            //emitting message to electron window to open save dialog
-            // ipc.send('show-export-dialog', gqlSchema, gqlResolvers, sqlScripts);
-          }}
+      <NavButton
+        key='NavButton3'
+        className='fas fa-file-download'
+        view='Export'
+        click={(e) => {
+          dispatch({ type: SET_POP_UP, payload: 'export' })
+          changeButtonStyleOnClick("Export")
+          document.querySelector("svg") ? document.querySelector("svg").remove() : "";
+        }}
       />
-      <NavButton 
-          key='NavButton4' 
-          className='fas fa-plus-square'
-          view='Add Table' 
-          click={() => {
-            dispatch({ type: SET_VIEW, payload: 'schema' })
-            dispatch({ type: SET_POP_UP, payload: 'table' })
-            dispatch({ type: ADD_TABLE })
-            document.querySelector("svg") ? document.querySelector("svg").remove() : "";
-          }} 
-          style={{ 
-            position: 'absolute', 
-            bottom: 0, 
-            borderTop: '1px solid rgba(0, 0, 0, 0.08)', 
-            width: '100%' 
-          }}
-        />
+      <NavButton
+        key='NavButton4'
+        className='fas fa-plus-square'
+        view='Add Table'
+        click={() => {
+          dispatch({ type: SET_VIEW, payload: 'schema' })
+          dispatch({ type: SET_POP_UP, payload: 'table' })
+          dispatch({ type: ADD_TABLE })
+          document.querySelector("svg") ? document.querySelector("svg").remove() : "";
+        }}
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          borderTop: '1px solid rgba(0, 0, 0, 0.08)',
+          width: '100%'
+        }}
+      />
     </SideBar>
   )
 }

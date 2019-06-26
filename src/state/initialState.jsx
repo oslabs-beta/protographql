@@ -60,14 +60,12 @@ export const view = 'schema';
 //potential popups are welcome and export (select folder to save & success)
 export const popUp = 'welcome';
 
-export const visualizeJSON = {"name":"Queries"};
+export const visualizeJSON = { "name": "Queries" };
 
 export const gqlSchema = `const { gql } = require('apollo-server-express');\n\nmodule.exports = typeDefs;\n`;
 
 export const gqlResolvers = `const pool = require('../db/sqlPool');\n\nmodule.exports = resolvers;\n`;
 
 export const sqlScripts = ``;
-
-export const dbConnectionURI = '';
 
 export const displayError = { displayStatus: false, throttleStatus: true, relatedTable: -1, relatedField: -1 };

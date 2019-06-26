@@ -1,7 +1,3 @@
-* {
-  /* border: 1px solid black; */
-}
-
 body{
   background-color:#ccc;
   color: white;
@@ -103,11 +99,8 @@ button {
 }
 
 button:hover{
-  /* border: 1px solid #DD399C; */
-  /* background-color: #324353; */
   transform: scale(1.05);
   color: #DD399C;
-  /* box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.10); */
 }
 
 #bounce{

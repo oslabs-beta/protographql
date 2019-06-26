@@ -13,8 +13,8 @@ import buildSQLPool from '../../utils/buildSQLPool';
 import TextField from '@material-ui/core/TextField';
 
 //comment out to use web-dev-server instead of electron
-const electron = window.require('electron');
-const ipc = electron.ipcRenderer;
+// const electron = window.require('electron');
+// const ipc = electron.ipcRenderer;
 
 /*-------------------- Styled components --------------------*/
 
@@ -40,7 +40,8 @@ const DialogActionsDiv = styled(DialogActions)({
 });
 
 const Input = styled(TextField)({
-  margin: '15px 0px',
+  margin: '0px',
+  marginTop: '20px',
   width: 500,
 })
 
@@ -63,7 +64,8 @@ function ExportPopUp(props) {
   return (
     <div onKeyUp={keyUpToHandleClose}>
       <Dialog open={popUp === 'export'}>
-        <Title>E X P O R T </Title>
+        <Title>E X P O R T
+        </Title>
         <form
           style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
           onSubmit={(e) => {
@@ -75,12 +77,11 @@ function ExportPopUp(props) {
               dispatch({ type: SET_POP_UP, payload: '' });
               dispatch({ type: SET_VIEW, payload: 'schema' });
             } else {
-              //dispatch error snackbar 
-              console.log("Error");
+              document.querySelector('#error').classList.remove('invisible')
             }
           }}>
           <Input label="Enter Postgres Connection URI" margin="normal" type="text" required />
-          <br />
+          <p className="invisible" id="error">URI needs to start with "postgres://" or "postgresql://"</p>
           <DialogActionsDiv>
             <StyledButton type="submit" color="primary">Export</StyledButton>
             <StyledButton onClick={handleClose} color="primary">Close</StyledButton>

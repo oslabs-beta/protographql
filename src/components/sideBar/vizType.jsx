@@ -9,7 +9,8 @@ const fontColor = keyframes`
 `;
 
 const ButtonContainer = styled.div`
-  padding: 20px;
+  padding-top: 20px;
+  padding-bottom:20px;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.08);
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   min-width: 200px;
@@ -23,7 +24,7 @@ const ButtonContainer = styled.div`
 const TypeName = styled.div`
   font-weight: 450
   text-align: center;
-  font-size: 1.2em;
+  font-size: 18px;
   padding-bottom: 20px
 `;
 
@@ -37,11 +38,11 @@ const Field = styled.div`
 function VizType ({ table }) {
   const values = []
   for (let key in table.fields) {
-    values.push(<Field>{key}: {table.fields[key]}</Field>)
+    values.push(<Field key={table+'-'+key}>{key}: {table.fields[key]}</Field>)
   }
   return (
     <ButtonContainer>
-      <TypeName>{table.name}</TypeName>
+      <TypeName key="typeName">{table.name}</TypeName>
       {values}
     </ButtonContainer>
   )

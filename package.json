@@ -4,8 +4,8 @@
   "description": "GraphQL prototyping desktop tool, build GQL schemas, queries, and mutations.",
   "main": "main.js",
   "scripts": {
-    "start": "webpack -p && electron .",
-    "start-electron": "electron .",
+    "start": "electron .",
+    "build": "webpack -p",
     "dev": "webpack-dev-server --mode=development",
     "test": "test"
   },

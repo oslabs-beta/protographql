@@ -3,7 +3,7 @@
 
 
 // Checks all fields of a table and returns an array of queryable fields
-const queryableFieldsArrayCreator = fields => {
+export const queryableFieldsArrayCreator = fields => {
   const queryFieldsArray = [];
   for(let x in fields) {
     if (fields[x].queryable) {
@@ -14,7 +14,7 @@ const queryableFieldsArrayCreator = fields => {
 }
 
 //Check all fields of a table and return objects with the fields name and type
-const fieldNameType = fields => {
+export const fieldNameType = fields => {
   let fieldJson =``
   for(let i = 0; i < fields.length; i++) {
     fieldJson += `{"name":"${fields[i].name}", "type":"${fields[i].type}"}`
@@ -26,6 +26,47 @@ const fieldNameType = fields => {
 
 }
 
+export const queryableTableMaker = tables => {
+    if (Object.keys(tables).length === 0) return []
+
+    const tableArray = Object.values(tables)
+    const queryableTables = [] 
+    tableArray.forEach( el => {
+      //get list of fields that are queryable for current table ("el")
+      const queryableFields = queryableFieldsArrayCreator(el.fields)
+  
+      /*if there is at least one queryable field in the table, update the tables fields to only the queryable fields and push to queryableTableArray */
+      if (queryableFields.length !== 0) {
+        el.fields = queryableFields
+        queryableTables.push(el)
+      }
+    })
+    return queryableTables
+}
+
+export function queryTypeCreator (tables) {
+  const queryableTables = queryableTableMaker(tables)
+  const typeArray = [];
+  for (let i in queryableTables) {
+    const curr = queryableTables[i]
+    const fields = curr.fields
+    const type = {}
+    type.name = curr.type
+    type.fields = {}
+    for (let j in fields) {
+      if (fields[j].relationSelected) {
+        type.fields[tables[fields[j].relation.tableIndex].type] = `[${tables[fields[j].relation.tableIndex].type}]`
+      }
+      type.fields
+      if (!fields[j].relationSelected) {
+        type.fields[fields[j].name] = fields[j].type
+      }
+    }
+    typeArray.push(type)
+  }
+  return typeArray
+}
+
 /**********************************    BUILD JSON FOR VISUALIZER    **********************************/
 
 export const buildVisualizerJson = tables => {
@@ -34,18 +75,7 @@ export const buildVisualizerJson = tables => {
   //if we have no tables return only root
   if (Object.keys(tables).length === 0) return JSON.parse(root +='}')
 
-  const tableArray = Object.values(tables)
-  const queryableTableArray = [] 
-  tableArray.forEach( el => {
-    //get list of fields that are queryable for current table ("el")
-    const queryableFields = queryableFieldsArrayCreator(el.fields)
-
-    /*if there is at least one queryable field in the table, update the tables fields to only the queryable fields and push to queryableTableArray */
-    if (queryableFields.length !== 0) {
-      el.fields = queryableFields
-      queryableTableArray.push(el)
-    }
-  })
+  const queryableTableArray = queryableTableMaker(tables)
 
   //If there are no queryable fields return root
   if (queryableTableArray.length === 0) return JSON.parse(root +='}')

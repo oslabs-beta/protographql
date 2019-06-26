@@ -53,7 +53,6 @@ function VisualizeView() {
 
   function collapse(d) {
     if (d.children) {
-      console.log(d.children)
       d._children = d.children;
       d._children.forEach(collapse);
       d.children = null;

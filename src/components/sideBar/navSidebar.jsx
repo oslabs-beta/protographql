@@ -9,8 +9,8 @@ import {
 } from '../../actions/actionTypes';
 
 //comment out to use web-dev-server instead of electron
-const electron = window.require('electron');
-const ipc = electron.ipcRenderer;
+// const electron = window.require('electron');
+// const ipc = electron.ipcRenderer;
 
 /*-------------------- Styled Components --------------------*/
 
@@ -26,7 +26,7 @@ const SideBar = styled.div`
 
 /*-------------------- Functional Component --------------------*/
 
-const views = ["Schema", "Code", "Export"]
+const views = ["Schema", "Code", "Visualize", "Export"]
 
 function changeButtonStyleOnClick(view) {
   const currentButton = document.querySelector(`#${view}`);
@@ -62,6 +62,7 @@ function NavSideBar() {
           dispatch({ type: SET_VIEW, payload: 'schema' })
           dispatch({ type: SET_POP_UP, payload: '' })
           changeButtonStyleOnClick("Schema")
+          document.querySelector("svg") ? document.querySelector("svg").remove() : "";
         }}
       />
       <NavButton
@@ -72,36 +73,51 @@ function NavSideBar() {
           dispatch({ type: SET_VIEW, payload: 'code' })
           dispatch({ type: SET_POP_UP, payload: '' })
           changeButtonStyleOnClick("Code")
+          document.querySelector("svg") ? document.querySelector("svg").remove() : "";
         }}
       />
-      <NavButton
-        key='NavButton2'
-        className='fas fa-file-download'
-        view='Export'
+      <NavButton 
+        key='NavButton2' 
+        className='fas fa-project-diagram'
+        view='Visualize' 
         click={(e) => {
-          dispatch({ type: SET_VIEW, payload: 'export' })
+          dispatch({ type: SET_VIEW, payload: 'visualize' })
           dispatch({ type: SET_POP_UP, payload: '' })
-          changeButtonStyleOnClick("Export")
-          //emitting message to electron window to open save dialog
-          ipc.send('show-export-dialog', gqlSchema, gqlResolvers, sqlScripts);
+          changeButtonStyleOnClick("Visualize")
+          // console.log('querySelector("svg"): ', document.querySelector("svg"));
+          document.querySelector("svg") ? document.querySelector("svg").remove() : "";
         }}
       />
-      <NavButton
-        key='NavButton3'
-        className='fas fa-plus-square'
-        view='Add Table'
-        click={() => {
-          dispatch({ type: SET_VIEW, payload: 'schema' })
-          dispatch({ type: SET_POP_UP, payload: 'table' })
-          dispatch({ type: ADD_TABLE })
-        }}
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          borderTop: '1px solid rgba(0, 0, 0, 0.08)',
-          width: '100%'
-        }}
+      <NavButton 
+          key='NavButton3' 
+          className='fas fa-file-download'
+          view='Export' 
+          click={(e) => {
+            dispatch({ type: SET_VIEW, payload: 'export' })
+            dispatch({ type: SET_POP_UP, payload: '' })
+            changeButtonStyleOnClick("Export")
+            document.querySelector("svg") ? document.querySelector("svg").remove() : "";
+            //emitting message to electron window to open save dialog
+            // ipc.send('show-export-dialog', gqlSchema, gqlResolvers, sqlScripts);
+          }}
       />
+      <NavButton 
+          key='NavButton4' 
+          className='fas fa-plus-square'
+          view='Add Table' 
+          click={() => {
+            dispatch({ type: SET_VIEW, payload: 'schema' })
+            dispatch({ type: SET_POP_UP, payload: 'table' })
+            dispatch({ type: ADD_TABLE })
+            document.querySelector("svg") ? document.querySelector("svg").remove() : "";
+          }} 
+          style={{ 
+            position: 'absolute', 
+            bottom: 0, 
+            borderTop: '1px solid rgba(0, 0, 0, 0.08)', 
+            width: '100%' 
+          }}
+        />
     </SideBar>
   )
 }

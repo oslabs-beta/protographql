@@ -78,7 +78,7 @@ function NavSideBar() {
         }}
       />
       <NavButton
-        key='NavButton4'
+        key='NavButton3'
         className='fas fa-plus-square'
         view='Add Table'
         click={() => {

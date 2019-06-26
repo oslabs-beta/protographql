@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/header/header';
-import NavSideBar from '../components/navSideBar/navSidebar';
+import NavSideBar from '../components/sideBar/navSidebar';
 import Welcome from '../components/popup/welcome';
 import MainView from '../components/view/mainView';
 import styled from 'styled-components';

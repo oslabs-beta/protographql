@@ -5,6 +5,7 @@ import deepClone from '../utils/deepClone';
 import buildGQLSchema from '../utils/buildGQLSchema';
 import buildGQLResolvers from '../utils/buildGQLResolvers';
 import buildSQLScripts from '../utils/buildSQLScripts';
+import { buildVisualizerJson } from '../utils/buildVisualizerJson';
 
 const initialState = state;
 
@@ -57,10 +58,11 @@ function reducer(state, action) {
     // This case will increment tableIndex regardless whether we're adding a new table or editing an existing one
     case "SAVE_TABLE":
       newState.tables[newState.selectedTable.tableID] = newState.selectedTable;
-      return {
-        ...state,
-        tables: newState.tables,
+      return { 
+        ...state, 
+        tables: newState.tables, 
         tableIndex: newState.tableIndex + 1,
+        visualizeJSON: buildVisualizerJson(newState.tables),
         gqlSchema: buildGQLSchema(newState.tables),
         gqlResolvers: buildGQLResolvers(newState.tables),
         sqlScripts: buildSQLScripts(newState.tables)
@@ -84,6 +86,7 @@ function reducer(state, action) {
       return {
         ...state,
         tables: newState.tables,
+        visualizeJSON: buildVisualizerJson(newState.tables), 
         gqlSchema: buildGQLSchema(newState.tables),
         gqlResolvers: buildGQLResolvers(newState.tables),
         sqlScripts: buildSQLScripts(newState.tables)

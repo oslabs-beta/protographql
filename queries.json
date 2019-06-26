@@ -1,0 +1,73 @@
+{
+  "name": "Queries",
+  "children": [
+    {
+      "name": "getAuthor",
+      "type": "[Author]",
+      "children": [
+        {
+          "name": "Author",
+          "type": "[Author]",
+          "children": [
+            {
+              "name": "id",
+              "type": "ID"
+            },
+            {
+              "name": "first_name",
+              "type": "String!"
+            },
+            {
+              "name": "last_name",
+              "type": "String!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "getAllAuthor",
+      "type": "[Author]",
+      "children": [
+        {
+          "name": "Author",
+          "type": "[Author]"
+        }
+      ]
+    },
+    {
+      "name": "getBooks",
+      "type": "[Books]",
+      "children": [
+        {
+          "name": "Books",
+          "type": "[Books]",
+          "children": [
+            {
+              "name": "id",
+              "type": "ID"
+            },
+            {
+              "name": "name",
+              "type": "String!"
+            },
+            {
+              "name": "author",
+              "type": "Author"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "getAllBooks",
+      "type": "[Books]",
+      "children": [
+        {
+          "name": "Books",
+          "type": "[Books]"
+        }
+      ]
+    }
+  ]
+}

@@ -71,3 +71,5 @@ export const gqlResolvers = `const pool = require('../db/sqlPool');\n\nmodule.ex
 export const sqlScripts = ``;
 
 export const dbConnectionURI = '';
+
+export const displayError = { displayStatus: false, throttleStatus: true, relatedTable: -1, relatedField: -1 };

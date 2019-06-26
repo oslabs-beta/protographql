@@ -87,6 +87,7 @@ function SchemaTable({
       }
     ))
   )
+
   return (
     <Paper className={classes.root} style={{ margin: '10px' }}>
       <Typography className={classes.title}  >

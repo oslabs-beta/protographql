@@ -13,8 +13,8 @@ import buildSQLPool from '../../utils/buildSQLPool';
 import TextField from '@material-ui/core/TextField';
 
 //comment out to use web-dev-server instead of electron
-// const electron = window.require('electron');
-// const ipc = electron.ipcRenderer;
+const electron = window.require('electron');
+const ipc = electron.ipcRenderer;
 
 /*-------------------- Styled components --------------------*/
 
@@ -58,6 +58,8 @@ function ExportPopUp(props) {
   const keyUpToHandleClose = (e) => {
     if (e.keyCode === 27) {
       dispatch({ type: SET_POP_UP, payload: '' });
+    } else if (e.keyCode === 13) {
+      document.querySelector('#export').click();
     }
   }
 
@@ -83,7 +85,7 @@ function ExportPopUp(props) {
           <Input label="Enter Postgres Connection URI" margin="normal" type="text" required />
           <p className="invisible" id="error">URI needs to start with "postgres://" or "postgresql://"</p>
           <DialogActionsDiv>
-            <StyledButton type="submit" color="primary">Export</StyledButton>
+            <StyledButton id="export" type="submit" color="primary">Export</StyledButton>
             <StyledButton onClick={handleClose} color="primary">Close</StyledButton>
           </DialogActionsDiv>
         </form>

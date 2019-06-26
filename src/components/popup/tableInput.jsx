@@ -78,7 +78,6 @@ function TableInput({
     name,
     primaryKey,
     queryable,
-    refBy,
     relation,
     relationSelected,
     required,

@@ -80,7 +80,6 @@ function ExportPopUp(props) {
             }
           }}>
           <Input label="Enter Postgres Connection URI" margin="normal" type="text" required />
-          {/* <Input type="text" placeholder="Enter Postgres Connection URI" required></Input> */}
           <br />
           <DialogActionsDiv>
             <StyledButton type="submit" color="primary">Export</StyledButton>

@@ -8,10 +8,10 @@
     "build": "webpack -p",
     "dev": "webpack-dev-server --mode=development",
     "test": "test",
-    "package-all": "sudo electron-forge make --arch x64 --platform win32",
+    "package-all": "sudo electron-forge make",
     "package-linux": "electron-packager . --linux --asar",
     "package-mac": "electron-packager . --darwin --asar",
-    "package-win": "electron-packager . --platform win32 --arch ia32 --asar"
+    "package-win": "electron-packager . --platform win32 --arch x64 --asar"
   },
   "repository": {
     "type": "git",
@@ -27,17 +27,13 @@
     "forge": {
       "electronPackagerConfig": {
         "asar": true,
-        "executableName": "protographql",
+        "executableName": "ProtoGraphQl",
         "icon": "./public/pictures/icon/icon",
         "overwrite": true,
-        "platform": "win32",
         "prune": true,
-        "arch":"x64"
+        "arch": "x64"
       },
       "make_targets": {
-        "win32": [
-          "squirrel"
-        ],
         "darwin": [
           "dmg"
         ],
@@ -58,13 +54,6 @@
           "name": "@electron-forge/maker-dmg",
           "config": {
             "format": "ULFO"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "certificateFile": "./cert.pfx",
-            "certificatePassword": "this-is-a-secret"
           }
         }
       ]

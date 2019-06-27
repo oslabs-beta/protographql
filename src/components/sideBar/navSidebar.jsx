@@ -79,16 +79,6 @@ function NavSideBar() {
       />
       <NavButton
         key='NavButton3'
-        className='fas fa-file-download'
-        view='Export'
-        click={(e) => {
-          dispatch({ type: SET_POP_UP, payload: 'export' })
-          changeButtonStyleOnClick("Export")
-          document.querySelector("svg") ? document.querySelector("svg").remove() : "";
-        }}
-      />
-      <NavButton
-        key='NavButton4'
         className='fas fa-plus-square'
         view='Add Table'
         click={() => {

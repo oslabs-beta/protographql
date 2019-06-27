@@ -55,9 +55,6 @@ const useStyles = makeStyles(theme => ({
     display: 'inline-block',
     fontSize: '10px',
     paddingLeft: '5px',
-    "&:hover": {
-      color: '#324353',
-    }
   }
 }));
 
@@ -87,13 +84,13 @@ function Header() {
             <p className={classes.label}>Export</p>
           </Button>
           <Button color="inherit" title="Github Homepage" className={classes.button}>
-            <a className={classes.anchor} color="inherit" href="https://github.com/oslabs-beta/protographql" target="_blank">
-              <i className="fab fa-github fa-3x" style={{ fontSize: "33px" }}></i>
+            <a className={classes.anchor} style={{ display: 'flex', textDecoration: 'none', alignItems: 'center' }} color="inherit" href="https://github.com/oslabs-beta/protographql" target="_blank">
+              < i className="fab fa-github fa-3x" style={{ fontSize: "30px" }}></i>
+              <p className={classes.label}>Github</p>
             </a>
-            <p className={classes.label}>Github</p>
           </Button>
         </Toolbar>
-      </AppBar>
+      </AppBar >
     </div >
   );
 }

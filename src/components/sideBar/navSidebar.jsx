@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import NavButton from './navButton';
+import NoTableButton from './noTableButton';
 import styled from 'styled-components';
 import { Store } from '../../state/store';
 import {
@@ -40,8 +41,7 @@ function changeButtonStyleOnClick(view) {
 }
 
 function NavSideBar() {
-  const { dispatch } = useContext(Store);
-
+  const { dispatch, state: { tableIndex } } = useContext(Store);
   return (
     <SideBar>
       <NavButton
@@ -77,7 +77,7 @@ function NavSideBar() {
           document.querySelector("svg") ? document.querySelector("svg").remove() : "";
         }}
       />
-      <NavButton
+      {tableIndex !== 0 && <NavButton
         key='NavButton3'
         className='fas fa-plus-square'
         view='Add Table'
@@ -94,7 +94,25 @@ function NavSideBar() {
           borderTop: '1px solid rgba(0, 0, 0, 0.08)',
           width: '100%'
         }}
-      />
+      />}
+      {tableIndex === 0 && <NoTableButton
+        key='NavButton4'
+        className='fas fa-plus-square'
+        view='Add Table'
+        click={() => {
+          dispatch({ type: SET_VIEW, payload: 'schema' })
+          dispatch({ type: SET_POP_UP, payload: 'table' })
+          dispatch({ type: ADD_TABLE })
+          changeButtonStyleOnClick("Schema")
+          document.querySelector("svg") ? document.querySelector("svg").remove() : "";
+        }}
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          borderTop: '1px solid rgba(0, 0, 0, 0.08)',
+          width: '100%'
+        }}
+      />} 
     </SideBar>
   )
 }

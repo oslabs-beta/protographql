@@ -17,7 +17,7 @@ function createWindow() {
       nodeIntegration: true
     },
     // this is only for Windows and Linux
-    icon: './public/assets/pictures/ProtoGraphQLLogo.png'
+    icon: path.join(__dirname, 'public/assets/pictures/ProtoGraphQLLogo64.png')
   });
 
   win.setMinimumSize(265, 630);

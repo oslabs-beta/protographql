@@ -1,17 +1,17 @@
 {
   "name": "protographql",
   "version": "1.0.0",
-  "description": "GraphQL prototyping desktop tool, build GQL schemas, queries, and mutations.",
+  "description": "ProtGraphQl is prototyping tool to easily build and visualize GraphQl schemas and queries",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "build": "webpack -p",
     "dev": "webpack-dev-server --mode=development",
     "test": "test",
-    "package-all": "electron-packager . --all --asar",
+    "package": "sudo electron-forge make",
     "package-linux": "electron-packager . --linux --asar",
     "package-mac": "electron-packager . --darwin --asar",
-    "package-win": "electron-packager . --win32 --asar"
+    "package-win": "electron-packager . --platform win32 --arch x64 --asar"
   },
   "repository": {
     "type": "git",
@@ -25,13 +25,21 @@
   "homepage": "https://github.com/protographql/protographql#readme",
   "config": {
     "forge": {
-      "packagerConfig": {
+      "electronPackagerConfig": {
         "asar": true,
         "executableName": "protographql",
         "icon": "public/pictures/icon/icon",
         "overwrite": true,
-        "platform": "all",
-        "prune": true
+        "prune": true,
+        "arch": "x64"
+      },
+      "make_targets": {
+        "darwin": [
+          "dmg"
+        ],
+        "linux": [
+          "deb"
+        ]
       },
       "makers": [
         {
@@ -46,13 +54,6 @@
           "name": "@electron-forge/maker-dmg",
           "config": {
             "format": "ULFO"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "certificateFile": "./cert.pfx",
-            "certificatePassword": "this-is-a-secret"
           }
         }
       ]

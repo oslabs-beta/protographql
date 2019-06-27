@@ -28,7 +28,7 @@
       "packagerConfig": {
         "asar": true,
         "executableName": "protographql",
-        "icon": "./public/pictures/icon/icon",
+        "icon": "public/pictures/icon/icon",
         "overwrite": true,
         "platform": "all",
         "prune": true

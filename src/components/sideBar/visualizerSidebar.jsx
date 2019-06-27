@@ -4,7 +4,6 @@ import { Store } from '../../state/store';
 import { queryTypeCreator } from '../../utils/buildVisualizerJson'
 import VizType from './vizType';
 
-
 /*-------------------- Styled Components --------------------*/
 
 const SideBar = styled.div`
@@ -26,17 +25,8 @@ const Header = styled.p`
 `
 
 const TypeContainer = styled.div`
-  height: calc(100vh - 179px);
-  overflow-y: scroll;
-  ::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 10px;
-    height: 10px;
-  };
-  ::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background-color: rgba(0, 0, 0, 0.12);
-  }
+  height: calc(100vh - 202px);
+  
 `
 
 const ColorLegend = styled.div`
@@ -55,29 +45,29 @@ const ColorContainer = styled.div`
   height: 20px;
 `
 
-const Blue = styled.div`
+const First = styled.div`
   text-align: left;
   vertical-align: middle;
   margin-left: 20px;
-  background-color: #4668D6;
+  background-color: #75E1CD;
   width: 30px;
   height: 15px;
 `
 
-const Coral = styled.div`
+const Second = styled.div`
   text-align: left;
   vertical-align: middle;
   margin-left: 20px;
-  background-color: #EF476F;
+  background-color: #FDFF9E;
   width: 30px;
   height: 15px;
 `
 
-const Green = styled.div`
+const Third = styled.div`
   text-align: left;
   vertical-align: middle; 
   margin-left: 20px;
-  background-color: #06D6A0;
+  background-color: #C5AAFF;
   width: 30px;
   height: 15px;
 `
@@ -90,7 +80,6 @@ const Text = styled.span`
 `
 
 /*-------------------- Functional Component --------------------*/
-
 
 
 function VisualizerSideBar() {
@@ -115,9 +104,18 @@ function VisualizerSideBar() {
       </TypeContainer>
       <ColorLegend>
         Color Legend
-        <ColorContainer style={{marginTop: '10px'}}><Blue></Blue><Text>Queries</Text></ColorContainer>
-        <ColorContainer><Coral></Coral><Text>Types</Text></ColorContainer>
-        <ColorContainer><Green></Green><Text>Queryable Fields</Text></ColorContainer>
+        <ColorContainer style={{marginTop: '10px'}}>
+          <First />
+          <Text>Queries</Text>
+        </ColorContainer>
+        <ColorContainer>
+          <Second />
+          <Text>Types</Text>
+        </ColorContainer>
+        <ColorContainer>
+          <Third />
+          <Text>Queryable Fields</Text>
+        </ColorContainer>
       </ColorLegend>
     </SideBar>
   )

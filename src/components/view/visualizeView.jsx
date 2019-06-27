@@ -3,7 +3,6 @@ import { Store } from '../../state/store';
 import * as d3 from 'd3';
 import styled from 'styled-components';
 import VisualizerSideBar from '../sideBar/visualizerSidebar';
-import { updateArrayBindingPattern } from 'typescript';
 
 /*-------------------- Styled Components --------------------*/
 const Container = styled.div`
@@ -53,18 +52,18 @@ function VisualizeView() {
       }
     }
 
-    const fillColor = "#F5FDFD"
+    const fillColor = "#F5FDFD";
 
     const margin = {top: 20, right: 120, bottom: 20, left: 80},
           width = 700 - margin.left - margin.right,
           height = 600 - margin.top - margin.bottom;
 
     const svg = d3.select("#vizView").append("svg")
-    .attr("width", width + margin.right + margin.left)
-    .attr("height", height + margin.top + margin.bottom)
-    .call(responsivefy)
-    .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+      .attr("width", width + margin.right + margin.left)
+      .attr("height", height + margin.top + margin.bottom)
+      .call(responsivefy)
+      .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
     let i = 0;
     const duration = 750;
@@ -336,14 +335,13 @@ function VisualizeView() {
     }
   }
 
-  useEffect(createViz,[])
+  useEffect(createViz, [])
 
   return (
     <Container>
-        <Viz id="vizView"></Viz>
-        <VisualizerSideBar></VisualizerSideBar>
-      </Container>   
-      
+      <Viz id="vizView"></Viz>
+      <VisualizerSideBar></VisualizerSideBar>
+    </Container>   
     );
   }
 

@@ -16,12 +16,9 @@ const Container = styled.div`
 `;
 
 const Viz = styled.div`
-  display: grid;
   grid-area: viz;
-  height: calc(100vh - 64px);
   background-color: #EEEFF0;
   font-family: "Roboto", sans-serif;
-  height: calc(100vh - 64px);
 `;
 
 
@@ -329,7 +326,7 @@ function VisualizeView() {
 
   return (
     <Container>
-      <Viz id="vizView"></Viz>
+      <Viz id="vizView" />
       <VisualizerSideBar />
     </Container>   
     );

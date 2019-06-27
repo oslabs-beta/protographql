@@ -6,3 +6,4 @@ winehq.key
 out
 public/bundle.js
 public/bundle.js.map
+.DS_Store

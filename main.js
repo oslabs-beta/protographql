@@ -80,10 +80,18 @@ function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, sqlPool) {
         zlib: { level: 9 } // Sets the compression level.
       });
 
+
+
       // listen for all archive data to be written and output associated details
       output.on('close', function () {
         console.log('Zip file size is ', archive.pointer() + ' total bytes');
         console.log('Archived zip file is complete.');
+
+        createFile('graphql/schema.js', '');
+        createFile('graphql/resolvers.js', '');
+        createFile('db/createTables.sql', '');
+        createFile('db/sqlPool.js', '');
+
         dialog.showMessageBox(win,
           {
             type: "info",

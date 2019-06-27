@@ -169,3 +169,18 @@ input:checked + .slider:before {
   from {right: 30px; opacity: .9;}
   to {right: 0; opacity: 0;}
 }
+
+#error {
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  text-align: left;
+  color:#DD399C;
+  letter-spacing: 1px;
+  padding: 2px;
+  width: 500px;
+  margin-bottom: 10px;
+}
+
+.invisible {
+  visibility: hidden;
+}

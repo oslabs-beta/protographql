@@ -22,7 +22,7 @@ const SideBar = styled.div`
 
 /*-------------------- Functional Component --------------------*/
 
-const views = ["Schema", "Code", "Visualize", "Export"]
+const views = ["Schema", "Code", "Visualize"]
 
 function changeButtonStyleOnClick(view) {
   const currentButton = document.querySelector(`#${view}`);
@@ -79,22 +79,13 @@ function NavSideBar() {
       />
       <NavButton
         key='NavButton3'
-        className='fas fa-file-download'
-        view='Export'
-        click={(e) => {
-          dispatch({ type: SET_POP_UP, payload: 'export' })
-          changeButtonStyleOnClick("Export")
-          document.querySelector("svg") ? document.querySelector("svg").remove() : "";
-        }}
-      />
-      <NavButton
-        key='NavButton4'
         className='fas fa-plus-square'
         view='Add Table'
         click={() => {
           dispatch({ type: SET_VIEW, payload: 'schema' })
           dispatch({ type: SET_POP_UP, payload: 'table' })
           dispatch({ type: ADD_TABLE })
+          changeButtonStyleOnClick("Schema")
           document.querySelector("svg") ? document.querySelector("svg").remove() : "";
         }}
         style={{

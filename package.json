@@ -8,7 +8,7 @@
     "build": "webpack -p",
     "dev": "webpack-dev-server --mode=development",
     "test": "test",
-    "package-all": "sudo electron-forge make",
+    "package-current": "sudo electron-forge make",
     "package-linux": "electron-packager . --linux --asar",
     "package-mac": "electron-packager . --darwin --asar",
     "package-win": "electron-packager . --platform win32 --arch x64 --asar"
@@ -27,8 +27,8 @@
     "forge": {
       "electronPackagerConfig": {
         "asar": true,
-        "executableName": "ProtoGraphQl",
-        "icon": "./public/pictures/icon/icon",
+        "executableName": "protographql",
+        "icon": "public/pictures/icon/icon",
         "overwrite": true,
         "prune": true,
         "arch": "x64"

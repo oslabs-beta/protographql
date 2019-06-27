@@ -9,6 +9,7 @@ import {
   Button,
   IconButton
 } from '@material-ui/core';
+import { isWhiteSpaceLike } from 'typescript';
 
 
 
@@ -43,6 +44,12 @@ const useStyles = makeStyles(theme => ({
       color: '#324353',
       border: '1px solid #324353',
     }
+  },
+  anchor: {
+    color: 'white',
+    "&:hover": {
+      color: '#324353',
+    }
   }
 }));
 
@@ -64,15 +71,20 @@ function Header() {
             <span>Proto</span>
             <span className={classes.pink}>GraphQL</span>
           </Typography>
-          <Button color="inherit" className={classes.button} onClick={() => { dispatch({ type: SET_POP_UP, payload: 'welcome' }) }}>
-            <i className="fas fa-file-alt fa-3x" style={{fontSize: "33px"}}></i>
+          <Button color="inherit" title="ReadMe" className={classes.button} onClick={() => { dispatch({ type: SET_POP_UP, payload: 'welcome' }) }}>
+            <i className="fas fa-file-alt fa-3x" style={{ fontSize: "33px" }}></i>
           </Button>
-          <Button color="inherit" className={classes.button}>
-            <i className="fab fa-github fa-3x" style={{fontSize: "33px"}}></i>
+          <Button color="inherit" title="Export Project" className={classes.button} onClick={() => { dispatch({ type: SET_POP_UP, payload: 'export' }) }}>
+            <i className="fas fa-file-download" style={{ fontSize: "33px" }}></i>
+          </Button>
+          <Button color="inherit" title="Github Homepage" className={classes.button}>
+            <a className={classes.anchor} color="inherit" href="https://github.com/oslabs-beta/protographql" target="_blank">
+              <i className="fab fa-github fa-3x" style={{ fontSize: "33px" }}></i>
+            </a>
           </Button>
         </Toolbar>
       </AppBar>
-    </div>
+    </div >
   );
 }
 

@@ -44,26 +44,26 @@ function VisualizeView() {
         .attr("perserveAspectRatio", "xMinYMid")
         .call(resize);
       d3.select(window).on("resize." + container.attr("id"), resize);
-  
+
       function resize() {
         const targetWidth = parseInt(container.style("width"));
         svg.attr("width", targetWidth);
-        svg.attr("height", Math.round(targetWidth / aspect));
+        svg.attr("height", "calc(100vh - 70px)");
       }
     }
 
     const fillColor = "#F5FDFD";
 
-    const margin = {top: 20, right: 120, bottom: 20, left: 80},
-          width = 700 - margin.left - margin.right,
-          height = 600 - margin.top - margin.bottom;
+    const margin = { top: 20, right: 120, bottom: 20, left: 80 },
+      width = 700 - margin.left - margin.right,
+      height = 600 - margin.top - margin.bottom;
 
     const svg = d3.select("#vizView").append("svg")
       .attr("width", width + margin.right + margin.left)
       .attr("height", height + margin.top + margin.bottom)
       .call(responsivefy)
       .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
     let i = 0;
     const duration = 750;
@@ -71,7 +71,7 @@ function VisualizeView() {
 
     const treemap = d3.tree().size([height, width]);
 
-    root = d3.hierarchy(treeData, function(d) { return d.children; });
+    root = d3.hierarchy(treeData, function (d) { return d.children; });
     root.x0 = height / 2;
     root.y0 = 0;
 
@@ -79,7 +79,7 @@ function VisualizeView() {
     update(root);
 
     function collapse(d) {
-      if(d.children) {
+      if (d.children) {
         d._children = d.children
         d._children.forEach(collapse)
         d.children = null
@@ -91,29 +91,29 @@ function VisualizeView() {
       const treeData = treemap(root);
       const nodes = treeData.descendants();
       const links = treeData.descendants().slice(1);
-      
-      nodes.forEach(function(d){ d.y = d.depth * 180});
+
+      nodes.forEach(function (d) { d.y = d.depth * 180 });
 
       const node = svg.selectAll('g.node')
-        .data(nodes, function(d) {return d.id || (d.id = ++i); });
+        .data(nodes, function (d) { return d.id || (d.id = ++i); });
 
       const nodeEnter = node.enter().append('g')
         .attr('class', 'node')
-        .attr("transform", function(d) {
+        .attr("transform", function (d) {
           return "translate(" + source.y0 + "," + source.x0 + ")";
         })
-      .on('click', click);
-      
+        .on('click', click);
+
       nodeEnter.append('ellipse')
         .attr('class', 'ellipse')
-        .style("fill", function(d) {
+        .style("fill", function (d) {
           return d._children ? fillColor : "#fff";
         })
 
       nodeEnter.append('text')
         .attr("dy", ".35em")
         .attr("text-anchor", 'middle')
-        .text(function(d) {
+        .text(function (d) {
           if (d.depth % 2 === 0) return d.data.name;
           return `${d.data.name}: ${d.data.type}`
         })
@@ -121,22 +121,22 @@ function VisualizeView() {
         .attr('cursor', 'pointer');
 
       const nodeUpdate = nodeEnter.merge(node);
-      
+
       nodeUpdate.transition()
         .duration(duration)
-        .attr("transform", function(d) { 
+        .attr("transform", function (d) {
           return "translate(" + d.y + "," + d.x + ")";
         });
 
       nodeUpdate.select('ellipse.node')
-        .style("fill", function(d) {
+        .style("fill", function (d) {
           return d._children ? fillColor : "#fff";
         })
         .attr('cursor', 'pointer');
 
       const nodeExit = node.exit().transition()
         .duration(duration)
-        .attr("transform", function(d) {
+        .attr("transform", function (d) {
           return "translate(" + source.y + "," + source.x + ")";
         })
         .remove();
@@ -149,12 +149,12 @@ function VisualizeView() {
         .style('fill-opacity', 1e-6);
 
       const link = svg.selectAll('path.link')
-        .data(links, function(d) { return d.id; });
+        .data(links, function (d) { return d.id; });
 
       const linkEnter = link.enter().insert('path', "g")
         .attr("class", "link")
-        .attr('d', function(d){
-          const o = {x: source.x0, y: source.y0}
+        .attr('d', function (d) {
+          const o = { x: source.x0, y: source.y0 }
           return diagonal(o, o)
         });
 
@@ -162,17 +162,17 @@ function VisualizeView() {
 
       linkUpdate.transition()
         .duration(duration)
-        .attr('d', function(d){ return diagonal(d, d.parent) });
+        .attr('d', function (d) { return diagonal(d, d.parent) });
 
       const linkExit = link.exit().transition()
         .duration(duration)
-        .attr('d', function(d) {
-          const o = {x: source.x, y: source.y}
+        .attr('d', function (d) {
+          const o = { x: source.x, y: source.y }
           return diagonal(o, o)
         })
         .remove();
 
-      nodes.forEach(function(d){
+      nodes.forEach(function (d) {
         d.x0 = d.x;
         d.y0 = d.y;
       });
@@ -183,7 +183,7 @@ function VisualizeView() {
                 C ${(s.y + d.y) / 2} ${s.x},
                   ${(s.y + d.y) / 2} ${d.x},
                   ${d.y} ${d.x}`
-    
+
         return path;
       }
 
@@ -217,10 +217,10 @@ function VisualizeView() {
 
       //set color (white glow) for parent node
       const filter0 = defs.append("filter")
-        .attr("id","glow0");
+        .attr("id", "glow0");
       filter0.append("feGaussianBlur")
         .attr("stdDeviation", "5")
-        .attr("result","coloredBlur");
+        .attr("result", "coloredBlur");
       const feMerge0 = filter0.append("feMerge");
       feMerge0.append("feMergeNode")
         .attr("in", "coloredBlur");
@@ -229,7 +229,7 @@ function VisualizeView() {
 
       // set color for queries
       const filter1 = defs.append("filter")
-        .attr("id","glow1");
+        .attr("id", "glow1");
 
       filter1.append("feMorphology")
         .attr("operator", "dilate")
@@ -239,8 +239,8 @@ function VisualizeView() {
 
       filter1.append("feGaussianBlur")
         .attr("in", "thicken")
-        .attr("stdDeviation","2")
-        .attr("result","blurred");
+        .attr("stdDeviation", "2")
+        .attr("result", "blurred");
 
       filter1.append("feFlood")
         .attr("flood-color", colors[0])
@@ -251,16 +251,16 @@ function VisualizeView() {
         .attr("in2", "blurred")
         .attr("operator", "in")
         .attr("result", "softGlow_colored")
-      
+
       const feMerge1 = filter1.append("feMerge");
       feMerge1.append("feMergeNode")
-        .attr("in","softGlow_colored");
+        .attr("in", "softGlow_colored");
       feMerge1.append("feMergeNode")
-        .attr("in","SourceGraphic");
+        .attr("in", "SourceGraphic");
 
       // set color for types
       const filter2 = defs.append("filter")
-      .attr("id","glow2");
+        .attr("id", "glow2");
 
       filter2.append("feMorphology")
         .attr("operator", "dilate")
@@ -270,8 +270,8 @@ function VisualizeView() {
 
       filter2.append("feGaussianBlur")
         .attr("in", "thicken")
-        .attr("stdDeviation","2")
-        .attr("result","blurred");
+        .attr("stdDeviation", "2")
+        .attr("result", "blurred");
 
       filter2.append("feFlood")
         .attr("flood-color", colors[1])
@@ -282,16 +282,16 @@ function VisualizeView() {
         .attr("in2", "blurred")
         .attr("operator", "in")
         .attr("result", "softGlow_colored")
-      
+
       const feMerge2 = filter2.append("feMerge");
       feMerge2.append("feMergeNode")
-        .attr("in","softGlow_colored");
+        .attr("in", "softGlow_colored");
       feMerge2.append("feMergeNode")
-        .attr("in","SourceGraphic");
+        .attr("in", "SourceGraphic");
 
       // set color for queryable
       const filter3 = defs.append("filter")
-      .attr("id","glow3");
+        .attr("id", "glow3");
 
       filter3.append("feMorphology")
         .attr("operator", "dilate")
@@ -301,8 +301,8 @@ function VisualizeView() {
 
       filter3.append("feGaussianBlur")
         .attr("in", "thicken")
-        .attr("stdDeviation","2")
-        .attr("result","blurred");
+        .attr("stdDeviation", "2")
+        .attr("result", "blurred");
 
       filter3.append("feFlood")
         .attr("flood-color", colors[2])
@@ -313,14 +313,14 @@ function VisualizeView() {
         .attr("in2", "blurred")
         .attr("operator", "in")
         .attr("result", "softGlow_colored")
-      
+
       const feMerge3 = filter3.append("feMerge");
       feMerge3.append("feMergeNode")
-        .attr("in","softGlow_colored");
+        .attr("in", "softGlow_colored");
       feMerge3.append("feMergeNode")
-        .attr("in","SourceGraphic");
-      
-      
+        .attr("in", "SourceGraphic");
+
+
       d3.selectAll(".ellipse")
         .style("filter", (d) => {
           if (d.depth === 0) return "url(#glow0)";
@@ -328,7 +328,7 @@ function VisualizeView() {
           if (d.depth === 2) return "url(#glow2)";
           if (d.depth === 3) return "url(#glow3)";
         })
-        .style("fill", function(d) {
+        .style("fill", function (d) {
           return d._children ? fillColor : "#fff";
         });
 
@@ -341,9 +341,11 @@ function VisualizeView() {
     <Container>
       <Viz id="vizView"></Viz>
       <VisualizerSideBar></VisualizerSideBar>
-    </Container>   
-    );
-  }
+    </Container>
+  );
+}
+
+
 
 
 

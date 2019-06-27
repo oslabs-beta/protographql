@@ -26,7 +26,6 @@ const Header = styled.p`
 
 const TypeContainer = styled.div`
   height: calc(100vh - 202px);
-  
 `
 
 const ColorLegend = styled.div`
@@ -83,19 +82,19 @@ const Text = styled.span`
 
 
 function VisualizerSideBar() {
-  const { 
+  const {
     state: {
       tables
     }
   } = useContext(Store);
 
-  
+
   const queryTypes = queryTypeCreator(tables)
   const vizTypes = []
   for (let i in queryTypes) {
-    vizTypes.push(<VizType table={queryTypes[i]} key={queryTypes[i]+'queryType'}></VizType>)
+    vizTypes.push(<VizType table={queryTypes[i]} key={queryTypes[i] + 'queryType'}></VizType>)
   }
-  
+
   return (
     <SideBar>
       <TypeContainer>
@@ -104,7 +103,7 @@ function VisualizerSideBar() {
       </TypeContainer>
       <ColorLegend>
         Color Legend
-        <ColorContainer style={{marginTop: '10px'}}>
+        <ColorContainer style={{ marginTop: '10px' }}>
           <First />
           <Text>Queries</Text>
         </ColorContainer>

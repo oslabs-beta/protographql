@@ -7,7 +7,11 @@
     "start": "electron .",
     "build": "webpack -p",
     "dev": "webpack-dev-server --mode=development",
-    "test": "test"
+    "test": "test",
+    "package-all": "electron-packager . --all --asar",
+    "package-linux": "electron-packager . --linux --asar",
+    "package-mac": "electron-packager . --darwin --asar",
+    "package-win": "electron-packager . --win32 --asar"
   },
   "repository": {
     "type": "git",
@@ -19,16 +23,55 @@
     "url": "https://github.com/protographql/protographql/issues"
   },
   "homepage": "https://github.com/protographql/protographql#readme",
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "asar": true,
+        "executableName": "protographql",
+        "icon": "public/pictures/icon/icon",
+        "overwrite": true,
+        "platform": "all",
+        "prune": true
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {
+            "options": {
+              "homepage": "https://github.com/protographql/protographql#readme"
+            }
+          }
+        },
+        {
+          "name": "@electron-forge/maker-dmg",
+          "config": {
+            "format": "ULFO"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "certificateFile": "./cert.pfx",
+            "certificatePassword": "this-is-a-secret"
+          }
+        }
+      ]
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
+    "@electron-forge/maker-deb": "^6.0.0-beta.39",
+    "@electron-forge/maker-dmg": "^6.0.0-beta.39",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.39",
     "@material-ui/core": "^4.0.2",
-    "archiver": "^3.0.0",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.6",
     "css-loader": "^2.1.1",
     "d3": "^5.9.2",
+    "electron": "^5.0.5",
+    "electron-packager": "^14.0.0",
     "enzyme": "^3.9.0",
     "eslint": "^5.16.0",
     "eslint-plugin-react": "^7.13.0",
@@ -44,10 +87,10 @@
     "webpack-dev-server": "^3.5.1"
   },
   "dependencies": {
+    "archiver": "^3.0.0",
     "@material-ui/icons": "^4.0.1",
     "@types/react": "^16.8.19",
     "@types/react-dom": "^16.8.4",
-    "electron": "^5.0.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-draggable": "^3.3.0"

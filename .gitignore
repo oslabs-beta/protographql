@@ -3,3 +3,6 @@ public/bundle.js
 public/bundle.js.map
 package-lock.json
 .DS_Store
+winehq.key
+Release.key
+protographql-win32-x64

@@ -9,12 +9,11 @@ const fontColor = keyframes`
 `;
 
 const ButtonContainer = styled.div`
+  font-size: 14px;
   padding-top: 20px;
-  padding-bottom:20px;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.08);
+  padding-bottom: 20px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   min-width: 200px;
-  cursor: pointer;
   &:hover  {
     animation: ${fontColor} .5s;
     animation-fill-mode: both;
@@ -24,16 +23,14 @@ const ButtonContainer = styled.div`
 const TypeName = styled.div`
   margin-left: 20px;
   text-decoration: underline;
-  font-weight: 450
+  font-weight: 450;
   text-align: left;
-  font-size: 18px;
-  padding-bottom: 20px
+  padding-bottom: 20px;
 `;
 
 const Field = styled.div`
   margin-left: 20px;
   padding-bottom: 10px;
-
 `;
 
 

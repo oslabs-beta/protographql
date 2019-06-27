@@ -22,7 +22,7 @@ const SideBar = styled.div`
 
 /*-------------------- Functional Component --------------------*/
 
-const views = ["Schema", "Code", "Visualize", "Export"]
+const views = ["Schema", "Code", "Visualize"]
 
 function changeButtonStyleOnClick(view) {
   const currentButton = document.querySelector(`#${view}`);
@@ -85,6 +85,7 @@ function NavSideBar() {
           dispatch({ type: SET_VIEW, payload: 'schema' })
           dispatch({ type: SET_POP_UP, payload: 'table' })
           dispatch({ type: ADD_TABLE })
+          changeButtonStyleOnClick("Schema")
           document.querySelector("svg") ? document.querySelector("svg").remove() : "";
         }}
         style={{

@@ -65,14 +65,17 @@ function Header() {
             <span className={classes.pink}>GraphQL</span>
           </Typography>
           <Button color="inherit" className={classes.button} onClick={() => { dispatch({ type: SET_POP_UP, payload: 'welcome' }) }}>
-            <i className="fas fa-file-alt fa-3x" style={{fontSize: "33px"}}></i>
+            <i className="fas fa-file-alt fa-3x" style={{ fontSize: "33px" }}></i>
+          </Button>
+          <Button color="inherit" title="Export Project" className={classes.button} onClick={() => { dispatch({ type: SET_POP_UP, payload: 'export' }) }}>
+            <i className="fas fa-file-download" style={{ fontSize: "33px" }}></i>
           </Button>
           <Button color="inherit" className={classes.button}>
-            <i className="fab fa-github fa-3x" style={{fontSize: "33px"}}></i>
+            <i className="fab fa-github fa-3x" style={{ fontSize: "33px" }}></i>
           </Button>
         </Toolbar>
       </AppBar>
-    </div>
+    </div >
   );
 }
 

@@ -9,7 +9,7 @@ import {
 import { styled } from "@material-ui/styles";
 import { Store } from '../../state/store';
 import { SET_POP_UP, SET_VIEW } from '../../actions/actionTypes';
-import buildSQLPool from '../../utils/buildSQLPool';
+import buildENV from '../../utils/buildENV';
 import TextField from '@material-ui/core/TextField';
 
 //comment out to use web-dev-server instead of electron
@@ -40,7 +40,8 @@ const DialogActionsDiv = styled(DialogActions)({
 });
 
 const Input = styled(TextField)({
-  margin: '15px 0px',
+  margin: '0px',
+  marginTop: '20px',
   width: 500,
 })
 
@@ -57,13 +58,16 @@ function ExportPopUp(props) {
   const keyUpToHandleClose = (e) => {
     if (e.keyCode === 27) {
       dispatch({ type: SET_POP_UP, payload: '' });
+    } else if (e.keyCode === 13) {
+      document.querySelector('#export').click();
     }
   }
 
   return (
     <div onKeyUp={keyUpToHandleClose}>
       <Dialog open={popUp === 'export'}>
-        <Title>E X P O R T </Title>
+        <Title>E X P O R T
+        </Title>
         <form
           style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
           onSubmit={(e) => {
@@ -71,18 +75,16 @@ function ExportPopUp(props) {
             const uri = e.target.childNodes[0].childNodes[1].childNodes[0].value;
             if (uri.slice(0, 11).toLowerCase() === 'postgres://' || uri.slice(0, 13).toLowerCase() === 'postgresql://') {
               // emitting message to electron window to open save dialog
-              ipc.send('show-export-dialog', gqlSchema, gqlResolvers, sqlScripts, buildSQLPool(uri));
+              ipc.send('show-export-dialog', gqlSchema, gqlResolvers, sqlScripts, buildENV(uri));
               dispatch({ type: SET_POP_UP, payload: '' });
-              dispatch({ type: SET_VIEW, payload: 'schema' });
             } else {
-              //dispatch error snackbar 
-              console.log("Error");
+              document.querySelector('#error').classList.remove('invisible')
             }
           }}>
           <Input label="Enter Postgres Connection URI" margin="normal" type="text" required />
-          <br />
+          <p className="invisible" id="error">URI needs to start with "postgres://" or "postgresql://"</p>
           <DialogActionsDiv>
-            <StyledButton type="submit" color="primary">Export</StyledButton>
+            <StyledButton id="export" type="submit" color="primary">Export</StyledButton>
             <StyledButton onClick={handleClose} color="primary">Close</StyledButton>
           </DialogActionsDiv>
         </form>

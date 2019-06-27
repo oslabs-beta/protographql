@@ -17,7 +17,7 @@ const SideBar = styled.div`
 `;
 
 const Header = styled.p`
-  font-size: 20px;
+  font-size: 18px;
   padding: 8px;
   font-weight: 500;
   text-align: center;
@@ -26,7 +26,6 @@ const Header = styled.p`
 
 const TypeContainer = styled.div`
   height: calc(100vh - 202px);
-  
 `
 
 const ColorLegend = styled.div`
@@ -35,7 +34,7 @@ const ColorLegend = styled.div`
   border-top: 1px solid rgba(0, 0, 0, 0.08);
   height: 115px;
   text-align: center;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
 `
 
@@ -49,7 +48,7 @@ const First = styled.div`
   text-align: left;
   vertical-align: middle;
   margin-left: 20px;
-  background-color: #75E1CD;
+  background-color: #A852E5;
   width: 30px;
   height: 15px;
 `
@@ -58,7 +57,7 @@ const Second = styled.div`
   text-align: left;
   vertical-align: middle;
   margin-left: 20px;
-  background-color: #FDFF9E;
+  background-color: #14BDEB;
   width: 30px;
   height: 15px;
 `
@@ -67,7 +66,7 @@ const Third = styled.div`
   text-align: left;
   vertical-align: middle; 
   margin-left: 20px;
-  background-color: #C5AAFF;
+  background-color: #0D18E8;
   width: 30px;
   height: 15px;
 `

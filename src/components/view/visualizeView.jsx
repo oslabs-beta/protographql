@@ -38,25 +38,24 @@ function VisualizeView() {
     function responsivefy(svg) {
       const container = d3.select(svg.node().parentNode),
         width = parseInt(svg.style("width")),
-        height = parseInt(svg.style("height")),
-        aspect = width / height;
+        height = parseInt(svg.style("height"));
       svg.attr("viewBox", "0 0 " + width + " " + height)
-        .attr("perserveAspectRatio", "xMinYMid")
+        .attr("perserveAspectRatio", "xMidYMid")
         .call(resize);
       d3.select(window).on("resize." + container.attr("id"), resize);
   
       function resize() {
         const targetWidth = parseInt(container.style("width"));
         svg.attr("width", targetWidth);
-        svg.attr("height", Math.round(targetWidth / aspect));
+        svg.attr("height", "calc(100vh - 64px)");
       }
     }
 
-    const fillColor = "#F5FDFD";
+    const fillColor = "#F2EEF6";
 
-    const margin = {top: 20, right: 120, bottom: 20, left: 80},
+    const margin = {top: 0, right: 120, bottom: 20, left: 80},
           width = 700 - margin.left - margin.right,
-          height = 600 - margin.top - margin.bottom;
+          height = 550 - margin.top - margin.bottom;
 
     const svg = d3.select("#vizView").append("svg")
       .attr("width", width + margin.right + margin.left)
@@ -75,16 +74,7 @@ function VisualizeView() {
     root.x0 = height / 2;
     root.y0 = 0;
 
-    root.children.forEach(collapse);
     update(root);
-
-    function collapse(d) {
-      if(d.children) {
-        d._children = d.children
-        d._children.forEach(collapse)
-        d.children = null
-      }
-    }
 
     function update(source) {
 
@@ -205,15 +195,15 @@ function VisualizeView() {
         .attr('stroke-opacity', '1')
 
       d3.selectAll('ellipse')
-        .attr('rx', 60)
-        .attr('ry', 20)
+        .attr('rx', 66)
+        .attr('ry', 16)
         .attr('stroke', 'rgba(0, 0, 0, 0.18')
         .attr('stroke-width', 0.5)
         .attr('fill', 'white')
 
       // GLOW effect
       const defs = svg.append("defs");
-      const colors = ["#75E1CD", "#FDFF9E", "#C5AAFF"]
+      const colors = ["#A852E5", "#14BDEB", "#0D18E8"];
 
       //set color (white glow) for parent node
       const filter0 = defs.append("filter")
@@ -340,7 +330,7 @@ function VisualizeView() {
   return (
     <Container>
       <Viz id="vizView"></Viz>
-      <VisualizerSideBar></VisualizerSideBar>
+      <VisualizerSideBar />
     </Container>   
     );
   }

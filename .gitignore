@@ -1,8 +1,8 @@
 node_modules
+package-lock.json
+Release.key
+winehq.key
+.env
+out
 public/bundle.js
 public/bundle.js.map
-package-lock.json
-.DS_Store
-winehq.key
-Release.key
-protographql-win32-x64

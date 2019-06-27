@@ -8,7 +8,7 @@
     "build": "webpack -p",
     "dev": "webpack-dev-server --mode=development",
     "test": "test",
-    "package-current": "sudo electron-forge make",
+    "package": "sudo electron-forge make",
     "package-linux": "electron-packager . --linux --asar",
     "package-mac": "electron-packager . --darwin --asar",
     "package-win": "electron-packager . --platform win32 --arch x64 --asar"

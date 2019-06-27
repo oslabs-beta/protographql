@@ -22,7 +22,7 @@ const SideBar = styled.div`
 
 /*-------------------- Functional Component --------------------*/
 
-const views = ["Schema", "Code", "Visualize", "Export"]
+const views = ["Schema", "Code", "Visualize"]
 
 function changeButtonStyleOnClick(view) {
   const currentButton = document.querySelector(`#${view}`);

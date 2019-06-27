@@ -50,6 +50,14 @@ const useStyles = makeStyles(theme => ({
     "&:hover": {
       color: '#324353',
     }
+  },
+  label: {
+    display: 'inline-block',
+    fontSize: '10px',
+    paddingLeft: '5px',
+    "&:hover": {
+      color: '#324353',
+    }
   }
 }));
 
@@ -58,7 +66,6 @@ const useStyles = makeStyles(theme => ({
 function Header() {
   const classes = useStyles();
   const { state: { popUp }, dispatch } = useContext(Store);
-
 
   return (
     <div className={classes.root}>
@@ -71,16 +78,19 @@ function Header() {
             <span>Proto</span>
             <span className={classes.pink}>GraphQL</span>
           </Typography>
-          <Button color="inherit" title="ReadMe" className={classes.button} onClick={() => { dispatch({ type: SET_POP_UP, payload: 'welcome' }) }}>
+          <Button color="inherit" title="Readme" className={classes.button} onClick={() => { dispatch({ type: SET_POP_UP, payload: 'welcome' }) }}>
             <i className="fas fa-file-alt fa-3x" style={{ fontSize: "33px" }}></i>
+            <p className={classes.label}>Readme</p>
           </Button>
           <Button color="inherit" title="Export Project" className={classes.button} onClick={() => { dispatch({ type: SET_POP_UP, payload: 'export' }) }}>
-            <i className="fas fa-file-download" style={{ fontSize: "33px" }}></i>
+            <i className="fas fa-file-download" style={{ fontSize: "32px" }}></i>
+            <p className={classes.label}>Export</p>
           </Button>
           <Button color="inherit" title="Github Homepage" className={classes.button}>
             <a className={classes.anchor} color="inherit" href="https://github.com/oslabs-beta/protographql" target="_blank">
               <i className="fab fa-github fa-3x" style={{ fontSize: "33px" }}></i>
             </a>
+            <p className={classes.label}>Github</p>
           </Button>
         </Toolbar>
       </AppBar>

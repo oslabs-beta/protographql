@@ -58,7 +58,7 @@ const createFile = (filePath, data) => {
 }
 
 //function to run when user clicks export
-function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, sqlPool) {
+function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env) {
   dialog.showOpenDialog(
     {
       title: 'Choose location to save folder in',
@@ -73,17 +73,25 @@ function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, sqlPool) {
       createFile('graphql/schema.js', gqlSchema);
       createFile('graphql/resolvers.js', gqlResolvers);
       createFile('db/createTables.sql', sqlScripts);
-      createFile('db/sqlPool.js', sqlPool);
+      createFile('.env', env);
 
       const output = fs.createWriteStream(result + '/apollo-server.zip');
       const archive = archiver('zip', {
         zlib: { level: 9 } // Sets the compression level.
       });
 
+
+
       // listen for all archive data to be written and output associated details
       output.on('close', function () {
         console.log('Zip file size is ', archive.pointer() + ' total bytes');
         console.log('Archived zip file is complete.');
+
+        createFile('graphql/schema.js', '');
+        createFile('graphql/resolvers.js', '');
+        createFile('db/createTables.sql', '');
+        createFile('.env', '');
+
         dialog.showMessageBox(win,
           {
             type: "info",
@@ -117,6 +125,6 @@ function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, sqlPool) {
 }
 
 //listener for export button being clicked
-ipc.on('show-export-dialog', (event, gqlSchema, gqlResolvers, sqlScripts, sqlPool) => {
-  showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, sqlPool);
+ipc.on('show-export-dialog', (event, gqlSchema, gqlResolvers, sqlScripts, env) => {
+  showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env);
 });

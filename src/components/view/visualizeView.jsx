@@ -48,7 +48,7 @@ function VisualizeView() {
       function resize() {
         const targetWidth = parseInt(container.style("width"));
         svg.attr("width", targetWidth);
-        svg.attr("height", "calc(100vh - 64px)");
+        svg.attr("height", "calc(100vh - 70px)");
       }
     }
 

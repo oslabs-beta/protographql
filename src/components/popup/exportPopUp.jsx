@@ -9,7 +9,7 @@ import {
 import { styled } from "@material-ui/styles";
 import { Store } from '../../state/store';
 import { SET_POP_UP, SET_VIEW } from '../../actions/actionTypes';
-import buildSQLPool from '../../utils/buildSQLPool';
+import buildENV from '../../utils/buildENV';
 import TextField from '@material-ui/core/TextField';
 
 //comment out to use web-dev-server instead of electron
@@ -75,7 +75,7 @@ function ExportPopUp(props) {
             const uri = e.target.childNodes[0].childNodes[1].childNodes[0].value;
             if (uri.slice(0, 11).toLowerCase() === 'postgres://' || uri.slice(0, 13).toLowerCase() === 'postgresql://') {
               // emitting message to electron window to open save dialog
-              ipc.send('show-export-dialog', gqlSchema, gqlResolvers, sqlScripts, buildSQLPool(uri));
+              ipc.send('show-export-dialog', gqlSchema, gqlResolvers, sqlScripts, buildENV(uri));
               dispatch({ type: SET_POP_UP, payload: '' });
             } else {
               document.querySelector('#error').classList.remove('invisible')

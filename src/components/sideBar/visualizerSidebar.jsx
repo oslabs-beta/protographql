@@ -11,6 +11,7 @@ const SideBar = styled.div`
   box-shadow: -2px 2px 3px rgba(0, 0, 0, 0.10);
   background: white;
   font-family: "Roboto", sans-serif;
+  // overflow: scroll;
 `;
 
 const Header = styled.p`
@@ -22,8 +23,7 @@ const Header = styled.p`
 `
 
 const TypeContainer = styled.div`
-  height: calc(100vh - 189px);
-  overflow: scroll;
+  height: calc(100vh - 189px)
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 `
 
@@ -35,6 +35,8 @@ const ColorLegend = styled.div`
   text-align: center;
   font-size: 18px;
   font-weight: 500;
+  background-color: white;
+  z-index: 9999;
 `
 
 const ColorContainer = styled.div`
@@ -95,7 +97,7 @@ function VisualizerSideBar() {
   }
 
   return (
-    <SideBar>
+    <SideBar style={{ overflow: scroll }}>
       <TypeContainer>
         <Header>Types</Header>
         {vizTypes}

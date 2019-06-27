@@ -8,7 +8,7 @@
     "build": "webpack -p",
     "dev": "webpack-dev-server --mode=development",
     "test": "test",
-    "package-all": "electron-packager . --all --asar",
+    "package-all": "electron-forge make",
     "package-linux": "electron-packager . --linux --asar",
     "package-mac": "electron-packager . --darwin --asar",
     "package-win": "electron-packager . --win32 --asar"
@@ -31,7 +31,8 @@
         "icon": "./public/pictures/icon/icon",
         "overwrite": true,
         "platform": "all",
-        "prune": true
+        "prune": true,
+        "arch":["ia32", "x64"]
       },
       "makers": [
         {

@@ -35,8 +35,8 @@ function reducer(state, action) {
       return { ...state, selectedTable: newState.selectedTable };
 
     case "EDIT_TABLE":
-      selectedTable = newState.tables[action.payload];
-      return { ...state, selectedTable };
+      newState.selectedTable = newState.tables[action.payload];
+      return { ...state, selectedTable: newState.selectedTable };
 
     case "EDIT_FIELD":
       const { fieldKey, fieldProperty, value } = action.payload;
@@ -58,11 +58,12 @@ function reducer(state, action) {
     // This case will increment tableIndex regardless whether we're adding a new table or editing an existing one
     case "SAVE_TABLE":
       newState.tables[newState.selectedTable.tableID] = newState.selectedTable;
+
       return {
         ...state,
         tables: newState.tables,
         tableIndex: newState.tableIndex + 1,
-        visualizeJSON: buildVisualizerJson(newState.tables),
+        visualizeJSON: buildVisualizerJson(deepClone(newState.tables)),
         gqlSchema: buildGQLSchema(newState.tables),
         gqlResolvers: buildGQLResolvers(newState.tables),
         sqlScripts: buildSQLScripts(newState.tables)
@@ -86,7 +87,7 @@ function reducer(state, action) {
       return {
         ...state,
         tables: newState.tables,
-        visualizeJSON: buildVisualizerJson(newState.tables),
+        visualizeJSON: buildVisualizerJson(deepClone(newState.tables)),
         gqlSchema: buildGQLSchema(newState.tables),
         gqlResolvers: buildGQLResolvers(newState.tables),
         sqlScripts: buildSQLScripts(newState.tables)

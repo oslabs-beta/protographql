@@ -109,11 +109,17 @@ function DraggableDialog(props) {
           <StartButton onClick={handleClose} color="primary" >Start</StartButton>
         </DialogActionsDiv>
 
-        <ContentDiv style={{ marginTop: "15px", marginBottom: "25px" }}>
-          Please prepare your credit card.
+        <ContentDiv style={{ marginTop: "15px", marginBottom: "25px", textAlign: "left" }}>
+          <ol>
+            <li>Add Table - create tables that mimic psql tables</li>
+            <li>Schema - view, edit, or delete table you add</li>
+            <li>Code - view generated GraphQL and SQL code before export</li>
+            <li>Visualize - view the GraphQL schema intuitively as a simple tree</li>
+            <li>Export - export project to interact with database</li>
+          </ol>
         </ContentDiv>
       </Dialog>
-    </div>
+    </div >
   );
 }
 

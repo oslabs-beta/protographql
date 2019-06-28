@@ -112,7 +112,7 @@ function NavSideBar() {
           borderTop: '1px solid rgba(0, 0, 0, 0.08)',
           width: '100%'
         }}
-      />} 
+      />}
     </SideBar>
   )
 }

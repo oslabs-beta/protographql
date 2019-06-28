@@ -8,7 +8,7 @@
     "build": "webpack -p",
     "dev": "webpack-dev-server --mode=development",
     "test": "test",
-    "package": "sudo electron-forge make",
+    "package": "electron-forge make",
     "package-linux": "electron-packager . --linux --asar",
     "package-mac": "electron-packager . --darwin --asar",
     "package-win": "electron-packager . --platform win32 --arch x64 --asar"
@@ -64,7 +64,6 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "@electron-forge/maker-deb": "^6.0.0-beta.39",
-    "@electron-forge/maker-dmg": "^6.0.0-beta.39",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.39",
     "@material-ui/core": "^4.0.2",
     "awesome-typescript-loader": "^5.2.1",

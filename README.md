@@ -1,4 +1,4 @@
-<p align="center" ><img src="public/assets/pictures/ProtographQLBanner.png" width="650px"></p>
+<p align="center" ><img src="public/assets/pictures/ProtographQLBanner.png" width="800px"></p>
 
 # ProtoGraphQL
 
@@ -24,12 +24,24 @@ Upcoming releases include adding visual indicators for table relationships in th
 
 1.	When the application loads, click on **Add Table** and populate the table form with a name and new fields. Optionally, you may also use the last three inputs in the form to create relationships to other tables. When you are done, click **Save**.
 
+<p align="center"><kbd><img src="public/assets/pictures/add-table demo.mov.gif" width="800px"></kbd><p>
+
 2.	Navigate to the **Schema**, **Code**, and **Visualize** tabs to toggle views:
     * **Schema** - view, edit, or delete tables you've added
+    
+    <p align="center"><kbd><img src="public/assets/pictures/Schema_Screenshot.png" width="800px"></kbd></p>
+    
     * **Code** - view generated GraphQL and SQL code before export
+    
+    <p align="center"><kbd><img src="public/assets/pictures/Code_Screenshot.png" width="800px"></kbd></p>
+    
     * **Visualize** - view the GraphQL schema intuitively as a simple tree
+    
+   <p align="center" ><kbd><img src="public/assets/pictures/tree visializer demo.gif" width="800px"></kbd></p>
 
 3.	Export the code by clicking the **Export** icon. 
+
+   <p align="center" ><kbd><img src="public/assets/pictures/Export_Screenshot.png" width="800px"></kbd></p>
 
 4. Enter your Postgres database URI and then select the directory you want to save your executable GraphQL server.
 

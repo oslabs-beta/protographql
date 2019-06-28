@@ -61,7 +61,38 @@
     "type": "git",
     "url": "git+https://github.com/protographql/protographql.git"
   },
-  "author": "",
+  "author": {
+    "name": "ProtoGraphQL",
+    "email": "protographql-labs@todo.com",
+    "url": "https://protographql.todo.org"
+  },
+  "contributors": [
+    {
+      "name": "Alena Budzko",
+      "email": "#TODO",
+      "url": "#TODO"
+    },
+    {
+      "name": "Bryan Fong",
+      "email": "",
+      "url": ""
+    },
+    {
+      "name": "Rodolfo Guzman",
+      "email": "",
+      "url": ""
+    },
+    {
+      "name": "Jarred Jack-Harewood",
+      "email": "",
+      "url": ""
+    },
+    {
+      "name": "Geoffrey Lin",
+      "email": "",
+      "url": ""
+    }
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/protographql/protographql/issues"

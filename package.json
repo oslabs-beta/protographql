@@ -2,7 +2,7 @@
   "name": "protographql",
   "version": "1.0.0",
   "description": "ProtGraphQl is prototyping tool to easily build and visualize GraphQl schemas and queries",
-  "main": "./src/main.js",
+  "main": "main.js",
   "scripts": {
     "start": "electron .",
     "build": "webpack -p",
@@ -71,7 +71,6 @@
     "css-loader": "^2.1.1",
     "d3": "^5.9.2",
     "electron": "^5.0.5",
-    "electron-forge": "^5.2.4",
     "electron-packager": "^14.0.0",
     "electron-prebuilt-compile": "4.0.0",
     "enzyme": "^3.9.0",

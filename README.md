@@ -12,8 +12,6 @@ Upcoming releases include adding visual indicators for table relationships in th
 
 ## Getting Started:
 
-### Mac / Linux
-
 1. Download for [Mac](https://github.com/oslabs-beta/protographql/releases/download/v1.0.0-beta/ProtoGraphQL-1.0.0.dmg), [Windows](https://github.com/oslabs-beta/protographql/releases/download/v1.0.0-beta/ProtoGraphQL.Setup.1.0.0.exe), or [Linux](https://github.com/oslabs-beta/protographql/releases/download/v1.0.0-beta/protographql_1.0.0_amd64.deb)
 
 2. Extract file

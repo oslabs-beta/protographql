@@ -58,7 +58,7 @@ There are several libraries we could have used to create a GraphQL server, but w
   npm install
   ```
 
-4.	Run the server
+4.	Run the server and visit localhost:3000
   ```
   npm start
   ```

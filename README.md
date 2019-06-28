@@ -1,6 +1,6 @@
 <p align="center" ><img src="public/assets/pictures/ProtographQLBanner.png" width="750px"></p>
 
-# ProtoGraphQL-beta
+# ProtoGraphQL
 
 ProtoGraphQL is a **prototyping tool** that helps developers build and visualize GraphQL schemas and queries without writing any code. Users simply input their relational database tables and ProtoGraphQL will dynamically create a customized and functional GraphQL Apollo Server readily available for export.
 

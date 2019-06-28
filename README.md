@@ -37,11 +37,11 @@ Upcoming releases include adding visual indicators for table relationships in th
     
     * **Visualize** - view the GraphQL schema intuitively as a simple tree
     
-   <kbd><img src="public/assets/pictures/tree visializer demo.gif" width="800px"></kbd>
+   <p align="center" ><kbd><img src="public/assets/pictures/tree visializer demo.gif" width="800px"></kbd></p>
 
 3.	Export the code by clicking the **Export** icon. 
 
-   <kbd><img src="public/assets/pictures/Export_Screenshot.png" width="800px"></kbd>
+   <p align="center" ><kbd><img src="public/assets/pictures/Export_Screenshot.png" width="800px"></kbd></p>
 
 4. Enter your Postgres database URI and then select the directory you want to save your executable GraphQL server.
 

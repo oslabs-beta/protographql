@@ -32,12 +32,9 @@ function reducer(state, action) {
 
       // Add the new field to our selectedTable and increment the field index on our selectedTable
       newState.selectedTable.fields[newState.selectedTable.fieldIndex++] = newState.initialField;
-      console.log('selectedTable in add field', newState.selectedTable)
-      console.log('isArray fields ', Array.isArray(state.tables.fields));
       return { ...state, selectedTable: newState.selectedTable };
 
     case "EDIT_TABLE":
-      console.log('editTable selectedTable is ', newState.tables[action.payload]);
       newState.selectedTable = newState.tables[action.payload];
       return { ...state, selectedTable: newState.selectedTable };
 
@@ -60,13 +57,7 @@ function reducer(state, action) {
 
     // This case will increment tableIndex regardless whether we're adding a new table or editing an existing one
     case "SAVE_TABLE":
-      console.log('saveTable selectedTable is ', newState.selectedTable);
-      // console.log('saveTable initialTable is ', newState.initialTable)
-      // console.log('saveTable initialField is ', newState.initialField);
-      // debugger
       newState.tables[newState.selectedTable.tableID] = newState.selectedTable;
-      console.log('new tables ', newState.tables);
-      console.log('updated table ', newState.tables[newState.selectedTable.tableID]);
 
       return {
         ...state,
@@ -103,9 +94,6 @@ function reducer(state, action) {
       };
 
     case "DELETE_FIELD":
-      console.log('selectedTable in delete field', newState.selectedTable)
-      // console.log('Deleting field index ', action.payload);
-      // console.log('isArray fields ', Array.isArray(newState.tables.fields));
       tables = Object.values(newState.tables);
       for (let table of tables) {
         const fields = Object.values(table.fields);

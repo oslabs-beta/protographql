@@ -24,7 +24,7 @@ Upcoming releases include adding visual indicators for table relationships in th
 
 1.	When the application loads, click on **Add Table** and populate the table form with a name and new fields. Optionally, you may also use the last three inputs in the form to create relationships to other tables. When you are done, click **Save**.
 
-[DEMO CREATING AUTHOR TABLE WITH DEPENDENCIES]
+**[DEMO CREATING AUTHOR TABLE WITH DEPENDENCIES]**
 
 2.	Navigate to the **Schema**, **Code**, and **Visualize** tabs to toggle views:
     * **Schema** - view, edit, or delete tables you've added
@@ -41,7 +41,7 @@ Upcoming releases include adding visual indicators for table relationships in th
 
 3.	Export the code by clicking the **Export** icon. 
 
-   [DEMO EXPORT, ENTER STRING AND ]
+   **[DEMO EXPORT, ENTER STRING AND ]**
 
 4. Enter your Postgres database URI and then select the directory you want to save your executable GraphQL server.
 

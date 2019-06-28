@@ -37,7 +37,7 @@ const ColorLegend = styled.div`
   font-size: 18px;
   font-weight: 500;
   background-color: white;
-  z-index: 9999;
+  z-index: 2;
 `
 
 const ColorContainer = styled.div`

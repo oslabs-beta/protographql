@@ -41,7 +41,7 @@ Upcoming releases include adding visual indicators for table relationships in th
 
 3.	Export the code by clicking the **Export** icon. 
 
-   **[DEMO EXPORT, ENTER STRING AND ]**
+   <kbd><img src="public/assets/pictures/Export_Screenshot.png"></kbd>
 
 4. Enter your Postgres database URI and then select the directory you want to save your executable GraphQL server.
 

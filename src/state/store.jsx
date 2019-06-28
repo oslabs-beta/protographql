@@ -1,6 +1,6 @@
 /* eslint-disable no-case-declarations */
 import React from 'react';
-import * as state from '../state/mockState';
+import * as state from '../state/initialState';
 import deepClone from '../utils/deepClone';
 import buildGQLSchema from '../utils/buildGQLSchema';
 import buildGQLResolvers from '../utils/buildGQLResolvers';

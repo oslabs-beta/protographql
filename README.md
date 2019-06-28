@@ -37,7 +37,7 @@ Upcoming releases include adding visual indicators for table relationships in th
     
     * **Visualize** - view the GraphQL schema intuitively as a simple tree
     
-    <kbd><img src="public/assets/pictures/tree visualizer demo.gif"></kbd>
+    <kbd><img src="public/assets/pictures/tree visializer demo.gif"></kbd>
 
 3.	Export the code by clicking the **Export** icon. 
 

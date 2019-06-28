@@ -55,6 +55,12 @@
     "directories": {
       "buildResources": "public/assets/pictures/icon",
       "output": "release"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "oslabs-beta",
+      "repo": "protographql",
+      "private": false
     }
   },
   "repository": {

@@ -1,0 +1,186 @@
+/* CSS RESET */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/******************/
+/* INPUT BOXES */
+/******************/
+
+
+input:focus {
+  outline: none;
+}
+
+/******************/
+/* Slider Buttons */
+/******************/
+
+.other-header{
+  width: 86px;
+}
+
+.slider-header {
+	width: 55px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+/* Snackbar - cause we hungry */
+
+#snackbar {
+  text-align: center;
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 9999;
+  right: 30px;
+  top: 100px;
+  font-size: 17px;
+  opacity: .9;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 3s;
+  animation: fadein 0.5s, fadeout 0.5s 3s;
+}
+
+@-webkit-keyframes fadein {
+  from {right: 0; opacity: 0;} 
+  to {right: 30px; opacity: .9;}
+}
+
+@keyframes fadein {
+  from {right: 0; opacity: 0;}
+  to {right: 30px; opacity: .9;}
+}
+
+@-webkit-keyframes fadeout {
+  from {right: 30px; opacity: .9;} 
+  to {right: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {right: 30px; opacity: .9;}
+  to {right: 0; opacity: 0;}
+}
+
+#error {
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  text-align: left;
+  color:#DD399C;
+  letter-spacing: 1px;
+  padding: 2px;
+  width: 500px;
+  margin-bottom: 10px;
+}
+
+.invisible {
+  visibility: hidden;
+}

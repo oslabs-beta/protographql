@@ -1,0 +1,9 @@
+node_modules
+package-lock.json
+Release.key
+winehq.key
+.env
+out
+public/bundle.js
+public/bundle.js.map
+.DS_Store

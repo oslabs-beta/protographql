@@ -7,7 +7,55 @@
     "start": "electron .",
     "build": "webpack -p",
     "dev": "webpack-dev-server --mode=development",
+    "pack": "build --dir",
+    "dist": "build",
+    "package-all": "build && electron-builder build -mwl",
     "test": "test"
+  },
+  "build": {
+    "productName": "ProtoGraphQL",
+    "appId": "org.oslabs.Protographql.todo",
+    "asar": false,
+    "files": [
+      "public/",
+      "index.html",
+      "main.js",
+      "apollo-server/",
+      "package.json"
+    ],
+    "dmg": {
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "msi"
+      ]
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "rpm",
+        "snap",
+        "AppImage"
+      ],
+      "category": "Development"
+    },
+    "directories": {
+      "buildResources": "public/assets/pictures/icon",
+      "output": "release"
+    }
   },
   "repository": {
     "type": "git",

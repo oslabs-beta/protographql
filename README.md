@@ -33,7 +33,7 @@ Upcoming releases include adding visual indicators for table relationships in th
     
     * **Code** - view generated GraphQL and SQL code before export
     
-    <p align="center" ><img src="public/assets/pictures/Code_Screenshot.png"></p>
+    <kbd><img src="public/assets/pictures/Code_Screenshot.png" style="border: 1px solid black"></kbd>
     
     * **Visualize** - view the GraphQL schema intuitively as a simple tree
     

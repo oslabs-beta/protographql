@@ -25,6 +25,7 @@ Upcoming releases include adding visual indicators for table relationships in th
 1.	When the application loads, click on **Add Table** and populate the table form with a name and new fields. Optionally, you may also use the last three inputs in the form to create relationships to other tables. When you are done, click **Save**.
 
 **[DEMO CREATING AUTHOR TABLE WITH DEPENDENCIES]**
+<kbd><img src="public/assets/pictures/add-table demo.mov.gif"></kbd>
 
 2.	Navigate to the **Schema**, **Code**, and **Visualize** tabs to toggle views:
     * **Schema** - view, edit, or delete tables you've added

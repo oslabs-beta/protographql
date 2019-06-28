@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Store } from '../../state/store';
 import { queryTypeCreator } from '../../utils/buildVisualizerJson'
 import VizType from './vizType';
+import deepClone from '../../utils/deepClone'
 
 /*-------------------- Styled Components --------------------*/
 
@@ -36,7 +37,7 @@ const ColorLegend = styled.div`
   font-size: 18px;
   font-weight: 500;
   background-color: white;
-  z-index: 9999;
+  z-index: 2;
 `
 
 const ColorContainer = styled.div`
@@ -90,10 +91,10 @@ function VisualizerSideBar() {
   } = useContext(Store);
 
 
-  const queryTypes = queryTypeCreator(tables)
+  const queryTypes = queryTypeCreator(deepClone(tables))
   const vizTypes = []
   for (let i in queryTypes) {
-    vizTypes.push(<VizType table={queryTypes[i]} key={queryTypes[i] + 'queryType'}></VizType>)
+    vizTypes.push(<VizType table={queryTypes[i]} key={i + 'queryType'}></VizType>)
   }
 
   return (

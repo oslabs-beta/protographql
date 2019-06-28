@@ -7,71 +7,113 @@
     "start": "electron .",
     "build": "webpack -p",
     "dev": "webpack-dev-server --mode=development",
-    "test": "test",
-    "package": "electron-forge make",
-    "package-linux": "electron-packager . --linux --asar",
-    "package-mac": "electron-packager . --darwin --asar",
-    "package-win": "electron-packager . --platform win32 --arch x64 --asar"
+    "pack": "build --dir",
+    "dist": "build",
+    "package-all": "build && electron-builder build -mwl",
+    "test": "test"
+  },
+  "build": {
+    "productName": "ProtoGraphQL",
+    "appId": "org.oslabs.Protographql.todo",
+    "asar": false,
+    "files": [
+      "public/",
+      "index.html",
+      "main.js",
+      "apollo-server/",
+      "package.json"
+    ],
+    "dmg": {
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "msi"
+      ]
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "rpm",
+        "snap",
+        "AppImage"
+      ],
+      "category": "Development"
+    },
+    "directories": {
+      "buildResources": "public/assets/pictures/icon",
+      "output": "release"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "oslabs-beta",
+      "repo": "protographql",
+      "private": false
+    }
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/protographql/protographql.git"
   },
-  "author": "",
+  "author": {
+    "name": "ProtoGraphQL",
+    "email": "protographql-labs@todo.com",
+    "url": "https://protographql.todo.org"
+  },
+  "contributors": [
+    {
+      "name": "Alena Budzko",
+      "email": "#TODO",
+      "url": "#TODO"
+    },
+    {
+      "name": "Bryan Fong",
+      "email": "",
+      "url": ""
+    },
+    {
+      "name": "Rodolfo Guzman",
+      "email": "",
+      "url": ""
+    },
+    {
+      "name": "Jarred Jack-Harewood",
+      "email": "",
+      "url": ""
+    },
+    {
+      "name": "Geoffrey Lin",
+      "email": "",
+      "url": ""
+    }
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/protographql/protographql/issues"
   },
   "homepage": "https://github.com/protographql/protographql#readme",
-  "config": {
-    "forge": {
-      "electronPackagerConfig": {
-        "asar": true,
-        "executableName": "protographql",
-        "icon": "public/pictures/icon/icon",
-        "overwrite": true,
-        "prune": true,
-        "arch": "x64"
-      },
-      "make_targets": {
-        "darwin": [
-          "dmg"
-        ],
-        "linux": [
-          "deb"
-        ]
-      },
-      "makers": [
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {
-            "options": {
-              "homepage": "https://github.com/protographql/protographql#readme"
-            }
-          }
-        },
-        {
-          "name": "@electron-forge/maker-dmg",
-          "config": {
-            "format": "ULFO"
-          }
-        }
-      ]
-    }
-  },
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
-    "@electron-forge/maker-deb": "^6.0.0-beta.39",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.39",
     "@material-ui/core": "^4.0.2",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.6",
     "css-loader": "^2.1.1",
     "d3": "^5.9.2",
     "electron": "^5.0.5",
-    "electron-packager": "^14.0.0",
     "enzyme": "^3.9.0",
     "eslint": "^5.16.0",
     "eslint-plugin-react": "^7.13.0",
@@ -87,10 +129,10 @@
     "webpack-dev-server": "^3.5.1"
   },
   "dependencies": {
-    "archiver": "^3.0.0",
     "@material-ui/icons": "^4.0.1",
     "@types/react": "^16.8.19",
     "@types/react-dom": "^16.8.4",
+    "archiver": "^3.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-draggable": "^3.3.0"

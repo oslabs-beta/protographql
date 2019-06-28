@@ -29,11 +29,11 @@ Upcoming releases include adding visual indicators for table relationships in th
 2.	Navigate to the **Schema**, **Code**, and **Visualize** tabs to toggle views:
     * **Schema** - view, edit, or delete tables you've added
     
-    <kbd><img src="public/assets/pictures/Schema_Screenshot.png" width="800px"></kbd>
+    <p align="center"><kbd><img src="public/assets/pictures/Schema_Screenshot.png" width="800px"></kbd></p>
     
     * **Code** - view generated GraphQL and SQL code before export
     
-    <kbd><img src="public/assets/pictures/Code_Screenshot.png" width="800px"></kbd>
+    <p align="center"><kbd><img src="public/assets/pictures/Code_Screenshot.png" width="800px"></kbd></p>
     
     * **Visualize** - view the GraphQL schema intuitively as a simple tree
     

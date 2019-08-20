@@ -87,14 +87,16 @@ function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env) {
         console.log('Zip file size is ', archive.pointer() + ' total bytes');
         console.log('Archived zip file is complete.');
 
-        createFile('graphql/schema.js', '');
-        createFile('graphql/resolvers.js', '');
-        createFile('db/createTables.sql', '');
-        createFile('.env', '');
+        //commented out to fix Linux export
+        // createFile('graphql/schema.js', '');
+        // createFile('graphql/resolvers.js', '');
+        // createFile('db/createTables.sql', '');
+        // createFile('.env', '');
 
         dialog.showMessageBox(win,
           {
             type: "info",
+            buttons: ["Ok"],
             message: "Export Successful!",
             detail: 'File saved to ' + result + '/apollo-server.zip'
           }

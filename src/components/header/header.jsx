@@ -1,3 +1,7 @@
+/*
+  This file defines the header of the application
+*/
+
 import React, { useContext } from 'react';
 import { Store } from '../../state/store';
 import { SET_POP_UP } from '../../actions/actionTypes';
@@ -20,18 +24,22 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 3,
     gridArea: "header",
   },
+  // styles the complete title of the application, ProtoGraphQL
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(2)
   },
+  // styles the Proto part of the title of the application, ProtoGraphQL
   title: {
-    flexGrow: 2,
+    flexGrow: 2
   },
   header: {
     backgroundColor: "#324353",
   },
+  // style the GraphQL part of the title of the application, ProtoGraphQL
   pink: {
     color: "#DD399C",
   },
+  // style the ReadMe and Export buttons in the header
   button: {
     color: 'white',
     backgroundColor: '#324353',
@@ -45,12 +53,14 @@ const useStyles = makeStyles(theme => ({
       border: '1px solid #324353',
     }
   },
+  // style the GitHub button in the header
   anchor: {
     color: 'white',
     "&:hover": {
       color: '#324353',
     }
   },
+  // style the text associated with each button on the right side of the header
   label: {
     display: 'inline-block',
     fontSize: '10px',
@@ -61,7 +71,14 @@ const useStyles = makeStyles(theme => ({
 /*-------------------- Functional Component --------------------*/
 
 function Header() {
+  // sets the classes to be used in the header, as defined on line 22
   const classes = useStyles();
+  /*
+  -> connects the application to the context (utilized by Hooks in React) and facilitates the ability to
+      update the context of the application
+  -> the context is initialized by useContext() and specified by Store which is found
+      in /components/state/store.jsx
+  */
   const { state: { popUp }, dispatch } = useContext(Store);
 
   return (

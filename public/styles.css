@@ -24,21 +24,28 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
+  /* defines the amount of space above and below inline elements */
 	line-height: 1;
 }
 ol, ul {
+  /* specifies the type of list-item marker in a list */
 	list-style: none;
 }
 blockquote, q {
+  /* sets the type of quotation marks for quotations */
 	quotes: none;
 }
 blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
+q:before, q:after { /* content may be only used in association with :before and :after */
+  /* insert generated content */
+  content: '';
+  /* insert generated content */
 	content: none;
 }
 table {
-	border-collapse: collapse;
+  /* sets whether cells inside a table have shared or separate borders */
+  border-collapse: collapse;
+  /* sets the distance between the borders of adjacent <table> cells */
 	border-spacing: 0;
 }
 
@@ -47,8 +54,9 @@ table {
 /* INPUT BOXES */
 /******************/
 
-
+/* style <input> elements when they are in focus */
 input:focus {
+  /* does not draw a line around the outside of an element */
   outline: none;
 }
 

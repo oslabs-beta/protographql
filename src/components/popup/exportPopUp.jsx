@@ -18,6 +18,7 @@ import TextField from '@material-ui/core/TextField';
 
 /*-------------------- Styled components --------------------*/
 
+// styles the header of the Export button of the header of the application
 const Title = styled(DialogTitle)({
   width: "500px",
   textAlign: "center",
@@ -26,6 +27,7 @@ const Title = styled(DialogTitle)({
   background: '#161e26',
 });
 
+// styles the buttons of the Export button of the header of the application
 const StyledButton = styled(Button)({
   width: '200px',
   border: '1px solid #161e26',
@@ -34,15 +36,20 @@ const StyledButton = styled(Button)({
   margin: '10px'
 });
 
+// styles the entire dialog box associated with the Export button of the header of the application
 const DialogActionsDiv = styled(DialogActions)({
   justifyContent: 'center',
   margin: 0,
 });
 
+/*
+styles the input field of the dialog box associated with the Export button of the header
+of the application
+*/
 const Input = styled(TextField)({
   margin: '0px',
   marginTop: '20px',
-  width: 500,
+  width: 500
 })
 
 /*-------------------- Functional Component --------------------*/
@@ -51,14 +58,23 @@ function ExportPopUp(props) {
 
   const { state: { popUp, gqlSchema, gqlResolvers, sqlScripts }, dispatch } = useContext(Store);
 
+  // this function is invoked on the 'Close' button on a click event, as defined on line 104 
   const handleClose = () => {
     dispatch({ type: SET_POP_UP, payload: '' });
   }
 
+  // handles key commands to enable mouse-less / pad-less interaction with the application
   const keyUpToHandleClose = (e) => {
+    // this condition is true when a user presses the 'Escape' button on a keyboad
     if (e.keyCode === 27) {
+      /*
+      invoke dispatch(), passing in a object type of 'SET_POP_UP' and a payload of '' to
+      update the store
+      */
       dispatch({ type: SET_POP_UP, payload: '' });
+      // this condition is true when a user presses the 'Enter' button on a keyboad
     } else if (e.keyCode === 13) {
+      // select the DOM element with an ID of 'export' and initiate a 'click' event on it
       document.querySelector('#export').click();
     }
   }

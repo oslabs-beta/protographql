@@ -75,30 +75,11 @@ function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env) {
       createFile('db/createTables.sql', sqlScripts);
       createFile('.env', env);
 
-      const output = fs.createWriteStream(result + '/apollo-server.zip');
+      const output = fs.createWriteStream(result + '/apollo-server.zip', 
+        // { autoClose: false }
+      );
       const archive = archiver('zip', {
         zlib: { level: 9 } // Sets the compression level.
-      });
-
-
-
-      // listen for all archive data to be written and output associated details
-      output.on('close', function () {
-        console.log('Zip file size is ', archive.pointer() + ' total bytes');
-        console.log('Archived zip file is complete.');
-
-        createFile('graphql/schema.js', '');
-        createFile('graphql/resolvers.js', '');
-        createFile('db/createTables.sql', '');
-        createFile('.env', '');
-
-        dialog.showMessageBox(win,
-          {
-            type: "info",
-            message: "Export Successful!",
-            detail: 'File saved to ' + result + '/apollo-server.zip'
-          }
-        )
       });
 
       // good practice to catch warnings (ie stat failures and other non-blocking errors)
@@ -120,6 +101,28 @@ function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env) {
       // finalize the archive (ie we are done appending files but streams have to finish yet)
       // 'close' will be fired afterwards
       archive.finalize();
+
+
+      // listen for all archive data to be written and output associated details
+      output.on('close', function () {
+        console.log('Zip file size is ', archive.pointer() + ' total bytes');
+        console.log('Archived zip file is complete.');
+
+        //commented out to fix Linux export
+        createFile('graphql/schema.js', '');
+        createFile('graphql/resolvers.js', '');
+        createFile('db/createTables.sql', '');
+        createFile('.env', '');
+
+        dialog.showMessageBox(win,
+          {
+            type: "info",
+            buttons: ["Ok"],
+            message: "Export Successful!",
+            detail: 'File saved to ' + result + '/apollo-server.zip'
+          }
+        )
+      });
     }
   );
 }

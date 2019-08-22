@@ -7,10 +7,12 @@ import buildGQLResolvers from '../utils/buildGQLResolvers';
 import buildSQLScripts from '../utils/buildSQLScripts';
 import { buildVisualizerJson } from '../utils/buildVisualizerJson';
 
+// sets the intial state of the application as found in '../state/initialState'
 const initialState = state;
 
 function reducer(state, action) {
 
+  // makes a deep clone of 'state' to enable updates of 'state'
   const newState = deepClone(state);
   let selectedTable;
   let tables;

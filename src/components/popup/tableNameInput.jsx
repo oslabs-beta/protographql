@@ -3,10 +3,12 @@ import styled from 'styled-components';
 
 /*-------------------- Styled Components --------------------*/
 
+// styles the space around the border of the DOM elmement containing the text 'Enter Table Name'
 const Wrapper = styled.div`
   background-color: white;
 `;
 
+// styles the input text ('Enter Table Name')
 const Input = styled.input`
   padding: 5px 10px;
   width: calc(100% - 22px);
@@ -27,6 +29,7 @@ const Input = styled.input`
 
 function TableNameInput({ name, editTableName }) {
 
+  // handles changes to the input field that represents the name of the new table
   const onTableNameChange = (e) => editTableName(e.target.value);
 
   return (
@@ -36,6 +39,7 @@ function TableNameInput({ name, editTableName }) {
         type="text"
         placeholder="Enter Table Name * "
         defaultValue={name}
+        // on a change on the input field, invoke onTableNameChange
         onChange={onTableNameChange}
       />
     </Wrapper>

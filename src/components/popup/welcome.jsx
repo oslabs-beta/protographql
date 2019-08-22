@@ -16,6 +16,7 @@ import { SET_POP_UP } from '../../actions/actionTypes';
 
 /*-------------------- Styled components --------------------*/
 
+// styles the header of the dialog-box that appears when the application is first loaded
 const Title = styled(DialogTitle)({
   width: "500px",
   textAlign: "center",
@@ -24,6 +25,7 @@ const Title = styled(DialogTitle)({
   background: '#161e26',
 });
 
+// styles the {REST} and GraphQL logo of the dialog-box that appears when the application is first loaded
 const Text = styled(DialogContentText)({
   color: "white",
   height: 'auto',
@@ -33,6 +35,7 @@ const Text = styled(DialogContentText)({
   marginBottom: '7px',
 });
 
+// styles the definitions of the dialog-box that appears when the application is first loaded
 const ContentDiv = styled(DialogContent)({
   display: 'flex',
   justifyContent: 'center',
@@ -41,6 +44,7 @@ const ContentDiv = styled(DialogContent)({
   color: '#161e26',
 });
 
+// styles the start button of the dialog-box that appears when the application is first loaded
 const StartButton = styled(Button)({
   width: '200px',
   border: '1px solid #161e26',
@@ -50,9 +54,13 @@ const StartButton = styled(Button)({
   marginBottom: '10px'
 });
 
+/*
+styles the space around the start button of the dialog-box that appears when the
+application is first loaded
+*/
 const DialogActionsDiv = styled(DialogActions)({
   justifyContent: 'center',
-  margin: 0,
+  margin: 0
 });
 
 /*-------------------- Functional Component --------------------*/
@@ -75,7 +83,12 @@ function DraggableDialog(props) {
   }
 
   const keyUpToHandleClose = (e) => {
+    // condition that handles the 'Escape' and 'Enter' buttons on a keyboard
     if (e.keyCode == 13 || e.keyCode == 27) {
+      /*
+      invoke 'dispatch' when 'Escape' or 'Enter' is pressed and pass the object type of
+      'SET_POP_UP' and a payload of ''
+      */
       dispatch({ type: SET_POP_UP, payload: '' });
     }
   }

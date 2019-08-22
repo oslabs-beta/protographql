@@ -4,6 +4,10 @@ import styled from 'styled-components';
 
 /*-------------------- Styled Components --------------------*/
 
+/*
+styles the surrounding space that exists around the code display areas of 'GraphQL Schema', 'SQL Scripts',
+and 'GraphQL Resolvers' that appears after clicking the 'Code' button
+*/
 const Code = styled.div`
   margin: 13px;
   font-family: Courier New, Consolas, Monaco, Lucida Console;
@@ -13,6 +17,10 @@ const Code = styled.div`
   height: calc(100vh - 26px - 64px);
 `;
 
+/*
+styles the background of 'GraphQL Schema', 'SQL Scripts', and 'GraphQL Resolvers' that appears after
+clicking the 'Code' button
+*/
 const Column = styled.div`
   background-color: white;
   margin: 10px;
@@ -32,6 +40,10 @@ const Column = styled.div`
   }
 `;
 
+/*
+styles the titles associated with 'GraphQL Schema', 'SQL Scripts', and 'GraphQL Resolvers' that appears
+after clicking the 'Code' button
+*/
 const Title = styled.p`
   font-size: 20px;
   color: rgba(221, 57, 156, 1);
@@ -42,7 +54,12 @@ const Title = styled.p`
 /*-------------------- Functional Component --------------------*/
 
 function CodeView() {
-
+  /*
+    -> connects the application to the context (utilized by Hooks in React) and facilitates the ability to
+      update the context of the application
+    -> the context is initialized by useContext() and specified by Store which is found
+      in /components/state/store.jsx
+  */
   const { state: { gqlSchema, gqlResolvers, sqlScripts } } = useContext(Store);
 
   return (

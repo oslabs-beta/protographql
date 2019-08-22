@@ -17,6 +17,10 @@ import Draggable from 'react-draggable';
 
 /*-------------------- Styled Components --------------------*/
 
+/*
+styles the table associated with the 'Add Table' button... specifically the options and buttons
+associated with the options
+*/
 const CustomTable = styled.form`
   height: auto;
   margin: 0 auto;
@@ -30,6 +34,10 @@ const CustomTable = styled.form`
   left: 18%;
 `;
 
+/*
+styles the table associated with the 'Add Table' button... specifically the area around the buttons
+'Add Field' and 'Save'
+*/
 const TableFooter = styled.div`
   border-top: 1px solid rgba(0,0,0,0.2);
   height: auto;
@@ -43,12 +51,19 @@ const TableFooter = styled.div`
   justify-content: space-between;
 `;
 
+/*
+styles the table associated with the 'Add Table' button... specifically the options and buttons
+associated with the options
+*/
 const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
 `;
 
-
+/*
+specifies the space around the 'X' icon located at the top-right of the dialog-box associated with
+the 'Add Table' button... this space is a block-level element
+*/
 const TableHeader = styled.div`
   height: 15px;
   padding-top: 4px;
@@ -58,6 +73,7 @@ const TableHeader = styled.div`
   cursor: move;
 `;
 
+// styles the background-page after the 'Add Table' button is clicked
 const FadeThePage = styled.div`
   position: fixed;
   top: 0;
@@ -67,7 +83,7 @@ const FadeThePage = styled.div`
   z-index: 9998;
   background: rgba(90, 90, 90, 0.5);
 `;
-
+// styles the 'Add Field' and 'Save' buttons of the dialog-box associated with the 'Add Table' button
 const Button = styled.button`
   height: auto;
   font-size: .85em;
@@ -87,7 +103,7 @@ const Button = styled.button`
     cursor: pointer;
   }
 `;
-
+// styles the 'X' icon on the top-right of the dialog-box associated with the 'Add Table' button
 const CloseButton = styled.span`
   font-size: 1em;
   margin: 5px;
@@ -99,6 +115,7 @@ const CloseButton = styled.span`
   }
 `;
 
+// styles the 'X' icon on the top-right of the dialog-box associated with the 'Add Table' button
 const Buttons = styled.span`
   float: right;
   margin-right: 5px;

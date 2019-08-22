@@ -5,6 +5,7 @@ export const selectedTable = {
   tableID: 0
 };
 
+// specifies the initial values of the input table that appears when a user clicks 'Add Table'
 export const initialTable = {
   type: '',
   fields: {
@@ -30,6 +31,10 @@ export const initialTable = {
   tableID: 0
 };
 
+/*
+specifies the initial values of the input table that appears when a user clicks 'Add Field' within
+the input table that appears after a user clicks 'Add Table'
+*/
 export const initialField = {
   name: '',
   type: 'ID',

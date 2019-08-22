@@ -8,10 +8,10 @@ module.exports = {
     filename: "bundle.js"
   },
 
-  // devServer: {
-  //   inline: true,
-  //   port: 8082
-  // },
+  devServer: {
+    inline: true,
+    port: 8082
+  },
 
   // Enable sourcemaps for debugging webpack's output.
   devtool: "source-map",

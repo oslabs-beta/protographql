@@ -13,8 +13,8 @@ import buildENV from '../../utils/buildENV';
 import TextField from '@material-ui/core/TextField';
 
 //comment out to use web-dev-server instead of electron
-const electron = window.require('electron');
-const ipc = electron.ipcRenderer;
+// const electron = window.require('electron');
+// const ipc = electron.ipcRenderer;
 
 /*-------------------- Styled components --------------------*/
 

@@ -22,7 +22,12 @@ const View = styled.div`
 /*-------------------- Functional Component --------------------*/
 
 function SchemaView() {
-
+  /*
+    -> connects the application to the context (utilized by Hooks in React) and facilitates the ability to
+      update the context of the application
+    -> the context is initialized by useContext() and specified by Store which is found
+      in /components/state/store.jsx
+  */
   const { dispatch, state: { tables, displayError } } = useContext(Store);
 
   const tablesArray = Object.keys(tables).map(tableKey => (
@@ -39,7 +44,7 @@ function SchemaView() {
     />
   ))
 
-  // Dispatch hide error only once per lifecycle of displayError.displayStatus = true
+  // dispatch hide error only once per lifecycle of displayError.displayStatus = true
   if (displayError.displayStatus && displayError.throttleStatus) {
     dispatch({ type: THROTTLE_DISPLAY_ERROR });
     setTimeout(() => {

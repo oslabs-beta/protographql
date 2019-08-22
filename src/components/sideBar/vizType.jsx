@@ -1,6 +1,10 @@
 import React, { useContext } from 'react';
 import styled, { keyframes } from 'styled-components';
 
+/*
+styles the content associated with the title 'Types' that appears in the right side-bar after
+clicking the 'Visualize' button
+*/
 const fontColor = keyframes`
   to {
     color: #e535ab;
@@ -8,6 +12,10 @@ const fontColor = keyframes`
   }
 `;
 
+/*
+styles the content associated with the title 'Types' that appears in the right side-bar after
+clicking the 'Visualize' button
+*/
 const ButtonContainer = styled.div`
   font-size: 14px;
   padding-top: 20px;
@@ -20,6 +28,10 @@ const ButtonContainer = styled.div`
   };
 `;
 
+/*
+styles the title of each type under the 'Types' title that appears in the right side-bar after clicking
+the 'Visualize' button
+*/
 const TypeName = styled.div`
   margin-left: 20px;
   text-decoration: underline;
@@ -28,6 +40,10 @@ const TypeName = styled.div`
   padding-bottom: 20px;
 `;
 
+/*
+styles the field of each type under the 'Types' title that appears in the right side-bar after clicking
+the 'Visualize' button
+*/
 const Field = styled.div`
   margin-left: 20px;
   padding-bottom: 10px;
@@ -36,7 +52,12 @@ const Field = styled.div`
 
 function VizType ({ table }) {
   const values = []
+  // iterate all fields in the table
   for (let key in table.fields) {
+    /*
+    append the respective field to the respective type cell under the 'Types' title that appears in the
+    right side-bar after clicking the 'Visualize' button
+    */
     values.push(<Field key={table+'-'+key}>{key}: {table.fields[key]}</Field>)
   }
   return (

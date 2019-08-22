@@ -113,7 +113,7 @@
     "babel-loader": "^8.0.6",
     "css-loader": "^2.1.1",
     "d3": "^5.9.2",
-    "electron": "^5.0.5",
+    "electron": "^5.0.10",
     "enzyme": "^3.9.0",
     "eslint": "^5.16.0",
     "eslint-plugin-react": "^7.13.0",

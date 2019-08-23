@@ -8,6 +8,10 @@ import styled from 'styled-components';
 
 /*-------------------- Styled Component --------------------*/
 
+/*
+styles the display area that appears after you exit the ReadME dialog-box that appears when you load the
+application
+*/
 const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);

@@ -13,6 +13,7 @@ import styled from 'styled-components';
 
 /*-------------------- Styled Components --------------------*/
 
+// styles the 'Name' section of each cell that appears after clicking the 'Schema' button
 const StyledTableCell = withStyles(theme => ({
   head: {
     backgroundColor: '#324353',
@@ -27,6 +28,7 @@ const StyledTableCell = withStyles(theme => ({
   },
 }))(TableCell);
 
+// styles each field of each cell that appears after clicking the 'Schema' button
 const StyledTableRow = withStyles(theme => ({
   root: {
     '&:nth-of-type(odd)': {
@@ -37,13 +39,16 @@ const StyledTableRow = withStyles(theme => ({
 
 
 const useStyles = makeStyles(theme => ({
+  // styles each cell that appears after clicking the 'Schema' button
   root: {
     width: 250,
     height: '100%',
   },
+  // styles each cell that appears after clicking the 'Schema' button
   table: {
     minWidth: 200
   },
+  // styles the title of each cell that appears after clicking the 'Schema' button
   title: {
     variant: "h6",
     id: "tableTitle",
@@ -58,6 +63,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+// styles the icons of the title section of each cell that appears after clicking the 'Schema' button
 const Buttons = styled.span`
   color: black;
   margin-left: 5px;
@@ -76,10 +82,12 @@ function SchemaTable({
   deleteTable,
   editTable
 }) {
+  // sets the classes to be used in each cell, as defined on line 41
   const classes = useStyles();
   const fields = (
     Object.keys(table.fields).map(fieldKey => (
       {
+        // populates, for each cell, the table name, field name, field type, etc.
         name: table.fields[fieldKey].name,
         type: table.fields[fieldKey].type,
         tableNum: table.fields[fieldKey].tableNum,

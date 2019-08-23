@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 
 /*-------------------- Styled Components --------------------*/
 
+// styles the 'Schema', 'Code', and 'Visualize' buttons
 const fontColor = keyframes`
   to {
     color: #e535ab;
@@ -10,6 +11,7 @@ const fontColor = keyframes`
   }
 `;
 
+// styles the 'Schema', 'Code', and 'Visualize' buttons
 const ButtonContainer = styled.div`
   padding: 1px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
@@ -21,6 +23,7 @@ const ButtonContainer = styled.div`
   };
 `;
 
+// styles the 'Schema', 'Code', and 'Visualize' buttons
 const Button = styled.div`
   height: 60px;
   background-color: none;
@@ -29,6 +32,7 @@ const Button = styled.div`
   margin-top: 25px;
 `;
 
+// styles the 'Schema', 'Code', and 'Visualize' buttons
 const Icon = styled.span`
   margin: 5px;
   font-size: calc(14px + 1vw);

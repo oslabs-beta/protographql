@@ -1,3 +1,7 @@
+/*
+    This file declares the action types to be used by Redux.
+*/
+
 export const ADD_TABLE = "ADD_TABLE";
 export const EDIT_TABLE = "EDIT_TABLE";
 export const SAVE_TABLE = "SAVE_TABLE";

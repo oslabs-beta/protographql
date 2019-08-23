@@ -5,16 +5,19 @@ import styled from 'styled-components';
 import VisualizerSideBar from '../sideBar/visualizerSidebar';
 
 /*-------------------- Styled Components --------------------*/
+
+// styles the right side-bar that appears after clicking the 'Visualize' button
 const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-areas: 
     "viz viz viz viz bar";
   height: calc(100vh - 64px);
-  background-color: #EEEFF0;
+  background-color: '#EEEFF0';
   font-family: "Roboto", sans-serif;
 `;
 
+// styles the graph area that appears after clicking the 'Visualize' button
 const Viz = styled.div`
   grid-area: viz;
   background-color: #EEEFF0;
@@ -26,6 +29,12 @@ const Viz = styled.div`
 
 function VisualizeView() {
 
+  /*
+    -> connects the application to the context (utilized by Hooks in React) and facilitates the ability to
+      update the context of the application
+    -> the context is initialized by useContext() and specified by Store which is found
+      in /components/state/store.jsx
+  */
   const { state: { visualizeJSON } } = useContext(Store);
 
   const treeData = visualizeJSON;
@@ -33,6 +42,7 @@ function VisualizeView() {
   function createViz() {
 
     function responsivefy(svg) {
+      // use D3 to create the graph that appears after clicking the 'Visualize' button
       const container = d3.select(svg.node().parentNode),
         width = parseInt(svg.style("width")),
         height = parseInt(svg.style("height"));

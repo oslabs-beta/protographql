@@ -6,8 +6,7 @@
   "scripts": {
     "start": "electron .",
     "build": "webpack -p",
-    "dev": "webpack-dev-server --mode=development",
-    "pack": "build --dir",
+    "dev": "webpack && concurrently \"webpack --watch\" \"nodemon dist\"",
     "dist": "build",
     "package-all": "build && electron-builder build -mwl",
     "test": "test"
@@ -124,7 +123,7 @@
     "styled-components": "^4.3.1",
     "ts-loader": "^6.0.2",
     "typescript": "^3.5.1",
-    "webpack": "^4.32.2",
+    "webpack": "^4.39.2",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.5.1"
   },
@@ -132,7 +131,11 @@
     "@material-ui/icons": "^4.0.1",
     "@types/react": "^16.8.19",
     "@types/react-dom": "^16.8.4",
+    "apollo-server-express": "^2.8.2",
     "archiver": "^3.0.0",
+    "concurrently": "^4.1.2",
+    "graphql": "^14.5.0",
+    "pg": "^7.12.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-draggable": "^3.3.0"

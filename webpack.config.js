@@ -69,7 +69,6 @@ const serverConfig = {
   // externals: [nodeExternals()],
   entry: "./src/index.js",
   output: {
-    publicPath: '/public/',
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js"
   },

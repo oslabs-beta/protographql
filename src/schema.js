@@ -3,13 +3,10 @@ const { ApolloServer, gql } = require('apollo-server-express');
 const express = require('express');
 const { Pool } = require('pg');
 const React = require('react');
-const ReactDOMServer = require('react-dom/server');
-const ReactApp = require('./index.jsx');
 
 
-
-const URI = 'postgres://yjmnkrxd:AXHzChrA4_EG_6NIYlDlLMjXVi2WERwO@raja.db.elephantsql.com:5432/yjmnkrxd'
-
+//Resolver Setup for GQL schema - including test database
+const URI = ''; // <<<< DB URL GOES HERE 
 
 const pool = new Pool({
 connectionString: URI,
@@ -21,30 +18,6 @@ if (err) return console.log(`Error connecting to db, ${err}`);
 console.log('Connected to db 😄')
 done();
 })
-
-const typeDefs = gql`
-type Author {
-id: ID
-first_name: String!
-last_name: String!
-}
-
-type Books {
-id: ID
-name: String!
-author: Author
-}
-
-type Query {
-getAllAuthor: [Author]
-getAllBooks: [Books]
-getBooks(
-    id: ID,
-    name: String,
-    author_id: ID
-): [Books]
-}
-`
 
 const resolvers = {
 Query: {
@@ -102,6 +75,32 @@ Books: {
     },
 },
 };
+
+//Type Definitions for gql schema
+
+const typeDefs = gql`
+type Author {
+id: ID
+first_name: String!
+last_name: String!
+}
+
+type Books {
+id: ID
+name: String!
+author: Author
+}
+
+type Query {
+getAllAuthor: [Author]
+getAllBooks: [Books]
+getBooks(
+    id: ID,
+    name: String,
+    author_id: ID
+): [Books]
+}
+`
 
 
 const schema = makeExecutableSchema({

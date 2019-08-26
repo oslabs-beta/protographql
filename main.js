@@ -1,8 +1,17 @@
 const { app, BrowserWindow, dialog } = require('electron');
 const path = require('path');
 const ipc = require('electron').ipcMain;
-const archiver = require('archiver')
+const archiver = require('archiver');
 const fs = require('fs');
+require('dotenv').config
+// const createServer = require('./src/index.js');
+const { createSchemaLink, createIpcExecutor } = require('graphql-transport-electron');
+const schema = require('./src/schema');
+
+const link = createSchemaLink({ schema });
+createIpcExecutor({link, ipc: ipc})
+
+console.log(process.env.DB_URI)
 
 // Global reference of the window object to avoid JS garbage collection
 // when window is created
@@ -35,6 +44,8 @@ function createWindow() {
   win.on('closed', () => {
     win = null;
   });
+
+  // app.server = createServer(app);
 }
 
 // Creates our window when electron has initialized for the first time

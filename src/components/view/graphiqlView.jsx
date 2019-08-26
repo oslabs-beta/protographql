@@ -1,15 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Store } from '../../state/store';
-import GraphiQL from 'graphiql';
-import fetch from 'isomorphic-fetch';
+// still seeking to implement graphiql playground into app
 
-function GraphqlView() {
+// import React, { useContext, useEffect, useState } from 'react';
+// import { Store } from '../../state/store';
+// import GraphiQL from 'graphiql';
+// import fetch from 'isomorphic-fetch';
 
-  const { dispatch, state: { gqlSchema } } = useContext(Store);
+// function GraphqlView() {
+
+//   const { dispatch, state: { gqlSchema } } = useContext(Store);
   
-  return (
-    <GraphiQL fetcher={state.gqlSchema} />
-  );
-}
+//   return (
+//     <GraphiQL fetcher={state.gqlSchema} />
+//   );
+// }
 
-export default GraphiqlView;
+// export default GraphiqlView;

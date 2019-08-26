@@ -4,6 +4,7 @@ import CodeView from '../../components/view/codeView';
 import VisualizeView from '../../components/view/visualizeView';
 import TableForm from '../popup/tableForm';
 import { Store } from '../../state/store';
+import TestsView from './testsView';
 
 function MainView() {
   /*
@@ -18,6 +19,7 @@ function MainView() {
       {view === 'code' && <CodeView />}
       {view === 'schema' && <SchemaView />}
       {view === 'visualize' && <VisualizeView />}
+      {view === 'tests' && <TestsView />}
       {popUp === 'table' && <TableForm />}
     </div>
   )

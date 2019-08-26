@@ -3,6 +3,7 @@ const path = require('path');
 const ipc = require('electron').ipcMain;
 const archiver = require('archiver')
 const fs = require('fs');
+const buildExportTestSuite = require('./src/utils/buildExportTestSuite.js');
 
 // Global reference of the window object to avoid JS garbage collection
 // when window is created
@@ -70,10 +71,13 @@ function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env) {
       //if user closes dialog window without selecting a folder
       if (!result) return;
 
+      // creates the files in the apollo-sever folder
       createFile('graphql/schema.js', gqlSchema);
       createFile('graphql/resolvers.js', gqlResolvers);
       createFile('db/createTables.sql', sqlScripts);
       createFile('.env', env);
+      //generate test-suite
+      createFile('tests/tests.js', buildExportTestSuite.createTest(['SELECT * FROM Employees'], ['{name: \"Haris\", age:23}']));
 
       const output = fs.createWriteStream(result + '/apollo-server.zip', 
         // { autoClose: false }
@@ -95,7 +99,7 @@ function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env) {
       // append files from apollo-server directory and naming it `apollo-server` within the archive
       archive.directory(__dirname + '/apollo-server/', 'apollo-server');
 
-      // pipe the archive details to our zip file
+      // pipe the archive details to our zip file -> pushes files into the zip
       archive.pipe(output);
 
       // finalize the archive (ie we are done appending files but streams have to finish yet)

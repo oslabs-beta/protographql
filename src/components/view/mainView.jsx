@@ -18,6 +18,7 @@ function MainView() {
       {view === 'code' && <CodeView />}
       {view === 'schema' && <SchemaView />}
       {view === 'visualize' && <VisualizeView />}
+      {view === "graphiql" && <VisualizeView />}
       {popUp === 'table' && <TableForm />}
     </div>
   )

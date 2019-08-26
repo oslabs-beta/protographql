@@ -22,7 +22,7 @@ const clientConfig = {
 
   resolve: {
       // Add '.ts' and '.tsx' as resolvable extensions.
-      extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
+      extensions: [".ts", ".tsx", ".mjs", ".js", ".jsx", ".json"]
   },
 
   plugins: [ new webpack.IgnorePlugin(/^pg-native$/)],

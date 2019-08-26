@@ -1,10 +1,9 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+const React = require("react");
+const ReactDOM = require("react-dom");
 
-import { App } from "./App";
+const { App } = require("./App");
 
-// ReactDOM.render(     //uncomment for regular serverless rendering
-ReactDOM.hydrate(        //uncomment for express rendering
+ReactDOM.render(     
     <App />,
     document.getElementById("root")
 );

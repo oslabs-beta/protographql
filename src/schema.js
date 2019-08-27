@@ -1,8 +1,6 @@
 const { makeExecutableSchema } =require('graphql-tools');
 const { ApolloServer, gql } = require('apollo-server-express');
-const express = require('express');
 const { Pool } = require('pg');
-const React = require('react');
 
 
 //Resolver Setup for GQL schema - including test database
@@ -119,6 +117,6 @@ const typeDefs = gql`
 
 
 const schema = makeExecutableSchema({
-typeDefs,
-resolvers,
+    typeDefs,
+    resolvers,
 });

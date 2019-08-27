@@ -123,6 +123,12 @@ function reducer(state, action) {
       newState.displayError.throttleStatus = !newState.displayError.throttleStatus;
       return { ...state, displayError: newState.displayError };
 
+    case "UPDATE_QUERIES":
+      return {
+        ...state,
+        queries: action.payload
+      }
+
     default:
       return state;
   }

@@ -76,3 +76,7 @@ export const sqlScripts = ``;
 export const queries = [[], []];
 
 export const displayError = { displayStatus: false, throttleStatus: true, relatedTable: -1, relatedField: -1 };
+
+// stores the Apollo server URI input by the user in tests view
+export const uriInputString = '';
+export const apolloServerURI = '';

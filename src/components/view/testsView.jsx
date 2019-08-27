@@ -13,27 +13,26 @@ import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { gql, HttpLink } from 'apollo-boost';
 
-// const link = createIpcLink({ ipc: ipcRenderer });
 
-const link = new HttpLink({
-  uri: 'http://localhost:3000/GraphQL'
-})
-
-const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  link: link
-});
+// const link = new HttpLink({
+//     uri: 'http://localhost:3000/GraphQL'
+//   })
+  
+//   const client = new ApolloClient({
+//     cache: new InMemoryCache(),
+//     link: link
+//   });
 
 // console.log("client: ",client)
 
 // // testing Apollo Server with query - currently not working
 // client.query({
-//     query: gql`
-        // {
-        //     getAllAuthor {
-        //         last_name
-        //     }
-        // }`
+    // query: gql`
+    //     {
+    //         getAllAuthor {
+    //             last_name
+    //         }
+    //     }`
 // }).then(result => console.log('apollo server result: ',result))
 
 // console.log("client after: ", client)
@@ -55,6 +54,15 @@ const Response = styled.div`
 
 function TestsView() {
     const { dispatch, state: { queries }} = useContext(Store);
+    
+    const link = new HttpLink({
+        uri: 'http://localhost:3000/GraphQL'
+      })
+      
+      const client = new ApolloClient({
+        cache: new InMemoryCache(),
+        link: link
+      });
 
     function addQuery() {
         let q = document.getElementById("query").value;
@@ -63,7 +71,8 @@ function TestsView() {
             query: gql`${q}`
         }).then(result => {;
             console.log('apollo server result: ',result);
-            r = result.data;
+            r = JSON.stringify(result.data);
+            document.getElementById("response").value = r;
             dispatch({ type: UPDATE_QUERIES, payload: [[q], [r]] });
         })
         // let r = document.getElementById("response").value;

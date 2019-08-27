@@ -1,3 +1,3 @@
 test('query', () => {
-	expect('ENTER QUERY').toEqual('EXPECTED RESPONSE')
+	expect('LA').toEqual('CA')
 })

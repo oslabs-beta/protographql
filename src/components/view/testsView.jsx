@@ -20,8 +20,6 @@ function TestsView() {
     function addQuery() {
         let q = document.getElementById("query").value;
         let r = document.getElementById("response").value;
-        console.log('Query => ', q);
-        console.log('Response => ', r);
         dispatch({ type: UPDATE_QUERIES, payload: [[q], [r]] });
     }
 

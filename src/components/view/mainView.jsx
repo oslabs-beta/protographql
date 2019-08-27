@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import SchemaView from '../../components/view/schemaView';
 import CodeView from '../../components/view/codeView';
 import VisualizeView from '../../components/view/visualizeView';
-import GraphiqlView from './graphiqlView';
+// import GraphiqlView from './graphiqlView'; // removes unused comoponent
 import TableForm from '../popup/tableForm';
 import { Store } from '../../state/store';
 import TestsView from './testsView';
@@ -20,7 +20,8 @@ function MainView() {
       {view === 'code' && <CodeView />}
       {view === 'schema' && <SchemaView />}
       {view === 'visualize' && <VisualizeView />}
-      {view === 'graphiql' && <GraphiqlView />}
+      {/* comment out unused component */}
+      {/* {view === 'graphiql' && <GraphiqlView />} */}
       {view === 'tests' && <TestsView />}
       {popUp === 'table' && <TableForm />}
     </div>

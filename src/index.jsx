@@ -1,9 +1,34 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+const React = require("react");
+const ReactDOM = require("react-dom");
 
-import { App } from "./App";
+const { App } = require("./App");
+// import { ApolloClient } from 'apollo-client';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { ipcRenderer } from 'electron';
+import { createIpcLink } from 'graphql-transport-electron';
+import { ApolloClient, gql } from 'apollo-boost';
 
-ReactDOM.render(
+const link = createIpcLink({ ipc: ipcRenderer });
+
+
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  link,
+});
+
+// testing Apollo Server with query - currently not working
+
+client.query({
+    query: gql`
+        {
+            getAllAuthor {
+                last_name
+            }
+        }`
+}).then(result => console.log('apollo server result: ', result));
+
+ReactDOM.render(     
     <App />,
     document.getElementById("root")
 );
+

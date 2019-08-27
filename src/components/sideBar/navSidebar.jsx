@@ -97,7 +97,8 @@ function NavSideBar() {
           document.querySelector("svg") ? document.querySelector("svg").remove() : "";
         }}
       />
-      <NavButton
+      {/* comments out button for removed component */}
+      {/* <NavButton
         key='NavButton5'
         className='fas fa-project-diagram'
         view='GraphiQL'
@@ -107,7 +108,7 @@ function NavSideBar() {
           changeButtonStyleOnClick("GraphiQL")
           document.querySelector("svg") ? document.querySelector("svg").remove() : "";
         }}
-      />
+      /> */}
       <NavButton
         key='NavButton6'
         className='fas fa-project-diagram'

@@ -141,10 +141,10 @@
     "graphql": "^14.5.3",
     "graphql-transport-electron": "^1.0.1",
     "isomorphic-fetch": "^2.2.1",
-    "pg": "^7.12.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
     "path": "^0.12.7",
+    "pg": "^7.12.1",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
     "react-draggable": "^3.3.0"
   }
 }

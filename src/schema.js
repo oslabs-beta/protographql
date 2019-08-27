@@ -6,7 +6,7 @@ const React = require('react');
 
 
 //Resolver Setup for GQL schema - including test database
-const URI = ''; // <<<< DB URL GOES HERE 
+const URI = 'postgres://yjmnkrxd:AXHzChrA4_EG_6NIYlDlLMjXVi2WERwO@raja.db.elephantsql.com:5432/yjmnkrxd'; // <<<< DB URL GOES HERE 
 
 const pool = new Pool({
 connectionString: URI,

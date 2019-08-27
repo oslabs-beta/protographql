@@ -20,7 +20,8 @@ function MainView() {
       {view === 'code' && <CodeView />}
       {view === 'schema' && <SchemaView />}
       {view === 'visualize' && <VisualizeView />}
-      {view === 'graphiql' && <GraphiqlView />}
+      {/* comment out unused component */}
+      {/* {view === 'graphiql' && <GraphiqlView />} */}
       {view === 'tests' && <TestsView />}
       {popUp === 'table' && <TableForm />}
     </div>

@@ -24,7 +24,7 @@ const SideBar = styled.div`
 
 /*-------------------- Functional Component --------------------*/
 
-const views = ["Schema", "Code", "Visualize"]
+const views = ["Schema", "Code", "Visualize", "Tests"]
 
 // alters the clicked button of the side-bar menu
 function changeButtonStyleOnClick(view) {
@@ -105,6 +105,17 @@ function NavSideBar() {
           dispatch({ type: SET_VIEW, payload: 'graphiql' })
           dispatch({ type: SET_POP_UP, payload: '' })
           changeButtonStyleOnClick("GraphiQL")
+          document.querySelector("svg") ? document.querySelector("svg").remove() : "";
+        }}
+      />
+      <NavButton
+        key='NavButton6'
+        className='fas fa-project-diagram'
+        view='Tests'
+        click={(e) => {
+          dispatch({ type: SET_VIEW, payload: 'tests' })
+          dispatch({ type: SET_POP_UP, payload: '' })
+          changeButtonStyleOnClick("Tests")
           document.querySelector("svg") ? document.querySelector("svg").remove() : "";
         }}
       />

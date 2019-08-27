@@ -1,17 +1,16 @@
-// still seeking to implement graphiql playground into app
 
-// import React, { useContext, useEffect, useState } from 'react';
-// import { Store } from '../../state/store';
+// import React from 'react';
 // import GraphiQL from 'graphiql';
 // import fetch from 'isomorphic-fetch';
 
 // function GraphqlView() {
 
-//   const { dispatch, state: { gqlSchema } } = useContext(Store);
-  
-//   return (
-//     <GraphiQL fetcher={state.gqlSchema} />
-//   );
+// const graphqlfetcher = (graphqlparams) => {
+//   return fetch(window.location.origin + '/graphql', {
+//     method: 'post',
+//     headers: { 'Content-Type': 'application/json' },
+//     body: JSON.stringify(graphqlparams),
+//   }).then(response => response.json()).then(response => ReactDOM.render(<GraphiQL fetcher={response} />));
 // }
 
 // export default GraphiqlView;

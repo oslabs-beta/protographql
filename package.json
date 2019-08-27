@@ -137,6 +137,7 @@
     "apollo-server-express": "^2.9.0",
     "archiver": "^3.0.0",
     "dotenv": "^8.1.0",
+    "graphiql": "^0.14.2",
     "graphql": "^14.5.3",
     "graphql-transport-electron": "^1.0.1",
     "isomorphic-fetch": "^2.2.1",

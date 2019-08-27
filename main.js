@@ -11,7 +11,7 @@ const schema = require('./src/schema');
 const link = createSchemaLink({ schema });
 createIpcExecutor({link, ipc: ipc})
 
-console.log(process.env.DB_URI)
+// console.log(process.env.DB_URI)
 
 // Global reference of the window object to avoid JS garbage collection
 // when window is created

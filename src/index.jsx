@@ -11,21 +11,21 @@ import { ApolloClient, gql } from 'apollo-boost';
 const link = createIpcLink({ ipc: ipcRenderer });
 
 
-// const client = new ApolloClient({
-//   cache: new InMemoryCache(),
-//   link,
-// });
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  link,
+});
 
 // testing Apollo Server with query - currently not working
 
-// client.query({
-//     query: gql`
-//         {
-//             getAllAuthor {
-//                 last_name
-//             }
-//         }`
-// }).then(result => console.log('apollo server result: ',result));
+client.query({
+    query: gql`
+        {
+            getAllAuthor {
+                last_name
+            }
+        }`
+}).then(result => console.log('apollo server result: ', result));
 
 ReactDOM.render(     
     <App />,

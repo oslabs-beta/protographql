@@ -33,6 +33,7 @@ function TestsView() {
             EXPECTED RESPONSE    
             </textarea>
             <button onClick={addQuery}>Add Query</button>
+            <input type='text' placeholder='enter your uri here' onChange={(e) => handleKey(e)} ></input><input type='submit' handleClick></input>
         </div>
          
     );

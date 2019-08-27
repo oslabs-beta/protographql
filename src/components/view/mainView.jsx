@@ -5,6 +5,7 @@ import VisualizeView from '../../components/view/visualizeView';
 import GraphiqlView from './graphiqlView';
 import TableForm from '../popup/tableForm';
 import { Store } from '../../state/store';
+import TestsView from './testsView';
 
 function MainView() {
   /*
@@ -20,6 +21,7 @@ function MainView() {
       {view === 'schema' && <SchemaView />}
       {view === 'visualize' && <VisualizeView />}
       {view === 'graphiql' && <GraphiqlView />}
+      {view === 'tests' && <TestsView />}
       {popUp === 'table' && <TableForm />}
     </div>
   )

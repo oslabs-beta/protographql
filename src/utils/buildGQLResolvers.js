@@ -8,6 +8,7 @@ const buildGQLResolvers = tables => {
   gqlResolvers += `${tabs(1)}Query: {\n`;
   for (let tbIndex in tables) {
     const table = tables[tbIndex];
+
     // handles getAll_______ Queries
     gqlResolvers += `${tabs(2)}getAll${table.type}() {\n`;
     gqlResolvers += `${tabs(3)}const sql = \`SELECT * FROM "${table.type}";\`;\n`;

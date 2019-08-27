@@ -12,6 +12,7 @@ const link = createSchemaLink({ schema });
 createIpcExecutor({link, ipc: ipc})
 
 // console.log(process.env.DB_URI)
+const buildExportTestSuite = require('./src/utils/buildExportTestSuite.js');
 
 // Global reference of the window object to avoid JS garbage collection
 // when window is created
@@ -69,7 +70,7 @@ const createFile = (filePath, data) => {
 }
 
 //function to run when user clicks export
-function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env) {
+function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env, queries) {
   dialog.showOpenDialog(
     {
       title: 'Choose location to save folder in',
@@ -81,10 +82,14 @@ function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env) {
       //if user closes dialog window without selecting a folder
       if (!result) return;
 
+      // creates the files in the apollo-sever folder
       createFile('graphql/schema.js', gqlSchema);
       createFile('graphql/resolvers.js', gqlResolvers);
       createFile('db/createTables.sql', sqlScripts);
       createFile('.env', env);
+      //generate test-suite
+      console.log(queries);
+      createFile('tests/tests.js', buildExportTestSuite.createTest(queries[0], queries[1]));
 
       const output = fs.createWriteStream(result + '/apollo-server.zip', 
         // { autoClose: false }
@@ -106,7 +111,7 @@ function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env) {
       // append files from apollo-server directory and naming it `apollo-server` within the archive
       archive.directory(__dirname + '/apollo-server/', 'apollo-server');
 
-      // pipe the archive details to our zip file
+      // pipe the archive details to our zip file -> pushes files into the zip
       archive.pipe(output);
 
       // finalize the archive (ie we are done appending files but streams have to finish yet)
@@ -139,6 +144,7 @@ function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env) {
 }
 
 //listener for export button being clicked
-ipc.on('show-export-dialog', (event, gqlSchema, gqlResolvers, sqlScripts, env) => {
-  showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env);
+ipc.on('show-export-dialog', (event, gqlSchema, gqlResolvers, sqlScripts, env, queries) => {
+  console.log('show-export-dialog => ', queries);
+  showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env, queries);
 });

@@ -4,12 +4,6 @@ const ipcMain = require('electron').ipcMain;
 const archiver = require('archiver');
 const fs = require('fs');
 const buildExportTestSuite = require('./src/utils/buildExportTestSuite.js');
-// const createServer = require('./src/index.js');
-// const { createSchemaLink, createIpcExecutor } = require('graphql-transport-electron');
-// const schema = require('./src/schema');
-
-// const link = createSchemaLink({ schema });
-// createIpcExecutor({link, ipc: ipcMain})
 
 // Global reference of the window object to avoid JS garbage collection
 // when window is created

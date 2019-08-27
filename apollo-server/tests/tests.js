@@ -1,15 +1,7 @@
 test('query', () => {
-	expect('LA').toEqual('CA')
-})
-
-test('query', () => {
-	expect('DSM').toEqual('IA')
-})
-
-test('query', () => {
-	expect('AS').toEqual('ER')
-})
-
-test('query', () => {
-	expect('HB').toEqual('CA')
+	expect('{
+        getAllAuthor {
+            first_name
+        }
+    }').toEqual('{"getAllAuthor":[{"first_name":"Jk","__typename":"Author"},{"first_name":"JRR","__typename":"Author"},{"first_name":"Arthur C.","__typename":"Author"},{"first_name":"Douglas","__typename":"Author"}]}')
 })

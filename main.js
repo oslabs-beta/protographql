@@ -1,17 +1,8 @@
 const { app, BrowserWindow, dialog } = require('electron');
 const path = require('path');
-const ipc = require('electron').ipcMain;
+const ipcMain = require('electron').ipcMain;
 const archiver = require('archiver');
 const fs = require('fs');
-require('dotenv').config
-// const createServer = require('./src/index.js');
-const { createSchemaLink, createIpcExecutor } = require('graphql-transport-electron');
-const schema = require('./src/schema');
-
-const link = createSchemaLink({ schema });
-createIpcExecutor({link, ipc: ipc})
-
-// console.log(process.env.DB_URI)
 const buildExportTestSuite = require('./src/utils/buildExportTestSuite.js');
 
 // Global reference of the window object to avoid JS garbage collection
@@ -144,7 +135,7 @@ function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env, queri
 }
 
 //listener for export button being clicked
-ipc.on('show-export-dialog', (event, gqlSchema, gqlResolvers, sqlScripts, env, queries) => {
+ipcMain.on('show-export-dialog', (event, gqlSchema, gqlResolvers, sqlScripts, env, queries) => {
   console.log('show-export-dialog => ', queries);
   showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env, queries);
 });

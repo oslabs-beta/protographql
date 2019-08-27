@@ -124,9 +124,10 @@ function reducer(state, action) {
       return { ...state, displayError: newState.displayError };
 
     case "UPDATE_QUERIES":
+      console.log(action.payload[0][0]);
       return {
         ...state,
-        queries: action.payload
+        queries: [state.queries[0].concat(action.payload[0][0]), state.queries[1].concat(action.payload[1][0])]
       }
 
     default:

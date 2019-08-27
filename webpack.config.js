@@ -2,6 +2,7 @@ const path = require('path');
 
 module.exports = {
   entry: "./src/index.jsx",
+  target: 'electron-main',
   output: {
     publicPath: '/public/',
     path: path.resolve(__dirname, "public"),
@@ -18,7 +19,7 @@ module.exports = {
 
   resolve: {
       // Add '.ts' and '.tsx' as resolvable extensions.
-      extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
+      extensions: [".ts", ".tsx", ".mjs", ".js", ".jsx", ".json"]
   },
 
   module: {

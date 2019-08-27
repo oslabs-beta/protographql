@@ -1,9 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Store } from '../../state/store';
-import {
-    UPDATE_QUERIES
-} from '../../actions/actionTypes';
+import { UPDATE_QUERIES } from '../../actions/actionTypes';
 
 const electron = window.require('electron');
 const ipc = electron.ipcRenderer;

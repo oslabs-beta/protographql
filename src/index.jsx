@@ -1,7 +1,7 @@
 const React = require("react");
 const ReactDOM = require("react-dom");
-
 const { App } = require("./App");
+
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ipcRenderer } from 'electron';
@@ -15,16 +15,20 @@ const client = new ApolloClient({
   link,
 });
 
-// testing Apollo Server with query - currently not working
+console.log("client: ",client)
 
-client.query({
-    query: gql`
-        {
-            getAllAuthor {
-                last_name
-            }
-        }`
-}).then(result => console.log('apollo server result: ',result));
+// testing Apollo Server with query - currently not working
+  client.query({
+      query: gql`
+          {
+              getAllAuthor {
+                  last_name
+              }
+          }`
+  }).then(result => console.log('apollo server result: ',result)
+  .catch(err => console.log("client query error: ", err)))
+
+console.log("client after: ", client)
 
 ReactDOM.render(     
     <App />,

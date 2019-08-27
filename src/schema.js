@@ -20,86 +20,101 @@ done();
 })
 
 const resolvers = {
-Query: {
-    getAllAuthor() {
-    const sql = `SELECT * FROM "Author";`;
-    return pool.query(sql)
-        .then(res => res.rows)
-        .catch(err => console.error('Error is: ', err));
+    Query: {
+        getAllAuthor() {
+          const sql = `SELECT * FROM "Author";`;
+          return pool.query(sql)
+            .then(res => res.rows)
+            .catch(err => console.error('Error is: ', err));
+        },
+        getAuthor(parent, args, context, info) {
+          let sql = `SELECT * FROM "Author"`;
+          let whereClause = ` WHERE `;
+          Object.keys(args).forEach((fieldName, i , arr) => {
+            whereClause += `"${fieldName}" = '${args[fieldName]}'`;
+            if (i !== arr.length - 1) whereClause += ` AND `;
+            else whereClause += `;`;
+          });
+          sql += whereClause;
+          return pool.query(sql)
+            .then(res => res.rows)
+            .catch(err => console.error('Error is: ', err));
+        },
+        getAllBooks() {
+          const sql = `SELECT * FROM "Books";`;
+          return pool.query(sql)
+            .then(res => res.rows)
+            .catch(err => console.error('Error is: ', err));
+        },
+        getBooks(parent, args, context, info) {
+          let sql = `SELECT * FROM "Books"`;
+          let whereClause = ` WHERE `;
+          Object.keys(args).forEach((fieldName, i , arr) => {
+            whereClause += `"${fieldName}" = '${args[fieldName]}'`;
+            if (i !== arr.length - 1) whereClause += ` AND `;
+            else whereClause += `;`;
+          });
+          sql += whereClause;
+          return pool.query(sql)
+            .then(res => res.rows)
+            .catch(err => console.error('Error is: ', err));
+        },
     },
-    getAllBooks() {
-    const sql = `SELECT * FROM "Books";`;
-    return pool.query(sql)
-        .then(res => res.rows)
-        .catch(err => console.error('Error is: ', err));
+    
+    Author: {
+        id: (parent, args, context, info) => {
+            return parent.id;
+        },
+        first_name: (parent, args, context, info) => {
+            return parent.first_name;
+        },
+        last_name: (parent, args, context, info) => {
+            return parent.last_name;
+        },
     },
-    getBooks(parent, args, context, info) {
-    let sql = `SELECT * FROM "Books"`;
-    let whereClause = ` WHERE `;
-    Object.keys(args).forEach((fieldName, i , arr) => {
-        whereClause += `"${fieldName}" = '${args[fieldName]}'`;
-        if (i !== arr.length - 1) whereClause += ` AND `;
-        else whereClause += `;`;
-    });
-    sql += whereClause;
-    return pool.query(sql)
-        .then(res => res.rows)
-        .catch(err => console.error('Error is: ', err));
-    },
-},
 
-Author: {
-    id: (parent, args, context, info) => {
-    return parent.id;
+    Books: {
+        id: (parent, args, context, info) => {
+            return parent.id;
+        },
+        name: (parent, args, context, info) => {
+            return parent.name;
+        },
+        author: (parent, args, context, info) => {
+            return parent.author;
+        },
     },
-    first_name: (parent, args, context, info) => {
-    return parent.first_name;
-    },
-    last_name: (parent, args, context, info) => {
-    return parent.last_name;
-    },
-},
-
-Books: {
-    id: (parent, args, context, info) => {
-    return parent.id;
-    },
-    name: (parent, args, context, info) => {
-    return parent.name;
-    },
-    author: (parent, args, context, info) => {
-    const sql = `SELECT * FROM "Author" WHERE "id" = '${parent.author_id}';`;
-    return pool.query(sql)
-        .then(res => res.rows[0])
-        .catch(err => console.error('Error is: ', err))
-    },
-},
 };
 
 //Type Definitions for gql schema
 
 const typeDefs = gql`
-type Author {
-id: ID
-first_name: String!
-last_name: String!
-}
+    type Author {
+        id: ID
+        first_name: String
+        last_name: String
+    }
 
-type Books {
-id: ID
-name: String!
-author: Author
-}
+    type Books {
+        id: ID
+        name: ID
+        author: ID
+    }
 
-type Query {
-getAllAuthor: [Author]
-getAllBooks: [Books]
-getBooks(
-    id: ID,
-    name: String,
-    author_id: ID
-): [Books]
-}
+    type Query {
+        getAllAuthor: [Author]
+        getAuthor(
+        id: ID,
+        first_name: String,
+        last_name: String
+        ): [Author]
+        getAllBooks: [Books]
+        getBooks(
+        id: ID,
+        name: ID,
+        author: ID
+        ): [Books]
+    }
 `
 
 

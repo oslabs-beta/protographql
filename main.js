@@ -59,7 +59,7 @@ const createFile = (filePath, data) => {
 }
 
 //function to run when user clicks export
-function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env) {
+function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env, queries) {
   dialog.showOpenDialog(
     {
       title: 'Choose location to save folder in',
@@ -77,7 +77,8 @@ function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env) {
       createFile('db/createTables.sql', sqlScripts);
       createFile('.env', env);
       //generate test-suite
-      createFile('tests/tests.js', buildExportTestSuite.createTest(['SELECT * FROM Employees'], ['{name: \"Haris\", age:23}']));
+      console.log(queries);
+      createFile('tests/tests.js', buildExportTestSuite.createTest(queries[0], queries[1]));
 
       const output = fs.createWriteStream(result + '/apollo-server.zip', 
         // { autoClose: false }
@@ -132,6 +133,7 @@ function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env) {
 }
 
 //listener for export button being clicked
-ipc.on('show-export-dialog', (event, gqlSchema, gqlResolvers, sqlScripts, env) => {
-  showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env);
+ipc.on('show-export-dialog', (event, gqlSchema, gqlResolvers, sqlScripts, env, queries) => {
+  console.log('show-export-dialog => ', queries);
+  showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env, queries);
 });

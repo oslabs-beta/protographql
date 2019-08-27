@@ -56,7 +56,7 @@ const Input = styled(TextField)({
 
 function ExportPopUp(props) {
 
-  const { state: { popUp, gqlSchema, gqlResolvers, sqlScripts }, dispatch } = useContext(Store);
+  const { state: { popUp, gqlSchema, gqlResolvers, sqlScripts, queries }, dispatch } = useContext(Store);
 
   // this function is invoked on the 'Close' button on a click event, as defined on line 104 
   const handleClose = () => {
@@ -91,7 +91,7 @@ function ExportPopUp(props) {
             const uri = e.target.childNodes[0].childNodes[1].childNodes[0].value;
             if (uri.slice(0, 11).toLowerCase() === 'postgres://' || uri.slice(0, 13).toLowerCase() === 'postgresql://') {
               // emitting message to electron window to open save dialog
-              ipc.send('show-export-dialog', gqlSchema, gqlResolvers, sqlScripts, buildENV(uri));
+              ipc.send('show-export-dialog', gqlSchema, gqlResolvers, sqlScripts, buildENV(uri), queries);
               dispatch({ type: SET_POP_UP, payload: '' });
             } else {
               document.querySelector('#error').classList.remove('invisible')

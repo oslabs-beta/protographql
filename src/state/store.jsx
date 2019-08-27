@@ -133,7 +133,7 @@ function reducer(state, action) {
     case "UPDATE_URI_STRING": 
       return {
         ...state, 
-        uriInputString += action.payload;
+        uriInputString: uriInputString + action.payload,
       }
 
       case "ADD_APOLLO_SERVER_URI":
@@ -141,7 +141,7 @@ function reducer(state, action) {
         uriInputString = '';
         return {
           ...state,
-          apolloServerURI = newStr,
+          apolloServerURI: newStr,
         }
 
     default:

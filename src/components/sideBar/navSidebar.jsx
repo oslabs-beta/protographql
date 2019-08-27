@@ -100,6 +100,17 @@ function NavSideBar() {
       <NavButton
         key='NavButton5'
         className='fas fa-project-diagram'
+        view='GraphiQL'
+        click={(e) => {
+          dispatch({ type: SET_VIEW, payload: 'graphiql' })
+          dispatch({ type: SET_POP_UP, payload: '' })
+          changeButtonStyleOnClick("GraphiQL")
+          document.querySelector("svg") ? document.querySelector("svg").remove() : "";
+        }}
+      />
+      <NavButton
+        key='NavButton6'
+        className='fas fa-project-diagram'
         view='Tests'
         click={(e) => {
           dispatch({ type: SET_VIEW, payload: 'tests' })

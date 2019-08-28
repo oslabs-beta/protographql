@@ -1,5 +1,5 @@
 /*
-    This file declares the action types to be used by Redux.
+    This file declares the action types to be used by store.
 */
 
 export const ADD_TABLE = "ADD_TABLE";
@@ -20,3 +20,5 @@ export const HIDE_DISPLAY_ERROR = "HIDE_DISPLAY_ERROR";
 export const THROTTLE_DISPLAY_ERROR = "THROTTLE_DISPLAY_ERROR";
 
 export const UPDATE_QUERIES = "UPDATE_QUERIES";
+
+export const ADD_APOLLO_SERVER_URI = "ADD_APOLLO_SERVER_URI";

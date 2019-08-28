@@ -2,15 +2,14 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Store } from '../../state/store';
 import { UPDATE_QUERIES } from '../../actions/actionTypes';
+import { ADD_APOLLO_SERVER_URI } from '../../actions/actionTypes';
 
 // const electron = window.require('electron');
 // const ipc = electron.ipcRenderer;
 
-
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { gql, HttpLink } from 'apollo-boost';
-
 
 // const link = new HttpLink({
 //     uri: 'http://localhost:3000/GraphQL'
@@ -52,10 +51,7 @@ const Response = styled.div`
     height: calc(100vh - 26px - 64px);
 `;
 
-/*
-The following styles mimic the styles in codeView
-*/
-
+/* The following styles mimic the styles in codeView */
 const Code = styled.div`
   margin: 13px;
   font-family: Courier New, Consolas, Monaco, Lucida Console;
@@ -122,9 +118,10 @@ const Input = styled.input`
   font-size: .75em;
 `;
 
+/*-------------------- Functional Component --------------------*/
 
 function TestsView() {
-    const { dispatch, state: { queries }} = useContext(Store);
+    const { dispatch, state: { queries, apolloServerURI }} = useContext(Store);
     
     const link = new HttpLink({
         uri: 'http://localhost:3000/GraphQL'
@@ -150,6 +147,12 @@ function TestsView() {
         
     }
 
+    function updateURL() {
+        let url = document.getElementById('url').value;
+        dispatch({ type: ADD_APOLLO_SERVER_URI, payload: url });
+        console.log('test updateURL', apolloServerURI);
+    }
+
     return(
         <div>
             <Title>
@@ -166,7 +169,7 @@ function TestsView() {
             <Code>
                 <Column style={{ gridColumn: "1 / 3", gridRow: "1 / 1" }}>
                     <Title2>Apollo Server URI</Title2>
-                    <Input type='text' placeholder='enter your uri here'></Input><Button>Add URI</Button>
+                    <Input type='text' id='url' placeholder='enter your uri here'></Input><Button onClick={updateURL}>Add URI</Button>
                 </Column>
             </Code>
         </div>

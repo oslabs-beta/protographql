@@ -130,18 +130,12 @@ function reducer(state, action) {
         queries: [state.queries[0].concat(action.payload[0][0]), state.queries[1].concat(action.payload[1][0])]
       }
 
-    case "UPDATE_URI_STRING": 
-      return {
-        ...state, 
-        uriInputString: uriInputString + action.payload,
-      }
-
       case "ADD_APOLLO_SERVER_URI":
-        let newStr = uriInputString;
-        uriInputString = '';
+        // let newStr = uriInputString;
+        // uriInputString = '';
         return {
           ...state,
-          apolloServerURI: newStr,
+          apolloServerURI: action.payload,
         }
 
     default:

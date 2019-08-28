@@ -74,7 +74,7 @@ function TestsView() {
             </textarea>
             <button onClick={addQuery}>Add Query</button>
             <button onClick={(e) => {
-                ipc.send('show-test-export-dialog', queries)
+                ipc.send('show-test-export-dialog',queries)
             }}> Export Tests </button>
             <p>{console.log("queries: ",queries)}</p>
         </div>

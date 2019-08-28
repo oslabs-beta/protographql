@@ -103,7 +103,7 @@ function TestsView() {
     const { dispatch, state: { queries, apolloServerURI }} = useContext(Store);
     
     const link = new HttpLink({
-        uri: 'http://localhost:3000/GraphQL'
+        uri: apolloServerURI
       })
       
       const client = new ApolloClient({

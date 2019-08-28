@@ -111,7 +111,7 @@ function NavSideBar() {
       /> */}
       <NavButton
         key='NavButton6'
-        className='fas fa-project-diagram'
+        className='fas fa-clipboard-check'
         view='Tests'
         click={(e) => {
           dispatch({ type: SET_VIEW, payload: 'tests' })

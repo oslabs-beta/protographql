@@ -137,8 +137,10 @@ function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env, queri
   );
 }
 
+//The function to create the test file 
 const createTestFile = (filePath, data) => {
   try {
+    //write to a file and replace if it already exists
     fs.writeFileSync(path.join(__dirname, `/test-suite/${filePath}`), data, 'utf8');
   } catch (err) {
     return console.error(err);
@@ -153,9 +155,9 @@ const createTestFile = (filePath, data) => {
 function showTestExportDialog(event, queries) {
   dialog.showOpenDialog(
     {
-      title: 'Choose location to save folder in',
+      title: 'Choose location to save file',
       defaultPath: app.getPath('desktop'),
-      message: 'Choose location to save folder in',
+      message: 'Choose location to save file',
       properties: ['openDirectory']
     },
     result => {
@@ -166,57 +168,70 @@ function showTestExportDialog(event, queries) {
       // createTestFile('.env', env);
       //generate test-suite
       console.log(queries);
-      createTestFile('tests/tests.js', buildExportTestSuite.createTest(queries[0], queries[1]));
+      //changed this to the root of the folder "test-suite" rather than "tests" within the folder -VW
+      createTestFile('tests.js', buildExportTestSuite.createTest(queries[0], queries[1]));
 
-      const output = fs.createWriteStream(result + '/test-suite.zip', 
-        // { autoClose: false }
-      );
-      const archive = archiver('zip', {
-        zlib: { level: 9 } // Sets the compression level.
-      });
+      //creating a function "output" that opens a write stream for our zip file. NOW COMMENTED OUT
+      // const output = fs.createWriteStream(result + '/test-suite.zip', 
+      //   // { autoClose: false }
+      // );
 
-      // good practice to catch warnings (ie stat failures and other non-blocking errors)
-      archive.on('warning', function (err) {
-        if (err.code === 'ENOENT') console.error(err)
-        else throw err;
-      });
+      //make a new output function that is an fs WRITE with the same data.
+     fs.writeFile(result + 'tests.js', buildExportTestSuite.createTest(queries[0], queries[1]),function (err) {
+          if (err) throw err;}); 
+       
+      // function "archive" that uses the "archiver" node module to make a zip format file level 9 NOW COMMENTED OUT
+      // const archive = archiver('zip', {
+      //   zlib: { level: 9 } // Sets the compression level.
+      // });
 
-      archive.on('error', function (err) {
-        throw err;
-      });
+      // using the "on" meathod to start the compression 
+      //good practice to catch warnings (ie stat failures and other non-blocking errors) NOW COMMENTED OUT
+      // archive.on('warning', function (err) {
+      //   if (err.code === 'ENOENT') console.error(err)
+      //   else throw err;
+      // });
 
-      // append files from test-suite directory and naming it `test-suite` within the archive
-      archive.directory(__dirname + '/test-suite/', 'test-suite');
+      // archive.on('error', function (err) {
+      //   throw err;
+      // });
 
-      // pipe the archive details to our zip file -> pushes files into the zip
-      archive.pipe(output);
+      // append files from test-suite directory and naming it `test-suite` within the archive NOW COMMENTED OUT
+      // archive.directory(__dirname + '/test-suite/', 'test-suite');
 
-      // finalize the archive (ie we are done appending files but streams have to finish yet)
+      // pipe the archive details to our zip file -> pushes files into the zip NOW COMMENTED OUT
+      // archive.pipe(output);
+
+      // finalize the archive (ie we are done appending files but streams have to finish yet) NOW COMMENTED OUT 
       // 'close' will be fired afterwards
-      archive.finalize();
+      // archive.finalize();
 
 
-      // listen for all archive data to be written and output associated details
-      output.on('close', function () {
-        console.log('Zip file size is ', archive.pointer() + ' total bytes');
-        console.log('Archived zip file is complete.');
+      // listen for all archive data to be written and output associated details NOW COMMENTED OUT
+      // output.on('close', function () {
+      //   console.log('Zip file size is ', archive.pointer() + ' total bytes');
+      //   console.log('Archived zip file is complete.');
+
+      //instead, simply call "outputSingle" -VW
+        //outputSingle();
 
         //reverts templates to empty files for future use
         createTestFile('.env', '');
-        createTestFile('tests/tests.js','')
+         //changed this to the root of the folder "test-suite" rather than "tests" within the folder -VW
+        createTestFile('tests.js','')
 
         dialog.showMessageBox(win,
           {
             type: "info",
             buttons: ["Ok"],
             message: "Export Successful!",
-            detail: 'File saved to ' + result + '/test-suite.zip'
+            detail: 'File saved to ' + result + '/tests.js'
           }
         )
       });
     }
-  );
-}
+  //); TOO MANY BRACKETS
+//}
 
 //listener for Apollo Server export button being clicked
 ipcMain.on('show-export-dialog', (event, gqlSchema, gqlResolvers, sqlScripts, env, queries) => {

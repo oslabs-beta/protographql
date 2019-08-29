@@ -156,8 +156,8 @@ function TestsView() {
             <Column style={{ gridColumn: "1 / 3", gridRow: "1 / span 1" }}>
               <Title>Test Maker</Title> 
               <div style={{ width: "95%", marginLeft: "auto", marginRight: "auto" }}>
-                <Textbox id="query" placeholder="enter your query here"></Textbox>
-                <Textbox id="response" placeholder="enter your expected response here"></Textbox>
+                <Textbox id="query" placeholder="INSTRUCTIONS: In this view you can create query and response pairs to export as tests. 1) Add the endpoint of your running GraphQL server in the box below:Apollo Server URL  | Enter URL here For example: http://localhost:30002) Click the Add URL button 3) Type your test query in THIS BOX For example: {hero {name}}"></Textbox>
+                <Textbox id="response" placeholder="INSTRUCTIONS CONTINUED: Once you have written your test query and added your Apollo Server URL 4) Click the Add Query button below 5) The response to your query will appear in THIS BOX The query / response pair is now ready to be exported as a tests.js file 6) If you want to add additional query /response pairs repeat steps 3 and 4. TO EXPORT your test file click the Export Tests button below."></Textbox>
               </div>
               <div style={{ width: "95%", marginLeft: "auto", marginRight: "auto" }}>
               <Button onClick={addQuery}>Add Query</Button>
@@ -168,8 +168,8 @@ function TestsView() {
             </div>
             </Column>
             <Column style={{ gridColumn: "1 / 3", gridRow: "3 / span 1" }}>
-                  <Title>Apollo Server URI</Title>
-                  <Input type='text' id='url' placeholder='enter your uri here'></Input><Button style={{ width: "20%" }} onClick={updateURL}>Add URI</Button>
+                  <Title>Apollo Server URL</Title>
+                  <Input type='text' id='url' placeholder='Enter URL here'></Input><Button style={{ width: "20%" }} onClick={updateURL}>Add URL</Button>
               </Column>
           </Code>
         </div>   

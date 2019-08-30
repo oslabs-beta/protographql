@@ -51,8 +51,10 @@ app.on('activate', () => {
   if (win === null) createWindow();
 });
 
+//---------------------APOLLO SERVER EXPORT ------------------------//
+
 // Overwrite default Apollo Server code files
-const createFile = (filePath, data) => {
+const createApolloFile = (filePath, data) => {
   try {
     fs.writeFileSync(path.join(__dirname, `/apollo-server/${filePath}`), data, 'utf8');
   } catch (err) {
@@ -74,13 +76,13 @@ function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env, queri
       if (!result) return;
 
       // creates the files in the apollo-sever folder
-      createFile('graphql/schema.js', gqlSchema);
-      createFile('graphql/resolvers.js', gqlResolvers);
-      createFile('db/createTables.sql', sqlScripts);
-      createFile('.env', env);
+      createApolloFile('graphql/schema.js', gqlSchema);
+      createApolloFile('graphql/resolvers.js', gqlResolvers);
+      createApolloFile('db/createTables.sql', sqlScripts);
+      createApolloFile('.env', env);
       //generate test-suite
-      console.log(queries);
-      createFile('tests/tests.js', buildExportTestSuite.createTest(queries[0], queries[1]));
+      createTestFile('tests/tests.js', buildExportTestSuite.createTest(queries[0], queries[1]));
+      
 
       const output = fs.createWriteStream(result + '/apollo-server.zip', 
         // { autoClose: false }
@@ -115,11 +117,12 @@ function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env, queri
         console.log('Zip file size is ', archive.pointer() + ' total bytes');
         console.log('Archived zip file is complete.');
 
-        //commented out to fix Linux export
-        createFile('graphql/schema.js', '');
-        createFile('graphql/resolvers.js', '');
-        createFile('db/createTables.sql', '');
-        createFile('.env', '');
+        //reverts templates to empty files for future use
+        createApolloFile('graphql/schema.js', '');
+        createApolloFile('graphql/resolvers.js', '');
+        createApolloFile('db/createTables.sql', '');
+        createApolloFile('.env', '');
+        createTestFile('tests/tests.js','')
 
         dialog.showMessageBox(win,
           {
@@ -134,8 +137,110 @@ function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env, queri
   );
 }
 
-//listener for export button being clicked
+//The function to create the test file 
+const createTestFile = (filePath, data) => {
+  try {
+    //write to a file and replace if it already exists
+    fs.writeFileSync(path.join(__dirname, `/test-suite/${filePath}`), data, 'utf8');
+  } catch (err) {
+    return console.error(err);
+  }
+}
+
+
+//---------------------TEST EXPORT -------------------//
+
+
+//function to run when user clicks export
+function showTestExportDialog(event, queries) {
+  dialog.showOpenDialog(
+    {
+      title: 'Choose location to save file',
+      defaultPath: app.getPath('desktop'),
+      message: 'Choose location to save file',
+      properties: ['openDirectory']
+    },
+    result => {
+      //if user closes dialog window without selecting a folder
+      if (!result) return;
+
+      // creates the files in the test-suite folder
+      // createTestFile('.env', env);
+      //generate test-suite
+      console.log(queries);
+      //changed this to the root of the folder "test-suite" rather than "tests" within the folder -VW
+      createTestFile('tests.js', buildExportTestSuite.createTest(queries[0], queries[1]));
+
+      //creating a function "output" that opens a write stream for our zip file. NOW COMMENTED OUT
+      // const output = fs.createWriteStream(result + '/test-suite.zip', 
+      //   // { autoClose: false }
+      // );
+
+      //make a new output function that is an fs WRITE with the same data.
+     fs.writeFile(result + 'tests.js', buildExportTestSuite.createTest(queries[0], queries[1]),function (err) {
+          if (err) throw err;}); 
+       
+      // function "archive" that uses the "archiver" node module to make a zip format file level 9 NOW COMMENTED OUT
+      // const archive = archiver('zip', {
+      //   zlib: { level: 9 } // Sets the compression level.
+      // });
+
+      // using the "on" meathod to start the compression 
+      //good practice to catch warnings (ie stat failures and other non-blocking errors) NOW COMMENTED OUT
+      // archive.on('warning', function (err) {
+      //   if (err.code === 'ENOENT') console.error(err)
+      //   else throw err;
+      // });
+
+      // archive.on('error', function (err) {
+      //   throw err;
+      // });
+
+      // append files from test-suite directory and naming it `test-suite` within the archive NOW COMMENTED OUT
+      // archive.directory(__dirname + '/test-suite/', 'test-suite');
+
+      // pipe the archive details to our zip file -> pushes files into the zip NOW COMMENTED OUT
+      // archive.pipe(output);
+
+      // finalize the archive (ie we are done appending files but streams have to finish yet) NOW COMMENTED OUT 
+      // 'close' will be fired afterwards
+      // archive.finalize();
+
+
+      // listen for all archive data to be written and output associated details NOW COMMENTED OUT
+      // output.on('close', function () {
+      //   console.log('Zip file size is ', archive.pointer() + ' total bytes');
+      //   console.log('Archived zip file is complete.');
+
+      //instead, simply call "outputSingle" -VW
+        //outputSingle();
+
+        //reverts templates to empty files for future use
+        createTestFile('.env', '');
+         //changed this to the root of the folder "test-suite" rather than "tests" within the folder -VW
+        createTestFile('tests.js','')
+
+        dialog.showMessageBox(win,
+          {
+            type: "info",
+            buttons: ["Ok"],
+            message: "Export Successful!",
+            detail: 'File saved to ' + result + '/tests.js'
+          }
+        )
+      });
+    }
+  //); TOO MANY BRACKETS
+//}
+
+//listener for Apollo Server export button being clicked
 ipcMain.on('show-export-dialog', (event, gqlSchema, gqlResolvers, sqlScripts, env, queries) => {
   console.log('show-export-dialog => ', queries);
   showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env, queries);
+});
+
+//listener for test export button being clicked
+ipcMain.on('show-test-export-dialog', (event, queries) => {
+  console.log('show-test-export-dialog => ', queries);
+  showTestExportDialog(event, queries);
 });

@@ -97,18 +97,6 @@ function NavSideBar() {
           document.querySelector("svg") ? document.querySelector("svg").remove() : "";
         }}
       />
-      {/* comments out button for removed component */}
-      {/* <NavButton
-        key='NavButton5'
-        className='fas fa-project-diagram'
-        view='GraphiQL'
-        click={(e) => {
-          dispatch({ type: SET_VIEW, payload: 'graphiql' })
-          dispatch({ type: SET_POP_UP, payload: '' })
-          changeButtonStyleOnClick("GraphiQL")
-          document.querySelector("svg") ? document.querySelector("svg").remove() : "";
-        }}
-      /> */}
       <NavButton
         key='NavButton6'
         className='fas fa-clipboard-check'

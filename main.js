@@ -37,7 +37,6 @@ function createWindow() {
     win = null;
   });
 
-  // app.server = createServer(app);
 }
 
 // Creates our window when electron has initialized for the first time
@@ -151,7 +150,7 @@ const createTestFile = (filePath, data) => {
 //---------------------TEST EXPORT -------------------//
 
 
-//function to run when user clicks export
+//function to run when user clicks "Export Tests"
 function showTestExportDialog(event, queries) {
   dialog.showOpenDialog(
     {
@@ -171,52 +170,10 @@ function showTestExportDialog(event, queries) {
       //changed this to the root of the folder "test-suite" rather than "tests" within the folder -VW
       createTestFile('tests.js', buildExportTestSuite.createTest(queries[0], queries[1]));
 
-      //creating a function "output" that opens a write stream for our zip file. NOW COMMENTED OUT
-      // const output = fs.createWriteStream(result + '/test-suite.zip', 
-      //   // { autoClose: false }
-      // );
-
       //make a new output function that is an fs WRITE with the same data.
      fs.writeFile(result + 'tests.js', buildExportTestSuite.createTest(queries[0], queries[1]),function (err) {
           if (err) throw err;}); 
-       
-      // function "archive" that uses the "archiver" node module to make a zip format file level 9 NOW COMMENTED OUT
-      // const archive = archiver('zip', {
-      //   zlib: { level: 9 } // Sets the compression level.
-      // });
 
-      // using the "on" meathod to start the compression 
-      //good practice to catch warnings (ie stat failures and other non-blocking errors) NOW COMMENTED OUT
-      // archive.on('warning', function (err) {
-      //   if (err.code === 'ENOENT') console.error(err)
-      //   else throw err;
-      // });
-
-      // archive.on('error', function (err) {
-      //   throw err;
-      // });
-
-      // append files from test-suite directory and naming it `test-suite` within the archive NOW COMMENTED OUT
-      // archive.directory(__dirname + '/test-suite/', 'test-suite');
-
-      // pipe the archive details to our zip file -> pushes files into the zip NOW COMMENTED OUT
-      // archive.pipe(output);
-
-      // finalize the archive (ie we are done appending files but streams have to finish yet) NOW COMMENTED OUT 
-      // 'close' will be fired afterwards
-      // archive.finalize();
-
-
-      // listen for all archive data to be written and output associated details NOW COMMENTED OUT
-      // output.on('close', function () {
-      //   console.log('Zip file size is ', archive.pointer() + ' total bytes');
-      //   console.log('Archived zip file is complete.');
-
-      //instead, simply call "outputSingle" -VW
-        //outputSingle();
-
-        //reverts templates to empty files for future use
-        createTestFile('.env', '');
          //changed this to the root of the folder "test-suite" rather than "tests" within the folder -VW
         createTestFile('tests.js','')
 
@@ -230,8 +187,6 @@ function showTestExportDialog(event, queries) {
         )
       });
     }
-  //); TOO MANY BRACKETS
-//}
 
 //listener for Apollo Server export button being clicked
 ipcMain.on('show-export-dialog', (event, gqlSchema, gqlResolvers, sqlScripts, env, queries) => {

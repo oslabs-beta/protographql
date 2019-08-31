@@ -30,7 +30,7 @@ const ButtonContainer = styled.div`
   cursor: pointer;
   animation: ${fontColor} 2s;
   animation-fill-mode: both;
-  animation-iteration-count: 5;
+  animation-iteration-count: 20;
 `;
 
 // styles the 'Add Table' button and surrounding space

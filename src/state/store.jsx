@@ -123,13 +123,14 @@ function reducer(state, action) {
       newState.displayError.throttleStatus = !newState.displayError.throttleStatus;
       return { ...state, displayError: newState.displayError };
 
+      //Updates the queries that are input by the user and the subsequent responses. 
     case "UPDATE_QUERIES":
       console.log(action.payload[0][0]);
       return {
         ...state,
         queries: [state.queries[0].concat(action.payload[0][0]), state.queries[1].concat(action.payload[1][0])]
       }
-
+      //Updates the endpoint as input by the user. 
       case "ADD_APOLLO_SERVER_URI":
         // let newStr = uriInputString;
         // uriInputString = '';

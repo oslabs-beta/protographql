@@ -171,7 +171,7 @@ function TestsView() {
             <Column style={{ gridColumn: "1 / 3", gridRow: "3 / span 1" }}>
                   <Title>GraphQL Endpoint URL</Title>
                   <Input type='text' id='url' placeholder='Enter URL here'></Input><Button style={{ width: "20%" }} onClick={updateURL}>Add URL</Button>
-                  <p className="invisible" id="endpointError">That is not a valid endpoint.  If no valid endpoint is entered, the endpoint will remain unchanged. The initial value is http://localhost:3000/GraphQL</p>
+                  <p className="invisible" id="endpointError">That is not a valid endpoint.  If no valid endpoint is entered, the endpoint will remain unchanged. The initial value is set to http://localhost:3000/GraphQL</p>
               </Column>
           </Code>
         </div>   

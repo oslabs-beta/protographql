@@ -79,7 +79,7 @@ function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env, queri
       createApolloFile('graphql/resolvers.js', gqlResolvers);
       createApolloFile('db/createTables.sql', sqlScripts);
       createApolloFile('.env', env);
-      //generate test-suite
+      //generate tests
       createApolloFile('tests/tests.js', buildExportTestSuite.createTest(queries[0], queries[1]));
       
 
@@ -140,7 +140,7 @@ function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env, queri
 const createTestFile = (filePath, data) => {
   try {
     //write to a file and replace if it already exists
-    fs.writeFileSync(path.join(__dirname, `/test-suite/${filePath}`), data, 'utf8');
+    fs.writeFileSync(path.join(__dirname, `/tests/${filePath}`), data, 'utf8');
   } catch (err) {
     return console.error(err);
   }
@@ -163,18 +163,15 @@ function showTestExportDialog(event, queries) {
       //if user closes dialog window without selecting a folder
       if (!result) return;
 
-      // creates the files in the test-suite folder
+      // creates the files in the tests folder
       // createTestFile('.env', env);
-      //generate test-suite
+      //generate tests
       console.log(queries);
-      //changed this to the root of the folder "test-suite" rather than "tests" within the folder -VW
       createTestFile('tests.js', buildExportTestSuite.createTest(queries[0], queries[1]));
 
       //make a new output function that is an fs WRITE with the same data.
-     fs.writeFile(result + 'tests.js', buildExportTestSuite.createTest(queries[0], queries[1]),function (err) {
+     fs.writeFile(result + '/tests.js', buildExportTestSuite.createTest(queries[0], queries[1]),function (err) {
           if (err) throw err;}); 
-
-         //changed this to the root of the folder "test-suite" rather than "tests" within the folder -VW
         createTestFile('tests.js','')
 
         dialog.showMessageBox(win,

@@ -81,7 +81,7 @@ function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env, queri
       createApolloFile('db/createTables.sql', sqlScripts);
       createApolloFile('.env', env);
       //generate test-suite
-      createTestFile('tests/tests.js', buildExportTestSuite.createTest(queries[0], queries[1]));
+      createApolloFile('tests/tests.js', buildExportTestSuite.createTest(queries[0], queries[1]));
       
 
       const output = fs.createWriteStream(result + '/apollo-server.zip', 
@@ -122,7 +122,7 @@ function showExportDialog(event, gqlSchema, gqlResolvers, sqlScripts, env, queri
         createApolloFile('graphql/resolvers.js', '');
         createApolloFile('db/createTables.sql', '');
         createApolloFile('.env', '');
-        createTestFile('tests/tests.js','')
+        createApolloFile('tests/tests.js','')
 
         dialog.showMessageBox(win,
           {

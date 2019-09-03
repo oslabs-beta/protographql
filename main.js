@@ -1,4 +1,4 @@
-const { app, BrowserWindow, dialog } = require('electron');
+const { app, BrowserWindow, dialog, Menu } = require('electron');
 const path = require('path');
 const ipcMain = require('electron').ipcMain;
 const archiver = require('archiver');
@@ -196,3 +196,116 @@ ipcMain.on('show-test-export-dialog', (event, queries) => {
   console.log('show-test-export-dialog => ', queries);
   showTestExportDialog(event, queries);
 });
+
+//--------------------- MENU CUSTOMIZATION -------------------//
+
+app.setAboutPanelOptions({applicationName: 'ProtoGraphQL', applicationVersion: '2.0', copyright: 'MIT License', credits: 'Version 1:\n Alena Budzko, Bryan Fong, Rodolfo Guzman, Jarred Jack Harewood, Geoffrey Lin\n\n Version 2:\n Haris Hambasic, Michelle Moody, Jessica Vaughan, Vance Wallace', website: 'https://github.com/oslabs-beta/protographql', iconPath: './public/assets/icon.png'});
+
+// const template = [
+//   // { role: 'appMenu' }
+//   ...(process.platform === 'darwin' ? [{
+//     label: app.getName(),
+//     submenu: [
+//       { role: 'about' },
+//       { type: 'separator' },
+//       { role: 'services' },
+//       { type: 'separator' },
+//       { role: 'hide' },
+//       { role: 'hideothers' },
+//       { role: 'unhide' },
+//       { type: 'separator' },
+//       { role: 'quit' }
+//     ]
+//   }] : []),
+//   // { role: 'fileMenu' }
+//   {
+//     label: 'File',
+//     submenu: [
+//       process.platform === 'darwin' ? { role: 'close' } : { role: 'quit' },
+//     ]
+//   },
+//   // { role: 'editMenu' }
+//   {
+//     label: 'Edit',
+//     submenu: [
+//       { role: 'undo' },
+//       { role: 'redo' },
+//       { type: 'separator' },
+//       { role: 'cut' },
+//       { role: 'copy' },
+//       { role: 'paste' },
+//       ...(process.platform === 'darwin' ? [
+//         { role: 'pasteAndMatchStyle' },
+//         { role: 'delete' },
+//         { role: 'selectAll' },
+//         { type: 'separator' },
+//         {
+//           label: 'Speech',
+//           submenu: [
+//             { role: 'startspeaking' },
+//             { role: 'stopspeaking' }
+//           ]
+//         }
+//       ] : [
+//         { role: 'delete' },
+//         { type: 'separator' },
+//         { role: 'selectAll' }
+//       ])
+//     ]
+//   },
+//   // { role: 'viewMenu' }
+//   {
+//     label: 'View',
+//     submenu: [
+//       { role: 'reload' },
+//       { role: 'forcereload' },
+//       { role: 'toggledevtools' },
+//       { type: 'separator' },
+//       { role: 'resetzoom' },
+//       { role: 'zoomin' },
+//       { role: 'zoomout' },
+//       { type: 'separator' },
+//       { role: 'togglefullscreen' },
+//       { label: 'Swim',
+//       click () { 'clicked swim'},
+//       },
+//       { label: 'Eat',
+//       click () { 'clicked eat'},
+//       }
+//     ]
+//   },
+//   // { role: 'windowMenu' }
+//   {
+//     label: 'Window',
+//     submenu: [
+//       { role: 'minimize' },
+//       { role: 'zoom' },
+//       ...(process.platform === 'darwin' ? [
+//         { type: 'separator' },
+//         { role: 'front' },
+//         { type: 'separator' },
+//         { role: 'window' }
+//       ] : [
+//         { role: 'close' }
+//       ])
+//     ]
+//   },
+//   {
+//     role: 'help',
+//     submenu: [
+//       {
+//         label: 'Learn More',
+//         click: async () => {
+//           const { shell } = require('electron')
+//           await shell.openExternal('https://electronjs.org')
+//         }
+//       }
+//     ]
+//   }
+// ]
+
+// const menu = Menu.buildFromTemplate(template);
+// Menu.setApplicationMenu(menu);
+
+
+

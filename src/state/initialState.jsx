@@ -73,9 +73,10 @@ export const gqlResolvers = `const pool = require('../db/sqlPool');\n\nmodule.ex
 
 export const sqlScripts = ``;
 
+//An array of arrays index 0 is the queries. index 1 is the responses to the queries 
 export const queries = [[], []];
-
-export const displayError = { displayStatus: false, throttleStatus: true, relatedTable: -1, relatedField: -1 };
 
 // stores the Apollo server URI input by the user in tests view
 export const apolloServerURI = 'http://localhost:3000/GraphQL';
+
+export const displayError = { displayStatus: false, throttleStatus: true, relatedTable: -1, relatedField: -1 };

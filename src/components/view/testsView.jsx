@@ -1,36 +1,19 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Store } from '../../state/store';
-import { UPDATE_QUERIES } from '../../actions/actionTypes';
-import { ADD_APOLLO_SERVER_URI } from '../../actions/actionTypes';
-
-
-const electron = window.require('electron');
-const ipc = electron.ipcRenderer;
+import { UPDATE_QUERIES, ADD_APOLLO_SERVER_URI } from '../../actions/actionTypes';
 
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { gql, HttpLink } from 'apollo-boost';
 
+const electron = window.require('electron');
+const ipc = electron.ipcRenderer;
 
 /*-------------------- Styled Components --------------------*/
-
-// const Title = styled.h1`
-// font-size: 1.5em;
-// text-align: center;
-// color: palevioletred;
-// `;
-
-// const Response = styled.div`
-//     margin: 13px;
-//     font-family: Courier New, Consolas, Monaco, Lucida Console;
-//     font-size: 15px;
-//     background-color: #EFF0F1;
-//     display: grid;
-//     height: calc(100vh - 26px - 64px);
-// `;
-
 /* The following styles mimic the styles in codeView */
+
+
 const Code = styled.div`
   margin: 13px;
   font-family: Courier New, Consolas, Monaco, Lucida Console;
@@ -117,28 +100,36 @@ const Textbox = styled.textarea`
 function TestsView() {
     const { dispatch, state: { queries, apolloServerURI }} = useContext(Store);
     
+    //Gets the new HttpLink when state is updated 
+    //note: initial state is localhost:3000/GraphQL 
     const link = new HttpLink({
         uri: apolloServerURI
       })
-      
+      //Creates a new ApolloClient connection using the link above 
       const client = new ApolloClient({
         cache: new InMemoryCache(),
         link: link
       });
 
+      //Add the query to state 
     function addQuery() {
+      //"q" represents the user defined query 
         let q = document.getElementById("query").value;
+        //"r" represents the response from the GraphQL endpoint
         let r;
 
-        //creates query to graphQL enpoint
-        //saves stringified result to state in the "queries" array
-        //writes response from GraphQL to "Response" text box in DOM
+        //packages and sends query to send to the graphQL enpoint through the client established above        
         client.query({
             query: gql`${q}`
         }).then(result => {;
             console.log('apollo server result: ',result);
+            //saves stringified result to state in the "queries" array
             r = JSON.stringify(result.data);
+            //writes response from GraphQL to "Response" text box in DOM
             document.getElementById("response").value = r;
+            //FOR FUTURE IMPLEMENTATION we determine the entirety of the data that is sent in a response and parse accordingly
+            //currently we only use "data" to update r"
+            //updating state
             dispatch({ type: UPDATE_QUERIES, payload: [[q], [r]] });
         })
         
@@ -146,9 +137,18 @@ function TestsView() {
 
     function updateURL() {
         let url = document.getElementById('url').value;
-        dispatch({ type: ADD_APOLLO_SERVER_URI, payload: url });
-        console.log('test updateURL', apolloServerURI);
-    }
+        if (url.match(/http:\/\/.+/) || url.match(/https:\/\/.+/)) {
+          dispatch({ type: ADD_APOLLO_SERVER_URI, payload: url });
+          console.log('test updateURL', apolloServerURI);
+          document.getElementById('url').value = '';
+          document.querySelector('#endpointError').classList.add('invisible');
+        } else {
+          document.querySelector('#endpointError').classList.remove('invisible');
+        }
+      }
+        
+    //FOR FUTURE IMPLEMENTATION: Check the user input and maybe ping the endpoint to check that it is live. 
+
 
     return(
         <div>
@@ -162,14 +162,16 @@ function TestsView() {
               <div style={{ width: "95%", marginLeft: "auto", marginRight: "auto" }}>
               <Button onClick={addQuery}>Add Query</Button>
                 <Button onClick={(e) => {
+                  //Electron meathod to initiate the export dialog. 
                     ipc.send('show-test-export-dialog',queries)
                 }}> Export Tests </Button>
                 <p>{console.log("queries: ",queries)}</p>
             </div>
             </Column>
             <Column style={{ gridColumn: "1 / 3", gridRow: "3 / span 1" }}>
-                  <Title>Apollo Server URL</Title>
+                  <Title>GraphQL Endpoint URL</Title>
                   <Input type='text' id='url' placeholder='Enter URL here'></Input><Button style={{ width: "20%" }} onClick={updateURL}>Add URL</Button>
+                  <p className="invisible" id="endpointError">That is not a valid endpoint.  If no valid endpoint is entered, the endpoint will remain unchanged. The initial value is set to http://localhost:3000/GraphQL</p>
               </Column>
           </Code>
         </div>   

@@ -202,8 +202,8 @@ function VisualizeView() {
         .attr('stroke-opacity', '1')
 
       d3.selectAll('ellipse')
-        .attr('rx', 66)
-        .attr('ry', 16)
+        .attr('rx', 86)
+        .attr('ry', 21)
         .attr('stroke', 'rgba(0, 0, 0, 0.18')
         .attr('stroke-width', 0.5)
         .attr('fill', 'white')

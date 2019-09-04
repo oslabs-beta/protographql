@@ -88,7 +88,7 @@ const buildGQLResolvers = tables => {
   for (let tbIndex in tables) {
     const table = tables[tbIndex];
     
-    // handles add_______ Queries
+    // handles add_______ Mutations
     gqlResolvers += `${tabs(2)}add${table.type}(parent, args, context, info) {\n`;
     gqlResolvers += `${tabs(3)}let sql = \`INSERT INTO "${table.type}" \`;\n`;
     gqlResolvers += `${tabs(3)}let valuesStr = \` VALUES (\`;\n`;

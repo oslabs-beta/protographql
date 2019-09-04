@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../components/header/header';
 import NavSideBar from '../components/sideBar/navSidebar';
 import Welcome from '../components/popup/welcome';
+import Instructions from '../components/popup/instructions';
 import MainView from '../components/view/mainView';
 import ExportPopUp from '../components/popup/exportPopUp';
 import styled from 'styled-components';
@@ -35,6 +36,7 @@ const Main = () => {
       <ExportPopUp />
       <NavSideBar />
       <MainView />
+      <Instructions />
     </Container>
   )
 }

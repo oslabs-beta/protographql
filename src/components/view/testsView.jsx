@@ -154,15 +154,13 @@ function TestsView() {
       dispatch({ type: SET_POP_UP, payload: 'instructions'});
     }
     //FOR FUTURE IMPLEMENTATION: Check the user input and maybe ping the endpoint to check that it is live. 
-
-
     return(
         <div>
           <Code> 
             <Column style={{ gridColumn: "1 / 3", gridRow: "1 / span 1" }}>
               <Title>Test Maker</Title> 
               <Button onClick={showInstructions} style={{ width: "18%", height: "12%"}}>
-              <i className="fas fa-info-circle">     Instructions</i>
+              <i className="fas fa-info-circle">  Instructions</i>
               </Button>
               <div style={{ width: "95%", marginLeft: "auto", marginRight: "auto" }}>
                 <Textbox id="query" placeholder='#Write your query here. For example: {hero {name}}'></Textbox>

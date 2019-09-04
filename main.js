@@ -200,7 +200,9 @@ ipcMain.on('show-test-export-dialog', (event, queries) => {
 //--------------------- MENU CUSTOMIZATION -------------------//
 
 // customizes the about option in the menu bar
-app.setAboutPanelOptions({applicationName: 'ProtoGraphQL', applicationVersion: '2.0', copyright: 'MIT License', credits: 'Version 1:\n Alena Budzko, Bryan Fong, Rodolfo Guzman, Jarred Jack Harewood, Geoffrey Lin\n\n Version 2:\n Haris Hambasic, Michelle Moody, Jessica Vaughan, Vance Wallace', website: 'https://github.com/oslabs-beta/protographql', iconPath: './public/assets/icon.png'});
+const originalTeam = 'Alena Budzko, Bryan Fong, Rodolfo Guzman, Jarred Jack Harewood, Geoffrey Lin';
+const contributors = 'Haris Hambasic, Michelle Moody, Jessica Vaughan, Vance Wallace';
+app.setAboutPanelOptions({applicationName: 'ProtoGraphQL', applicationVersion: '2.0', copyright: 'MIT License', credits: `Original Team\n${originalTeam}\n\nAdditional Contributors\n${contributors}`, website: 'https://github.com/oslabs-beta/protographql', iconPath: './public/assets/icon.png'});
 
 // the template and functions required to customize the menu bar - use the following format to add functionality { label: 'Swim', click () { 'clicked swim'}},
 // const template = [

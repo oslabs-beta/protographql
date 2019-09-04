@@ -5,6 +5,7 @@ import { UPDATE_QUERIES, ADD_APOLLO_SERVER_URI } from '../../actions/actionTypes
 
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { SET_POP_UP } from '../../actions/actionTypes';
 import { onError } from 'apollo-link-error';
 import { ApolloLink } from 'apollo-link';
 import { HttpLink, gql } from 'apollo-boost'
@@ -87,7 +88,7 @@ const Input = styled.input`
 
 /* This component was created for this view specifically */
 const Textbox = styled.textarea`
-  height: 42em;
+  height: 20em;
   border-radius: 5px;
   margin: 0;
   width: 48%;
@@ -140,7 +141,7 @@ function TestsView() {
     }).then(result => {
       console.log('apollo server result: ', result);
       //saves stringified result to state in the "queries" array
-      r = JSON.stringify(result);
+      r = JSON.stringify({data: JSON.stringify(result.data)}) ;
       //writes response from GraphQL to "Response" text box in DOM
       document.getElementById("response").value = r;
       //updating state
@@ -158,37 +159,50 @@ function TestsView() {
 
   function updateURL() {
     let url = document.getElementById('url').value;
-    dispatch({ type: ADD_APOLLO_SERVER_URI, payload: url });
-    console.log('test updateURL', apolloServerURI);
+    if (url.match(/http:\/\/.+/) || url.match(/https:\/\/.+/)) {
+      dispatch({ type: ADD_APOLLO_SERVER_URI, payload: url });
+      console.log('test updateURL', apolloServerURI);
+      document.getElementById('url').value = '';
+      document.querySelector('#endpointError').classList.add('invisible');
+    } else {
+      document.querySelector('#endpointError').classList.remove('invisible');
+    }
   }
-  //TODO: Check the user input and maybe ping the endpoint to check that it is live. 
+    
 
-
-  return (
+function showInstructions() {
+  // console.log("You clicked the instructions icon/button")
+  dispatch({ type: SET_POP_UP, payload: 'instructions'});
+}
+//FOR FUTURE IMPLEMENTATION: Check the user input and maybe ping the endpoint to check that it is live. 
+return(
     <div>
-      <Code>
+      <Code> 
         <Column style={{ gridColumn: "1 / 3", gridRow: "1 / span 1" }}>
-          <Title>Test Maker</Title>
+          <Title>Test Maker</Title> 
+          <Button onClick={showInstructions} style={{ width: "18%", height: "12%"}}>
+          <i className="fas fa-info-circle">  Instructions</i>
+          </Button>
           <div style={{ width: "95%", marginLeft: "auto", marginRight: "auto" }}>
-            <Textbox id="query" placeholder="INSTRUCTIONS: In this view you can create query and response pairs to export as tests. 1) Add the endpoint of your running GraphQL server in the box below:Apollo Server URL  | Enter URL here For example: http://localhost:30002) Click the Add URL button 3) Type your test query in THIS BOX For example: {hero {name}}"></Textbox>
-            <Textbox id="response" placeholder="INSTRUCTIONS CONTINUED: Once you have written your test query and added your Apollo Server URL 4) Click the Add Query button below 5) The response to your query will appear in THIS BOX The query / response pair is now ready to be exported as a tests.js file 6) If you want to add additional query /response pairs repeat steps 3 and 4. TO EXPORT your test file click the Export Tests button below."></Textbox>
+            <Textbox id="query" placeholder='#Write your query here. For example: {hero {name}}'></Textbox>
+            <Textbox id="response" placeholder='Responses from your endpoint will appear here. For example: {"hero": {"name": "Luke Skywalker"}}'></Textbox>
           </div>
           <div style={{ width: "95%", marginLeft: "auto", marginRight: "auto" }}>
-            <Button onClick={addQuery}>Add Query</Button>
+          <Button onClick={addQuery}>Add Query</Button>
             <Button onClick={(e) => {
               //Electron meathod to initiate the export dialog. 
-              ipc.send('show-test-export-dialog', queries)
+                ipc.send('show-test-export-dialog',queries)
             }}> Export Tests </Button>
-            <p>{console.log("queries: ", queries)}</p>
-          </div>
+            <p>{console.log("queries: ",queries)}</p>
+        </div>
         </Column>
         <Column style={{ gridColumn: "1 / 3", gridRow: "3 / span 1" }}>
-          <Title>GraphQL Endpoint URL</Title>
-          <Input type='text' id='url' placeholder='Enter URL here'></Input><Button style={{ width: "20%" }} onClick={updateURL}>Add URL</Button>
-        </Column>
+              <Title>GraphQL Endpoint URL</Title>
+              <Input type='text' id='url' placeholder='Enter URL here'></Input><Button style={{ width: "20%" }} onClick={updateURL}>Add URL</Button>
+              <p className="invisible" id="endpointError">That is not a valid endpoint.  If no valid endpoint is entered, the endpoint will remain unchanged. The initial value is set to http://localhost:3000/GraphQL</p>
+          </Column>
       </Code>
-    </div>
+    </div>   
   );
 }
-
 export default TestsView;

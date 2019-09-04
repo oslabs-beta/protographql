@@ -140,7 +140,7 @@ function TestsView() {
     }).then(result => {
       console.log('apollo server result: ', result);
       //saves stringified result to state in the "queries" array
-      r = JSON.stringify(result);
+      r = JSON.stringify({data: JSON.stringify(result.data)}) ;
       //writes response from GraphQL to "Response" text box in DOM
       document.getElementById("response").value = r;
       //updating state

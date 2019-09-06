@@ -202,108 +202,120 @@ ipcMain.on('show-test-export-dialog', (event, queries) => {
 // customizes the about option in the menu bar
 const originalTeam = 'Alena Budzko, Bryan Fong, Rodolfo Guzman, Jarred Jack Harewood, Geoffrey Lin';
 const contributors = 'Haris Hambasic, Michelle Moody, Jessica Vaughan, Vance Wallace';
-app.setAboutPanelOptions({applicationName: 'ProtoGraphQL', applicationVersion: '2.0', copyright: 'MIT License', credits: `Original Team\n${originalTeam}\n\nAdditional Contributors\n${contributors}`, website: 'https://github.com/oslabs-beta/protographql', iconPath: './public/assets/icon.png'});
+app.setAboutPanelOptions({applicationName: 'ProtoGraphQL', applicationVersion: '2.0', copyright: 'MIT License', credits: `Original Team\n${originalTeam}\n\nAdditional Contributors\n${contributors}`, website: 'https://github.com/oslabs-beta/protographql', iconPath: './public/assets/pictures/icon/icon.png'});
+
+// set options for custom menu feature
+const protographqlHelp = {
+  buttons: ['OK'],
+  message: 'Add Table\nCreate tables that mimic PSQL tables\n\nSchema\nView, edit or delete tables\n\nCode\nView generated GraphQL and SQL code before export\n\nVisualize\nView the GraphQL schema intuitively as a simple tree\n\nExport\nExport project to interact with database',
+  title: 'ProtoGraphQL Help',
+  type: 'info',
+  icon: './public/assets/pictures/icon/icon.png',
+  normalizeAccessKeys: true,
+}
 
 // the template and functions required to customize the menu bar - use the following format to add functionality { label: 'Swim', click () { 'clicked swim'}},
-// const template = [
-//   // { role: 'appMenu' }
-//   ...(process.platform === 'darwin' ? [{
-//     label: app.getName(),
-//     submenu: [
-//       { role: 'about' },
-//       { type: 'separator' },
-//       { role: 'services' },
-//       { type: 'separator' },
-//       { role: 'hide' },
-//       { role: 'hideothers' },
-//       { role: 'unhide' },
-//       { type: 'separator' },
-//       { role: 'quit' }
-//     ]
-//   }] : []),
-//   // { role: 'fileMenu' }
-//   {
-//     label: 'File',
-//     submenu: [
-//       process.platform === 'darwin' ? { role: 'close' } : { role: 'quit' },
-//     ]
-//   },
-//   // { role: 'editMenu' }
-//   {
-//     label: 'Edit',
-//     submenu: [
-//       { role: 'undo' },
-//       { role: 'redo' },
-//       { type: 'separator' },
-//       { role: 'cut' },
-//       { role: 'copy' },
-//       { role: 'paste' },
-//       ...(process.platform === 'darwin' ? [
-//         { role: 'pasteAndMatchStyle' },
-//         { role: 'delete' },
-//         { role: 'selectAll' },
-//         { type: 'separator' },
-//         {
-//           label: 'Speech',
-//           submenu: [
-//             { role: 'startspeaking' },
-//             { role: 'stopspeaking' }
-//           ]
-//         }
-//       ] : [
-//         { role: 'delete' },
-//         { type: 'separator' },
-//         { role: 'selectAll' }
-//       ])
-//     ]
-//   },
-//   // { role: 'viewMenu' }
-//   {
-//     label: 'View',
-//     submenu: [
-//       { role: 'reload' },
-//       { role: 'forcereload' },
-//       { role: 'toggledevtools' },
-//       { type: 'separator' },
-//       { role: 'resetzoom' },
-//       { role: 'zoomin' },
-//       { role: 'zoomout' },
-//       { type: 'separator' },
-//       { role: 'togglefullscreen' }
-//     ]
-//   },
-//   // { role: 'windowMenu' }
-//   {
-//     label: 'Window',
-//     submenu: [
-//       { role: 'minimize' },
-//       { role: 'zoom' },
-//       ...(process.platform === 'darwin' ? [
-//         { type: 'separator' },
-//         { role: 'front' },
-//         { type: 'separator' },
-//         { role: 'window' }
-//       ] : [
-//         { role: 'close' }
-//       ])
-//     ]
-//   },
-//   {
-//     role: 'help',
-//     submenu: [
-//       {
-//         label: 'Learn More',
-//         click: async () => {
-//           const { shell } = require('electron')
-//           await shell.openExternal('https://electronjs.org')
-//         }
-//       }
-//     ]
-//   }
-// ]
+const template = [
+  // { role: 'appMenu' }
+  ...(process.platform === 'darwin' ? [{
+    label: app.getName(),
+    submenu: [
+      { role: 'about' },
+      { type: 'separator' },
+      { role: 'services' },
+      { type: 'separator' },
+      { role: 'hide' },
+      { role: 'hideothers' },
+      { role: 'unhide' },
+      { type: 'separator' },
+      { role: 'quit' }
+    ]
+  }] : []),
+  // { role: 'fileMenu' }
+  {
+    label: 'File',
+    submenu: [
+      process.platform === 'darwin' ? { role: 'close' } : { role: 'quit' },
+    ]
+  },
+  // { role: 'editMenu' }
+  {
+    label: 'Edit',
+    submenu: [
+      { role: 'undo' },
+      { role: 'redo' },
+      { type: 'separator' },
+      { role: 'cut' },
+      { role: 'copy' },
+      { role: 'paste' },
+      ...(process.platform === 'darwin' ? [
+        { role: 'pasteAndMatchStyle' },
+        { role: 'delete' },
+        { role: 'selectAll' },
+        { type: 'separator' },
+        {
+          label: 'Speech',
+          submenu: [
+            { role: 'startspeaking' },
+            { role: 'stopspeaking' }
+          ]
+        }
+      ] : [
+        { role: 'delete' },
+        { type: 'separator' },
+        { role: 'selectAll' }
+      ])
+    ]
+  },
+  // { role: 'viewMenu' }
+  {
+    label: 'View',
+    submenu: [
+      { role: 'reload' },
+      { role: 'forcereload' },
+      { role: 'toggledevtools' },
+      { type: 'separator' },
+      { role: 'resetzoom' },
+      { role: 'zoomin' },
+      { role: 'zoomout' },
+      { type: 'separator' },
+      { role: 'togglefullscreen' }
+    ]
+  },
+  // { role: 'windowMenu' }
+  {
+    label: 'Window',
+    submenu: [
+      { role: 'minimize' },
+      { role: 'zoom' },
+      ...(process.platform === 'darwin' ? [
+        { type: 'separator' },
+        { role: 'front' },
+        { type: 'separator' },
+        { role: 'window' }
+      ] : [
+        { role: 'close' }
+      ])
+    ]
+  },
+  {
+    role: 'help',
+    submenu: [
+      { label: 'ProtoGraphQL Help', click () { dialog.showMessageBox(protographqlHelp) }},
+      { type: 'separator' },
+      {
+        label: 'Learn More About Electron',
+        click: async () => {
+          const { shell } = require('electron')
+          await shell.openExternal('https://electronjs.org')
+        }
+      }
+    ]
+  }
+]
 
-// const menu = Menu.buildFromTemplate(template);
-// Menu.setApplicationMenu(menu);
+const menu = Menu.buildFromTemplate(template);
+Menu.setApplicationMenu(menu);
 
 
 

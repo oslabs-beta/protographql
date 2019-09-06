@@ -82,9 +82,46 @@ const buildGQLResolvers = tables => {
 
   }
 
-  gqlResolvers += `}\n\n`;
-  gqlResolvers += `module.exports = resolvers;\n`;
+  
+  //MUTATION TYPE RESOLVERS
+  gqlResolvers += `${tabs(1)}Mutation: {\n`;
+  for (let tbIndex in tables) {
+    const table = tables[tbIndex];
+    
+    // handles add_______ Mutations
+    gqlResolvers += `${tabs(2)}add${table.type}(parent, args, context, info) {\n`;
+    gqlResolvers += `${tabs(3)}let sql = \`INSERT INTO "${table.type}" \`;\n`;
+    gqlResolvers += `${tabs(3)}let valuesStr = \` VALUES (\`;\n`;
+    gqlResolvers += `${tabs(3)}let values = [];\n`;
+    gqlResolvers += `${tabs(3)}let columnsStr = \`(\`\n`;
+    gqlResolvers += `${tabs(3)}Object.keys(args.input).forEach((fieldName, i, arr) => {\n`;
+    gqlResolvers += `${tabs(4)}if(i == arr.length - 1){\n`;
+    gqlResolvers += `${tabs(5)}columnsStr += \`\${fieldName})\`\n`;
+    gqlResolvers += `${tabs(4)}} else {\n`;
+    gqlResolvers += `${tabs(5)}columnsStr += \`\${fieldName},\`\n`;
+    gqlResolvers += `${tabs(4)}}\n`;
+    gqlResolvers += `${tabs(3)}})\n`;
+    gqlResolvers += `${tabs(3)}Object.values(args.input).forEach((value, i, arr) => {\n`;
+    gqlResolvers += `${tabs(4)}if( i == arr.length - 1){\n`;
+    gqlResolvers += `${tabs(5)}valuesStr += \`$\${i + 1})\`\n`;
+    gqlResolvers += `${tabs(4)}} else {\n`;
+    gqlResolvers += `${tabs(5)}valuesStr += \`$\${i + 1},\`\n`;
+    gqlResolvers += `${tabs(4)}}\n`;
+    gqlResolvers += `${tabs(4)}values.push(value);\n`;
+    gqlResolvers += `${tabs(3)}})\n`;
+    gqlResolvers += `${tabs(3)}sql = sql + columnsStr + valuesStr;\n`;
+    gqlResolvers += `${tabs(3)}return pool.query(sql, values)\n`;
+    gqlResolvers += `${tabs(3)}.then(res => res.rows)\n`;
+    gqlResolvers += `${tabs(3)}.catch(err => console.error('Error is: ', err));\n`;
+    gqlResolvers += `${tabs(2)}},\n`;
+    
+  }
 
+  gqlResolvers += `${tabs(1)}}\n`;
+  gqlResolvers += `}\n\n`;
+  
+  gqlResolvers += `module.exports = resolvers;\n`;
+  
   return gqlResolvers;
 }
 

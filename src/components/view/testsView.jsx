@@ -5,7 +5,10 @@ import { UPDATE_QUERIES, ADD_APOLLO_SERVER_URI } from '../../actions/actionTypes
 
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import { gql, HttpLink } from 'apollo-boost';
+import { SET_POP_UP } from '../../actions/actionTypes';
+import { onError } from 'apollo-link-error';
+import { ApolloLink } from 'apollo-link';
+import { HttpLink, gql } from 'apollo-boost'
 
 const electron = window.require('electron');
 const ipc = electron.ipcRenderer;
@@ -85,7 +88,7 @@ const Input = styled.input`
 
 /* This component was created for this view specifically */
 const Textbox = styled.textarea`
-  height: 42em;
+  height: 20em;
   border-radius: 5px;
   margin: 0;
   width: 48%;
@@ -98,84 +101,108 @@ const Textbox = styled.textarea`
 /*-------------------- Functional Component --------------------*/
 
 function TestsView() {
-    const { dispatch, state: { queries, apolloServerURI }} = useContext(Store);
-    
-    //Gets the new HttpLink when state is updated 
-    //note: initial state is localhost:3000/GraphQL 
-    const link = new HttpLink({
-        uri: apolloServerURI
+  const { dispatch, state: { queries, apolloServerURI } } = useContext(Store);
+
+  //variable to store response if client query returns an error
+  let r;
+  
+  //creates ApolloClient link to apolloServerURI from user, or localhost:3000/GraphQL if none is provided
+  const client = new ApolloClient({
+    link: ApolloLink.from([
+      //if errors are returned from client, log to the console and 
+      onError(({ graphQLErrors, networkError }) => {
+        if (graphQLErrors)
+          graphQLErrors.forEach(({ message, locations, path }) => {
+            console.log(
+              `[GraphQL error]: Message: ${message}, Location: ${JSON.stringify(locations)}, Path: ${path}`,
+            );
+            //save graphQLErrors to response to be rendered in catch of addQuery()
+            r = JSON.stringify(graphQLErrors);
+          }
+          );
+        if (networkError) console.log(`[Network error]: ${networkError}`);
+      }),
+      new HttpLink({
+        uri: apolloServerURI,
+        credentials: 'same-origin'
       })
-      //Creates a new ApolloClient connection using the link above 
-      const client = new ApolloClient({
-        cache: new InMemoryCache(),
-        link: link
-      });
+    ]),
+    cache: new InMemoryCache()
+  });
 
-      //Add the query to state 
-    function addQuery() {
-      //"q" represents the user defined query 
-        let q = document.getElementById("query").value;
-        //"r" represents the response from the GraphQL endpoint
-        let r;
+  //Add the query to state 
+  function addQuery() {
+    //"q" represents the user defined query 
+    let q = document.getElementById("query").value;
 
-        //packages and sends query to send to the graphQL enpoint through the client established above        
-        client.query({
-            query: gql`${q}`
-        }).then(result => {;
-            console.log('apollo server result: ',result);
-            //saves stringified result to state in the "queries" array
-            r = JSON.stringify(result.data);
-            //writes response from GraphQL to "Response" text box in DOM
-            document.getElementById("response").value = r;
-            //FOR FUTURE IMPLEMENTATION we determine the entirety of the data that is sent in a response and parse accordingly
-            //currently we only use "data" to update r"
-            //updating state
-            dispatch({ type: UPDATE_QUERIES, payload: [[q], [r]] });
-        })
-        
+    //packages and sends query to send to the graphQL enpoint through the client established above        
+    client.query({
+      query: gql`${q}`
+    }).then(result => {
+      console.log('apollo server result: ', result);
+      //saves stringified result to state in the "queries" array
+      r = JSON.stringify({data: JSON.stringify(result.data)}) ;
+      //writes response from GraphQL to "Response" text box in DOM
+      document.getElementById("response").value = r;
+      //updating state
+      dispatch({ type: UPDATE_QUERIES, payload: [[q], [r]] });
+    }).catch(error => {
+      //if no graphQLError was returned from apolloClient, assign error to response
+      if(r.length == 0){
+        r = 'Unknown error occured';
+      }  
+      document.getElementById("response").value = r;
+      dispatch({ type: UPDATE_QUERIES, payload: [[q], [r]] });
+    })
+
+  }
+
+  function updateURL() {
+    let url = document.getElementById('url').value;
+    if (url.match(/http:\/\/.+/) || url.match(/https:\/\/.+/)) {
+      dispatch({ type: ADD_APOLLO_SERVER_URI, payload: url });
+      console.log('test updateURL', apolloServerURI);
+      document.getElementById('url').value = '';
+      document.querySelector('#endpointError').classList.add('invisible');
+    } else {
+      document.querySelector('#endpointError').classList.remove('invisible');
     }
+  }
+    
 
-    function updateURL() {
-        let url = document.getElementById('url').value;
-        if (url.match(/http:\/\/.+/) || url.match(/https:\/\/.+/)) {
-          dispatch({ type: ADD_APOLLO_SERVER_URI, payload: url });
-          console.log('test updateURL', apolloServerURI);
-          document.getElementById('url').value = '';
-          document.querySelector('#endpointError').classList.add('invisible');
-        } else {
-          document.querySelector('#endpointError').classList.remove('invisible');
-        }
-      }
-        
-    //FOR FUTURE IMPLEMENTATION: Check the user input and maybe ping the endpoint to check that it is live. 
-
-
-    return(
-        <div>
-          <Code> 
-            <Column style={{ gridColumn: "1 / 3", gridRow: "1 / span 1" }}>
-              <Title>Test Maker</Title> 
-              <div style={{ width: "95%", marginLeft: "auto", marginRight: "auto" }}>
-                <Textbox id="query" placeholder="INSTRUCTIONS: In this view you can create query and response pairs to export as tests. 1) Add the endpoint of your running GraphQL server in the box below:Apollo Server URL  | Enter URL here For example: http://localhost:30002) Click the Add URL button 3) Type your test query in THIS BOX For example: {hero {name}}"></Textbox>
-                <Textbox id="response" placeholder="INSTRUCTIONS CONTINUED: Once you have written your test query and added your Apollo Server URL 4) Click the Add Query button below 5) The response to your query will appear in THIS BOX The query / response pair is now ready to be exported as a tests.js file 6) If you want to add additional query /response pairs repeat steps 3 and 4. TO EXPORT your test file click the Export Tests button below."></Textbox>
-              </div>
-              <div style={{ width: "95%", marginLeft: "auto", marginRight: "auto" }}>
-              <Button onClick={addQuery}>Add Query</Button>
-                <Button onClick={(e) => {
-                  //Electron meathod to initiate the export dialog. 
-                    ipc.send('show-test-export-dialog',queries)
-                }}> Export Tests </Button>
-                <p>{console.log("queries: ",queries)}</p>
-            </div>
-            </Column>
-            <Column style={{ gridColumn: "1 / 3", gridRow: "3 / span 1" }}>
-                  <Title>GraphQL Endpoint URL</Title>
-                  <Input type='text' id='url' placeholder='Enter URL here'></Input><Button style={{ width: "20%" }} onClick={updateURL}>Add URL</Button>
-                  <p className="invisible" id="endpointError">That is not a valid endpoint.  If no valid endpoint is entered, the endpoint will remain unchanged. The initial value is set to http://localhost:3000/GraphQL</p>
-              </Column>
-          </Code>
-        </div>   
-    );
+function showInstructions() {
+  // console.log("You clicked the instructions icon/button")
+  dispatch({ type: SET_POP_UP, payload: 'instructions'});
 }
-
+//FOR FUTURE IMPLEMENTATION: Check the user input and maybe ping the endpoint to check that it is live. 
+return(
+    <div>
+      <Code> 
+        <Column style={{ gridColumn: "1 / 3", gridRow: "1 / span 1" }}>
+          <Title>Test Maker</Title> 
+          <Button onClick={showInstructions} style={{ width: "18%", height: "12%"}}>
+          <i className="fas fa-info-circle">  Instructions</i>
+          </Button>
+          <div style={{ width: "95%", marginLeft: "auto", marginRight: "auto" }}>
+            <Textbox id="query" placeholder='#Write your query here. For example: {hero {name}}'></Textbox>
+            <Textbox id="response" placeholder='Responses from your endpoint will appear here. For example: {"hero": {"name": "Luke Skywalker"}}'></Textbox>
+          </div>
+          <div style={{ width: "95%", marginLeft: "auto", marginRight: "auto" }}>
+          <Button onClick={addQuery}>Add Query</Button>
+            <Button onClick={(e) => {
+              //Electron meathod to initiate the export dialog. 
+                ipc.send('show-test-export-dialog',queries)
+            }}> Export Tests </Button>
+            <p>{console.log("queries: ",queries)}</p>
+        </div>
+        </Column>
+        <Column style={{ gridColumn: "1 / 3", gridRow: "3 / span 1" }}>
+              <Title>GraphQL Endpoint URL</Title>
+              <Input type='text' id='url' placeholder='Enter URL here'></Input><Button style={{ width: "20%" }} onClick={updateURL}>Add URL</Button>
+              <p className="invisible" id="endpointError">That is not a valid endpoint.  If no valid endpoint is entered, the endpoint will remain unchanged. The initial value is set to http://localhost:3000/GraphQL</p>
+          </Column>
+      </Code>
+    </div>   
+  );
+}
 export default TestsView;

@@ -113,11 +113,11 @@ const buildGQLResolvers = tables => {
     gqlResolvers += `${tabs(3)}return pool.query(sql, values)\n`;
     gqlResolvers += `${tabs(3)}.then(res => res.rows)\n`;
     gqlResolvers += `${tabs(3)}.catch(err => console.error('Error is: ', err));\n`;
-    gqlResolvers += `${tabs(2)}}\n`;
-    gqlResolvers += `${tabs(1)}},\n`;
+    gqlResolvers += `${tabs(2)}},\n`;
     
   }
-  
+
+  gqlResolvers += `${tabs(1)}}\n`;
   gqlResolvers += `}\n\n`;
   
   gqlResolvers += `module.exports = resolvers;\n`;

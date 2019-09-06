@@ -1,4 +1,4 @@
-const { app, BrowserWindow, dialog, Menu } = require('electron');
+const { app, BrowserWindow, dialog, Menu, shell } = require('electron');
 const path = require('path');
 const ipcMain = require('electron').ipcMain;
 const archiver = require('archiver');
@@ -302,11 +302,16 @@ const template = [
     role: 'help',
     submenu: [
       { label: 'ProtoGraphQL Help', click () { dialog.showMessageBox(protographqlHelp) }},
+      {
+        label: 'ProtoGraphQL on GitHub', 
+        click: async () => {
+          await shell.openExternal('https://github.com/oslabs-beta/protographql')
+        }
+      },
       { type: 'separator' },
       {
         label: 'Learn More About Electron',
         click: async () => {
-          const { shell } = require('electron')
           await shell.openExternal('https://electronjs.org')
         }
       }

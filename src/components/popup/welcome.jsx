@@ -1,7 +1,7 @@
 // This is also the import button in the header
 
 /* eslint-disable no-unused-vars */
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import {
   Button,
   Dialog,
@@ -9,7 +9,6 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  Input,
   Paper
 } from "@material-ui/core";
 import Draggable from "react-draggable";
@@ -29,7 +28,7 @@ const Title = styled(DialogTitle)({
   background: '#161e26',
 });
 
-// styles the GraphQL logo of the dialog-box that appears when the application is first loaded
+// styles the {REST} and GraphQL logo of the dialog-box that appears when the application is first loaded
 const Text = styled(DialogContentText)({
   color: "white",
   height: 'auto',
@@ -134,35 +133,37 @@ function DraggableDialog(props) {
         <ContentDiv>
           <Text>
             <img
+              alt="restLogo"
+              src="./public/assets/pictures/Rest-Logo.png"
+              height="125px"
+            />
+          </Text>
+
+          <Text>
+            <img
               alt="graphQLLogo"
               src="./public/assets/pictures/GraphQL-Logo.png"
               height="125px"
             />
           </Text>
-          
-          <ol style={{ marginTop: "15px", marginBottom: "25px", textAlign: "left", lineHeight: "1.3em"}}>
-            <li>&#9674; Add Or Import Tables</li>
-            <li>&#9674; Build Your Schema</li>
-            <li>&#9674; Generate Your Code</li>
-            <li>&#9674; Visualize Your Schema</li>
-            <li>&#9674; Create Your Apollo Server</li>
-            <li>&#9674; Test Your Queries</li>
-            <li>&#9674; Export Your Tests</li>
-          </ol>
-        
         </ContentDiv>
+
         <DialogActionsDiv>
           <StartButton onClick={handleClose} color="primary" >Create Your Tables</StartButton>
           <StartButton onClick={() => setShow({ display: 'block' })} color="primary" >Import Tables</StartButton>
         </DialogActionsDiv>
-        <div style={show}>
-        <ContentDiv style={{ marginTop: "15px", marginBottom: "25px", textAlign: "center" }}>
-        <DBinput placeholder='Enter your database URI here'></DBinput>
-        <Submit>Connect</Submit>
+
+        <ContentDiv style={{ marginTop: "15px", marginBottom: "25px", textAlign: "left" }}>
+          <ol>
+            <li>Add Table - create tables that mimic psql tables</li>
+            <li>Schema - view, edit, or delete table you add</li>
+            <li>Code - view generated GraphQL and SQL code before export</li>
+            <li>Visualize - view the GraphQL schema intuitively as a simple tree</li>
+            <li>Export - export project to interact with database</li>
+          </ol>
         </ContentDiv>
-        </div>
       </Dialog>
-      </div>
+    </div >
   );
 }
 

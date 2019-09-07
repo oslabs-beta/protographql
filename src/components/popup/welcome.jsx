@@ -139,7 +139,7 @@ function DraggableDialog(props) {
           </Text>
           
           <ol style={{ marginTop: "15px", marginBottom: "25px", textAlign: "left", lineHeight: "1.3em"}}>
-            <li>&#9674; Add OR Import Tables</li>
+            <li>&#9674; Add Or Import Tables</li>
             <li>&#9674; Build Your Schema</li>
             <li>&#9674; Generate Your Code</li>
             <li>&#9674; Visualize Your Schema</li>

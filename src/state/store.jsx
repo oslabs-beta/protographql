@@ -74,10 +74,14 @@ function reducer(state, action) {
       //Import tables from existing postgres database
     case "IMPORT_TABLES":
       newState.tables = action.payload;
+      const indeces = Object.keys(newState.tables);
+      console.log("indeces",indeces)
+      const newTableIndex = indeces[indeces.length - 1]
       
       return {
         ...state,
         tables: newState.tables,
+        tableIndex: newTableIndex + 1,
         visualizeJSON: buildVisualizerJson(deepClone(newState.tables)),
         gqlSchema: buildGQLSchema(newState.tables),
         gqlResolvers: buildGQLResolvers(newState.tables),

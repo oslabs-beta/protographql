@@ -1,4 +1,4 @@
-// This is also the readme. 
+// This is also the import tables
 
 /* eslint-disable no-unused-vars */
 import React, { useContext, useState } from "react";
@@ -61,7 +61,7 @@ const StartButton = styled(Button)({
 const DBinput = styled(Input)({
   lineHeight: '1.75px',
   borderRadius: '5px',
-  margin: '0 5px 0 0',
+  margin: '0 6px 0 0',
   width: '300px',
   marginBottom: '10px',
   padding: '10px',

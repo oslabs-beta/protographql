@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
   pink: {
     color: "#DD399C",
   },
-  // style the ReadMe and Export buttons in the header
+  // style the Import and Export buttons in the header
   button: {
     color: 'white',
     backgroundColor: '#324353',
@@ -92,9 +92,9 @@ function Header() {
             <span>Proto</span>
             <span className={classes.pink}>GraphQL</span>
           </Typography>
-          <Button color="inherit" title="Readme" className={classes.button} onClick={() => { dispatch({ type: SET_POP_UP, payload: 'welcome' }) }}>
+          <Button color="inherit" title="Import" className={classes.button} onClick={() => { dispatch({ type: SET_POP_UP, payload: 'welcome' }) }}>
             <i className="fas fa-file-alt fa-3x" style={{ fontSize: "33px" }}></i>
-            <p className={classes.label}>Readme</p>
+            <p className={classes.label}>Import</p>
           </Button>
           <Button color="inherit" title="Export Project" className={classes.button} onClick={() => { dispatch({ type: SET_POP_UP, payload: 'export' }) }}>
             <i className="fas fa-file-download" style={{ fontSize: "32px" }}></i>

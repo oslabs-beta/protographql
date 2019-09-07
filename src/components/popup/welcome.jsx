@@ -16,6 +16,10 @@ import Draggable from "react-draggable";
 import { styled } from "@material-ui/styles";
 import { Store } from '../../state/store';
 import { SET_POP_UP } from '../../actions/actionTypes';
+import buildENV from '../../utils/buildENV';
+
+const electron = window.require('electron');
+const ipc = electron.ipcRenderer;
 // import { build } from "protobufjs";
 
 /*-------------------- Styled components --------------------*/
@@ -126,6 +130,17 @@ function DraggableDialog(props) {
   let [show, setShow] = useState({ display: "none" }); 
   // END OF USE STATE
 
+  const setURI = () => {
+    const URI = document.getElementById('dbInput').value;
+    if (URI.slice(0, 11).toLowerCase() === 'postgres://' || URI.slice(0, 13).toLowerCase() === 'postgresql://') {
+              // emitting message to electron window to open save dialog
+              ipc.send('create-env-file', buildENV(URI));
+            } else {
+              console.log('That is not a valid input');
+              // document.querySelector('#error').classList.remove('invisible')
+            }
+  }
+
   return (
     <div onKeyUp={keyUpToHandleClose}>
       <Dialog open={popUp === 'welcome'} PaperComponent={PaperComponent}>
@@ -157,8 +172,8 @@ function DraggableDialog(props) {
         </DialogActionsDiv>
         <div style={show}>
         <ContentDiv style={{ marginTop: "15px", marginBottom: "25px", textAlign: "center" }}>
-        <DBinput placeholder='Enter your database URI here'></DBinput>
-        <Submit>Connect</Submit>
+        <DBinput id='dbInput' placeholder='Enter your database URI here'></DBinput>
+        <Submit onClick={setURI}>Connect</Submit>
         </ContentDiv>
         </div>
       </Dialog>

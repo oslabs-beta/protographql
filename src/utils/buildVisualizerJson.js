@@ -27,8 +27,11 @@ export const fieldNameType = fields => {
 }
 
 export const queryableTableMaker = tables => {
-    if (Object.keys(tables).length === 0) return []
-
+    if (Object.keys(tables).length === 0) {
+      console.log("tables is empty")
+      return []
+    }
+    console.log('queryableTableMaker tables:', tables)
     const tableArray = Object.values(tables)
     const queryableTables = [] 
     tableArray.forEach( el => {
@@ -46,6 +49,7 @@ export const queryableTableMaker = tables => {
 
 export function queryTypeCreator (tables) {
   const queryableTables = queryableTableMaker(tables)
+  console.log("queryTypeCreator Tables:", tables)
   const typeArray = [];
   for (let i in queryableTables) {
     const curr = queryableTables[i]
@@ -71,6 +75,7 @@ export function queryTypeCreator (tables) {
 
 export const buildVisualizerJson = tables => {
   let root = `{"name":"Queries"`
+  console.log('buildvisualizerjson tables: ', tables)
   
   //if we have no tables return only root
   if (Object.keys(tables).length === 0) return JSON.parse(root +='}')

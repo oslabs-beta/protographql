@@ -1,7 +1,7 @@
-// This is also the readme. 
+// This is also the import button in the header
 
 /* eslint-disable no-unused-vars */
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   Button,
   Dialog,
@@ -9,12 +9,14 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Input,
   Paper
 } from "@material-ui/core";
 import Draggable from "react-draggable";
 import { styled } from "@material-ui/styles";
 import { Store } from '../../state/store';
 import { SET_POP_UP } from '../../actions/actionTypes';
+// import { build } from "protobufjs";
 
 /*-------------------- Styled components --------------------*/
 
@@ -27,7 +29,7 @@ const Title = styled(DialogTitle)({
   background: '#161e26',
 });
 
-// styles the {REST} and GraphQL logo of the dialog-box that appears when the application is first loaded
+// styles the GraphQL logo of the dialog-box that appears when the application is first loaded
 const Text = styled(DialogContentText)({
   color: "white",
   height: 'auto',
@@ -56,6 +58,31 @@ const StartButton = styled(Button)({
   marginBottom: '10px'
 });
 
+// styles the postgres database input field displayed after the import tables button is clicked
+const DBinput = styled(Input)({
+  lineHeight: '1.75px',
+  borderRadius: '5px',
+  margin: '0 6px 0 0',
+  width: '300px',
+  marginBottom: '10px',
+  padding: '10px',
+  color: '#dd399c',
+  fontWeight: '400',
+  border: '1px solid black',
+  letterSpacing: '0.1em',
+})
+
+// styles the submit button for the postgres database input field
+const Submit = styled(Button)({
+  width: '100px',
+  border: '1px solid #161e26',
+  color: 'white',
+  backgroundColor: 'rgba(221, 57, 156, 1)',
+  padding: '10px',
+  marginTop: '0',
+  marginBottom: '10px',
+})
+
 /*
 styles the space around the start button of the dialog-box that appears when the
 application is first loaded
@@ -76,8 +103,7 @@ function PaperComponent(props) {
 }
 
 function DraggableDialog(props) {
-
-  //USE CONTEXT
+  // USE CONTEXT
   const { state: { popUp }, dispatch } = useContext(Store);
 
   const handleClose = () => {
@@ -94,8 +120,11 @@ function DraggableDialog(props) {
       dispatch({ type: SET_POP_UP, payload: '' });
     }
   }
+  // END OF USE CONTEXT
 
-  //END OF USE CONTEXT
+  // USE STATE to set visibility of postgres URI input field
+  let [show, setShow] = useState({ display: "none" }); 
+  // END OF USE STATE
 
   return (
     <div onKeyUp={keyUpToHandleClose}>
@@ -105,36 +134,35 @@ function DraggableDialog(props) {
         <ContentDiv>
           <Text>
             <img
-              alt="restLogo"
-              src="./public/assets/pictures/Rest-Logo.png"
-              height="125px"
-            />
-          </Text>
-
-          <Text>
-            <img
               alt="graphQLLogo"
               src="./public/assets/pictures/GraphQL-Logo.png"
               height="125px"
             />
           </Text>
-        </ContentDiv>
-
-        <DialogActionsDiv>
-          <StartButton onClick={handleClose} color="primary" >Start</StartButton>
-        </DialogActionsDiv>
-
-        <ContentDiv style={{ marginTop: "15px", marginBottom: "25px", textAlign: "left" }}>
-          <ol>
-            <li>Add Table - create tables that mimic psql tables</li>
-            <li>Schema - view, edit, or delete table you add</li>
-            <li>Code - view generated GraphQL and SQL code before export</li>
-            <li>Visualize - view the GraphQL schema intuitively as a simple tree</li>
-            <li>Export - export project to interact with database</li>
+          
+          <ol style={{ marginTop: "15px", marginBottom: "25px", textAlign: "left", lineHeight: "1.3em"}}>
+            <li>&#9674; Add Or Import Tables</li>
+            <li>&#9674; Build Your Schema</li>
+            <li>&#9674; Generate Your Code</li>
+            <li>&#9674; Visualize Your Schema</li>
+            <li>&#9674; Create Your Apollo Server</li>
+            <li>&#9674; Test Your Queries</li>
+            <li>&#9674; Export Your Tests</li>
           </ol>
+        
         </ContentDiv>
+        <DialogActionsDiv>
+          <StartButton onClick={handleClose} color="primary" >Create Your Tables</StartButton>
+          <StartButton onClick={() => setShow({ display: 'block' })} color="primary" >Import Tables</StartButton>
+        </DialogActionsDiv>
+        <div style={show}>
+        <ContentDiv style={{ marginTop: "15px", marginBottom: "25px", textAlign: "center" }}>
+        <DBinput placeholder='Enter your database URI here'></DBinput>
+        <Submit>Connect</Submit>
+        </ContentDiv>
+        </div>
       </Dialog>
-    </div >
+      </div>
   );
 }
 

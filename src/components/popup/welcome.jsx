@@ -16,6 +16,7 @@ import Draggable from "react-draggable";
 import { styled } from "@material-ui/styles";
 import { Store } from '../../state/store';
 import { SET_POP_UP } from '../../actions/actionTypes';
+import { build } from "protobufjs";
 
 /*-------------------- Styled components --------------------*/
 
@@ -120,7 +121,7 @@ function DraggableDialog(props) {
   }
 
   //SET PROP TO MANAGE INPUT DISPLAY
-  // let [thisDisplay, setThisDisplay] = useState({ display: "none" }); 
+  let [show, setShow] = useState({ display: "none" }); 
 
   //END OF USE CONTEXT
 
@@ -151,14 +152,14 @@ function DraggableDialog(props) {
         </ContentDiv>
         <DialogActionsDiv>
           <StartButton onClick={handleClose} color="primary" >Create Your Tables</StartButton>
-          <StartButton onClick={console.log('clicked')} color="primary" >Import Your Tables</StartButton>
+          <StartButton onClick={() => setShow({ display: 'block' })} color="primary" >Import Your Tables</StartButton>
         </DialogActionsDiv>
-        {/* <div style={thisDisplay}> */}
+        <div style={show}>
         <ContentDiv style={{ marginTop: "15px", marginBottom: "25px", textAlign: "center" }}>
         <DBinput placeholder='Enter your database URI here'></DBinput>
         <Submit>Connect</Submit>
         </ContentDiv>
-        {/* </div> */}
+        </div>
       </Dialog>
       </div>
   );

@@ -197,20 +197,6 @@ ipcMain.on('show-test-export-dialog', (event, queries) => {
   showTestExportDialog(event, queries);
 });
 
-//--------------------- CREATE ENV FILE -------------------//
-
-function createEnvFile(env) {
-  try {
-    fs.writeFileSync(path.join(__dirname, '/.env'), env, 'utf8')
-  } catch (err) {
-    return console.error(err);
-  }
-}
-
-ipcMain.on('create-env-file', (env) => {
-  createEnvFile(env);
-});
-
 //--------------------- MENU CUSTOMIZATION -------------------//
 
 // customizes the about option in the menu bar

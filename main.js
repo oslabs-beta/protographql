@@ -4,6 +4,7 @@ const ipcMain = require('electron').ipcMain;
 const archiver = require('archiver');
 const fs = require('fs');
 const buildExportTestSuite = require('./src/utils/buildExportTestSuite.js');
+const pgQuery = require('./src/pg-import/pgQuery.js')
 
 // Global reference of the window object to avoid JS garbage collection
 // when window is created
@@ -196,6 +197,19 @@ ipcMain.on('show-test-export-dialog', (event, queries) => {
   console.log('show-test-export-dialog => ', queries);
   showTestExportDialog(event, queries);
 });
+
+
+//--------------------- IMPORT POSTGRES TABLES -----------------//
+
+function importTables(event, gqlSchema, gqlResolvers, sqlScripts, env){
+  pgQuery();
+}
+
+ipcMain.on('import-tables', (event, gqlSchema, gqlResolvers, sqlScripts, env) => {
+  console.log('import tables schema: ', gqlSchema);
+  return pgQuery();
+  // importTables(event, gqlSchema, gqlResolvers, sqlScripts, env);
+})
 
 //--------------------- MENU CUSTOMIZATION -------------------//
 

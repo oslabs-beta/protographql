@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core";
 import { styled } from "@material-ui/styles";
 import { Store } from '../../state/store';
-import { SET_POP_UP, SET_VIEW } from '../../actions/actionTypes';
+import { SET_POP_UP, SET_VIEW, IMPORT_TABLES } from '../../actions/actionTypes';
 import buildENV from '../../utils/buildENV';
 import TextField from '@material-ui/core/TextField';
 
@@ -94,7 +94,15 @@ function ExportPopUp(props) {
               ipc.send('show-export-dialog', gqlSchema, gqlResolvers, sqlScripts, buildENV(uri), queries);
               dispatch({ type: SET_POP_UP, payload: '' });
             } else {
-              document.querySelector('#error').classList.remove('invisible')
+
+              //TEST --------------------------------
+              //test to see if table import will log scraped pg data to console
+              async function importTables() {
+                let update = await ipc.send('import-tables', gqlSchema, gqlResolvers, sqlScripts, buildENV(uri));
+                dispatch({ type: IMPORT_TABLES, payload: update });
+                document.querySelector('#error').classList.remove('invisible')
+              }
+              importTables();
             }
           }}>
           <Input label="Enter Postgres Connection URI" margin="normal" type="text" required />

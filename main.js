@@ -201,13 +201,29 @@ ipcMain.on('show-test-export-dialog', (event, queries) => {
 
 //--------------------- IMPORT POSTGRES TABLES -----------------//
 
-function importTables(event, gqlSchema, gqlResolvers, sqlScripts, env){
-  pgQuery();
-}
+// function importTables(event, gqlSchema, gqlResolvers, sqlScripts, env){
+//   pgQuery();
+// }
 
-ipcMain.on('import-tables', (event, gqlSchema, gqlResolvers, sqlScripts, env) => {
-  console.log('import tables schema: ', gqlSchema);
-  return pgQuery();
+ipcMain.on('import-tables', (event, env) => {
+  // async function importTables(){
+  //   let tables;
+  //   console.log("pgQuery",pgQuery(tables))
+  //  return pgQuery(tables);
+  //  // ipcMain.on('tables-imported', tables);
+  // };
+  // importTables()
+  let tables;
+  // const promise = new Promise((resolve, reject) => {
+  //   resolve(tables)
+  // })
+
+ pgQuery(tables)
+  .then((tables) => {
+    console.log("tables (main):", tables)
+    event.reply('tables-imported', tables)
+  })
+  .catch(err => console.error("Error importing tables from postgres"))
   // importTables(event, gqlSchema, gqlResolvers, sqlScripts, env);
 })
 

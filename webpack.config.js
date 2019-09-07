@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: "./src/index.jsx",
+  entry: ["@babel/polyfill","./src/index.jsx"],
   target: 'electron-main',
   output: {
     publicPath: '/public/',

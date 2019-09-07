@@ -1,4 +1,4 @@
-// This is also the import tables
+// This is also the import button in the header
 
 /* eslint-disable no-unused-vars */
 import React, { useContext, useState } from "react";
@@ -16,7 +16,7 @@ import Draggable from "react-draggable";
 import { styled } from "@material-ui/styles";
 import { Store } from '../../state/store';
 import { SET_POP_UP } from '../../actions/actionTypes';
-import { build } from "protobufjs";
+// import { build } from "protobufjs";
 
 /*-------------------- Styled components --------------------*/
 
@@ -58,6 +58,7 @@ const StartButton = styled(Button)({
   marginBottom: '10px'
 });
 
+// styles the postgres database input field displayed after the import tables button is clicked
 const DBinput = styled(Input)({
   lineHeight: '1.75px',
   borderRadius: '5px',
@@ -71,6 +72,7 @@ const DBinput = styled(Input)({
   letterSpacing: '0.1em',
 })
 
+// styles the submit button for the postgres database input field
 const Submit = styled(Button)({
   width: '100px',
   border: '1px solid #161e26',
@@ -101,8 +103,7 @@ function PaperComponent(props) {
 }
 
 function DraggableDialog(props) {
-
-  //USE CONTEXT
+  // USE CONTEXT
   const { state: { popUp }, dispatch } = useContext(Store);
 
   const handleClose = () => {
@@ -119,11 +120,11 @@ function DraggableDialog(props) {
       dispatch({ type: SET_POP_UP, payload: '' });
     }
   }
+  // END OF USE CONTEXT
 
-  //SET PROP TO MANAGE INPUT DISPLAY
+  // USE STATE to set visibility of postgres URI input field
   let [show, setShow] = useState({ display: "none" }); 
-
-  //END OF USE CONTEXT
+  // END OF USE STATE
 
   return (
     <div onKeyUp={keyUpToHandleClose}>
@@ -152,7 +153,7 @@ function DraggableDialog(props) {
         </ContentDiv>
         <DialogActionsDiv>
           <StartButton onClick={handleClose} color="primary" >Create Your Tables</StartButton>
-          <StartButton onClick={() => setShow({ display: 'block' })} color="primary" >Import Your Tables</StartButton>
+          <StartButton onClick={() => setShow({ display: 'block' })} color="primary" >Import Tables</StartButton>
         </DialogActionsDiv>
         <div style={show}>
         <ContentDiv style={{ marginTop: "15px", marginBottom: "25px", textAlign: "center" }}>

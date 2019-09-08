@@ -14,7 +14,7 @@ import {
 import Draggable from "react-draggable";
 import { styled } from "@material-ui/styles";
 import { Store } from '../../state/store';
-import { SET_POP_UP } from '../../actions/actionTypes';
+import { SET_POP_UP, IMPORT_TABLES } from '../../actions/actionTypes';
 import buildENV from '../../utils/buildENV';
 const electron = window.require('electron');
 const ipc = electron.ipcRenderer;
@@ -119,6 +119,15 @@ function DraggableDialog(props) {
     if (URI.slice(0, 11).toLowerCase() === 'postgres://' || URI.slice(0, 13).toLowerCase() === 'postgresql://') {
               // emitting message to electron window to open save dialog
               ipc.send('create-env-file', buildENV(URI));
+              async function importTables() {
+                const tables = {};
+                ipc.on('tables-imported', (event, arg) => {
+                  console.log("import tables, no async: ", arg)
+                  dispatch({ type: IMPORT_TABLES, payload: arg})
+                })
+                ipc.send('import-tables', tables);
+              }
+              importTables();
             } else {
               console.log('That is not a valid input');
               // document.querySelector('#error').classList.remove('invisible')

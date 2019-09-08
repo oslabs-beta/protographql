@@ -124,6 +124,7 @@ function DraggableDialog(props) {
                 ipc.on('tables-imported', (event, arg) => {
                   console.log("import tables, no async: ", arg)
                   dispatch({ type: IMPORT_TABLES, payload: arg})
+                  dispatch({ type: SET_POP_UP, payload: '' })
                 })
                 ipc.send('import-tables', tables);
               }

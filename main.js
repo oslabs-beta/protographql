@@ -1,4 +1,4 @@
-const { app, BrowserWindow, dialog, Menu } = require('electron');
+const { app, BrowserWindow, dialog, Menu, shell } = require('electron');
 const path = require('path');
 const ipcMain = require('electron').ipcMain;
 const archiver = require('archiver');
@@ -206,26 +206,28 @@ ipcMain.on('show-test-export-dialog', (event, queries) => {
 // }
 
 ipcMain.on('import-tables', (event, env) => {
-  // async function importTables(){
-  //   let tables;
-  //   console.log("pgQuery",pgQuery(tables))
-  //  return pgQuery(tables);
-  //  // ipcMain.on('tables-imported', tables);
-  // };
-  // importTables()
   let tables;
-  // const promise = new Promise((resolve, reject) => {
-  //   resolve(tables)
-  // })
-
  pgQuery(tables)
   .then((tables) => {
     console.log("tables (main):", tables)
     event.reply('tables-imported', tables)
   })
   .catch(err => console.error("Error importing tables from postgres"))
-  // importTables(event, gqlSchema, gqlResolvers, sqlScripts, env);
 })
+//--------------------- CREATE ENV FILE -------------------//
+
+function createEnvFile(env) {
+  try {
+    fs.writeFileSync(path.join(__dirname, '/.env'), env, 'utf8')
+  } catch (err) {
+    return console.error(err);
+  }
+}
+
+ipcMain.on('create-env-file', (event, env) => {
+  console.log(env);
+  createEnvFile(env);
+});
 
 //--------------------- MENU CUSTOMIZATION -------------------//
 
@@ -332,11 +334,16 @@ const template = [
     role: 'help',
     submenu: [
       { label: 'ProtoGraphQL Help', click () { dialog.showMessageBox(protographqlHelp) }},
+      {
+        label: 'ProtoGraphQL on GitHub', 
+        click: async () => {
+          await shell.openExternal('https://github.com/oslabs-beta/protographql')
+        }
+      },
       { type: 'separator' },
       {
         label: 'Learn More About Electron',
         click: async () => {
-          const { shell } = require('electron')
           await shell.openExternal('https://electronjs.org')
         }
       }

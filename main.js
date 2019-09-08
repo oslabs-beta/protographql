@@ -4,6 +4,7 @@ const ipcMain = require('electron').ipcMain;
 const archiver = require('archiver');
 const fs = require('fs');
 const buildExportTestSuite = require('./src/utils/buildExportTestSuite.js');
+const pgQuery = require('./src/pg-import/pgQuery.js')
 
 // Global reference of the window object to avoid JS garbage collection
 // when window is created
@@ -195,6 +196,37 @@ ipcMain.on('show-export-dialog', (event, gqlSchema, gqlResolvers, sqlScripts, en
 ipcMain.on('show-test-export-dialog', (event, queries) => {
   console.log('show-test-export-dialog => ', queries);
   showTestExportDialog(event, queries);
+});
+
+
+//--------------------- IMPORT POSTGRES TABLES -----------------//
+
+// function importTables(event, gqlSchema, gqlResolvers, sqlScripts, env){
+//   pgQuery();
+// }
+
+ipcMain.on('import-tables', (event, env) => {
+  let tables;
+ pgQuery(tables)
+  .then((tables) => {
+    console.log("tables (main):", tables)
+    event.reply('tables-imported', tables)
+  })
+  .catch(err => console.error("Error importing tables from postgres"))
+})
+//--------------------- CREATE ENV FILE -------------------//
+
+function createEnvFile(env) {
+  try {
+    fs.writeFileSync(path.join(__dirname, '/.env'), env, 'utf8')
+  } catch (err) {
+    return console.error(err);
+  }
+}
+
+ipcMain.on('create-env-file', (event, env) => {
+  console.log(env);
+  createEnvFile(env);
 });
 
 //--------------------- MENU CUSTOMIZATION -------------------//

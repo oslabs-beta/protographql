@@ -8,9 +8,10 @@ import {
 } from "@material-ui/core";
 import { styled } from "@material-ui/styles";
 import { Store } from '../../state/store';
-import { SET_POP_UP, SET_VIEW } from '../../actions/actionTypes';
+import { SET_POP_UP, SET_VIEW, IMPORT_TABLES } from '../../actions/actionTypes';
 import buildENV from '../../utils/buildENV';
 import TextField from '@material-ui/core/TextField';
+import { IpcLink } from "graphql-transport-electron";
 
 //comment out to use web-dev-server instead of electron
 const electron = window.require('electron');
@@ -94,9 +95,24 @@ function ExportPopUp(props) {
               ipc.send('show-export-dialog', gqlSchema, gqlResolvers, sqlScripts, buildENV(uri), queries);
               dispatch({ type: SET_POP_UP, payload: '' });
             } else {
-              document.querySelector('#error').classList.remove('invisible')
-            }
-          }}>
+
+              //TEST --------------------------------
+              //test to see if table import will log scraped pg data to console
+              async function importTables() {
+                const tables = {};
+                ipc.on('tables-imported', (event, arg) => {
+                  console.log("import tables, no async: ", arg)
+                  dispatch({ type: IMPORT_TABLES, payload: arg})
+                })
+                ipc.send('import-tables', tables, buildENV(uri));
+                // dispatch({ type: IMPORT_TABLES, payload: update });
+                // let update = await ipc.on('tables-imported', (event, arg) => arg);
+                // console.log("tables (render): ", update)
+                document.querySelector('#error').classList.remove('invisible')
+              }
+              importTables();
+              
+          }}}>
           <Input label="Enter Postgres Connection URI" margin="normal" type="text" required />
           <p className="invisible" id="error">URI needs to start with "postgres://" or "postgresql://"</p>
           <DialogActionsDiv>

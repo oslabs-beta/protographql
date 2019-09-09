@@ -1,4 +1,4 @@
-import buildGQLSchema from './buildGQLSchema';
+import buildGQLSchema from '../src/utils/buildGQLSchema';
 import { build } from 'protobufjs';
 
 const testInput = {

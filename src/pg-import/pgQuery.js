@@ -1,7 +1,12 @@
 // const pool = require('./sqlPool');
 const { Pool } = require('pg');
-require("dotenv").config();
+const dotenv = require('dotenv');
+
+
 const pgQuery = async function(fetchedTables) {
+    //reads the .env config after latest update, allowing us to use new tables if a previous import has run
+    dotenv.config();
+
     const tableQuery = `
     SELECT table_name,
     ordinal_position as position,
@@ -27,13 +32,14 @@ const pgQuery = async function(fetchedTables) {
     
     let tableColumns = {};
     
-    
+    //this is not updating!!
     const URI = process.env.DB_URI
     
     const pool = new Pool({
       connectionString: URI,
       ssl: true,
     })
+    console.log('db uri pre pool.connect:', URI)
     
     pool.connect((err, client, done) => {
       if (err) return console.log(`Error connecting to db, ${err}`);
@@ -43,11 +49,13 @@ const pgQuery = async function(fetchedTables) {
     
     let queryResults = await pool.query(tableQuery)
     .then(res => {
+        console.log("pool: ",pool)
+        console.log('db URI: ', URI)
         console.log('tableQuery: ',res.rows)
         tableColumns = res.rows;
         return tableColumns;
     })
-    .then((tableColumns) => { 
+    .then(tableColumns => { 
         return pool.query(constraintQuery)
                 .then(res => {
                     // console.log('constraintQuery: ',res.rows)
@@ -122,8 +130,8 @@ const pgQuery = async function(fetchedTables) {
             
         })
         .catch(err => console.error('Error is: ', err)) 
-
-    return queryResults;
+    let results = queryResults;
+    return results;
 }
 
 module.exports = pgQuery;

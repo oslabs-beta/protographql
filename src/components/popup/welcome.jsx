@@ -119,7 +119,7 @@ function DraggableDialog(props) {
     if (URI.slice(0, 11).toLowerCase() === 'postgres://' || URI.slice(0, 13).toLowerCase() === 'postgresql://') {
               // emitting message to electron window to open save dialog
               ipc.send('create-env-file', buildENV(URI));
-              async function importTables() {
+              function importTables() {
                 const tables = {};
                 ipc.on('tables-imported', (event, arg) => {
                   console.log("import tables, no async: ", arg)
@@ -128,7 +128,8 @@ function DraggableDialog(props) {
                 })
                 ipc.send('import-tables', tables);
               }
-              importTables();
+              //added to force table import to wait on env file creation
+              ipc.on('env-file-created', importTables);
             } else {
               console.log('That is not a valid input');
               // document.querySelector('#error').classList.remove('invisible')

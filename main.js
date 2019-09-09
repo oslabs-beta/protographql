@@ -35,6 +35,8 @@ function createWindow() {
   // Add event listener to set our global window variable to null
   // This is needed so that window is able to reopen when user relaunches the app
   win.on('closed', () => {
+    //added to overwrite .env with null every time window is closed so new import can work
+    fs.writeFileSync(path.join(__dirname, '/.env'), "", 'utf8');
     win = null;
   });
 
@@ -209,14 +211,14 @@ ipcMain.on('import-tables', (event, env) => {
   let tables;
  pgQuery(tables)
   .then((tables) => {
-    console.log("tables (main):", tables)
+    // console.log("tables (main):", tables)
     event.reply('tables-imported', tables)
   })
   .catch(err => console.error("Error importing tables from postgres"))
 })
 //--------------------- CREATE ENV FILE -------------------//
 
-function createEnvFile(env) {
+async function createEnvFile(env) {
   try {
     fs.writeFileSync(path.join(__dirname, '/.env'), env, 'utf8')
   } catch (err) {
@@ -225,8 +227,15 @@ function createEnvFile(env) {
 }
 
 ipcMain.on('create-env-file', (event, env) => {
-  console.log(env);
-  createEnvFile(env);
+  console.log('create env file URI: ', env);
+  createEnvFile(env)
+  .then(res => {
+    event.reply('env-file-created');
+    console.log('env-file-created')
+  })
+  .catch(err => {
+    console.log('error occurred in createEnvFile promise')
+  })
 });
 
 //--------------------- MENU CUSTOMIZATION -------------------//

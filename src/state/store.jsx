@@ -148,8 +148,6 @@ function reducer(state, action) {
       }
       //Updates the endpoint as input by the user. 
       case "ADD_APOLLO_SERVER_URI":
-        // let newStr = uriInputString;
-        // uriInputString = '';
         return {
           ...state,
           apolloServerURI: action.payload,

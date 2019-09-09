@@ -1,40 +1,54 @@
-const pool = require('./sqlPool');
-
+// const pool = require('./sqlPool');
+const { Pool } = require('pg');
+require("dotenv").config();
 const pgQuery = async function(fetchedTables) {
     const tableQuery = `
-        SELECT table_name,
-            ordinal_position as position,
-            column_name,
-            data_type,
-            is_nullable,
-            column_default as default_value
-        FROM information_schema.columns
-        WHERE table_schema not in ('information_schema', 'pg_catalog') AND
-            table_name not in ('pg_stat_statements')
-        ORDER BY table_schema, 
-            table_name,
-            ordinal_position;`;
-
+    SELECT table_name,
+    ordinal_position as position,
+    column_name,
+    data_type,
+    is_nullable,
+    column_default as default_value
+    FROM information_schema.columns
+    WHERE table_schema not in ('information_schema', 'pg_catalog') AND
+    table_name not in ('pg_stat_statements')
+    ORDER BY table_schema, 
+    table_name,
+    ordinal_position;`;
+    
     const constraintQuery = `
-        SELECT table_name,
-            column_name,
-            constraint_name
-        FROM information_schema.constraint_column_usage
-        WHERE table_schema not in ('information_schema', 'pg_catalog') AND
-            table_name not in ('pg_stat_statements')
-        ORDER BY table_name;`
-
+    SELECT table_name,
+    column_name,
+    constraint_name
+    FROM information_schema.constraint_column_usage
+    WHERE table_schema not in ('information_schema', 'pg_catalog') AND
+    table_name not in ('pg_stat_statements')
+    ORDER BY table_name;`
+    
     let tableColumns = {};
-
-
+    
+    
+    const URI = process.env.DB_URI
+    
+    const pool = new Pool({
+      connectionString: URI,
+      ssl: true,
+    })
+    
+    pool.connect((err, client, done) => {
+      if (err) return console.log(`Error connecting to db, ${err}`);
+      console.log('Connected to db 😄')
+      done();
+    })
+    
     let queryResults = await pool.query(tableQuery)
-        .then(res => {
-            console.log('tableQuery: ',res.rows)
-            tableColumns = res.rows;
-            return tableColumns;
-        })
-        .then((tableColumns) => { 
-            return pool.query(constraintQuery)
+    .then(res => {
+        console.log('tableQuery: ',res.rows)
+        tableColumns = res.rows;
+        return tableColumns;
+    })
+    .then((tableColumns) => { 
+        return pool.query(constraintQuery)
                 .then(res => {
                     // console.log('constraintQuery: ',res.rows)
                     const result = res.rows;

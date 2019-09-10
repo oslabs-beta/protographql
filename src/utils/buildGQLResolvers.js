@@ -94,7 +94,6 @@ const buildGQLResolvers = tables => {
     gqlResolvers += `${tabs(3)}let valuesStr = \` VALUES (\`;\n`;
     gqlResolvers += `${tabs(3)}let values = [];\n`;
     gqlResolvers += `${tabs(3)}let columnsStr = \`(\`\n`;
-    gqlResolvers += `${tabs(3)}const returning = \` RETURNING *\`\n`;
     gqlResolvers += `${tabs(3)}Object.keys(args.input).forEach((fieldName, i, arr) => {\n`;
     gqlResolvers += `${tabs(4)}if(i == arr.length - 1){\n`;
     gqlResolvers += `${tabs(5)}columnsStr += \`\${fieldName})\`\n`;

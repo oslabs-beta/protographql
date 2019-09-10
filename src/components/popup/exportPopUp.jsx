@@ -8,9 +8,10 @@ import {
 } from "@material-ui/core";
 import { styled } from "@material-ui/styles";
 import { Store } from '../../state/store';
-import { SET_POP_UP, SET_VIEW } from '../../actions/actionTypes';
+import { SET_POP_UP, SET_VIEW, IMPORT_TABLES } from '../../actions/actionTypes';
 import buildENV from '../../utils/buildENV';
 import TextField from '@material-ui/core/TextField';
+import { IpcLink } from "graphql-transport-electron";
 
 //comment out to use web-dev-server instead of electron
 const electron = window.require('electron');

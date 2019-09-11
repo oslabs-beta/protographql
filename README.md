@@ -22,29 +22,29 @@ Upcoming releases will improve the “Schema” view and add support for NoSQL d
  
 1.  When the application starts you will be given the option to either **CREATE YOUR TABLES** or **IMPORT TABLES**. To create your tables, click the “Add Table” button in the lower left corner of the screen. When your config is complete, click **Save**. When importing, simply paste your database URI in the field and click the **Connect** button. In either case, your tables will be displayed in the main view when you are done.
  
-<p align="center"><kbd><img src="public/assets/pictures/add-table demo.mov.gif" width="800px"></kbd><p>
+<p align="center"><kbd><img src="public/assets/pictures/v2-add-tables.gif" width="800px"></kbd><p>
  
 2.  Navigate to the alternate views within the app using the tabs on the left:  **Schema**, **Code**, **Visualize**, and **Tests**
  
     * **Schema** - view, edit, or delete tables you've added.
     
-    <p align="center"><kbd><img src="public/assets/pictures/Schema_Screenshot.png" width="800px"></kbd></p>
+    <p align="center"><kbd><img src="public/assets/pictures/v2-schema-view.png" width="800px"></kbd></p>
     
     * **Code** - view generated GraphQL and SQL code. 
     
-    <p align="center"><kbd><img src="public/assets/pictures/Code_Screenshot.png" width="800px"></kbd></p>
+    <p align="center"><kbd><img src="public/assets/pictures/v2-codeview.png" width="800px"></kbd></p>
     
     * **Visualize** - view the GraphQL schema as a simple tree.
     
-   <p align="center" ><kbd><img src="public/assets/pictures/tree visializer demo.gif" width="800px"></kbd></p>
+   <p align="center" ><kbd><img src="public/assets/pictures/v2-visualizer.gif" width="800px"></kbd></p>
  
     * **Tests** - create and export query and response pairs from a custom GraphQL Endpoint. 
        
-   <p align="center" ><kbd><img src="public/assets/pictures/tree visializer demo.gif" width="800px"></kbd></p>
+   <p align="center" ><kbd><img src="public/assets/pictures/v2-test-queries.gif" width="800px"></kbd></p>
  
 3.  Export your code by clicking the **Export** icon in the upper right.  
  
-   <p align="center" ><kbd><img src="public/assets/pictures/Export_Screenshot.png" width="800px"></kbd></p>
+   <p align="center" ><kbd><img src="public/assets/pictures/v2-export.png" width="800px"></kbd></p>
  
 4. Enter your Postgres database URI, then select the directory you want to save your compressed GraphQL server package in.
  

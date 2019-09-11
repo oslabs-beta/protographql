@@ -26,19 +26,19 @@ Upcoming releases will improve the “Schema” view and add support for NoSQL d
  
 2.  Navigate to the alternate views within the app using the tabs on the left:  **Schema**, **Code**, **Visualize**, and **Tests**
  
-    * **Schema** - view, edit, or delete tables you've added.
+* **Schema** - view, edut or delete tables you've added. 
     
     <p align="center"><kbd><img src="public/assets/pictures/v2-schema-view.png" width="800px"></kbd></p>
     
-    * **Code** - view generated GraphQL and SQL code. 
+* **Code** - view generated GraphQL and SQL code. 
     
     <p align="center"><kbd><img src="public/assets/pictures/v2-codeview.png" width="800px"></kbd></p>
     
-    * **Visualize** - view the GraphQL schema as a simple tree.
+* **Visualize** - view the GraphQL schema as a simple tree. 
     
    <p align="center" ><kbd><img src="public/assets/pictures/v2-visualizer.gif" width="800px"></kbd></p>
  
-    * **Tests** - create and export query and response pairs from a custom GraphQL Endpoint. 
+* **Tests** - create and export query and response pairs from a custom GraphQL Endpoint.
        
    <p align="center" ><kbd><img src="public/assets/pictures/v2-test-queries.gif" width="800px"></kbd></p>
  
@@ -47,6 +47,7 @@ Upcoming releases will improve the “Schema” view and add support for NoSQL d
    <p align="center" ><kbd><img src="public/assets/pictures/v2-export.png" width="800px"></kbd></p>
  
 4. Enter your Postgres database URI, then select the directory you want to save your compressed GraphQL server package in.
+
  
 ## How to Run GraphQL Server:
  
@@ -72,12 +73,12 @@ There are several libraries we could have used to create a GraphQL server, but w
  
 <img align="right" src="public/assets/pictures/icon/icon.png" width="125px">
  
-- Alena Budzko [@AlenaBudzko](https://github.com/AlenaBudzko) 
-- Bryan Fong [@bryanfong-dev](https://github.com/bryanfong-dev)
-- Rodolfo Guzman [@Rodolfoguzman25](https://github.com/Rodolfoguzman25)
-- Jarred Jack Harewood [@jackhajb](https://github.com/jackhajb)
-- Geoffrey Lin [@geofflin](https://github.com/geofflin)
-- Vance Wallace
-- Jessica Vaughan
-- Michele Moody
-- Haris Hambasic 
+- Alena Budzko  |  [@AlenaBudzko](https://github.com/AlenaBudzko) 
+- Bryan Fong  |  [@bryanfong-dev](https://github.com/bryanfong-dev)
+- Rodolfo Guzman  |  [@Rodolfoguzman25](https://github.com/Rodolfoguzman25)
+- Jarred Jack Harewood  |  [@jackhajb](https://github.com/jackhajb)
+- Geoffrey Lin  |  [@geofflin](https://github.com/geofflin)
+- Vance Wallace  | [@Vancito](https://github.com/Vancito) 
+- Jessica Vaughan  |  [@jessicavaughan820](https://github.com/jessicavaughan820)
+- Michele Moody  | [@Milmoody](https://github.com/Milmoody)
+- Haris Hambasic | [@hambasicharis1995](https://github.com/hambasicharis1995)

@@ -93,10 +93,11 @@ function DraggableDialog(props) {
         <Title style={{ cursor: "move" }} id="draggable-dialog-title">Instructions</Title>
 
         <ContentDiv style={{ marginTop: "15px", marginBottom: "25px", textAlign: "left" }}>
-          <DialogContentText>1) Add the endpoint of your running GraphQL server in the "GraphQL Endpoint URL" box. (For example: "http://localhost:3000") Click the "Add URL" button</DialogContentText>
-          <DialogContentText>2) Type your test query in the box on the left.</DialogContentText>
-          <DialogContentText>3) Click the "Add Query" button <br />(Repeat steps 2 and 3 to add additional query response pairs)</DialogContentText>
-          <DialogContentText>4) To export your test file click the "Export Tests" button.</DialogContentText>
+          <DialogContentText>1) Add the endpoint of your running GraphQL server in the "GraphQL Endpoint URL" box. Click the "Add URL" button</DialogContentText>
+          <DialogContentText>2) If no valid endpoint is entered, the default endpoint will be set to http://localhost:3000/GraphQL  </DialogContentText>
+          <DialogContentText>3) Type your test query in the box on the left.</DialogContentText>
+          <DialogContentText>4) Click the "Add Query" button <br />(Repeat steps 2 and 3 to add additional query response pairs)</DialogContentText>
+          <DialogContentText>5) To export your test file click the "Export Tests" button.</DialogContentText>
         </ContentDiv>
         <DialogActionsDiv>
           <GotItButton onClick={handleClose} color="primary">Got it!</GotItButton>

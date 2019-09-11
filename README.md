@@ -4,7 +4,7 @@
  
 *** The latest release of ProtoGraphQL includes a new view that can jumpstart your query testing with the Jest framework and the ability to import tables from an existing database. *** 
  
-ProtoGraphQL is a **prototyping tool** that empowers developers to build and visualize GraphQL schemas and queries without writing any code. Once users import or input relational database tables, ProtoGraphQL can generate an export package that allows developers to spin up a customized and functional GraphQL Apollo Server as an independent app. (As of version 2.0 custom mutations are also supported!)
+ProtoGraphQL is a **prototyping tool** that empowers developers to build and visualize GraphQL schemas and queries without writing any code. Once users import or input their relational database tables, ProtoGraphQL can generate an export package that allows developers to spin up a customized and functional GraphQL Apollo Server as an independent app. (As of version 2.0 custom mutations are also supported!)
  
 ProtoGraphQL is in beta. Please post any issues to our GitHub - we are actively looking for opportunities to improve this tool and we welcome your feedback.
  
@@ -16,29 +16,29 @@ Upcoming releases will improve the “Schema” view and add support for NoSQL d
  
 2. Extract file
  
-3. Run app
+3. Run application
  
 ## How to Use:
  
-1.  When the application starts you will be given the option to either **CREATE YOUR TABLES** or **IMPORT TABLES**. To create your tables, click the “Add Table” button in the lower left corner of the screen. When your config is complete, click **Save**. When importing, simply paste your database URI in the field and click the **Connect** button. Im either case, your tables will be displayed in the main view when you are done.
+1.  When the application starts you will be given the option to either **CREATE YOUR TABLES** or **IMPORT TABLES**. To create your tables, click the “Add Table” button in the lower left corner of the screen. When your config is complete, click **Save**. When importing, simply paste your database URI in the field and click the **Connect** button. In either case, your tables will be displayed in the main view when you are done.
  
 <p align="center"><kbd><img src="public/assets/pictures/add-table demo.mov.gif" width="800px"></kbd><p>
  
-2.  Navigate to the alternate views within the app using the tabs on the right:  **Schema**, **Code**, **Visualize**, and **Tests**
+2.  Navigate to the alternate views within the app using the tabs on the left:  **Schema**, **Code**, **Visualize**, and **Tests**
  
     * **Schema** - view, edit, or delete tables you've added.
     
     <p align="center"><kbd><img src="public/assets/pictures/Schema_Screenshot.png" width="800px"></kbd></p>
     
-    * **Code** - view generated GraphQL and SQL code 
+    * **Code** - view generated GraphQL and SQL code. 
     
     <p align="center"><kbd><img src="public/assets/pictures/Code_Screenshot.png" width="800px"></kbd></p>
     
-    * **Visualize** - view the GraphQL schema as a simple tree
+    * **Visualize** - view the GraphQL schema as a simple tree.
     
    <p align="center" ><kbd><img src="public/assets/pictures/tree visializer demo.gif" width="800px"></kbd></p>
  
-    * **Tests** - Create and export query and response pairs from a custom GraphQL Endpoint. 
+    * **Tests** - create and export query and response pairs from a custom GraphQL Endpoint. 
     
    <p align="center" ><kbd><img src="public/assets/pictures/tree visializer demo.gif" width="800px"></kbd></p>
  
@@ -46,22 +46,22 @@ Upcoming releases will improve the “Schema” view and add support for NoSQL d
  
    <p align="center" ><kbd><img src="public/assets/pictures/Export_Screenshot.png" width="800px"></kbd></p>
  
-4. Enter your Postgres database URI and then select the directory you want to save your executable GraphQL server.
+4. Enter your Postgres database URI, then select the directory you want to save your compressed GraphQL server package in.
  
 ## How to Run GraphQL Server:
  
 There are several libraries we could have used to create a GraphQL server, but we decided to use Apollo Server – the most popular library to setup an endpoint for responding to incoming GraphQL requests in JavaScript.
  
-1.  Extract apollo-server.zip file 
+1. Extract apollo-server.zip file 
  
 2. Open the project 
  
-3.  Install dependencies 
+3. Install dependencies 
   ```
   npm install
   ```
  
-4.  Run the server and visit localhost:3000
+4. Run the server and point your browser to localhost:3000
   ```
   npm start
   ```

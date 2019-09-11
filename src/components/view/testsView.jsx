@@ -168,10 +168,16 @@ function showInstructions() {
 // updates the endpoint url in state when submit button is clicked
 function updateURL() {
   let url = document.getElementById('url').value;
+  if (url.match(/http:\/\/.+/) || url.match(/https:\/\/.+/)) {
     dispatch({ type: ADD_APOLLO_SERVER_URI, payload: url });
     console.log('test updateURL', apolloServerURI);
     document.querySelector('#endpointStatus').innerHTML = `Current endpoint: ${document.getElementById('url').value}`;
     document.querySelector('#endpointStatus').classList.remove('invisible');
+    document.getElementById('url').value = '';
+  } else {
+    document.querySelector('#endpointStatus').innerHTML = "Endpoint must include http:// or https://";
+    document.querySelector('#endpointStatus').classList.remove('invisible');
+  }    
 }
 
 useEffect(() => {

@@ -2,7 +2,7 @@
  
 # ProtoGraphQL ver. 2.0
  
-*** The newest release of ProtoGraphQL includes a new view that can jumpstart your query testing with the Jest framework and the ability to import tables from an existing database. *** 
+*** The latest release of ProtoGraphQL includes a new view that can jumpstart your query testing with the Jest framework and the ability to import tables from an existing database. *** 
  
 ProtoGraphQL is a **prototyping tool** that empowers developers to build and visualize GraphQL schemas and queries without writing any code. Once users import or input relational database tables, ProtoGraphQL can generate an export package that allows developers to spin up a customized and functional GraphQL Apollo Server as an independent app. (As of version 2.0 custom mutations are also supported!)
  

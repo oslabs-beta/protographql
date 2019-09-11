@@ -11,7 +11,7 @@ const buildGQLInputTypes = tables => {
     // Iterate through each table field and define its respective GQL property 
     for (let fieldIndex in table.fields) {
       const field = table.fields[fieldIndex];
-      gqlTypes += addScalarField(field);
+      gqlTypes += field.relationSelected ? addObjectInput(tables, field) : addScalarField(field);
       gqlTypes += `,\n`;
     }
     gqlTypes += `${tabs(1)}}\n\n`; // Close GQL type definition
@@ -21,6 +21,17 @@ const buildGQLInputTypes = tables => {
 }
 
 /**********************************    HELPER FUNCTIONS    **********************************/
+
+// Returns a string of a GQL object field 
+const addObjectInput = (tables, field) => {
+  const { tableIndex, refType } = field.relation;
+  const linkedTableName = tables[tableIndex].type;
+  // Wrap linked field in curly braces if we have an 'xxx to many' relationship
+  let objectField = refType.slice(-4) === `many` ? 
+    `${tabs(2)}${linkedTableName.toLowerCase()}: [${linkedTableName}Input]` : 
+    `${tabs(2)}${linkedTableName.toLowerCase()}: ${linkedTableName}Input`;
+  return objectField;
+}
 
 // Returns a string of a GQL scalar field 
 const addScalarField = field => {

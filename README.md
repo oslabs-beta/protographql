@@ -39,7 +39,7 @@ Upcoming releases will improve the “Schema” view and add support for NoSQL d
    <p align="center" ><kbd><img src="public/assets/pictures/tree visializer demo.gif" width="800px"></kbd></p>
  
     * **Tests** - create and export query and response pairs from a custom GraphQL Endpoint. 
-    
+       
    <p align="center" ><kbd><img src="public/assets/pictures/tree visializer demo.gif" width="800px"></kbd></p>
  
 3.  Export your code by clicking the **Export** icon in the upper right.  

@@ -11,6 +11,7 @@ import {
 
 /*-------------------- Styled Components --------------------*/
 
+// styles the left side-bar of the application
 const SideBar = styled.div`
   background-color: white;
   grid-area: navSideBar;
@@ -23,24 +24,43 @@ const SideBar = styled.div`
 
 /*-------------------- Functional Component --------------------*/
 
-const views = ["Schema", "Code", "Visualize"]
+const views = ["Schema", "Code", "Visualize", "Tests"]
 
+// alters the clicked button of the side-bar menu
 function changeButtonStyleOnClick(view) {
+  // selects the button that was clicked
   const currentButton = document.querySelector(`#${view}`);
+  // sets the box shadow of the clicked button
   currentButton.style.boxShadow = "4px 4px 4px rgba(0, 0, 0, 0.10)";
+  // styles the border type of the clicked button
   currentButton.style.border = "2px solid rgba(0, 0, 0, 0.12)";
+  // styles the right border of the clicked button
   currentButton.style.borderRight = "4px solid rgba(221, 57, 156, 1)";
+  // iterate through all the buttons ('Schema', 'Code', and 'Visualize')
   for (let j = 0; j < views.length; j++) {
+    /*
+    if the current button in the iteration is not the button that was clicked... go to line 46
+    */
     if (view !== views[j]) {
+      // select the current button in the iteration
       const button = document.querySelector(`#${views[j]}`);
+      // set the box shadow of the current button in the iteration
       button.style.boxShadow = "1px 2px 3px rgba(0, 0, 0, 0.10)";
+      // set the border type of the current button in the iteration
       button.style.border = "none";
+      // set the right border style of the current button in the iteration
       button.style.borderRight = "1px solid rgba(0, 0, 0, 0.12)";
     }
   }
 }
 
 function NavSideBar() {
+  /*
+    -> connects the application to the context (utilized by Hooks in React) and facilitates the ability to
+        update the context of the application
+    -> the context is initialized by useContext() and specified by Store which is found
+        in /components/state/store.jsx
+  */
   const { dispatch, state: { tableIndex } } = useContext(Store);
   return (
     <SideBar>
@@ -74,6 +94,17 @@ function NavSideBar() {
           dispatch({ type: SET_VIEW, payload: 'visualize' })
           dispatch({ type: SET_POP_UP, payload: '' })
           changeButtonStyleOnClick("Visualize")
+          document.querySelector("svg") ? document.querySelector("svg").remove() : "";
+        }}
+      />
+      <NavButton
+        key='NavButton6'
+        className='fas fa-clipboard-check'
+        view='Tests'
+        click={(e) => {
+          dispatch({ type: SET_VIEW, payload: 'tests' })
+          dispatch({ type: SET_POP_UP, payload: '' })
+          changeButtonStyleOnClick("Tests")
           document.querySelector("svg") ? document.querySelector("svg").remove() : "";
         }}
       />

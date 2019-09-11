@@ -1,3 +1,5 @@
+// This file styles the contents associated with the 'Visualize' button
+
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Store } from '../../state/store';
@@ -7,6 +9,7 @@ import deepClone from '../../utils/deepClone'
 
 /*-------------------- Styled Components --------------------*/
 
+// styles the divider between the visualization area and the right side-bar
 const SideBar = styled.div`
   grid-area: bar;
   box-shadow: -2px 2px 3px rgba(0, 0, 0, 0.10);
@@ -15,6 +18,7 @@ const SideBar = styled.div`
   // overflow: scroll;
 `;
 
+// styles the title of the right side-bar that appears after clicking the 'Visualize' button
 const Header = styled.p`
   font-size: 18px;
   padding: 8px;
@@ -28,6 +32,7 @@ const TypeContainer = styled.div`
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 `
 
+// styles the title 'Color Legend' of the right side-bar that appears after clicking the 'Visualize' button
 const ColorLegend = styled.div`
   position: absolute;
   bottom: 0;
@@ -40,12 +45,14 @@ const ColorLegend = styled.div`
   z-index: 2;
 `
 
+// styles the container that contains the 'Queries', 'Types', and 'Queryable Fields' text fields
 const ColorContainer = styled.div`
   display: flex;
   width: 100%;
   height: 20px;
 `
 
+// styles the 'Queries' text
 const First = styled.div`
   text-align: left;
   vertical-align: middle;
@@ -55,6 +62,7 @@ const First = styled.div`
   height: 15px;
 `
 
+// styles the 'Types' text
 const Second = styled.div`
   text-align: left;
   vertical-align: middle;
@@ -64,6 +72,7 @@ const Second = styled.div`
   height: 15px;
 `
 
+// styles the 'Queryable Fields' text
 const Third = styled.div`
   text-align: left;
   vertical-align: middle; 
@@ -73,6 +82,7 @@ const Third = styled.div`
   height: 15px;
 `
 
+// styles the 'Queries', 'Types', and 'Queryable Fields' text fields
 const Text = styled.span`
   padding-left: 10px;
   font-size: 14px;
@@ -84,6 +94,12 @@ const Text = styled.span`
 
 
 function VisualizerSideBar() {
+  /*
+    -> connects the application to the context (utilized by Hooks in React) and facilitates the ability to
+        update the context of the application
+    -> the context is initialized by useContext() and specified by Store which is found
+        in /components/state/store.jsx
+  */
   const {
     state: {
       tables
@@ -91,9 +107,14 @@ function VisualizerSideBar() {
   } = useContext(Store);
 
 
+  // generates a deep clone of 'tables' which is defined on line 105
   const queryTypes = queryTypeCreator(deepClone(tables))
   const vizTypes = []
   for (let i in queryTypes) {
+    /*
+    append each respective cell to the content under the 'Types' title that appears in the right side-bar after clicking
+    the 'Visualize' button
+    */
     vizTypes.push(<VizType table={queryTypes[i]} key={i + 'queryType'}></VizType>)
   }
 

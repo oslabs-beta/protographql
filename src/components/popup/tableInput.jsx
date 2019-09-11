@@ -4,11 +4,18 @@ import deepClone from '../../utils/deepClone';
 
 /*-------------------- Styled Components --------------------*/
 
+/*
+styles the line between the options buttons and the space around the 'Add Field' and 'Save' buttons
+associated with the 'Add Table' button
+*/
 const Tr = styled.tr`
   border-top: 1px solid rgba(0, 0, 0, 0.2);
   vertical-align: middle;
 `;
 
+/*
+styles the buttons associated with the 'Type' and 'Table Relationship' options
+*/
 const Selected = styled.select`
   display: inline-flex;
 	padding: .6em 1.4em .5em .8em;
@@ -33,6 +40,7 @@ const Selected = styled.select`
   }
 `;
 
+// styles the trash icon of the dialog-box associated with the 'Add Table' button
 const Td = styled.td`
   font-size: .75em;
   text-align: center;
@@ -44,6 +52,10 @@ const Td = styled.td`
   }
 `;
 
+/*
+styles the input fields associated with the 'Field Name' and 'Default Value' options of the dialog-box
+associated with the 'Add Table' button
+*/
 const Input = styled.input`
   height: 2.5em;
   border-radius: 5px;
@@ -53,6 +65,7 @@ const Input = styled.input`
   font-size: .75em;
 `;
 
+// styles the 'trash' icon of the dialog-box associated with the 'Add Table' button
 const TrashCan = styled.span`
   font-size: 18px;
   &:hover {
@@ -65,37 +78,45 @@ const TrashCan = styled.span`
 
 function TableInput({
   field,
-  fieldIndex,
-  editField,
+  fieldIndex, // this represents the index of the field of the table
+  editField, // this is used when there is a change / edit to a field of the table
   editRelations,
   deleteField,
   tables
 }) {
 
-  const {
-    defaultValue,
-    fieldNum,
-    name,
-    primaryKey,
-    queryable,
-    relation,
-    relationSelected,
-    required,
-    tableNum,
-    type,
-    unique,
-  } = field;
+// these constants represent each option in the dialog-box of the 'Add Table' button
+const {
+  defaultValue, // 'Dafault Value'
+  fieldNum, // ''
+  name, // 'Field Name'
+  primaryKey, // 'Primary Key' 
+  queryable, // 'Queryable'
+  relation, // ''
+  relationSelected, // ''
+  required, // 'Required'
+  tableNum, // ''
+  type, // 'Type of Relationship'
+  unique, // 'Unique'
+} = field;
 
-  const { refType } = relation;
-  let relationTableIdx = relation.tableIndex;
-  let relationFieldIdx = relation.fieldIndex;
+const { refType } = relation;
+let relationTableIdx = relation.tableIndex;
+let relationFieldIdx = relation.fieldIndex;
 
-  function isChecked(id, field) {
-    const selectedSwitch = document.querySelector(id);
-    if (field) selectedSwitch.click();
-  }
+function isChecked(id, field) {
+  // represents the switch button to be affected
+  const selectedSwitch = document.querySelector(id);
+  // if 'field' exists, simulate a 'click' event on the switch button represented by 'selectedSwitch'
+  if (field) selectedSwitch.click();
+}
 
+  /*
+  handles 'checking' the swtich buttons associated with 'Primary Key', 'Unique', 'Required', and
+  'Queryable'
+  */
   useEffect(() => {
+    // isChecked() is defined on line 106
     isChecked("#primaryKey" + fieldNum, primaryKey);
     isChecked("#unique" + fieldNum, unique);
     isChecked("#required" + fieldNum, required);
@@ -120,6 +141,7 @@ function TableInput({
   }
   populateFieldRelationOptions(relationTableIdx);
 
+  // these components represent buttons, input fields, etc. associated with each option
   return (
     <Tr>
       <Td>

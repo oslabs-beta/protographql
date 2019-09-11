@@ -7,10 +7,12 @@ import buildGQLResolvers from '../utils/buildGQLResolvers';
 import buildSQLScripts from '../utils/buildSQLScripts';
 import { buildVisualizerJson } from '../utils/buildVisualizerJson';
 
+// sets the intial state of the application as found in '../state/initialState'
 const initialState = state;
 
 function reducer(state, action) {
 
+  // makes a deep clone of 'state' to enable updates of 'state'
   const newState = deepClone(state);
   let selectedTable;
   let tables;
@@ -69,6 +71,22 @@ function reducer(state, action) {
         sqlScripts: buildSQLScripts(newState.tables)
       };
 
+      //Import tables from existing postgres database
+    case "IMPORT_TABLES":
+      newState.tables = action.payload;
+      const indeces = Object.keys(newState.tables);
+      console.log("indeces",indeces)
+      const newTableIndex = indeces[indeces.length - 1]
+      
+      return {
+        ...state,
+        tables: newState.tables,
+        tableIndex: newTableIndex + 1,
+        visualizeJSON: buildVisualizerJson(deepClone(newState.tables)),
+        gqlSchema: buildGQLSchema(newState.tables),
+        gqlResolvers: buildGQLResolvers(newState.tables),
+        sqlScripts: buildSQLScripts(newState.tables)
+      };
 
     case "DELETE_TABLE":
       tables = Object.values(newState.tables);
@@ -120,6 +138,20 @@ function reducer(state, action) {
     case "THROTTLE_DISPLAY_ERROR":
       newState.displayError.throttleStatus = !newState.displayError.throttleStatus;
       return { ...state, displayError: newState.displayError };
+
+      //Updates the queries that are input by the user and the subsequent responses. 
+    case "UPDATE_QUERIES":
+      console.log(action.payload[0][0]);
+      return {
+        ...state,
+        queries: [state.queries[0].concat(action.payload[0][0]), state.queries[1].concat(action.payload[1][0])]
+      }
+      //Updates the endpoint as input by the user. 
+      case "ADD_APOLLO_SERVER_URI":
+        return {
+          ...state,
+          apolloServerURI: action.payload,
+        }
 
     default:
       return state;

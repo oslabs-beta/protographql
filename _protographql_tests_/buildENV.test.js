@@ -1,5 +1,5 @@
-import buildEnvURI from './buildENV';
-import buildENV from './buildENV';
+import buildEnvURI from '../src/utils/buildENV';
+import buildENV from '../src/utils/buildENV';
 
 test('When trying to create the Environment URI the result is not null: ', () => {
     expect(buildEnvURI("thisIsNotNull")).not.toBeNull;

@@ -168,14 +168,10 @@ function showInstructions() {
 // updates the endpoint url in state when submit button is clicked
 function updateURL() {
   let url = document.getElementById('url').value;
-  if (url.match(/http:\/\/.+/) || url.match(/https:\/\/.+/)) {
     dispatch({ type: ADD_APOLLO_SERVER_URI, payload: url });
     console.log('test updateURL', apolloServerURI);
-    document.getElementById('url').value = '';
-    document.querySelector('#endpointError').classList.add('invisible');
-  } else {
-    document.querySelector('#endpointError').classList.remove('invisible');
-  }
+    document.querySelector('#endpointStatus').innerHTML = `Current endpoint: ${document.getElementById('url').value}`;
+    document.querySelector('#endpointStatus').classList.remove('invisible');
 }
 
 useEffect(() => {
@@ -185,6 +181,7 @@ useEffect(() => {
   }
   document.getElementById("queriesDisplay").innerHTML = display;
 });
+
     
 /*-------------------- Functional Component Rendering --------------------*/
 //FOR FUTURE IMPLEMENTATION: Check the user input and maybe ping the endpoint to check that it is live. 
@@ -200,7 +197,7 @@ return(
             </div>
             <div style={{ flexBasis: "80%", lineHeight: ".01em" }}>
               <Input type='text' id='url' placeholder='Enter Your Custom GraphQL Endpoint URL here'></Input><Button style={{ width: "20%" }} onClick={updateURL}>Add URL</Button>
-              <p className="invisible" id="endpointError">That is not a valid endpoint.  If no valid endpoint is entered, the endpoint will remain unchanged. The initial value is set to http://localhost:3000/GraphQL</p>
+              <p className="invisible" id="endpointStatus">Current endpoint: </p>
             </div>
           </div>
         </Column>

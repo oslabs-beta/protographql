@@ -8,6 +8,6 @@
       "jsx": "react"
   },
   "include": [
-      "./src/"
+      "./src/", "_protographql_tests_/utils.test.js", "_protographql_tests_/buildGQLSchema.test.js", "_protographql_tests_/buildENV.test.js"
   ]
 }

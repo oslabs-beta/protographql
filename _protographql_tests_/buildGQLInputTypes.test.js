@@ -1,4 +1,4 @@
-import buildGQLSchema from './buildGQLSchema';
+import buildGQLInputTypes from '../src/utils/buildGQLInputTypes';
 import { build } from 'protobufjs';
 
 const testInput = {
@@ -120,23 +120,7 @@ const testInput = {
   },
 };
 
-const testOutput = `const { gql } = require('apollo-server-express');
-
-const typeDefs = gql\`
-
-  type FirstTable {
-    FirstColumn: ID
-    SecondColumn: String!
-    ThirdColumn: String!
-  }
-
-  type SecondTable {
-    SecondTableFirstColumn: ID
-    SecondSecondColumn: String!
-    firsttable: FirstTable
-  }
-
-  input FirstTableInput {
+const testOutput = `  input FirstTableInput {
     FirstColumn: ID,
     SecondColumn: String!,
     ThirdColumn: String!,
@@ -148,41 +132,16 @@ const typeDefs = gql\`
     firsttable: FirstTableInput,
   }
 
-  type Mutation {
-    addFirstTable(
-      input: FirstTableInput
-    ): [FirstTable]
-    addSecondTable(
-      input: SecondTableInput
-    ): [SecondTable]
-  }
-
-  type Query {
-    getAllFirstTable: [FirstTable]
-    getFirstTable(
-      SecondColumn: String
-    ): [FirstTable]
-    getAllSecondTable: [SecondTable]
-    getSecondTable(
-      SecondTableFirstColumn: ID,
-      SecondSecondColumn: String,
-      SecondThirdColumn: ID
-    ): [SecondTable]
-  }
-
-\`;
-
-module.exports = typeDefs;
 `
 
-test('Building GQL Schema does not return null: ', () => {
-    expect(buildGQLSchema(testInput)).not.toBeNull;
+test('Building GQL Input Types does not return null: ', () => {
+    expect(buildGQLInputTypes(testInput)).not.toBeNull;
 });
 
-test('When trying to create the GQL Schema the result is a string: ', () => {
-  expect(typeof(buildGQLSchema(testInput))).toBe('string');
+test('When trying to create the GQL Input Types the result is a string: ', () => {
+  expect(typeof(buildGQLInputTypes(testInput))).toBe('string');
 });
 
-test('Building GQL Schema works given test input: ', () => {
-  expect(buildGQLSchema(testInput)).toBe(testOutput);
+test('Building GQL Input Types works given test input: ', () => {
+  expect(buildGQLInputTypes(testInput)).toBe(testOutput);
 });

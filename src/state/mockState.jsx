@@ -1,3 +1,5 @@
+// This file contains mock state data to be used for development purposes
+
 export const selectedTable = {
   type: '',
   fields: {},

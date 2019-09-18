@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 
 /*-------------------- Styled Components --------------------*/
 
+// styles animation of the 'Add Table' button
 const fontColor = keyframes`
   0% {
     color: rgba(50, 67, 83, 1);
@@ -21,6 +22,7 @@ const fontColor = keyframes`
   }
 `;
 
+// styles the 'Add Table' button and surrounding space
 const ButtonContainer = styled.div`
   padding: 1px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
@@ -28,9 +30,10 @@ const ButtonContainer = styled.div`
   cursor: pointer;
   animation: ${fontColor} 2s;
   animation-fill-mode: both;
-  animation-iteration-count: 5;
+  animation-iteration-count: 20;
 `;
 
+// styles the 'Add Table' button and surrounding space
 const Button = styled.div`
   height: 60px;
   background-color: none;
@@ -39,6 +42,7 @@ const Button = styled.div`
   margin-top: 25px;
 `;
 
+// styles the icon associated with the 'Add Table' button
 const Icon = styled.span`
   margin: 5px;
   font-size: calc(14px + 1vw);

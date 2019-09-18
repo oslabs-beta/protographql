@@ -5,6 +5,7 @@ export const selectedTable = {
   tableID: 0
 };
 
+// specifies the initial values of the input table that appears when a user clicks 'Add Table'
 export const initialTable = {
   type: '',
   fields: {
@@ -30,6 +31,10 @@ export const initialTable = {
   tableID: 0
 };
 
+/*
+specifies the initial values of the input table that appears when a user clicks 'Add Field' within
+the input table that appears after a user clicks 'Add Table'
+*/
 export const initialField = {
   name: '',
   type: 'ID',
@@ -67,5 +72,11 @@ export const gqlSchema = `const { gql } = require('apollo-server-express');\n\nm
 export const gqlResolvers = `const pool = require('../db/sqlPool');\n\nmodule.exports = resolvers;\n`;
 
 export const sqlScripts = ``;
+
+//An array of arrays index 0 is the queries. index 1 is the responses to the queries 
+export const queries = [[], []];
+
+// stores the Apollo server URI input by the user in tests view
+export const apolloServerURI = 'http://localhost:3000/GraphQL';
 
 export const displayError = { displayStatus: false, throttleStatus: true, relatedTable: -1, relatedField: -1 };
